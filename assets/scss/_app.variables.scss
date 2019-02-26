@@ -1,0 +1,109 @@
+/*========== Custome Variable ==========*/
+// App Global Font Size
+$html-font-size: 16px;
+
+//Colors
+$white: #fff;
+$black: #000;
+
+$royal_blue: #5769df;
+$toolbox: #7276c5;
+$mountain-meadow: #2bd289;
+$blush: #dd5e89;
+
+$primary: $royal_blue !default;
+$secondary: $toolbox !default;
+
+//TODO: Add other colors
+$success: #28b725 !default;
+$info: #00d0bd !default;
+$warning: #ffb70f !default;
+$danger: #ff3739 !default;
+$pink: #fa0055 !default;
+$blue: #2e62ff !default;
+$purple: #2b314a !default;
+$light: #ffffff !default;
+$dark: #000000 !default;
+$base: #ecf0f6 !default;
+$base-light: #fafafa !default;
+$inactive: #bdbdbd !default;
+$card-light: #e4e7ed !default;
+
+// App Text Scale
+$gray-dark: #828282 !default;
+$gray: #727891 !default;
+$gray-light: #a2a2b6 !default;
+$gray-lighter: #e1e1e5 !default;
+$blue-dark: #1d2733 !default;
+$blue-light: #3491ef !default;
+$green: #28b725 !default;
+$blue-gradient: -webkit-linear-gradient(#b8ed62 -35%, #0073e7 65%);
+$orange-gradient: -webkit-linear-gradient(#b8ed62 -35%, #fb5c3e 65%);
+
+//App Theme Color
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'success': $success,
+    'info': $info,
+    'warning': $warning,
+    'danger': $danger,
+    'light': $light,
+    'dark': $dark,
+    'blue': $blue,
+    'green': $green,
+    'card-light': $card-light
+  ),
+  $theme-colors
+);
+
+// Settings for the `<body>` element.
+$body-bg: $base;
+$body-color: $gray-dark;
+$font-family-base: 'Rubik', sans-serif;
+$border-color: #ebedf2;
+
+// Setting for the Typography elements.
+
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg: 1.25rem !default;
+$font-size-sm: 0.875rem !default;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semi-bold: 500;
+$font-weight-bold: 700;
+
+// Setting For Heading Element
+$h1-font-size: 1.75rem !default; // 28px
+$h2-font-size: 1.5rem !default; // 24px
+$h3-font-size: 1.375rem !default; // 22px
+$h4-font-size: 1.125rem !default; // 20px
+$h5-font-size: 1rem !default; // 16px
+$h6-font-size: 0.875rem !default; // 14px
+
+// Gradient Theme Color
+$gradient-primary: linear-gradient(
+  270deg,
+  $primary 0%,
+  #8dc4f5 100%
+); // Primary
+$gradient-mountain-meadow: linear-gradient(
+  270deg,
+  $mountain-meadow 0%,
+  #e5bd9a 100%
+); // Mountain meadow
+$gradient-blush: linear-gradient(270deg, $blush 0%, #96ea8b 100%); // blush
+
+// Sidebar Variable
+
+$sidebar-bg: #ffffff;
+$sidebar-width: 265px;
+$sidebar-width-collapsed: 73px;
+$sidebar-nav-color: $gray-light;
+$sidebar-nav-text-size: 14px;
+$sidebar-nav-active-color: $primary;
+$sidebar-nav-spacing: 20px;
+$sidebar-nav-font-weight: 500;

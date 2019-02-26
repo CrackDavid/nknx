@@ -1,0 +1,25 @@
+html,
+body {
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: $font-family-base !important;
+  background-color: $body-bg !important;
+  font-family: $font-family-base;
+  font-weight: $font-weight-normal;
+  font-size: $html-font-size;
+  color: $body-color;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-wrap: break-word;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
