@@ -82,3 +82,6 @@ dist
 
 # Service worker
 sw.*
+
+# NPM Package file
+package-lock.json
