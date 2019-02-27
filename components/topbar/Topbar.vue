@@ -1,6 +1,6 @@
 <template>
   <div class="row topbar">
-    <span>{{ price }}</span>
+    <span>Data</span>
   </div>
 </template>
 
