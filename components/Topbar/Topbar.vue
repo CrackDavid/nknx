@@ -2,7 +2,7 @@
   <div class="topbar">
     <div class="row">
       <div class="col-xs-12">
-        <div class="box">Data</div>
+        <div class="box"><activity-icon class="custom-class"></activity-icon></div>
       </div>
     </div>
   </div>
@@ -10,8 +10,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { ActivityIcon } from 'vue-feather-icons'
 
 export default {
+  components: {
+    ActivityIcon
+  },
   computed: mapGetters({
     price: 'price/get'
   }),

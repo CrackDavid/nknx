@@ -17,6 +17,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
+    "vue-feather-icons": "^4.10.0",
     "vuesax": "^3.8.24"
   },
   "devDependencies": {
