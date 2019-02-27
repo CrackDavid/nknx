@@ -1,35 +1,32 @@
 <template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nknx
-      </h1>
-      <h2 class="subtitle">
-        The NKN node and wallet tracker
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
-    </div>
-  </section>
+  <div class="main">
+    <vs-row>
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <headerbar/>
+      </vs-col>
+    </vs-row>
+    <vs-row>
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <logo/>
+        <h1 class="title">nknx</h1>
+        <h2 class="subtitle">The NKN node and wallet tracker</h2>
+        <div class="links">
+          <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
+          <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
+        </div>
+      </vs-col>
+    </vs-row>
+  </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import Headerbar from '~/components/Header/Header.vue'
 
 export default {
   components: {
-    Logo
+    Logo,
+    Headerbar
   }
 }
 </script>

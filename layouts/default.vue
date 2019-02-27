@@ -1,16 +1,25 @@
 <template>
   <div>
-    <Header/>
-    <nuxt/>
+    <vs-row>
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <Topbar/>
+      </vs-col>
+    </vs-row>
+    <vs-row>
+      <Sidebar/>
+      <nuxt/>
+    </vs-row>
   </div>
 </template>
 
 <script>
-import Header from '~/components/Header/Header.vue'
+import Topbar from '~/components/Topbar/Topbar.vue'
+import Sidebar from '~/components/Sidebar/Sidebar.vue'
 
 export default {
   components: {
-    Header
+    Topbar,
+    Sidebar
   }
 }
 </script>

@@ -1,10 +1,9 @@
 .sidebar {
   background-color: $card-bg;
-  max-width: 72px;
+  flex: 0 0 $nav-width-collapsed;
+  transition: margin 0.3s ease;
   padding: $padding-normal;
   overflow-y: auto;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
   border: $card-border;
 }

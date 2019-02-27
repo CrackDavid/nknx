@@ -6,7 +6,7 @@ $html-font-size: 16px;
 //Default Colors
 $white: #fff;
 $black: #000;
-$base: #F7F7FA;
+$base: #f7f7fa;
 
 //Primary Colors
 $royal-blue: #5769df;
@@ -14,14 +14,14 @@ $toolbox: #7276c5;
 
 //UI Colors
 $mountain-meadow: #2bd289;
-$jasper: #D63649;
+$jasper: #d63649;
 $blush: #dd5e89;
 
 //Neutral Colors
-$ghost-white: #F8F8FB;
-$platinum: #E1E1ED;
-$quick-silver: #A2A5B9;
-$darker: #4A4D5D;
+$ghost-white: #f8f8fb;
+$platinum: #e1e1ed;
+$quick-silver: #a2a5b9;
+$darker: #4a4d5d;
 $darkest: #363165;
 
 //Theme colors
@@ -29,7 +29,7 @@ $primary: $royal-blue !default;
 $secondary: $toolbox !default;
 $accent-green: $mountain-meadow !default;
 $accent-blush: $blush !default;
-$success: #27CE60 !default;
+$success: #27ce60 !default;
 
 //App Theme Color
 $theme-colors: () !default;
@@ -65,13 +65,20 @@ $h2-font-size: 1.25rem !default; // 20px
 $h3-font-size: 1.125rem !default; // 18x
 
 //Shadows
-$shadow-1:  1px 2px 18px rgba(113, 152, 180, 0.15);
+$shadow-1: 1px 2px 18px rgba(113, 152, 180, 0.15);
 
 // Settings for the `<body>` element.
 $body-bg: $base;
 $body-color: $text-grey-darker;
 $font-family-base: 'Rubik', sans-serif;
 $border-color: $platinum;
+
+//Top bar
+$top-bar-height: 32px;
+
+//Navigation
+$nav-width-collapsed: 45px;
+$nav-width-expanded: 250px;
 
 // App Custom Card
 $card-bg: $white;
@@ -80,9 +87,9 @@ $card-shadow: $shadow-1;
 $card-border: 1px solid $platinum;
 
 // Gradient Theme Color
-$card-gradient: linear-gradient(172.89deg, $royal-blue 24.12%, #5FCFF9 102.64%);
-$orange-gradient: linear-gradient(90deg, $blush 0.24%, #F7BB97 97.08%);
-$green-gradient: linear-gradient(132.02deg, #61E786 2.8%, #2CCB96 84.22%);
+$card-gradient: linear-gradient(172.89deg, $royal-blue 24.12%, #5fcff9 102.64%);
+$orange-gradient: linear-gradient(90deg, $blush 0.24%, #f7bb97 97.08%);
+$green-gradient: linear-gradient(132.02deg, #61e786 2.8%, #2ccb96 84.22%);
 
 // App Spacing
 $padding-small: 14px;
