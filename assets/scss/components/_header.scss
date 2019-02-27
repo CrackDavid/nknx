@@ -1,5 +1,16 @@
 .header{
-  position: fixed !important;
-  top: 33px;
+  position: fixed;
+  top: 0px;
   z-index: 2;
+  width: 100%;
+  &-nav{
+    background-color: $card-bg;
+    box-shadow: $card-shadow;
+    width: 100%;
+    padding: $padding-small $padding-normal;
+    max-height: 72px;
+  }
+  &-wrapper{
+    display: flex;
+  }
 }

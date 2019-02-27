@@ -1,3 +1,5 @@
 <template>
-  <div>Sidebar</div>
+  <aside class="sidebar">
+    Sidebar
+  </aside>
 </template>

@@ -1,12 +1,9 @@
 .topbar {
-  height: 33px;
+  max-height: 32px;
   color: $white;
   background-color: $secondary;
-  position: fixed;
-  top: 0px;
-  left: 0px;
   width: 100%;
-  padding: 0px $padding-side;
+  padding: 0px $padding-normal;
   display: flex;
   align-items: center;
 }

@@ -77,6 +77,7 @@ $border-color: $platinum;
 $card-bg: $white;
 $card-border-radius: 7px;
 $card-shadow: $shadow-1;
+$card-border: 1px solid $platinum;
 
 // Gradient Theme Color
 $card-gradient: linear-gradient(172.89deg, $royal-blue 24.12%, #5FCFF9 102.64%);
@@ -84,4 +85,5 @@ $orange-gradient: linear-gradient(90deg, $blush 0.24%, #F7BB97 97.08%);
 $green-gradient: linear-gradient(132.02deg, #61E786 2.8%, #2CCB96 84.22%);
 
 // App Spacing
-$padding-side: 24px;
+$padding-small: 14px;
+$padding-normal: 24px;

@@ -1,0 +1,10 @@
+.sidebar {
+  background-color: $card-bg;
+  max-width: 72px;
+  padding: $padding-normal;
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: $card-border;
+}

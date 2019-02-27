@@ -1,34 +1,28 @@
 <template>
   <div>
-    <vs-navbar v-model="activeItem" class="nabarx header">
-      <div slot="title">
-        <vs-navbar-title>
-          Hello world
-        </vs-navbar-title>
+    <div class="header">
+      <Topbar/>
+      <div class="header-wrapper">
+        <Sidebar/>
+        <div class="header-nav">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">Header</div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <vs-navbar-item index="0">
-        <a href="#">Home</a>
-      </vs-navbar-item>
-      <vs-navbar-item index="1">
-        <a href="#">News</a>
-      </vs-navbar-item>
-      <vs-navbar-item index="2">
-        <a href="#">Update</a>
-      </vs-navbar-item>
-    </vs-navbar>
-    <Sidebar/>
+    </div>
   </div>
 </template>
 <script>
+import Topbar from '~/components/Topbar/Topbar.vue'
 import Sidebar from '~/components/Sidebar/Sidebar.vue'
 
 export default {
   components: {
+    Topbar,
     Sidebar
-  },
-  data: () => ({
-    activeItem: 0
-  })
+  }
 }
 </script>
