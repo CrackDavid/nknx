@@ -9,7 +9,7 @@
       <Sidebar/>
       <div class="main">
         <vs-row>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+          <vs-col vs-w="12">
             <headerbar/>
           </vs-col>
         </vs-row>

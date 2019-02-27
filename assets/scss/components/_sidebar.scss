@@ -1,9 +1,39 @@
 .sidebar {
   background-color: $card-bg;
   flex: 0 0 $nav-width-collapsed;
-  transition: margin 0.3s ease;
   padding: $padding-normal;
   overflow-y: auto;
   height: 100vh;
   border: $card-border;
+  transition: $transition-1;
+  &-expanded{
+    flex: 0 0 $nav-width-expanded;
+    .sidebar-item__title{
+      opacity: 1;
+      margin-left: calc(#{$padding-normal} + #{$nav-icon-size});
+      transform: translateX(0px);
+    }
+  }
+  &-item{
+    display: flex;
+    align-items: center;
+    color: $nav-color-default;
+    height: $nav-item-height;
+    overflow: hidden;
+    font-weight: 400;
+    &.nuxt-link-exact-active{
+      color: $nav-color-active;
+      font-weight: $nav-weight-active;
+    }
+    &__icon{
+      height: $nav-icon-size;
+      width: $nav-icon-size;
+      position: absolute;
+    }
+    &__title{
+      transform: translateX(500px);
+      opacity: 0;
+      transition: $transition-1 transform;
+    }
+  }
 }

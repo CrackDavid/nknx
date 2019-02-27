@@ -47,6 +47,7 @@ $theme-colors: map-merge(
 // Setting for the Typography elements.
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg: 1.25rem !default;
+$font-size-md: 1.125rem !default;
 $font-size-sm: 0.875rem !default;
 
 $font-weight-light: 300;
@@ -67,6 +68,9 @@ $h3-font-size: 1.125rem !default; // 18x
 //Shadows
 $shadow-1: 1px 2px 18px rgba(113, 152, 180, 0.15);
 
+//Transitions
+$transition-1: .3s cubic-bezier(.25,.8,.25,1);
+
 // Settings for the `<body>` element.
 $body-bg: $base;
 $body-color: $text-grey-darker;
@@ -77,11 +81,17 @@ $border-color: $platinum;
 $topbar-height: 32px;
 
 //Header bar
-$headerbar-height: 45px;
+$headerbar-height: 80px;
 
 //Navigation
-$nav-width-collapsed: 45px;
-$nav-width-expanded: 250px;
+$nav-width-collapsed: 72px;
+$nav-width-expanded: 264px;
+$nav-font-size: $font-size-md;
+$nav-color-default: $text-grey-light;
+$nav-color-active: $primary;
+$nav-weight-active: $font-weight-semi-bold;
+$nav-item-height: 64px;
+$nav-icon-size: 24px;
 
 // App Custom Card
 $card-bg: $white;

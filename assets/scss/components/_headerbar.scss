@@ -1,17 +1,11 @@
 .headerbar {
   height: $headerbar-height;
+  background-color: $card-bg;
+  box-shadow: $card-shadow;
   width: 100%;
-  padding: 0px $padding-normal;
-  display: flex;
-  align-items: center;
-  &-nav {
-    background-color: $card-bg;
-    box-shadow: $card-shadow;
-    width: 100%;
-    padding: $padding-small $padding-normal;
-    max-height: 72px;
-  }
-  &-wrapper {
-    display: flex;
+  padding: $padding-small $padding-normal;
+  max-height: 72px;
+  &-toggle{
+    cursor: pointer;
   }
 }

@@ -17,7 +17,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Rubik'
+        href: 'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&amp;subset=cyrillic'
       }
     ]
   },
@@ -51,7 +51,6 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
-
   /*
   ** Build configuration
   */
