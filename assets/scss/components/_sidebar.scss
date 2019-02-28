@@ -3,7 +3,7 @@
   flex: 0 0 $nav-width-collapsed;
   padding: $padding-normal;
   overflow-y: auto;
-  height: 100vh;
+  height: calc(100vh - #{$topbar-height});
   border: $card-border;
   transition: $transition-1;
   display: flex;

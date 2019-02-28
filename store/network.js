@@ -1,6 +1,6 @@
 export const state = () => ({
-  networkStatus: {},
-  networkNodes: {}
+  networkStatus: false,
+  networkNodes: false
 })
 
 export const mutations = {

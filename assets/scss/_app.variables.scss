@@ -71,12 +71,17 @@ $shadow-1: 1px 2px 18px rgba(113, 152, 180, 0.15);
 
 //Transitions
 $transition-1: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-2: 2s linear infinite;
 
 // Settings for the `<body>` element.
 $body-bg: $base;
 $body-color: $text-grey-darker;
 $font-family-base: 'Rubik', sans-serif;
 $border-color: $platinum;
+
+//Preloader
+$preloader-icon-size: 48px;
+$preloader-icon-color: $primary;
 
 //Top bar
 $topbar-height: 32px;

@@ -1,5 +1,5 @@
 export const state = () => ({
-  price: {}
+  price: false
 })
 
 export const mutations = {

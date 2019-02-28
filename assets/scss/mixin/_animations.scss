@@ -1,0 +1,18 @@
+/*================= Spin Animation ===================*/
+@keyframes Spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes Spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes Spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
