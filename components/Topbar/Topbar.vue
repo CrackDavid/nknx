@@ -65,6 +65,9 @@ export default {
     clearInterval(this.intervalNetworkNodes)
   },
   mounted: function() {
+    this.updatePrice()
+    this.updateNetworkStatus()
+    this.updateNetworkNodes()
     this.intervalPrice = setInterval(this.updatePrice, 60000)
     this.intervalNetworkStatus = setInterval(this.updateNetworkStatus, 60000)
     this.intervalNetworkNodes = setInterval(this.updateNetworkNodes, 60000)
