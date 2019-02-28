@@ -30,6 +30,7 @@ $secondary: $toolbox !default;
 $accent-green: $mountain-meadow !default;
 $accent-blush: $blush !default;
 $success: #27ce60 !default;
+$error: #fea0ae !default;
 
 //App Theme Color
 $theme-colors: () !default;
@@ -69,7 +70,7 @@ $h3-font-size: 1.125rem !default; // 18x
 $shadow-1: 1px 2px 18px rgba(113, 152, 180, 0.15);
 
 //Transitions
-$transition-1: .3s cubic-bezier(.25,.8,.25,1);
+$transition-1: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 // Settings for the `<body>` element.
 $body-bg: $base;

@@ -6,4 +6,41 @@
   padding: 0px $padding-normal;
   display: flex;
   align-items: center;
+  font-size: 0.7em;
+
+  &-block {
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+    .positive {
+      margin-left: 5px;
+      color: $success;
+    }
+    .negative {
+      margin-left: 5px;
+      color: $error;
+    }
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+  &-status {
+    display: block;
+    width: 0.75em;
+    height: 0.75em;
+    border-radius: 50%;
+    margin-right: 5px;
+    &.positive {
+      background-color: $success;
+    }
+    &.warning {
+      background-color: $error;
+    }
+    &.error {
+      background-color: $error;
+    }
+  }
+  &-icon {
+    height: 1em;
+  }
 }
