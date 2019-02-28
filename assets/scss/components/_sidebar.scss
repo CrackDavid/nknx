@@ -1,7 +1,6 @@
 .sidebar {
   background-color: $card-bg;
   flex: 0 0 $nav-width-collapsed;
-  padding-left: $padding-normal;
   overflow-y: auto;
   height: calc(100vh - #{$topbar-height});
   border: $card-border;
@@ -9,6 +8,15 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  position: relative;
+  &-marker {
+    height: $nav-item-height;
+    width: 4px;
+    background-color: $nav-color-active;
+    position: absolute;
+    right: 0px;
+    transition: $transition-1;
+  }
   &-expanded {
     flex: 0 0 $nav-width-expanded;
     .sidebar-item__title {
@@ -19,15 +27,16 @@
   }
   &-item {
     display: flex;
+    padding-left: $padding-normal;
     color: $nav-color-default;
     height: $nav-item-height;
     align-items: center;
     overflow: hidden;
     font-weight: 400;
+    transition: $transition-1 color;
     &.nuxt-link-exact-active {
       color: $nav-color-active;
       font-weight: $nav-weight-active;
-      border-right: 4px solid $nav-color-active;
     }
     &:hover {
       color: $nav-color-active;
