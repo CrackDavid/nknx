@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  background-color: $base;
   &-icon {
     height: $preloader-icon-size;
     width: $preloader-icon-size;
