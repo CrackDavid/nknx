@@ -21,6 +21,7 @@
     display: flex;
     color: $nav-color-default;
     height: $nav-item-height;
+    align-items: center;
     overflow: hidden;
     font-weight: 400;
     &.nuxt-link-exact-active{
