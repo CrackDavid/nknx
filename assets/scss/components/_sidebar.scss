@@ -6,6 +6,9 @@
   height: 100vh;
   border: $card-border;
   transition: $transition-1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   &-expanded{
     flex: 0 0 $nav-width-expanded;
     .sidebar-item__title{
@@ -16,7 +19,6 @@
   }
   &-item{
     display: flex;
-    align-items: center;
     color: $nav-color-default;
     height: $nav-item-height;
     overflow: hidden;
