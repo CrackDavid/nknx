@@ -17,7 +17,8 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&amp;subset=cyrillic'
+        href:
+          'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&amp;subset=cyrillic'
       }
     ]
   },

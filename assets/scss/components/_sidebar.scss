@@ -9,31 +9,31 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  &-expanded{
+  &-expanded {
     flex: 0 0 $nav-width-expanded;
-    .sidebar-item__title{
+    .sidebar-item__title {
       opacity: 1;
       margin-left: calc(#{$padding-normal} + #{$nav-icon-size});
       transform: translateX(0px);
     }
   }
-  &-item{
+  &-item {
     display: flex;
     color: $nav-color-default;
     height: $nav-item-height;
     align-items: center;
     overflow: hidden;
     font-weight: 400;
-    &.nuxt-link-exact-active{
+    &.nuxt-link-exact-active {
       color: $nav-color-active;
       font-weight: $nav-weight-active;
     }
-    &__icon{
+    &__icon {
       height: $nav-icon-size;
       width: $nav-icon-size;
       position: absolute;
     }
-    &__title{
+    &__title {
       transform: translateX(500px);
       opacity: 0;
       transition: $transition-1 transform;
