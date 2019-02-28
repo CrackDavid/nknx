@@ -1,7 +1,7 @@
 .sidebar {
   background-color: $card-bg;
   flex: 0 0 $nav-width-collapsed;
-  padding: $padding-normal;
+  padding-left: $padding-normal;
   overflow-y: auto;
   height: calc(100vh - #{$topbar-height});
   border: $card-border;
@@ -27,6 +27,10 @@
     &.nuxt-link-exact-active {
       color: $nav-color-active;
       font-weight: $nav-weight-active;
+      border-right: 4px solid $nav-color-active;
+    }
+    &:hover {
+      color: $nav-color-active;
     }
     &__icon {
       height: $nav-icon-size;
