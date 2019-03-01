@@ -51,8 +51,37 @@
     }
   }
   &-toggle {
+    svg {
+      height: 50px;
+      path {
+        fill: none;
+        transition: stroke-dashoffset $transition-3,
+          stroke-dasharray $transition-3;
+        stroke-width: 20px;
+        stroke-linecap: round;
+        stroke: $quick-silver;
+        stroke-dashoffset: 0px;
+        &#top,
+        &#bottom {
+          stroke-dasharray: 240px 950px;
+        }
+        &#middle {
+          stroke-dasharray: 180px 240px;
+        }
+      }
+    }
+    &.cross path {
+      &#top,
+      &#bottom {
+        stroke-dashoffset: -650px;
+        stroke-dashoffset: -650px;
+      }
+      &#middle {
+        stroke-dashoffset: -115px;
+        stroke-dasharray: 1px 220px;
+      }
+    }
     cursor: pointer;
-    color: $quick-silver;
   }
   &-button {
     background: transparent;

@@ -70,8 +70,9 @@ $h3-font-size: 1.125rem !default; // 18x
 $shadow-1: 1px 2px 18px rgba(113, 152, 180, 0.15);
 
 //Transitions
-$transition-1: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-1: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 $transition-2: 2s linear infinite;
+$transition-3: 0.4s cubic-bezier(0.25, -0.25, 0.75, 1.25);
 
 // Settings for the `<body>` element.
 $body-bg: $base;
