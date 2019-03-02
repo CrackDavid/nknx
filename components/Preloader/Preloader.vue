@@ -1,6 +1,6 @@
 <template>
   <div class="preloader">
-    <loader-icon class="preloader-icon"></loader-icon>
+    <loader-icon class="preloader-icon"/>
   </div>
 </template>
 

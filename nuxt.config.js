@@ -44,7 +44,22 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    [
+      'nuxt-i18n',
+      {
+        defaultLocale: 'en',
+        locales: [
+          {
+            code: 'en',
+            iso: 'en-US',
+            file: 'en-US.js'
+          }
+        ],
+        lazy: true,
+        langDir: 'lang/'
+      }
+    ]
   ],
   /*
   ** Axios module configuration

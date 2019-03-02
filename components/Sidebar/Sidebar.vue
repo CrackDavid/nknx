@@ -6,7 +6,7 @@
       @click.native="markerInitialize"
       @mouseleave.native="markerInitialize"
     >
-      <grid-icon class="sidebar-item__icon"></grid-icon>
+      <grid-icon class="sidebar-item__icon"/>
       <span class="sidebar-item__title">Dashboard</span>
     </nuxt-link>
     <nuxt-link
@@ -15,10 +15,10 @@
       @click.native="markerInitialize"
       @mouseleave.native="markerInitialize"
     >
-      <activity-icon class="sidebar-item__icon"></activity-icon>
+      <activity-icon class="sidebar-item__icon"/>
       <span class="sidebar-item__title">Network</span>
     </nuxt-link>
-    <div class="sidebar-marker"></div>
+    <div class="sidebar-marker"/>
   </aside>
 </template>
 
