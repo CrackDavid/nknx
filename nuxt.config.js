@@ -64,6 +64,12 @@ module.exports = {
   ],
 
   auth: {
+    redirect: {
+      login: '/',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    },
     strategies: {
       auth0: {
         domain: 'nknx.eu.auth0.com',
@@ -71,8 +77,9 @@ module.exports = {
       }
     }
   },
-
-  router: {},
+  router: {
+    middleware: ['auth']
+  },
   /*
   ** Axios module configuration
   */

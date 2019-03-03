@@ -10,6 +10,7 @@
 import NetworkState from '~/components/Widgets/Network/NetworkState/NetworkState.vue'
 
 export default {
+  auth: false,
   components: {
     NetworkState
   }
