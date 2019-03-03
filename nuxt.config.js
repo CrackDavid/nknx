@@ -59,8 +59,20 @@ module.exports = {
         lazy: true,
         langDir: 'lang/'
       }
-    ]
+    ],
+    '@nuxtjs/auth'
   ],
+
+  auth: {
+    strategies: {
+      auth0: {
+        domain: 'nknx.eu.auth0.com',
+        client_id: 'CTgPWjFasyofBnyPzz3tvf1c36HyVTWv'
+      }
+    }
+  },
+
+  router: {},
   /*
   ** Axios module configuration
   */

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import NetworkState from '~components/Widgets/Network/NetworkState.vue'
+import NetworkState from '~/components/Widgets/Network/NetworkState/NetworkState.vue'
 
 export default {
   components: {
