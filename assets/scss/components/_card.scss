@@ -1,0 +1,14 @@
+.card {
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  background: $card-bg-default;
+  &.primary {
+    background: $card-bg-primary;
+  }
+  &.success {
+    background: $card-bg-success;
+  }
+  &.error {
+    background: $card-bg-error;
+  }
+}

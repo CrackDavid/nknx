@@ -1,17 +1,17 @@
 <template>
   <vs-row>
     <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-      <NetworkState></NetworkState>
+      <Card>{{ $t('generalInformation') }}</Card>
     </vs-col>
   </vs-row>
 </template>
 
 <script>
-import NetworkState from '~components/Widgets/Network/NetworkState.vue'
+import Card from '~/components/Card/Card.vue'
 
 export default {
   components: {
-    NetworkState
+    Card
   }
 }
 </script>

@@ -69,6 +69,16 @@ $h3-font-size: 1.125rem !default; // 18x
 //Shadows
 $shadow-1: 1px 2px 18px rgba(113, 152, 180, 0.15);
 
+// Gradient Theme Color
+$primary-gradient: linear-gradient(
+  172.89deg,
+  $royal-blue 24.12%,
+  #5fcff9 102.64%
+);
+$orange-gradient: linear-gradient(90deg, $blush 0.24%, #f7bb97 97.08%);
+$error-gradient: linear-gradient(120.36deg, $jasper 2.8%, $blush 84.22%);
+$green-gradient: linear-gradient(132.02deg, #61e786 2.8%, #2ccb96 84.22%);
+
 //Transitions
 $transition-1: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 $transition-2: 2s linear infinite;
@@ -101,15 +111,13 @@ $nav-item-height: 64px;
 $nav-icon-size: 24px;
 
 // App Custom Card
-$card-bg: $white;
+$card-bg-default: $white;
+$card-bg-primary: $primary-gradient;
+$card-bg-success: $green-gradient;
+$card-bg-error: $error-gradient;
 $card-border-radius: 7px;
 $card-shadow: $shadow-1;
 $card-border: 1px solid $platinum;
-
-// Gradient Theme Color
-$card-gradient: linear-gradient(172.89deg, $royal-blue 24.12%, #5fcff9 102.64%);
-$orange-gradient: linear-gradient(90deg, $blush 0.24%, #f7bb97 97.08%);
-$green-gradient: linear-gradient(132.02deg, #61e786 2.8%, #2ccb96 84.22%);
 
 // App Spacing
 $padding-small: 14px;

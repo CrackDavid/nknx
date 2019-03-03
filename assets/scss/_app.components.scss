@@ -1,4 +1,9 @@
+/*========== Main Components ==========*/
 @import 'components/preloader';
 @import 'components/topbar';
 @import 'components/headerbar';
 @import 'components/sidebar';
+@import 'components/card';
+
+/*========== Widgets ==========*/
+@import 'components/widgets/networkstate';

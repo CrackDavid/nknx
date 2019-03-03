@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: $card-bg;
+  background-color: $card-bg-default;
   flex: 0 0 $nav-width-collapsed;
   overflow-y: auto;
   height: calc(100vh - #{$topbar-height});
