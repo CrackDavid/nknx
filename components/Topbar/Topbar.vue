@@ -32,8 +32,8 @@
           {{ networkStatus.status }}
         </span>
         <span class="topbar-block">
-          <box-icon class="topbar-icon"/>
-          {{ networkNodes.length }} Total Nodes
+          <LayersIcon class="topbar-icon"/>
+          {{ networkNodes.stats.totalNodes }} Total Nodes
         </span>
         <span v-if="networkStatus" class="topbar-block">
           <git-branch-icon class="topbar-icon"/>
@@ -46,13 +46,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { ActivityIcon, GitBranchIcon, BoxIcon } from 'vue-feather-icons'
+import { ActivityIcon, GitBranchIcon, LayersIcon } from 'vue-feather-icons'
 
 export default {
   components: {
     ActivityIcon,
     GitBranchIcon,
-    BoxIcon
+    LayersIcon
   },
   computed: mapGetters({
     price: 'price/get',

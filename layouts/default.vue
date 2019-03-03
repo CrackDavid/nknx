@@ -1,7 +1,12 @@
 <template>
   <div>
-    <preloader v-if="!price || !networkStatus || !networkNodes"/>
-    <div class="page-wrapper" :class="{'preloading' : !price || !networkStatus || !networkNodes}">
+    <preloader
+      v-if="!price || !networkStatus || !networkNodes || !dailyTransactions || !dailyBlocks"
+    />
+    <div
+      v-if="price && networkStatus && networkNodes && dailyTransactions && dailyBlocks"
+      class="page-wrapper"
+    >
       <vs-row>
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
           <Topbar/>
@@ -44,7 +49,16 @@ export default {
   computed: mapGetters({
     price: 'price/get',
     networkStatus: 'network/getNetworkStatus',
-    networkNodes: 'network/getNetworkNodes'
-  })
+    networkNodes: 'network/getNetworkNodes',
+    dailyTransactions: 'transactions/getDailyTransactions',
+    dailyBlocks: 'blocks/getDailyBlocks'
+  }),
+  mounted: function() {
+    this.$store.dispatch('network/getCurrentNetworkStatus')
+    this.$store.dispatch('network/getCurrentNetworkNodes')
+    this.$store.dispatch('price/getCurrentPrice')
+    this.$store.dispatch('transactions/getDailyTransactions')
+    this.$store.dispatch('blocks/getDailyBlocks')
+  }
 }
 </script>

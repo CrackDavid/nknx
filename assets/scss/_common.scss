@@ -24,14 +24,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page-wrapper {
-  transition: $transition-1;
-  opacity: 1;
-  &.preloading {
-    opacity: 0;
-  }
-}
-
 .main {
   flex: 1;
 }
