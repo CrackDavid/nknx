@@ -18,10 +18,11 @@
     position: absolute;
     right: 0px;
     transition: $transition-1;
+    border-radius: $nav-marker-border-radius;
   }
-  &__expanded {
+  &_expanded {
     flex: 0 0 $nav-width-expanded;
-    .sidebar__item__title {
+    .sidebar__title {
       opacity: 1;
       margin-left: calc(#{$padding-normal} + #{$nav-icon-size});
       transform: translateX(0px);
@@ -44,15 +45,14 @@
     &:hover {
       color: $nav-color-active;
     }
-    &__icon {
-      height: $nav-icon-size;
-      width: $nav-icon-size;
-      position: absolute;
-    }
-    &__title {
-      transform: translateX(500px);
-      opacity: 0;
-      transition: $transition-1 transform;
-    }
+  }
+  &__icon {
+    font-size: $nav-icon-size;
+    position: absolute;
+  }
+  &__title {
+    transform: translateX(500px);
+    opacity: 0;
+    transition: $transition-1 transform;
   }
 }

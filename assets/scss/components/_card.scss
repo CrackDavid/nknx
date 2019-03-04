@@ -2,13 +2,13 @@
   border-radius: $card-border-radius;
   box-shadow: $card-shadow;
   background: $card-bg-default;
-  &.primary {
+  &_primary {
     background: $card-bg-primary;
   }
-  &.success {
+  &_success {
     background: $card-bg-success;
   }
-  &.error {
+  &_error {
     background: $card-bg-error;
   }
 }

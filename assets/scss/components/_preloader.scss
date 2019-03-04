@@ -9,9 +9,8 @@
   left: 0px;
   z-index: 100;
   background-color: $base;
-  &-icon {
-    height: $preloader-icon-size;
-    width: $preloader-icon-size;
+  &__icon {
+    font-size: $preloader-icon-size;
     color: $preloader-icon-color;
     animation: Spin $transition-2;
   }

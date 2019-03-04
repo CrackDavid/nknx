@@ -4,7 +4,8 @@
     width: 100%;
     height: 1px;
     background-color: $platinum;
-    margin: $padding-medium 0px;
+    margin-bottom: 8px;
+    margin-top: $padding-medium;
   }
   &__title {
     text-align: center;
@@ -23,9 +24,7 @@
   &__data {
     display: flex;
     align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: $padding-medium;
+    flex-flow: row wrap;
     padding: 0px $padding-small;
     &:last-child {
       margin-bottom: 0px;
@@ -34,14 +33,12 @@
       display: flex;
       align-items: center;
       width: 50%;
+      margin-top: $padding-medium;
     }
     &-icon {
       color: $text-grey-light;
       margin-right: $padding-small;
-      svg {
-        height: 16px;
-        width: 16px;
-      }
+      font-size: 24px;
     }
     &-title {
       font-size: $font-size-md;

@@ -1,15 +1,9 @@
 <template>
   <div class="preloader">
-    <loader-icon class="preloader-icon"/>
+    <span class="fe fe-loader preloader__icon"/>
   </div>
 </template>
 
 <script>
-import { LoaderIcon } from 'vue-feather-icons'
-
-export default {
-  components: {
-    LoaderIcon
-  }
-}
+export default {}
 </script>

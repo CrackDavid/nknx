@@ -1,22 +1,15 @@
 <template>
-  <aside class="sidebar" :class="{'sidebar__expanded': sidebarExpanded}">
+  <aside class="sidebar" :class="{'sidebar_expanded': sidebarExpanded}">
     <nuxt-link
-      to="/"
+      v-for="route in routes"
+      :key="route.path"
+      :to="route.path"
       class="sidebar__item"
       @click.native="markerInitialize"
       @mouseleave.native="markerInitialize"
     >
-      <grid-icon class="sidebar__item__icon"/>
-      <span class="sidebar__item__title">Dashboard</span>
-    </nuxt-link>
-    <nuxt-link
-      to="/network"
-      class="sidebar__item"
-      @click.native="markerInitialize"
-      @mouseleave.native="markerInitialize"
-    >
-      <activity-icon class="sidebar__item__icon"/>
-      <span class="sidebar__item__title">Network</span>
+      <span class="fe sidebar__icon" :class="route.icon"/>
+      <span class="sidebar__title">{{route.title}}</span>
     </nuxt-link>
     <div class="sidebar__marker"/>
   </aside>
@@ -25,16 +18,22 @@
 <script>
 import { mapGetters } from 'vuex'
 
-// Icons
-import { GridIcon, ActivityIcon } from 'vue-feather-icons'
-
 export default {
-  components: {
-    GridIcon,
-    ActivityIcon
-  },
   data: () => {
-    return {}
+    return {
+      routes: [
+        {
+          path: '/',
+          icon: 'fe-grid',
+          title: 'Dashboard'
+        },
+        {
+          path: '/network',
+          icon: 'fe-activity',
+          title: 'Network'
+        }
+      ]
+    }
   },
   computed: mapGetters({
     sidebarExpanded: 'sidebar/get'

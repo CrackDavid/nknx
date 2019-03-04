@@ -5,13 +5,13 @@
         <span class="topbar__block">
           USD/NKN: ${{ price.prices[0].price }}
           <span
-            :class="{'negative': price.prices[0].percent_change_24h<0, 'positive': price.prices[0].percent_change_24h>0}"
+            :class="{'topbar__block_negative': price.prices[0].percent_change_24h<0, 'topbar__block_positive': price.prices[0].percent_change_24h>0}"
           >({{ price.prices[0].percent_change_24h.toFixed(2) }}%)</span>
         </span>
         <span class="topbar__block">
           ETH/NKN: {{ price.prices[1].price }}
           <span
-            :class="{'negative': price.prices[1].percent_change_24h<0, 'positive': price.prices[1].percent_change_24h>0}"
+            :class="{'topbar__block_negative': price.prices[1].percent_change_24h<0, 'topbar__block_positive': price.prices[1].percent_change_24h>0}"
           >({{ price.prices[1].percent_change_24h.toFixed(2) }}%)</span>
         </span>
       </div>
@@ -19,19 +19,19 @@
     <div class="col-xs-8">
       <div class="row end-xs">
         <span class="topbar__block">
-          <span class="topbar__status positive"/> 18/18 Mining
+          <span class="topbar__status topbar__status_positive"/> 18/18 Mining
         </span>
         <span class="topbar__block">875 tNKN per day</span>
         <span class="topbar__block">
-          <activity-icon class="topbar__icon"/>
+          <span class="fe fe-activity topbar__icon"/>
           {{ networkStatus.status }}
         </span>
         <span class="topbar__block">
-          <LayersIcon class="topbar__icon"/>
+          <span class="fe fe-layers topbar__icon"/>
           {{ networkNodes.stats.totalNodes }} Total Nodes
         </span>
         <span v-if="networkStatus" class="topbar__block">
-          <git-branch-icon class="topbar__icon"/>
+          <span class="fe fe-git-branch topbar__icon"/>
           {{ networkStatus.version }}
         </span>
       </div>
@@ -41,14 +41,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { ActivityIcon, GitBranchIcon, LayersIcon } from 'vue-feather-icons'
 
 export default {
-  components: {
-    ActivityIcon,
-    GitBranchIcon,
-    LayersIcon
-  },
   computed: mapGetters({
     price: 'price/get',
     networkStatus: 'network/getNetworkStatus',

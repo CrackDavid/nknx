@@ -2,68 +2,17 @@
   <Card>
     <div class="general-stats">
       <div class="general-stats__item">
-        <div class="general-stats__title">
-          {{ networkNodes.stats.totalNodes }}
-        </div>
-        <div class="general-stats__subtitle">
-          Current Network Nodes
-        </div>
+        <div class="general-stats__title">{{ networkNodes.stats.totalNodes }}</div>
+        <div class="general-stats__subtitle">Current Network Nodes</div>
       </div>
       <div class="general-stats__divider"/>
       <div class="general-stats__item">
         <div class="general-stats__data">
-          <div class="general-stats__data-item">
-            <div class="general-stats__data-icon">
-              <GlobeIcon/>
-            </div>
+          <div class="general-stats__data-item" v-for="item in items" :key="item.title">
+            <span class="fe general-stats__data-icon" :class="item.icon"/>
             <div class="general-stats__data-description">
-              <div class="general-stats__data-title">
-                {{ networkNodes.stats.totalCountries }}
-              </div>
-              <div class="general-stats__data-subtitle">
-                Countries
-              </div>
-            </div>
-          </div>
-          <div class="general-stats__data-item">
-            <div class="general-stats__data-icon">
-              <DatabaseIcon/>
-            </div>
-            <div class="general-stats__data-description">
-              <div class="general-stats__data-title">
-                {{ networkNodes.stats.totalProviders }}
-              </div>
-              <div class="general-stats__data-subtitle">
-                Node Providers
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="general-stats__data">
-          <div class="general-stats__data-item">
-            <div class="general-stats__data-icon">
-              <BoxIcon/>
-            </div>
-            <div class="general-stats__data-description">
-              <div class="general-stats__data-title">
-                {{ dailyBlocks[0].count }}
-              </div>
-              <div class="general-stats__data-subtitle">
-                Blocks 24h
-              </div>
-            </div>
-          </div>
-          <div class="general-stats__data-item">
-            <div class="general-stats__data-icon">
-              <ShuffleIcon/>
-            </div>
-            <div class="general-stats__data-description">
-              <div class="general-stats__data-title">
-                {{ dailyTransactions[0].count }}
-              </div>
-              <div class="general-stats__data-subtitle">
-                Transactions 24h
-              </div>
+              <div class="general-stats__data-title">{{ item.data }}</div>
+              <div class="general-stats__data-subtitle">{{ item.title }}</div>
             </div>
           </div>
         </div>
@@ -75,20 +24,36 @@
 <script>
 import Card from '~/components/Card/Card.vue'
 import { mapGetters } from 'vuex'
-import {
-  GlobeIcon,
-  DatabaseIcon,
-  BoxIcon,
-  ShuffleIcon
-} from 'vue-feather-icons'
 
 export default {
   components: {
-    Card,
-    GlobeIcon,
-    DatabaseIcon,
-    BoxIcon,
-    ShuffleIcon
+    Card
+  },
+  data: () => {
+    return {
+      items: {
+        countries: {
+          icon: 'fe-globe',
+          title: 'Countries',
+          data: null
+        },
+        providers: {
+          icon: 'fe-database',
+          title: 'Node Providers',
+          data: null
+        },
+        blocks: {
+          icon: 'fe-box',
+          title: 'Blocks 24h',
+          data: null
+        },
+        transactions: {
+          icon: 'fe-shuffle',
+          title: 'Transactions 24h',
+          data: null
+        }
+      }
+    }
   },
   computed: mapGetters({
     networkStatus: 'network/getNetworkStatus',
@@ -121,12 +86,16 @@ export default {
     },
     updateNetworkNodes() {
       this.$store.dispatch('network/getCurrentNetworkNodes')
+      this.items.countries.data = this.networkNodes.stats.totalCountries
+      this.items.providers.data = this.networkNodes.stats.totalProviders
     },
     updateDailyTransactions() {
       this.$store.dispatch('transactions/getDailyTransactions')
+      this.items.transactions.data = this.dailyTransactions[0].count
     },
     updateDailyBlocks() {
       this.$store.dispatch('blocks/getDailyBlocks')
+      this.items.blocks.data = this.dailyBlocks[0].count
     }
   }
 }

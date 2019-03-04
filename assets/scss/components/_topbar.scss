@@ -13,11 +13,11 @@
     margin-right: 50px;
     display: flex;
     align-items: center;
-    .positive {
+    &_positive {
       margin-left: 5px;
       color: $success;
     }
-    .negative {
+    &_negative {
       margin-left: 5px;
       color: $error;
     }
@@ -31,17 +31,18 @@
     height: 0.75em;
     border-radius: 50%;
     margin-right: 5px;
-    &.positive {
+    &_positive {
       background-color: $success;
     }
-    &.warning {
+    &_warning {
       background-color: $error;
     }
-    &.error {
+    &_error {
       background-color: $error;
     }
   }
   &__icon {
     height: 1em;
+    margin-right: 8px;
   }
 }
