@@ -10,7 +10,7 @@
   justify-content: center;
   flex-direction: column;
   position: relative;
-  margin-left: 1rem;
+  margin-left: $flexboxgrid-gutter-width;
   &__marker {
     height: $nav-item-height;
     width: 4px;

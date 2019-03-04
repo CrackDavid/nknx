@@ -18,8 +18,8 @@ $flexboxgrid-max-width: 1200px !default;
 // -- Stop editing -- //
 //
 
-$gutter-compensation: $flexboxgrid-gutter-width * 0.5 * -1;
-$half-gutter-width: $flexboxgrid-gutter-width * 0.5;
+$gutter-compensation: $flexboxgrid-gutter-width * 1 * -1;
+$half-gutter-width: $flexboxgrid-gutter-width * 1;
 
 .wrapper {
   box-sizing: border-box;
