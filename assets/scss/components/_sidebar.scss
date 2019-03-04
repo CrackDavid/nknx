@@ -11,7 +11,7 @@
   flex-direction: column;
   position: relative;
   margin-left: 1rem;
-  &-marker {
+  &__marker {
     height: $nav-item-height;
     width: 4px;
     background-color: $nav-color-active;
@@ -19,15 +19,16 @@
     right: 0px;
     transition: $transition-1;
   }
-  &-expanded {
+  &__expanded {
     flex: 0 0 $nav-width-expanded;
-    .sidebar-item__title {
+    .sidebar__item__title {
       opacity: 1;
       margin-left: calc(#{$padding-normal} + #{$nav-icon-size});
       transform: translateX(0px);
     }
   }
-  &-item {
+  &__item {
+    text-decoration: none;
     display: flex;
     padding-left: $padding-normal;
     color: $nav-color-default;

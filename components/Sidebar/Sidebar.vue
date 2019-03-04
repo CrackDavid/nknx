@@ -1,24 +1,24 @@
 <template>
-  <aside class="sidebar" :class="{'sidebar-expanded': sidebarExpanded}">
+  <aside class="sidebar" :class="{'sidebar__expanded': sidebarExpanded}">
     <nuxt-link
       to="/"
-      class="sidebar-item"
+      class="sidebar__item"
       @click.native="markerInitialize"
       @mouseleave.native="markerInitialize"
     >
-      <grid-icon class="sidebar-item__icon"/>
-      <span class="sidebar-item__title">Dashboard</span>
+      <grid-icon class="sidebar__item__icon"/>
+      <span class="sidebar__item__title">Dashboard</span>
     </nuxt-link>
     <nuxt-link
       to="/network"
-      class="sidebar-item"
+      class="sidebar__item"
       @click.native="markerInitialize"
       @mouseleave.native="markerInitialize"
     >
-      <activity-icon class="sidebar-item__icon"/>
-      <span class="sidebar-item__title">Network</span>
+      <activity-icon class="sidebar__item__icon"/>
+      <span class="sidebar__item__title">Network</span>
     </nuxt-link>
-    <div class="sidebar-marker"/>
+    <div class="sidebar__marker"/>
   </aside>
 </template>
 
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     markerInitialize() {
-      const marker = document.getElementsByClassName('sidebar-marker')[0]
+      const marker = document.getElementsByClassName('sidebar__marker')[0]
       const currentActiveElement = document.getElementsByClassName(
         'nuxt-link-exact-active'
       )[0]
@@ -55,10 +55,10 @@ export default {
       marker.style.top = currentActiveElementOffset + 'px'
     },
     markerMove() {
-      const totalItems = document.getElementsByClassName('sidebar-item')
+      const totalItems = document.getElementsByClassName('sidebar__item')
       for (let i = 0; i < totalItems.length; i++) {
         totalItems[i].addEventListener('mouseover', function(e) {
-          const marker = document.getElementsByClassName('sidebar-marker')[0]
+          const marker = document.getElementsByClassName('sidebar__marker')[0]
           const currentActiveElement = document.getElementsByClassName(
             'nuxt-link-exact-active'
           )[0]

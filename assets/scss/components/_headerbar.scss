@@ -9,10 +9,10 @@
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
+  box-sizing: border-box;
   &__search-input {
-    height: 45px;
     flex: 1;
-    padding: 10px 15px;
+    padding: 0px 10px;
     border-radius: 50px;
     border: 1px solid $platinum;
     color: $quick-silver;
@@ -46,7 +46,6 @@
     }
   }
   &__item {
-    line-height: 45px;
     margin-right: 25px;
     &:last-child {
       margin-right: 0px;
@@ -54,7 +53,7 @@
   }
   &__toggle {
     svg {
-      height: 50px;
+      height: 40px;
       path {
         fill: none;
         transition: stroke-dashoffset $transition-3,
