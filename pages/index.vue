@@ -1,9 +1,9 @@
 <template>
-  <vs-row>
-    <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-      <NetworkState></NetworkState>
-    </vs-col>
-  </vs-row>
+  <div class="row">
+    <div class="col-xs-4">
+      <NetworkState/>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -7,26 +7,28 @@
       v-if="price && networkStatus && networkNodes && dailyTransactions && dailyBlocks"
       class="page-wrapper"
     >
-      <vs-row>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+      <div class="row">
+        <div class="col-xs-12">
           <Topbar/>
-        </vs-col>
-      </vs-row>
-      <vs-row>
+        </div>
+      </div>
+      <div class="row">
         <Sidebar/>
         <div class="main">
-          <vs-row>
-            <vs-col vs-w="12">
+          <div class="row">
+            <div class="col-xs-12">
               <headerbar/>
-            </vs-col>
-          </vs-row>
-          <vs-row>
-            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-              <nuxt/>
-            </vs-col>
-          </vs-row>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="content">
+                <nuxt/>
+              </div>
+            </div>
+          </div>
         </div>
-      </vs-row>
+      </div>
     </div>
   </div>
 </template>

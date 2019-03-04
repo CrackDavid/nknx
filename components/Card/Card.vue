@@ -1,12 +1,15 @@
 <template>
   <div class="card" :class="background">
-    <slot></slot>
+    <slot/>
   </div>
 </template>
 <script>
 export default {
   props: {
-    background: String
+    background: {
+      type: String,
+      default: '#ffffff'
+    }
   }
 }
 </script>

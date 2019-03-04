@@ -20,8 +20,7 @@
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
     "nuxt-i18n": "^5.8.5",
-    "vue-feather-icons": "^4.10.0",
-    "vuesax": "^3.8.24"
+    "vue-feather-icons": "^4.10.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

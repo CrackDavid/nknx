@@ -31,12 +31,16 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~/assets/css/reset.css', '@/assets/scss/main.scss'],
+  css: [
+    '~/assets/css/reset.css',
+    '~/assets/css/grid.css',
+    '@/assets/scss/main.scss'
+  ],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [`~plugins/vuesax.js`],
+  plugins: [],
 
   /*
   ** Nuxt.js modules

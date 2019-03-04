@@ -2,48 +2,68 @@
   <Card>
     <div class="general-stats">
       <div class="general-stats__item">
-        <div class="general-stats__title">{{ networkNodes.stats.totalNodes }}</div>
-        <div class="general-stats__subtitle">Current Network Nodes</div>
+        <div class="general-stats__title">
+          {{ networkNodes.stats.totalNodes }}
+        </div>
+        <div class="general-stats__subtitle">
+          Current Network Nodes
+        </div>
       </div>
-      <div class="general-stats__divider"></div>
+      <div class="general-stats__divider"/>
       <div class="general-stats__item">
         <div class="general-stats__data">
           <div class="general-stats__data-item">
             <div class="general-stats__data-icon">
-              <GlobeIcon></GlobeIcon>
+              <GlobeIcon/>
             </div>
             <div class="general-stats__data-description">
-              <div class="general-stats__data-title">{{ networkNodes.stats.totalCountries }}</div>
-              <div class="general-stats__data-subtitle">Countries</div>
+              <div class="general-stats__data-title">
+                {{ networkNodes.stats.totalCountries }}
+              </div>
+              <div class="general-stats__data-subtitle">
+                Countries
+              </div>
             </div>
           </div>
           <div class="general-stats__data-item">
             <div class="general-stats__data-icon">
-              <DatabaseIcon></DatabaseIcon>
+              <DatabaseIcon/>
             </div>
             <div class="general-stats__data-description">
-              <div class="general-stats__data-title">{{ networkNodes.stats.totalProviders }}</div>
-              <div class="general-stats__data-subtitle">Node Providers</div>
+              <div class="general-stats__data-title">
+                {{ networkNodes.stats.totalProviders }}
+              </div>
+              <div class="general-stats__data-subtitle">
+                Node Providers
+              </div>
             </div>
           </div>
         </div>
         <div class="general-stats__data">
           <div class="general-stats__data-item">
             <div class="general-stats__data-icon">
-              <BoxIcon></BoxIcon>
+              <BoxIcon/>
             </div>
             <div class="general-stats__data-description">
-              <div class="general-stats__data-title">{{dailyBlocks[0].count}}</div>
-              <div class="general-stats__data-subtitle">Blocks 24h</div>
+              <div class="general-stats__data-title">
+                {{ dailyBlocks[0].count }}
+              </div>
+              <div class="general-stats__data-subtitle">
+                Blocks 24h
+              </div>
             </div>
           </div>
           <div class="general-stats__data-item">
             <div class="general-stats__data-icon">
-              <ShuffleIcon></ShuffleIcon>
+              <ShuffleIcon/>
             </div>
             <div class="general-stats__data-description">
-              <div class="general-stats__data-title">{{dailyTransactions[0].count}}</div>
-              <div class="general-stats__data-subtitle">Transactions 24h</div>
+              <div class="general-stats__data-title">
+                {{ dailyTransactions[0].count }}
+              </div>
+              <div class="general-stats__data-subtitle">
+                Transactions 24h
+              </div>
             </div>
           </div>
         </div>

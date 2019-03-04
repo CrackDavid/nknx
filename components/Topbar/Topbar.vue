@@ -1,46 +1,41 @@
 <template>
   <div class="topbar">
-    <vs-row>
-      <vs-col
-        v-if="price.prices"
-        vs-type="flex"
-        vs-justify="left"
-        vs-align="center"
-        vs-w="4"
-        class="topbar-left"
-      >
-        <span class="topbar-block">
+    <div v-if="price.prices" class="col-xs-4">
+      <div class="row">
+        <span class="topbar__block">
           USD/NKN: ${{ price.prices[0].price }}
           <span
             :class="{'negative': price.prices[0].percent_change_24h<0, 'positive': price.prices[0].percent_change_24h>0}"
           >({{ price.prices[0].percent_change_24h.toFixed(2) }}%)</span>
         </span>
-        <span class="topbar-block">
+        <span class="topbar__block">
           ETH/NKN: {{ price.prices[1].price }}
           <span
             :class="{'negative': price.prices[1].percent_change_24h<0, 'positive': price.prices[1].percent_change_24h>0}"
           >({{ price.prices[1].percent_change_24h.toFixed(2) }}%)</span>
         </span>
-      </vs-col>
-      <vs-col vs-type="flex" vs-justify="flex-end" vs-align="center" vs-w="8" class="topbar-right">
-        <span class="topbar-block">
-          <span class="topbar-status positive"/> 18/18 Mining
+      </div>
+    </div>
+    <div class="col-xs-8">
+      <div class="row end-xs">
+        <span class="topbar__block">
+          <span class="topbar__status positive"/> 18/18 Mining
         </span>
-        <span class="topbar-block">875 tNKN per day</span>
-        <span class="topbar-block">
-          <activity-icon class="topbar-icon"/>
+        <span class="topbar__block">875 tNKN per day</span>
+        <span class="topbar__block">
+          <activity-icon class="topbar__icon"/>
           {{ networkStatus.status }}
         </span>
-        <span class="topbar-block">
-          <LayersIcon class="topbar-icon"/>
+        <span class="topbar__block">
+          <LayersIcon class="topbar__icon"/>
           {{ networkNodes.stats.totalNodes }} Total Nodes
         </span>
-        <span v-if="networkStatus" class="topbar-block">
-          <git-branch-icon class="topbar-icon"/>
+        <span v-if="networkStatus" class="topbar__block">
+          <git-branch-icon class="topbar__icon"/>
           {{ networkStatus.version }}
         </span>
-      </vs-col>
-    </vs-row>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -5,13 +5,14 @@
   width: 100%;
   padding: $padding-small $padding-normal;
   max-height: 72px;
-  &-left {
-    display: flex;
-    align-items: flex-end;
-  }
-  &-search-input {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  &__search-input {
+    height: 45px;
     flex: 1;
-    padding: 15px;
+    padding: 10px 15px;
     border-radius: 50px;
     border: 1px solid $platinum;
     color: $quick-silver;
@@ -44,13 +45,14 @@
       color: $quick-silver;
     }
   }
-  &-item {
+  &__item {
+    line-height: 45px;
     margin-right: 25px;
     &:last-child {
       margin-right: 0px;
     }
   }
-  &-toggle {
+  &__toggle {
     svg {
       height: 50px;
       path {
@@ -83,7 +85,7 @@
     }
     cursor: pointer;
   }
-  &-button {
+  &__button {
     background: transparent;
     border: none;
     padding: 10px;
