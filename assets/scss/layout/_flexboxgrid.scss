@@ -1,26 +1,3 @@
-//
-// -- Start editing -- //
-//
-
-// Set the number of columns you want to use on your layout.
-$flexboxgrid-grid-columns: 12 !default;
-// Set the gutter between columns.
-$flexboxgrid-gutter-width: 1rem !default;
-// Set a margin for the container sides.
-$flexboxgrid-outer-margin: 2rem !default;
-// Create or remove breakpoints for your project
-// Syntax:
-// name SIZErem,
-$flexboxgrid-breakpoints: sm 48em 46rem, md 62em 61rem, lg 75em 71rem !default;
-$flexboxgrid-max-width: 1200px !default;
-
-//
-// -- Stop editing -- //
-//
-
-$gutter-compensation: $flexboxgrid-gutter-width * 1 * -1;
-$half-gutter-width: $flexboxgrid-gutter-width * 1;
-
 .wrapper {
   box-sizing: border-box;
   max-width: $flexboxgrid-max-width;
