@@ -8,7 +8,7 @@
       class="page-wrapper"
     >
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col col_xs_12">
           <Topbar/>
         </div>
       </div>
@@ -16,12 +16,12 @@
         <Sidebar/>
         <div class="main">
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col col_xs_12">
               <headerbar/>
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col col_xs_12">
               <div class="content">
                 <nuxt/>
               </div>

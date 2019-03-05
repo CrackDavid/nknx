@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-xs-3">
+    <div class="col col_xs_3">
       <NetworkState/>
     </div>
   </div>

@@ -21,11 +21,11 @@
   margin-left: $gutter-compensation;
 }
 
-.row.reverse {
+.row.row_reverse {
   @include flex-direction(row-reverse);
 }
 
-.col.reverse {
+.col.col_reverse {
   @include flex-direction(column-reverse);
 }
 
@@ -45,19 +45,19 @@
 }
 
 $name: xs;
-.col-#{$name} {
+.col.col_#{$name} {
   @include flexboxgrid-sass-col-common;
   @include flex-basis(auto);
 }
 @for $i from 1 through $flexboxgrid-grid-columns {
-  .col-#{$name}-#{$i} {
+  .col.col_#{$name}_#{$i} {
     @include flexboxgrid-sass-col-common;
     @include flex-basis(100% / $flexboxgrid-grid-columns * $i);
     max-width: 100% / $flexboxgrid-grid-columns * $i;
   }
 }
 @for $i from 0 through $flexboxgrid-grid-columns {
-  .col-#{$name}-offset-#{$i} {
+  .col.col_#{$name}-offset_#{$i} {
     @include flexboxgrid-sass-col-common;
     @if $i == 0 {
       margin-left: 0;
@@ -66,51 +66,51 @@ $name: xs;
     }
   }
 }
-.col-#{$name} {
+.col.col_#{$name} {
   @include flex-grow(1);
   @include flex-basis(0);
   max-width: 100%;
 }
-.start-#{$name} {
+.row.row_start_#{$name} {
   @include justify-content(flex-start);
   text-align: left;
 }
 
-.center-#{$name} {
+.row.row_center_#{$name} {
   @include justify-content(center);
   text-align: center;
 }
 
-.end-#{$name} {
+.row.row_end_#{$name} {
   @include justify-content(flex-end);
   text-align: right;
 }
 
-.top-#{$name} {
+.row.row_top_#{$name} {
   @include align-items(flex-start);
 }
 
-.middle-#{$name} {
+.row.row_middle_#{$name} {
   @include align-items(center);
 }
 
-.bottom-#{$name} {
+.row.row_bottom_#{$name} {
   @include align-items(flex-end);
 }
 
-.around-#{$name} {
+.row.row_around_#{$name} {
   @include justify-content(space-around);
 }
 
-.between-#{$name} {
+.row.row_between_#{$name} {
   @include justify-content(space-between);
 }
 
-.first-#{$name} {
+.col.col_first_#{$name} {
   order: -1;
 }
 
-.last-#{$name} {
+.col.col_last_#{$name} {
   order: 1;
 }
 
@@ -123,19 +123,19 @@ $name: xs;
       width: $container;
     }
 
-    .col-#{$name} {
+    .col.col_#{$name} {
       @include flexboxgrid-sass-col-common;
       @include flex-basis(auto);
     }
     @for $i from 1 through $flexboxgrid-grid-columns {
-      .col-#{$name}-#{$i} {
+      .col.col_#{$name}_#{$i} {
         @include flexboxgrid-sass-col-common;
         @include flex-basis(100% / $flexboxgrid-grid-columns * $i);
         max-width: 100% / $flexboxgrid-grid-columns * $i;
       }
     }
     @for $i from 0 through $flexboxgrid-grid-columns {
-      .col-#{$name}-offset-#{$i} {
+      .col.col_#{$name}-offset_#{$i} {
         @include flexboxgrid-sass-col-common;
         @if $i == 0 {
           margin-left: 0;
@@ -144,51 +144,51 @@ $name: xs;
         }
       }
     }
-    .col-#{$name} {
+    .col.col_#{$name} {
       @include flex-grow(1);
       @include flex-basis(0);
       max-width: 100%;
     }
-    .start-#{$name} {
+    .row.row_start_#{$name} {
       @include justify-content(flex-start);
       text-align: left;
     }
 
-    .center-#{$name} {
+    .row.row_center_#{$name} {
       @include justify-content(center);
       text-align: center;
     }
 
-    .end-#{$name} {
+    .row.row_end_#{$name} {
       @include justify-content(flex-end);
       text-align: right;
     }
 
-    .top-#{$name} {
+    .row.row_top_#{$name} {
       @include align-items(flex-start);
     }
 
-    .middle-#{$name} {
+    .row.row_middle_#{$name} {
       @include align-items(center);
     }
 
-    .bottom-#{$name} {
+    .row.row_bottom_#{$name} {
       @include align-items(flex-end);
     }
 
-    .around-#{$name} {
+    .row.row_around_#{$name} {
       @include justify-content(space-around);
     }
 
-    .between-#{$name} {
+    .row.row_between_#{$name} {
       @include justify-content(space-between);
     }
 
-    .first-#{$name} {
+    .col.col_first_#{$name} {
       order: -1;
     }
 
-    .last-#{$name} {
+    .col.col_last_#{$name} {
       order: 1;
     }
   }

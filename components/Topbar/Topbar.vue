@@ -1,6 +1,6 @@
 <template>
   <div class="topbar">
-    <div v-if="price.prices" class="col-xs-4">
+    <div v-if="price.prices" class="col col_xs_4">
       <div class="row">
         <span class="topbar__block">
           USD/NKN: ${{ price.prices[0].price }}
@@ -16,8 +16,8 @@
         </span>
       </div>
     </div>
-    <div class="col-xs-8">
-      <div class="row end-xs">
+    <div class="col col_xs_8">
+      <div class="row row_end_xs">
         <span class="topbar__block">
           <span class="topbar__status topbar__status_positive"/> 18/18 Mining
         </span>

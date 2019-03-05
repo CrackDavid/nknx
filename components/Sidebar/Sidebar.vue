@@ -9,7 +9,7 @@
       @mouseleave.native="markerInitialize"
     >
       <span class="fe sidebar__icon" :class="route.icon"/>
-      <span class="sidebar__title">{{route.title}}</span>
+      <span class="sidebar__title">{{ route.title }}</span>
     </nuxt-link>
     <div class="sidebar__marker"/>
   </aside>

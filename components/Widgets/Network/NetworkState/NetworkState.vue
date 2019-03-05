@@ -2,17 +2,25 @@
   <Card>
     <div class="general-stats">
       <div class="general-stats__item">
-        <div class="general-stats__title">{{ networkNodes.stats.totalNodes }}</div>
-        <div class="general-stats__subtitle">Current Network Nodes</div>
+        <div class="general-stats__title">
+          {{ networkNodes.stats.totalNodes }}
+        </div>
+        <div class="general-stats__subtitle">
+          Current Network Nodes
+        </div>
       </div>
       <div class="general-stats__divider"/>
       <div class="general-stats__item">
         <div class="general-stats__data">
-          <div class="general-stats__data-item" v-for="item in items" :key="item.title">
+          <div v-for="item in items" :key="item.title" class="general-stats__data-item">
             <span class="fe general-stats__data-icon" :class="item.icon"/>
             <div class="general-stats__data-description">
-              <div class="general-stats__data-title">{{ item.data }}</div>
-              <div class="general-stats__data-subtitle">{{ item.title }}</div>
+              <div class="general-stats__data-title">
+                {{ item.data }}
+              </div>
+              <div class="general-stats__data-subtitle">
+                {{ item.title }}
+              </div>
             </div>
           </div>
         </div>
