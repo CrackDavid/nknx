@@ -14,6 +14,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.2.0",
     "@nuxtjs/auth": "^4.5.3",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
