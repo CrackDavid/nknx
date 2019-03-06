@@ -8,7 +8,7 @@ export default {
   props: {
     background: {
       type: String,
-      default: '#ffffff'
+      default: 'card_bg_default'
     }
   }
 }

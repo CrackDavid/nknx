@@ -1,10 +1,10 @@
 <template>
   <div>
     <preloader
-      v-if="!price || !networkStatus || !networkNodes || !dailyTransactions || !dailyBlocks"
+      v-if="!price || !networkStatus || !networkNodes || !dailyTransactions || !dailyBlocks || !dailyHistoryPrice"
     />
     <div
-      v-if="price && networkStatus && networkNodes && dailyTransactions && dailyBlocks"
+      v-if="price && networkStatus && networkNodes && dailyTransactions && dailyBlocks && dailyHistoryPrice"
       class="page-wrapper"
     >
       <div class="row">
@@ -49,7 +49,8 @@ export default {
     Headerbar
   },
   computed: mapGetters({
-    price: 'price/get',
+    price: 'price/getCurrentPrice',
+    dailyHistoryPrice: 'price/getDailyHistoryPrice',
     networkStatus: 'network/getNetworkStatus',
     networkNodes: 'network/getNetworkNodes',
     dailyTransactions: 'transactions/getDailyTransactions',
@@ -59,6 +60,7 @@ export default {
     this.$store.dispatch('network/getCurrentNetworkStatus')
     this.$store.dispatch('network/getCurrentNetworkNodes')
     this.$store.dispatch('price/getCurrentPrice')
+    this.$store.dispatch('price/getDailyHistoryPrice')
     this.$store.dispatch('transactions/getDailyTransactions')
     this.$store.dispatch('blocks/getDailyBlocks')
   }

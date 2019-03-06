@@ -44,7 +44,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: mapGetters({
-    price: 'price/get',
+    price: 'price/getCurrentPrice',
     networkStatus: 'network/getNetworkStatus',
     networkNodes: 'network/getNetworkNodes'
   }),

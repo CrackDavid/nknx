@@ -1,16 +1,23 @@
 export const state = () => ({
-  price: false
+  currentPrice: false,
+  dailyHistoryPrice: false
 })
 
 export const mutations = {
-  set(state, priceObj) {
-    state.price = priceObj
+  setCurrentPrice(state, priceObj) {
+    state.currentPrice = priceObj
+  },
+  setDailyHistoryPrice(state, priceObj) {
+    state.dailyHistoryPrice = priceObj
   }
 }
 
 export const getters = {
-  get(state) {
-    return state.price
+  getCurrentPrice(state) {
+    return state.currentPrice
+  },
+  getDailyHistoryPrice(state) {
+    return state.dailyHistoryPrice
   }
 }
 
@@ -19,6 +26,12 @@ export const actions = {
     const data = await this.$axios.$get(
       'https://price.nknx.org/price?quote=NKN&currency=USD,ETH'
     )
-    commit('set', data[0])
+    commit('setCurrentPrice', data[0])
+  },
+  async getDailyHistoryPrice({ commit }) {
+    const data = await this.$axios.$get(
+      'https://price.nknx.org/history?quote=NKN&currency=USD,ETH&aggregate=days'
+    )
+    commit('setDailyHistoryPrice', data[0])
   }
 }

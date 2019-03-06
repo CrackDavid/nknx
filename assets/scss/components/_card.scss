@@ -4,16 +4,16 @@
   margin: $half-gutter-width;
   position: relative;
   overflow: hidden;
-  &_default {
+  &_bg_default {
     background: $card-bg-default;
   }
-  &_primary {
+  &_bg_primary {
     background: $card-bg-primary;
   }
-  &_success {
+  &_bg_success {
     background: $card-bg-success;
   }
-  &_error {
+  &_bg_error {
     background: $card-bg-error;
   }
 }

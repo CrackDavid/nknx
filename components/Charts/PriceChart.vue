@@ -1,93 +1,54 @@
 <template>
-  <div ref="chartdiv" class="price-chart"/>
+  <div ref="chartdiv" class="price-chart"></div>
 </template>
 
 <script>
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
 import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
+import { mapGetters } from 'vuex'
 
 am4core.useTheme(am4themesAnimated)
 
 export default {
   name: 'HelloWorld',
+  computed: mapGetters({
+    dailyHistoryPrice: 'price/getDailyHistoryPrice'
+  }),
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
-
     chart.paddingRight = 20
 
-    const data = [
-      {
-        date: new Date(2018, 3, 20),
-        value: 90,
-        value2: 45
-      },
-      {
-        date: new Date(2018, 3, 21),
-        value: 102,
-        value2: 90
-      },
-      {
-        date: new Date(2018, 3, 22)
-      },
-      {
-        date: new Date(2018, 3, 23),
-        value: 125
-      },
-      {
-        date: new Date(2018, 3, 24),
-        value: 55,
-        value2: 90
-      },
-      {
-        date: new Date(2018, 3, 25),
-        value: 81,
-        value2: 60
-      },
-      {
-        date: new Date(2018, 3, 26)
-      },
-      {
-        date: new Date(2018, 3, 27),
-        value: 63,
-        value2: 87
-      },
-      {
-        date: new Date(2018, 3, 28),
-        value: 113,
-        value2: 62
-      }
-    ]
+    let usdPrice = this.dailyHistoryPrice.USD
+    let nknEth = this.dailyHistoryPrice.ETH
+    usdPrice = usdPrice.slice(0, 7)
+    nknEth = nknEth.slice(0, 7)
 
+    const data = nknEth
+    console.log(usdPrice)
     chart.data = data
 
-    // Create axes
     const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
     dateAxis.fontSize = 10
-    dateAxis.renderer.minGridDistance = 50
+    dateAxis.color = '#a2a5b9'
     dateAxis.renderer.grid.template.location = 0.5
     dateAxis.startLocation = 0.5
     dateAxis.endLocation = 0.5
+    dateAxis.dateFormats.setKey('day', 'dd/MM')
+    dateAxis.periodChangeDateFormats.setKey('day', 'dd/MM')
 
-    // Create value axis
-    const valueAxis = new am4charts.ValueAxis()
+    const valueAxis = chart.yAxes.push(new am4charts.ValueAxis())
     valueAxis.fontSize = 10
-    chart.yAxes.push(valueAxis)
-    // Create series
-    const series1 = chart.series.push(new am4charts.LineSeries())
-    series1.dataFields.valueY = 'value'
-    series1.dataFields.dateX = 'date'
-    series1.strokeWidth = 3
-    series1.tensionX = 0.8
-    series1.bullets.push(new am4charts.CircleBullet())
-    series1.connect = false
+    valueAxis.color = '#a2a5b9'
+    valueAxis.tooltip.disabled = false
+    valueAxis.renderer.minWidth = 35
 
-    const series2 = chart.series.push(new am4charts.LineSeries())
-    series2.dataFields.valueY = 'value2'
-    series2.dataFields.dateX = 'date'
-    series2.strokeWidth = 3
-    series2.tensionX = 0.8
-    series2.bullets.push(new am4charts.CircleBullet())
+    const series = chart.series.push(new am4charts.LineSeries())
+    series.dataFields.dateX = 'date'
+    series.dataFields.valueY = 'price'
+
+    series.tooltipText = '{valueY.price}'
+    chart.cursor = new am4charts.XYCursor()
 
     this.chart = chart
   },
