@@ -5,9 +5,15 @@
       class="network-status"
       :class="{'network-status_negative': networkSatus!='PersistFinished', 'network-status_positive': networkSatus=='PersistFinished'}"
     >
-      <div class="network-status__version">{{networkVersion}}</div>
-      <div class="network-status__status">{{networkSatus}}</div>
-      <div class="network-status__title">{{$t('networkStatus')}}</div>
+      <div class="network-status__version">
+        {{ networkVersion }}
+      </div>
+      <div class="network-status__status">
+        {{ networkSatus }}
+      </div>
+      <div class="network-status__title">
+        {{ $t('networkStatus') }}
+      </div>
     </div>
   </Card>
 </template>

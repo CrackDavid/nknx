@@ -3,21 +3,27 @@
     <div class="market-stats row">
       <div class="market-stats__market-data col col_xs_4">
         <div class="market-data__heading">
-          <h3 class="market-data__title">NKN Market Statistic</h3>
-          <div class="market-data__rank">Rank {{cmcRank}}</div>
+          <h3 class="market-data__title">
+            NKN Market Statistic
+          </h3>
+          <div class="market-data__rank">
+            Rank {{ cmcRank }}
+          </div>
         </div>
         <div class="market-data__market-numbers">
-          <div class="market-numbers__item" v-for="item in items" :key="item.title">
-            <div class="market-numbers__name">{{item.title}}</div>
+          <div v-for="item in items" :key="item.title" class="market-numbers__item">
+            <div class="market-numbers__name">
+              {{ item.title }}
+            </div>
             <div class="market-numbers__value" :class="item.class">
-              <span class="fe market-numbers__icon" :class="item.icon" v-if="item.icon"/>
-              {{item.data}}
+              <span v-if="item.icon" class="fe market-numbers__icon" :class="item.icon"/>
+              {{ item.data }}
             </div>
           </div>
         </div>
       </div>
       <div class="market-stats__market-chart col col_xs_8">
-        <price-chart></price-chart>
+        <price-chart/>
       </div>
     </div>
   </Card>
@@ -33,9 +39,6 @@ export default {
     Card,
     PriceChart
   },
-  computed: mapGetters({
-    price: 'price/get'
-  }),
   data: () => {
     return {
       cmcRank: 0,
@@ -63,6 +66,9 @@ export default {
       }
     }
   },
+  computed: mapGetters({
+    price: 'price/get'
+  }),
 
   destroyed() {},
   mounted: function() {
