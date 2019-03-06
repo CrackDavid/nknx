@@ -63,6 +63,7 @@ $theme-colors: map-merge(
 );
 
 // Setting for the Typography elements.
+$font-size-xxs: 0.625rem !default; // 10px
 $font-size-xs: 0.75rem !default; // 12px
 $font-size-sm: 0.9375rem !default; // 15px
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`

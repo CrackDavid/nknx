@@ -1,0 +1,51 @@
+.market-stats {
+  padding: $padding-normal;
+  display: flex;
+}
+.market-data {
+  &__heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  &__title {
+    font-size: $h3-font-size;
+  }
+  &__rank {
+    margin-left: 20px;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: $accent-green;
+    font-size: $font-size-xxs;
+    color: $white;
+  }
+  &__market-numbers {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+.market-numbers {
+  &__item {
+    width: 50%;
+    margin-top: $padding-normal;
+  }
+  &__value {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-md;
+    &_negative {
+      color: $error;
+    }
+    &_positive {
+      color: $success;
+    }
+  }
+  &__icon {
+    margin-right: 10px;
+  }
+  &__name {
+    font-size: $font-size-xs;
+    color: $text-grey-light;
+    margin-bottom: 8px;
+  }
+}
