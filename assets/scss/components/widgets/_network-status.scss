@@ -1,0 +1,22 @@
+.network-status {
+  text-align: center;
+  padding: $padding-big 0px;
+  border-radius: $card-border-radius;
+  color: $white;
+  &_positive {
+    background: $green-gradient;
+  }
+  &_negative {
+    background: $error-gradient;
+  }
+  &__version {
+    opacity: 0.85;
+  }
+  &__status {
+    margin-top: 16px;
+    margin-bottom: 24px;
+    font-size: $font-size-big;
+  }
+  &__title {
+  }
+}
