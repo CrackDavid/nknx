@@ -29,5 +29,5 @@ body {
 }
 
 .content {
-  padding: 50px;
+  padding: $flexboxgrid-gutter-width * 2 $flexboxgrid-gutter-width * 3;
 }
