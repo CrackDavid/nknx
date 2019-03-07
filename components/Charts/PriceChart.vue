@@ -11,7 +11,6 @@ import { mapGetters } from 'vuex'
 am4core.useTheme(am4themesAnimated)
 
 export default {
-  name: 'HelloWorld',
   computed: mapGetters({
     dailyHistoryPrice: 'price/getDailyHistoryPrice'
   }),
@@ -109,7 +108,7 @@ export default {
 
     chart.legend.contentAlign = 'right'
     chart.paddingTop = 0
-    console.log(chart)
+
     const marker = chart.legend.markers.template.children.getIndex(0)
     marker.cornerRadius(12, 12, 12, 12)
 

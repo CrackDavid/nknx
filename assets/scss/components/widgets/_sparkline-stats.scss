@@ -1,0 +1,39 @@
+.sparkline-stats {
+  padding: $padding-normal;
+  padding-bottom: $sparkline-chart-height;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semi-bold;
+    color: $text-grey-light;
+  }
+  &__change {
+    font-size: $font-size-sm;
+    display: flex;
+    align-items: center;
+    &_positive {
+      color: $success;
+    }
+    &_negative {
+      color: $error;
+    }
+  }
+  &__icon {
+    margin-right: 4px;
+    font-size: $font-size-md;
+  }
+  &__value {
+    font-size: $font-size-big;
+    margin-top: 12px;
+  }
+  &__chart {
+    position: absolute;
+    bottom: -18px;
+    left: -15px;
+    width: calc(100% + 30px);
+  }
+}

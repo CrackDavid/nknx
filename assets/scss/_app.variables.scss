@@ -69,7 +69,7 @@ $font-size-sm: 0.9375rem !default; // 15px
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-md: 1.125rem !default; // 18x
 $font-size-lg: 1.25rem !default; // 20px
-$font-size-big: 2.125rem !default;
+$font-size-big: 2.125rem !default; //34px
 $font-size-max: 4rem !default; // 64px
 
 $font-weight-light: 300;
@@ -145,3 +145,5 @@ $padding-normal: 24px;
 $padding-medium: 40px;
 $padding-big: 52px;
 $padding-max: 64px;
+// Sparkline-stats
+$sparkline-chart-height: 120px;
