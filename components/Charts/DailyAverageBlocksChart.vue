@@ -12,17 +12,17 @@ am4core.useTheme(am4themesAnimated)
 
 export default {
   computed: mapGetters({
-    dailyTransactions: 'transactions/getDailyTransactions'
+    dailyBlocks: 'blocks/getDailyBlocks'
   }),
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
-    let txAverage = this.dailyTransactions
-    txAverage = txAverage.slice(0, 7)
+    let blocksAverage = this.dailyBlocks
+    blocksAverage = blocksAverage.slice(0, 7)
     const data = []
-    for (let i = txAverage.length - 1; i >= 0; i--) {
+    for (let i = blocksAverage.length - 1; i >= 0; i--) {
       data.push({
-        date: new Date(txAverage[i].date),
-        count: txAverage[i].count
+        date: new Date(blocksAverage[i].date),
+        count: blocksAverage[i].count
       })
     }
 
@@ -45,8 +45,8 @@ export default {
     valueAxis.cursorTooltipEnabled = false
 
     const gradient1 = new am4core.LinearGradient()
-    gradient1.addColor(am4core.color('#61E786'))
-    gradient1.addColor(am4core.color('#2CCB96'))
+    gradient1.addColor(am4core.color('#DD5E89'))
+    gradient1.addColor(am4core.color('#F7BB97'))
 
     const series = chart.series.push(new am4charts.LineSeries())
     series.dataFields.dateX = 'date'
