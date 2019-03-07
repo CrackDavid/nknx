@@ -30,7 +30,7 @@
         </div>
         <div class="row">
           <div class="col col_xs_12">
-            <a :href="news.link">{{$t('read_more')}} -></a>
+            <a target="_blank" :href="news.link">{{$t('read_more')}} -></a>
           </div>
         </div>
         <hr v-if="mediumNews.length > 1">
