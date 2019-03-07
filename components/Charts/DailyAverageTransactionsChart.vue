@@ -59,6 +59,7 @@ export default {
     series.strokeWidth = 2
 
     chart.cursor = new am4charts.XYCursor()
+    chart.cursor.lineY.disabled = true
 
     this.chart = chart
   },
