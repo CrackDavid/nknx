@@ -1,7 +1,7 @@
 .card {
   border-radius: $card-border-radius;
   box-shadow: $card-shadow;
-  margin: $half-gutter-width;
+  margin: $half-gutter-width 0;
   position: relative;
   overflow: hidden;
   &_bg_default {
