@@ -60,6 +60,7 @@ export default {
 
     chart.cursor = new am4charts.XYCursor()
     chart.cursor.lineY.disabled = true
+    chart.cursor.lineX.disabled = true
 
     this.chart = chart
   },
