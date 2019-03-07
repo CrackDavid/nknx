@@ -25,9 +25,10 @@ export default {
     nknEth = nknEth.slice(0, 7)
 
     const nknPrice = []
-    for (let i = 0; i < nknEth.length; i++) {
+
+    for (let i = nknEth.length - 1; i >= 0; i--) {
       nknPrice.push({
-        date: nknEth[i].date,
+        date: new Date(nknEth[i].date),
         eth: nknEth[i].price,
         usd: nknUsd[i].price
       })
@@ -40,40 +41,77 @@ export default {
     dateAxis.fontSize = 10
     dateAxis.renderer.labels.template.fill = am4core.color('#a2a5b9')
     dateAxis.renderer.grid.template.location = 0.5
+    dateAxis.renderer.grid.template.strokeDasharray = '2'
     dateAxis.startLocation = 0.5
     dateAxis.endLocation = 0.5
     dateAxis.dateFormats.setKey('day', 'dd/MM')
     dateAxis.periodChangeDateFormats.setKey('day', 'dd/MM')
+    dateAxis.renderer.line.strokeOpacity = 0.5
+    dateAxis.renderer.line.strokeWidth = 1
+    dateAxis.renderer.line.stroke = am4core.color('#a2a5b9')
 
     const valueAxis = chart.yAxes.push(new am4charts.ValueAxis())
     valueAxis.fontSize = 10
     valueAxis.renderer.labels.template.fill = am4core.color('#a2a5b9')
     valueAxis.tooltip.disabled = false
     valueAxis.renderer.minWidth = 35
+    valueAxis.renderer.grid.template.strokeDasharray = '2'
+    valueAxis.renderer.line.strokeOpacity = 0.5
+    valueAxis.renderer.line.strokeWidth = 1
+    valueAxis.renderer.line.stroke = am4core.color('#a2a5b9')
 
     const valueAxis2 = chart.yAxes.push(new am4charts.ValueAxis())
     valueAxis2.fontSize = 10
     valueAxis2.renderer.labels.template.fill = am4core.color('#a2a5b9')
     valueAxis2.tooltip.disabled = false
     valueAxis2.renderer.minWidth = 35
-    valueAxis2.position = 'right' // Why it doesn't work? xD
+    valueAxis2.renderer.opposite = true
+    valueAxis2.renderer.grid.template.disabled = true
 
+    const gradient1 = new am4core.LinearGradient()
+    gradient1.addColor(am4core.color('#5DB6F3'))
+    gradient1.addColor(am4core.color('#5770E1'))
     const series1 = chart.series.push(new am4charts.LineSeries())
+    series1.name = 'NKN/USD'
     series1.dataFields.dateX = 'date'
     series1.dataFields.valueY = 'usd'
     series1.tooltipText = '{valueY.usd}'
-    series1.stroke = am4core.color('#5FCFF9') // This thing have to be gradient
-    series1.strokeWidth = 3
+    series1.stroke = gradient1
+    series1.tensionX = 0.8
+    series1.strokeWidth = 2
 
+    const gradient2 = new am4core.LinearGradient()
+    gradient2.addColor(am4core.color('#F6B497'))
+    gradient2.addColor(am4core.color('#E16A8B'))
     const series2 = chart.series.push(new am4charts.LineSeries())
+    series2.name = 'NKN/ETH'
     series2.dataFields.dateX = 'date'
     series2.dataFields.valueY = 'eth'
     series2.yAxis = valueAxis2
     series2.tooltipText = '{valueY.eth}'
-    series2.stroke = am4core.color('#DD5E89') // This thing have to be gradient
-    series2.strokeWidth = 3
+    series2.stroke = gradient2
+    series2.tensionX = 0.8
+    series2.strokeWidth = 2
 
     chart.cursor = new am4charts.XYCursor()
+
+    chart.legend = new am4charts.Legend()
+    chart.legend.fill = gradient1
+    chart.legend.data[0].fill = gradient1
+    chart.legend.data[1].fill = gradient2
+    chart.legend.useDefaultMarker = true
+    chart.legend.markers.template.height = 10
+    chart.legend.markers.template.width = 10
+    chart.legend.fontSize = 12
+    chart.legend.labels.template.fill = am4core.color('#a2a5b9')
+    chart.legend.marginBottom = 20
+    chart.legend.position = 'top'
+
+    chart.legend.contentAlign = 'right'
+    chart.paddingTop = 0
+    console.log(chart)
+    const marker = chart.legend.markers.template.children.getIndex(0)
+    marker.cornerRadius(12, 12, 12, 12)
 
     this.chart = chart
   },
