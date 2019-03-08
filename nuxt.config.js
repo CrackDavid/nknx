@@ -64,7 +64,9 @@ module.exports = {
         langDir: 'lang/'
       }
     ],
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    'nuxt-svg-loader',
+    '@nuxtjs/moment'
   ],
 
   auth: {

@@ -1,39 +1,39 @@
 <template>
   <Card>
-    <div class="col col_xs_12">
-      <div class="row">
-        <div class="col col_xs_10">
-          <h3>{{$t('latest_news')}}</h3>
-        </div>
-        <div class="col col_xs_2">
-          <span>ICON</span>
+    <div class="news">
+      <div class="news__header">
+        <h3 class="news__heading">{{$t('latestNews')}}</h3>
+        <div class="news__icon">
+          <MediumIcon></MediumIcon>
         </div>
       </div>
-      <div v-for="news in mediumNews" :key="news.title">
-        <div class="row">
-          <div class="col col_xs_6">
-            <span>{{news.pubDate}}</span>
+      <div v-for="news in paginatedData" :key="news.title" class="news__item">
+        <div class="news-item__header">
+          <div class="news-item__date">{{$moment(news.pubDate).format('DD/MM/YYYY')}}</div>
+          <div class="news-item__authour">by {{news.author}}</div>
+        </div>
+        <h4 class="news-item__title">{{news.title}}</h4>
+        <div class="news-item__content">{{news.content | striphtml | excerpt(20)}}</div>
+        <a class="news-item__more" target="_blank" :href="news.link">
+          {{$t('readMore')}}
+          <ArrowRight/>
+        </a>
+        <div class="news-item__divider"></div>
+      </div>
+      <div class="news__footer">
+        <div class="news__pages">Showing {{currentNumber}} of {{mediumNews.length}}</div>
+        <div class="news__buttons">
+          <div v-if="pageNumber != 0" @click="prevPage" class="news__button news__button_prev">
+            <span class="fe fe-chevron-left"></span>
           </div>
-          <div class="col col_xs_6">
-            <span>by {{news.author}}</span>
+          <div
+            v-if="pageNumber <= pageCount -1"
+            @click="nextPage"
+            class="news__button news__button_next"
+          >
+            <span class="fe fe-chevron-right"></span>
           </div>
         </div>
-        <div class="row">
-          <div class="col col_xs_12">
-            <h4>{{news.title}}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col_xs_12">
-            <span>{{news.content | striphtml | excerpt(20)}}</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col_xs_12">
-            <a target="_blank" :href="news.link">{{$t('read_more')}} -></a>
-          </div>
-        </div>
-        <hr v-if="mediumNews.length > 1">
       </div>
     </div>
   </Card>
@@ -41,13 +41,21 @@
 
 <script>
 import Card from '~/components/Card/Card.vue'
+import MediumIcon from '~/assets/icons/medium.svg'
+import ArrowRight from '~/assets/icons/arrow-right.svg'
 
 export default {
   components: {
-    Card
+    Card,
+    MediumIcon,
+    ArrowRight
   },
   data: () => {
     return {
+      pageNumber: 0,
+      itemsOnPage: 3,
+      currentItems: 3,
+      currentNumber: 3,
       mediumNews: [
         {
           title: null
@@ -55,10 +63,21 @@ export default {
       ]
     }
   },
+  computed: {
+    pageCount() {
+      const dataLength = this.mediumNews.length
+      return Math.floor(dataLength / this.itemsOnPage)
+    },
+    paginatedData() {
+      const start = this.pageNumber * this.itemsOnPage
+      const end = start + this.itemsOnPage
+      return this.mediumNews.slice(start, end)
+    }
+  },
   destroyed() {},
   mounted: function() {
     const self = this
-    this.fetchFromMedium('nknx').then(function(data) {
+    this.fetchFromMedium('nknetwork').then(function(data) {
       self.mediumNews = data.items
     })
   },
@@ -69,6 +88,16 @@ export default {
           name
       )
       return res.json()
+    },
+    nextPage() {
+      this.pageNumber++
+      this.currentNumber += this.paginatedData.length
+      this.currentItems = this.paginatedData.length
+    },
+    prevPage() {
+      this.pageNumber--
+      this.currentNumber -= this.currentItems
+      this.currentItems = this.paginatedData.length
     }
   }
 }

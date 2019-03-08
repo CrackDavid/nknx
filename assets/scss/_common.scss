@@ -31,3 +31,8 @@ body {
 .content {
   padding: $flexboxgrid-gutter-width * 2 $flexboxgrid-gutter-width * 3;
 }
+
+h3 {
+  font-size: $h3-font-size;
+  font-weight: 500;
+}

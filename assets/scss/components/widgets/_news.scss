@@ -1,0 +1,77 @@
+.news {
+  padding: $padding-normal;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 32px;
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__pages {
+    font-size: 13px;
+    color: $text-grey-light;
+  }
+  &__buttons {
+    display: flex;
+  }
+  &__button {
+    margin-left: 5px;
+    padding: 14px;
+    background: $ghost-white;
+    cursor: pointer;
+    transition: $transition-1;
+    border-radius: $card-border-radius;
+    &:hover {
+      background: $platinum;
+    }
+  }
+  .news-item {
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: $font-size-xs;
+      color: $text-grey-light;
+    }
+    &__title {
+      margin-top: 8px;
+      margin-bottom: 16px;
+      font-size: $font-size-md;
+      font-weight: $font-weight-semi-bold;
+      min-height: 36px;
+    }
+    &__content {
+      font-size: 13px;
+      line-height: 16px;
+      color: $text-grey-light;
+      margin-bottom: 12px;
+      min-height: 48px;
+    }
+    &__more {
+      color: $primary;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      svg {
+        left: 12px;
+        position: relative;
+        transition: $transition-1;
+      }
+      &:hover {
+        svg {
+          left: 18px;
+        }
+      }
+    }
+    &__divider {
+      width: 100%;
+      background-color: $platinum;
+      height: 1px;
+      margin: $padding-normal 0px;
+    }
+  }
+}
