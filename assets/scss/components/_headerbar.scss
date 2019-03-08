@@ -54,32 +54,28 @@
   &__toggle {
     svg {
       height: 40px;
+      position: relative;
+      top: 2px;
       path {
         fill: none;
         transition: stroke-dashoffset $transition-3,
           stroke-dasharray $transition-3;
-        stroke-width: 20px;
+        stroke-width: 8px;
         stroke-linecap: round;
-        stroke: $quick-silver;
-        stroke-dashoffset: 0px;
+        stroke: $text-grey-light;
+        stroke-dashoffset: -20px;
         &#top,
-        &#bottom {
-          stroke-dasharray: 240px 950px;
-        }
+        &#bottom,
         &#middle {
-          stroke-dasharray: 180px 240px;
+          stroke-dasharray: 60px 300px;
         }
       }
     }
-    &.cross path {
+    &.arrow path {
       &#top,
       &#bottom {
-        stroke-dashoffset: -650px;
-        stroke-dashoffset: -650px;
-      }
-      &#middle {
-        stroke-dashoffset: -115px;
-        stroke-dasharray: 1px 220px;
+        stroke-dasharray: 25px 300px;
+        stroke-dashoffset: -230px;
       }
     }
     cursor: pointer;
