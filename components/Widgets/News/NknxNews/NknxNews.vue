@@ -7,7 +7,7 @@
           <MediumIcon></MediumIcon>
         </div>
       </div>
-      <div v-for="news in paginatedData" :key="news.title" class="news__item">
+      <div v-for="(news, index) in paginatedData" :key="news.title" class="news__item">
         <div class="news-item__header">
           <div class="news-item__date">{{$moment(news.pubDate).format('DD/MM/YYYY')}}</div>
           <div class="news-item__authour">by {{news.author}}</div>
@@ -18,7 +18,7 @@
           {{$t('readMore')}}
           <ArrowRight/>
         </a>
-        <div class="news-item__divider"></div>
+        <div class="news-item__divider" v-if="index<paginatedData.length-1"></div>
       </div>
       <div class="news__footer">
         <div class="news__pages">Showing {{currentNumber}} of {{mediumNews.length}}</div>
