@@ -23,16 +23,16 @@
         </div>
       </div>
       <div class="market-stats__market-chart col col_xs_8">
-        <price-chart/>
+        <PriceChart/>
       </div>
     </div>
   </Card>
 </template>
 
 <script>
-import Card from '~/components/Card/Card.vue'
-import PriceChart from '~/components/Charts/PriceChart.vue'
-import { mapGetters } from 'vuex'
+import Card from "~/components/Card/Card.vue";
+import PriceChart from "~/components/Charts/PriceChart.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -44,56 +44,56 @@ export default {
       cmcRank: 0,
       items: {
         price: {
-          title: 'Price',
+          title: "Price",
           data: null
         },
         change24h: {
-          title: 'Change 24h',
+          title: "Change 24h",
           data: null
         },
         marketcap: {
-          title: 'Marketcap',
+          title: "Marketcap",
           data: null
         },
         dailyVolume: {
-          title: 'Daily Volume',
+          title: "Daily Volume",
           data: null
         },
         nknEth: {
-          title: 'NKN/ETH',
+          title: "NKN/ETH",
           data: null
         }
       }
-    }
+    };
   },
   computed: mapGetters({
-    price: 'price/getCurrentPrice'
+    price: "price/getCurrentPrice"
   }),
 
   destroyed() {},
   mounted: function() {
-    this.items.price.data = '$' + this.price.prices[0].price.toFixed(4)
+    this.items.price.data = "$" + this.price.prices[0].price.toFixed(4);
     if (this.price.prices[0].percent_change_24h > 0) {
-      this.items.change24h.class = 'market-numbers__value_positive'
-      this.items.change24h.icon = 'fe-trending-up'
+      this.items.change24h.class = "market-numbers__value_positive";
+      this.items.change24h.icon = "fe-trending-up";
     } else {
-      this.items.change24h.class = 'market-numbers__value_negative'
-      this.items.change24h.icon = 'fe-trending-down'
+      this.items.change24h.class = "market-numbers__value_negative";
+      this.items.change24h.icon = "fe-trending-down";
     }
-    this.cmcRank = this.price.cmc_rank
+    this.cmcRank = this.price.cmc_rank;
     this.items.change24h.data =
-      this.price.prices[0].percent_change_24h.toFixed(2) + '%'
+      this.price.prices[0].percent_change_24h.toFixed(2) + "%";
     this.items.marketcap.data =
-      '$' + this.numberWithCommas(this.price.prices[0].market_cap)
+      "$" + this.numberWithCommas(this.price.prices[0].market_cap);
     this.items.dailyVolume.data =
-      '$' + this.numberWithCommas(this.price.prices[0].volume_24h)
-    this.items.nknEth.data = '$' + this.price.prices[1].price.toFixed(7)
+      "$" + this.numberWithCommas(this.price.prices[0].volume_24h);
+    this.items.nknEth.data = "$" + this.price.prices[1].price.toFixed(7);
   },
   methods: {
     numberWithCommas(x) {
-      x = x.toFixed(0)
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      x = x.toFixed(0);
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   }
-}
+};
 </script>

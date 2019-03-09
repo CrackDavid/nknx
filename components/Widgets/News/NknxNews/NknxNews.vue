@@ -18,18 +18,18 @@
           {{$t('readMore')}}
           <ArrowRight/>
         </a>
-        <div class="news-item__divider" v-if="index<paginatedData.length-1"></div>
+        <div v-if="index<paginatedData.length-1" class="news-item__divider"></div>
       </div>
       <div class="news__footer">
         <div class="news__pages">Showing {{currentNumber}} of {{mediumNews.length}}</div>
         <div class="news__buttons">
-          <div v-if="pageNumber != 0" @click="prevPage" class="news__button news__button_prev">
+          <div v-if="pageNumber != 0" class="news__button news__button_prev" @click="prevPage">
             <span class="fe fe-chevron-left"></span>
           </div>
           <div
             v-if="pageNumber <= pageCount -1"
-            @click="nextPage"
             class="news__button news__button_next"
+            @click="nextPage"
           >
             <span class="fe fe-chevron-right"></span>
           </div>
@@ -40,9 +40,9 @@
 </template>
 
 <script>
-import Card from '~/components/Card/Card.vue'
-import MediumIcon from '~/assets/icons/medium.svg'
-import ArrowRight from '~/assets/icons/arrow-right.svg'
+import Card from "~/components/Card/Card.vue";
+import MediumIcon from "~/assets/icons/medium.svg";
+import ArrowRight from "~/assets/icons/arrow-right.svg";
 
 export default {
   components: {
@@ -61,44 +61,44 @@ export default {
           title: null
         }
       ]
-    }
+    };
   },
   computed: {
     pageCount() {
-      const dataLength = this.mediumNews.length
-      return Math.floor(dataLength / this.itemsOnPage)
+      const dataLength = this.mediumNews.length;
+      return Math.floor(dataLength / this.itemsOnPage);
     },
     paginatedData() {
-      const start = this.pageNumber * this.itemsOnPage
-      const end = start + this.itemsOnPage
-      return this.mediumNews.slice(start, end)
+      const start = this.pageNumber * this.itemsOnPage;
+      const end = start + this.itemsOnPage;
+      return this.mediumNews.slice(start, end);
     }
   },
   destroyed() {},
   mounted: function() {
-    const self = this
-    this.fetchFromMedium('nknetwork').then(function(data) {
-      self.mediumNews = data.items
-    })
+    const self = this;
+    this.fetchFromMedium("nknetwork").then(function(data) {
+      self.mediumNews = data.items;
+    });
   },
   methods: {
     async fetchFromMedium(name) {
       const res = await fetch(
-        'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/' +
+        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/" +
           name
-      )
-      return res.json()
+      );
+      return res.json();
     },
     nextPage() {
-      this.pageNumber++
-      this.currentNumber += this.paginatedData.length
-      this.currentItems = this.paginatedData.length
+      this.pageNumber++;
+      this.currentNumber += this.paginatedData.length;
+      this.currentItems = this.paginatedData.length;
     },
     prevPage() {
-      this.pageNumber--
-      this.currentNumber -= this.currentItems
-      this.currentItems = this.paginatedData.length
+      this.pageNumber--;
+      this.currentNumber -= this.currentItems;
+      this.currentItems = this.paginatedData.length;
     }
   }
-}
+};
 </script>

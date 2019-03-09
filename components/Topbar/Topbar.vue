@@ -40,37 +40,37 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   computed: mapGetters({
-    price: 'price/getCurrentPrice',
-    networkStatus: 'network/getNetworkStatus',
-    networkNodes: 'network/getNetworkNodes'
+    price: "price/getCurrentPrice",
+    networkStatus: "network/getNetworkStatus",
+    networkNodes: "network/getNetworkNodes"
   }),
   destroyed() {
-    clearInterval(this.intervalPrice)
-    clearInterval(this.intervalNetworkStatus)
-    clearInterval(this.intervalNetworkNodes)
+    clearInterval(this.intervalPrice);
+    clearInterval(this.intervalNetworkStatus);
+    clearInterval(this.intervalNetworkNodes);
   },
   mounted: function() {
-    this.updatePrice()
-    this.updateNetworkStatus()
-    this.updateNetworkNodes()
-    this.intervalPrice = setInterval(this.updatePrice, 60000)
-    this.intervalNetworkStatus = setInterval(this.updateNetworkStatus, 60000)
-    this.intervalNetworkNodes = setInterval(this.updateNetworkNodes, 60000)
+    this.updatePrice();
+    this.updateNetworkStatus();
+    this.updateNetworkNodes();
+    this.intervalPrice = setInterval(this.updatePrice, 60000);
+    this.intervalNetworkStatus = setInterval(this.updateNetworkStatus, 60000);
+    this.intervalNetworkNodes = setInterval(this.updateNetworkNodes, 60000);
   },
   methods: {
     updatePrice() {
-      this.$store.dispatch('price/getCurrentPrice')
+      this.$store.dispatch("price/getCurrentPrice");
     },
     updateNetworkStatus() {
-      this.$store.dispatch('network/getCurrentNetworkStatus')
+      this.$store.dispatch("network/getCurrentNetworkStatus");
     },
     updateNetworkNodes() {
-      this.$store.dispatch('network/getCurrentNetworkNodes')
+      this.$store.dispatch("network/getCurrentNetworkNodes");
     }
   }
-}
+};
 </script>

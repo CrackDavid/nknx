@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "extends": [
+    "@nuxtjs",
+    "plugin:vue/recommended",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "prettier/vue"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "vue/component-name-in-template-casing": [
+      "error",
+      "PascalCase",
+      {
+        "ignores": [
+          "nuxt",
+          "nuxt-link"
+        ]
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "log",
+          "error",
+          "warn"
+        ]
+      }
+    ]
+  }
+}

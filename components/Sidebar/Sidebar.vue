@@ -16,62 +16,62 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data: () => {
     return {
       routes: [
         {
-          path: '/',
-          icon: 'fe-grid',
-          title: 'Dashboard'
+          path: "/",
+          icon: "fe-grid",
+          title: "Dashboard"
         },
         {
-          path: '/network',
-          icon: 'fe-activity',
-          title: 'Network'
+          path: "/network",
+          icon: "fe-activity",
+          title: "Network"
         }
       ]
-    }
+    };
   },
   computed: mapGetters({
-    sidebarExpanded: 'sidebar/get'
+    sidebarExpanded: "sidebar/get"
   }),
   mounted: function() {
-    this.markerInitialize()
-    this.markerMove() // comment it if wanna turn off mouseover animation
+    this.markerInitialize();
+    this.markerMove(); // comment it if wanna turn off mouseover animation
   },
   methods: {
     markerInitialize() {
-      const marker = document.getElementsByClassName('sidebar__marker')[0]
+      const marker = document.getElementsByClassName("sidebar__marker")[0];
       const currentActiveElement = document.getElementsByClassName(
-        'nuxt-link-exact-active'
-      )[0]
-      const bodyScrollTop = document.body.scrollTop
+        "nuxt-link-exact-active"
+      )[0];
+      const bodyScrollTop = document.body.scrollTop;
       const currentActiveElementOffset =
-        currentActiveElement.offsetTop + bodyScrollTop
-      marker.style.top = currentActiveElementOffset + 'px'
+        currentActiveElement.offsetTop + bodyScrollTop;
+      marker.style.top = currentActiveElementOffset + "px";
     },
     markerMove() {
-      const totalItems = document.getElementsByClassName('sidebar__item')
+      const totalItems = document.getElementsByClassName("sidebar__item");
       for (let i = 0; i < totalItems.length; i++) {
-        totalItems[i].addEventListener('mouseover', function(e) {
-          const marker = document.getElementsByClassName('sidebar__marker')[0]
+        totalItems[i].addEventListener("mouseover", function(e) {
+          const marker = document.getElementsByClassName("sidebar__marker")[0];
           const currentActiveElement = document.getElementsByClassName(
-            'nuxt-link-exact-active'
-          )[0]
-          const bodyScrollTop = document.body.scrollTop
+            "nuxt-link-exact-active"
+          )[0];
+          const bodyScrollTop = document.body.scrollTop;
           const currentActiveElementOffset =
-            currentActiveElement.offsetTop + bodyScrollTop
-          const currentElement = this
+            currentActiveElement.offsetTop + bodyScrollTop;
+          const currentElement = this;
           const currentElementOffset =
             currentElement.offsetTop + bodyScrollTop ||
-            currentActiveElementOffset
-          marker.style.top = currentElementOffset + 'px'
-        })
+            currentActiveElementOffset;
+          marker.style.top = currentElementOffset + "px";
+        });
       }
     }
   }
-}
+};
 </script>

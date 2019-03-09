@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import Card from '~/components/Card/Card.vue'
-import Blinks from '~/components/Modifiers/Blinks/Blinks.vue'
-import { mapGetters } from 'vuex'
+import Card from "~/components/Card/Card.vue";
+import Blinks from "~/components/Modifiers/Blinks/Blinks.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -32,14 +32,14 @@ export default {
     return {
       networkSatus: null,
       networkVersion: null
-    }
+    };
   },
   computed: mapGetters({
-    networkStatus: 'network/getNetworkStatus'
+    networkStatus: "network/getNetworkStatus"
   }),
   mounted: function() {
-    this.networkSatus = this.networkStatus.status
-    this.networkVersion = this.networkStatus.version
+    this.networkSatus = this.networkStatus.status;
+    this.networkVersion = this.networkStatus.version;
   }
-}
+};
 </script>

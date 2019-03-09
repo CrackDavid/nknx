@@ -1,56 +1,56 @@
 export const state = () => ({
   networkStatus: false,
   networkNodes: false
-})
+});
 
 export const mutations = {
   setNetworkStatus(state, networkStatusObj) {
-    state.networkStatus = networkStatusObj
+    state.networkStatus = networkStatusObj;
   },
   setNetworkNodes(state, networkNodesObj) {
-    state.networkNodes = networkNodesObj
+    state.networkNodes = networkNodesObj;
   }
-}
+};
 
 export const getters = {
   getNetworkStatus(state) {
-    return state.networkStatus
+    return state.networkStatus;
   },
   getNetworkNodes(state) {
-    return state.networkNodes
+    return state.networkNodes;
   }
-}
+};
 
 export const actions = {
   async getCurrentNetworkStatus({ commit }) {
     const data = await this.$axios.$get(
-      'https://api.nknx.org/statistics/network'
-    )
-    commit('setNetworkStatus', data)
+      "https://api.nknx.org/statistics/network"
+    );
+    commit("setNetworkStatus", data);
   },
   async getCurrentNetworkNodes({ commit }) {
     await this.$axios
-      .$get('https://api.nknx.org/crawledNodes?withLocation=true')
+      .$get("https://api.nknx.org/crawledNodes?withLocation=true")
       .then(function(nodeList) {
-        const countryList = {}
-        const providerList = {}
+        const countryList = {};
+        const providerList = {};
         nodeList.forEach(function(node) {
           // Getting countries
-          const countryName = node.country_name
+          const countryName = node.country_name;
           if (countryList.hasOwnProperty(countryName)) {
-            countryList[countryName]++
+            countryList[countryName]++;
           } else {
-            countryList[countryName] = 1
+            countryList[countryName] = 1;
           }
 
           // Getting providers
-          const provider = node.organization
+          const provider = node.organization;
           if (providerList.hasOwnProperty(provider)) {
-            providerList[provider]++
+            providerList[provider]++;
           } else {
-            providerList[provider] = 1
+            providerList[provider] = 1;
           }
-        })
+        });
         const networkNodes = {
           stats: {
             totalNodes: nodeList.length,
@@ -60,8 +60,8 @@ export const actions = {
           nodes: nodeList,
           countries: countryList,
           providers: providerList
-        }
-        commit('setNetworkNodes', networkNodes)
-      })
+        };
+        commit("setNetworkNodes", networkNodes);
+      });
   }
-}
+};

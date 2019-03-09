@@ -15,9 +15,7 @@
       C 60,100  30,120  30,120
     "
                 ></path>
-                <path
-                id="middle"
-                d="
+                <path id="middle" d="
       M 40,100
       L140,100
     "></path>
@@ -68,11 +66,11 @@
 export default {
   methods: {
     toggleSidebar() {
-      this.$store.dispatch('sidebar/toggleSidebar')
-      const burger = document.getElementsByClassName('headerbar__toggle')[0]
-      const toggleClass = 'arrow'
-      burger.classList.toggle(toggleClass)
+      this.$store.dispatch("sidebar/toggleSidebar");
+      const burger = document.getElementsByClassName("headerbar__toggle")[0];
+      const toggleClass = "arrow";
+      burger.classList.toggle(toggleClass);
     }
   }
-}
+};
 </script>

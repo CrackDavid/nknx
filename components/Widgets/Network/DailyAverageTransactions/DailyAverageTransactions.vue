@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import Card from '~/components/Card/Card.vue'
-import DailyAverageTransactionsChart from '~/components/Charts/DailyAverageTransactionsChart.vue'
-import { mapGetters } from 'vuex'
+import Card from "~/components/Card/Card.vue";
+import DailyAverageTransactionsChart from "~/components/Charts/DailyAverageTransactionsChart.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -35,18 +35,18 @@ export default {
   data: () => {
     return {
       change24: null
-    }
+    };
   },
   computed: mapGetters({
-    dailyTransactions: 'transactions/getDailyTransactions'
+    dailyTransactions: "transactions/getDailyTransactions"
   }),
 
   destroyed() {},
   mounted: function() {
-    const day1 = this.dailyTransactions[0].count
-    const day2 = this.dailyTransactions[1].count
-    this.change24 = (((day1 - day2) / day1) * 100).toFixed(2)
+    const day1 = this.dailyTransactions[0].count;
+    const day2 = this.dailyTransactions[1].count;
+    this.change24 = (((day1 - day2) / day1) * 100).toFixed(2);
   },
   methods: {}
-}
+};
 </script>

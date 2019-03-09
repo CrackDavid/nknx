@@ -26,9 +26,9 @@
 </template>
 
 <script>
-import NetworkState from '~/components/Widgets/Network/NetworkState/NetworkState.vue'
-import MarketStats from '~/components/Widgets/Market/MarketStats/MarketStats.vue'
-import NknxNews from '~/components/Widgets/News/NknxNews/NknxNews.vue'
+import NetworkState from "~/components/Widgets/Network/NetworkState/NetworkState.vue";
+import MarketStats from "~/components/Widgets/Market/MarketStats/MarketStats.vue";
+import NknxNews from "~/components/Widgets/News/NknxNews/NknxNews.vue";
 
 export default {
   auth: false,
@@ -37,5 +37,5 @@ export default {
     MarketStats,
     NknxNews
   }
-}
+};
 </script>

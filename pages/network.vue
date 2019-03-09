@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import NetworkStatus from '~/components/Widgets/Network/NetworkStatus/NetworkStatus.vue'
-import DailyAverageTransactions from '~/components/Widgets/Network/DailyAverageTransactions/DailyAverageTransactions.vue'
-import DailyAverageBlocks from '~/components/Widgets/Network/DailyAverageBlocks/DailyAverageBlocks.vue'
+import NetworkStatus from "~/components/Widgets/Network/NetworkStatus/NetworkStatus.vue";
+import DailyAverageTransactions from "~/components/Widgets/Network/DailyAverageTransactions/DailyAverageTransactions.vue";
+import DailyAverageBlocks from "~/components/Widgets/Network/DailyAverageBlocks/DailyAverageBlocks.vue";
 
 export default {
   auth: false,
@@ -26,5 +26,5 @@ export default {
     DailyAverageTransactions,
     DailyAverageBlocks
   }
-}
+};
 </script>
