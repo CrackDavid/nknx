@@ -9,7 +9,7 @@
           href="https://github.com/nknorg/nkn/releases"
         >{{$t('viewAll')}}</a>
       </div>
-      <div class="timeline__item timeline-item" v-for="item in releases" :key="item.id">
+      <div v-for="item in releases" :key="item.id" class="timeline__item timeline-item">
         <div
           class="timeline-item__tag"
           :class="{'timeline-item__tag_active':item.active}"
