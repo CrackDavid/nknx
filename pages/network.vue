@@ -11,6 +11,11 @@
         <DailyAverageBlocks/>
       </div>
     </div>
+    <div class="row">
+      <div class="col col_xs_4">
+        <Releases/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,13 +23,15 @@
 import NetworkStatus from "~/components/Widgets/Network/NetworkStatus/NetworkStatus.vue";
 import DailyAverageTransactions from "~/components/Widgets/Network/DailyAverageTransactions/DailyAverageTransactions.vue";
 import DailyAverageBlocks from "~/components/Widgets/Network/DailyAverageBlocks/DailyAverageBlocks.vue";
+import Releases from "~/components/Widgets/News/Releases/Releases.vue";
 
 export default {
   auth: false,
   components: {
     NetworkStatus,
     DailyAverageTransactions,
-    DailyAverageBlocks
+    DailyAverageBlocks,
+    Releases
   }
 };
 </script>
