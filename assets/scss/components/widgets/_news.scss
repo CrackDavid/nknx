@@ -1,5 +1,6 @@
 .news {
   padding: $padding-normal;
+  height: 680px;
   &__header {
     display: flex;
     justify-content: space-between;
@@ -75,4 +76,19 @@
       margin: $padding-normal 0px;
     }
   }
+}
+
+// News page animation
+.fade-out-in-enter-active,
+.fade-out-in-leave-active {
+  transition: transform 0.2s;
+}
+
+.fade-out-in-enter-active {
+  transition-delay: 0.2s;
+}
+
+.fade-out-in-enter,
+.fade-out-in-leave-to {
+  transform: translateX(150%);
 }

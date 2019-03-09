@@ -7,19 +7,21 @@
           <MediumIcon></MediumIcon>
         </div>
       </div>
-      <div v-for="(news, index) in paginatedData" :key="news.title" class="news__item">
-        <div class="news-item__header">
-          <div class="news-item__date">{{$moment(news.pubDate).format('DD/MM/YYYY')}}</div>
-          <div class="news-item__authour">by {{news.author}}</div>
+      <transition-group tag="div" name="fade-out-in">
+        <div v-for="(news, index) in paginatedData" :key="news.title" class="news__item">
+          <div class="news-item__header">
+            <div class="news-item__date">{{$moment(news.pubDate).format('DD/MM/YYYY')}}</div>
+            <div class="news-item__authour">by {{news.author}}</div>
+          </div>
+          <h4 class="news-item__title">{{news.title}}</h4>
+          <div class="news-item__content">{{news.content | striphtml | excerpt(20)}}</div>
+          <a class="news-item__more" target="_blank" :href="news.link">
+            {{$t('readMore')}}
+            <ArrowRight/>
+          </a>
+          <div v-if="index<paginatedData.length-1" class="news-item__divider"></div>
         </div>
-        <h4 class="news-item__title">{{news.title}}</h4>
-        <div class="news-item__content">{{news.content | striphtml | excerpt(20)}}</div>
-        <a class="news-item__more" target="_blank" :href="news.link">
-          {{$t('readMore')}}
-          <ArrowRight/>
-        </a>
-        <div v-if="index<paginatedData.length-1" class="news-item__divider"></div>
-      </div>
+      </transition-group>
       <div class="news__footer">
         <div class="news__pages">Showing {{currentNumber}} of {{mediumNews.length}}</div>
         <div class="news__buttons">
