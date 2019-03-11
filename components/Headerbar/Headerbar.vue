@@ -51,7 +51,7 @@
             class="headerbar__item"
             @click="$auth.loginWith('auth0')"
           >Login</span>
-          <span v-if="$auth.loggedIn" class="headerbar__item" @click="$auth.logout()">Logout</span>
+          <span v-if="$auth.loggedIn" class="headerbar__item" @click="$auth.logout()">{{$auth.user}}</span>
           <span class="headerbar__item">
             <button class="headerbar__button">
               <span class="fe fe-moon"/>
