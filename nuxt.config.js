@@ -64,7 +64,7 @@ module.exports = {
         langDir: "lang/"
       }
     ],
-    "@nuxtjs/auth",
+    "~/modules/auth",
     "nuxt-svg-loader",
     "@nuxtjs/moment"
   ],
@@ -78,11 +78,11 @@ module.exports = {
     },
     strategies: {
       auth0: {
-        domain: 'nknx.eu.auth0.com',
-        client_id: 'CTgPWjFasyofBnyPzz3tvf1c36HyVTWv',
-        audience: 'https://api2.nknx.org',
-        scope: ['openid', 'profile', 'email'],
-        response_type: 'token'
+        domain: "nknx.eu.auth0.com",
+        client_id: "CTgPWjFasyofBnyPzz3tvf1c36HyVTWv",
+        audience: "https://api2.nknx.org",
+        scope: ["openid", "profile", "email"],
+        response_type: "token id_token"
       }
     }
   },
