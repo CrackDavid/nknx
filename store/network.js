@@ -24,13 +24,13 @@ export const getters = {
 export const actions = {
   async getCurrentNetworkStatus({ commit }) {
     const data = await this.$axios.$get(
-      "https://api.nknx.org/statistics/network"
+      "https://api2.nknx.org/statistics/network"
     );
     commit("setNetworkStatus", data);
   },
   async getCurrentNetworkNodes({ commit }) {
     await this.$axios
-      .$get("https://api.nknx.org/crawledNodes?withLocation=true")
+      .$get("https://api2.nknx.org/crawledNodes?withLocation=true")
       .then(function(nodeList) {
         const countryList = {};
         const providerList = {};
