@@ -1,22 +1,23 @@
 <template>
   <Card>
-    <div class="nodes-map">
-      <div class="nodes-map__header">
-        <h3 class="nodes-map__heading">{{$t('networkMap')}}</h3>
+    <div class="node-provider">
+      <div class="node-provider__header">
+        <h3 class="node-provider__heading">{{$t('nodeProvider')}}</h3>
       </div>
-      <NodesMapChart/>
     </div>
+
+    <NodeProviderChart/>
   </Card>
 </template>
 
 <script>
 import Card from "~/components/Card/Card.vue";
-import NodesMapChart from "~/components/Charts/NodesMapChart.vue";
+import NodeProviderChart from "~/components/Charts/NodeProviderChart.vue";
 
 export default {
   components: {
     Card,
-    NodesMapChart
+    NodeProviderChart
   },
   data: () => {
     return {};

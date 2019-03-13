@@ -32,25 +32,32 @@ export const actions = {
     await this.$axios
       .$get("https://api2.nknx.org/crawledNodes?withLocation=true")
       .then(function(nodeList) {
-        const countryList = {};
-        const providerList = {};
-        nodeList.forEach(function(node) {
-          // Getting countries
-          const countryName = node.country_name;
-          if (countryList.hasOwnProperty(countryName)) {
-            countryList[countryName]++;
-          } else {
-            countryList[countryName] = 1;
-          }
+        const countryList = [];
+        const countryListTemp = nodeList.reduce(function(rv, x) {
+          (rv[x["country_name"]] = rv[x["country_name"]] || []).push(x);
+          return rv;
+        }, {});
+        for (var propertyNameCountry in countryListTemp) {
+          countryList.push({
+            country: propertyNameCountry,
+            count: countryListTemp[propertyNameCountry].length
+          });
+        }
 
-          // Getting providers
-          const provider = node.organization;
-          if (providerList.hasOwnProperty(provider)) {
-            providerList[provider]++;
-          } else {
-            providerList[provider] = 1;
-          }
-        });
+        // Getting providers
+        const providerList = [];
+        const providerListTemp = nodeList.reduce(function(rv, x) {
+          (rv[x["organization"]] = rv[x["organization"]] || []).push(x);
+          return rv;
+        }, {});
+
+        for (var propertyNameProvider in providerListTemp) {
+          providerList.push({
+            provider: propertyNameProvider,
+            count: providerListTemp[propertyNameProvider].length
+          });
+        }
+
         const networkNodes = {
           stats: {
             totalNodes: nodeList.length,

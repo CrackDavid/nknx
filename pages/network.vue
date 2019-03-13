@@ -15,7 +15,9 @@
       <div class="col col_xs_9">
         <NodesMap/>
       </div>
-      <div class="col col_xs_3"></div>
+      <div class="col col_xs_3">
+        <NodeProvider/>
+      </div>
     </div>
     <div class="row">
       <div class="col col_xs_8"></div>
@@ -31,6 +33,7 @@ import NetworkStatus from "~/components/Widgets/Network/NetworkStatus/NetworkSta
 import DailyAverageTransactions from "~/components/Widgets/Network/DailyAverageTransactions/DailyAverageTransactions.vue";
 import DailyAverageBlocks from "~/components/Widgets/Network/DailyAverageBlocks/DailyAverageBlocks.vue";
 import NodesMap from "~/components/Widgets/Network/NodesMap/NodesMap.vue";
+import NodeProvider from "~/components/Widgets/Network/NodeProvider/NodeProvider.vue";
 import Releases from "~/components/Widgets/News/Releases/Releases.vue";
 
 export default {
@@ -40,7 +43,8 @@ export default {
     DailyAverageTransactions,
     DailyAverageBlocks,
     Releases,
-    NodesMap
+    NodesMap,
+    NodeProvider
   }
 };
 </script>
