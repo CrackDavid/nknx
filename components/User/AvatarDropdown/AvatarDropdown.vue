@@ -1,6 +1,11 @@
 <template>
-  <div class="avatar-dropdown" v-on-clickaway="showDropDown = false">
-    <a href="#" v-on:click.prevent="showDropDown=!showDropDown" class="avatar-dropdown__link">
+  <div class="avatar-dropdown">
+    <a
+      v-on-clickaway="closeDropdown"
+      class="avatar-dropdown__link"
+      href="#"
+      @click.prevent="showDropDown=!showDropDown"
+    >
       <img :src="$auth.user.picture" class="avatar-dropdown__avatar" alt="avatar">
       <i
         :class="{ 'fe-chevron-up': showDropDown, 'fe-chevron-down': !showDropDown }"
@@ -15,7 +20,7 @@
             <a href="#" class="avatar-dropdown__dd-link">Account</a>
           </li>
           <li>
-            <a href="#" class="avatar-dropdown__dd-link" v-on:click="$auth.logout()">Logout</a>
+            <a href="#" class="avatar-dropdown__dd-link" @click="$auth.logout()">Logout</a>
           </li>
         </ul>
       </div>
@@ -35,6 +40,10 @@ export default {
   computed: {},
   destroyed() {},
   mounted: function() {},
-  methods: {}
+  methods: {
+    closeDropdown: function() {
+      this.showDropDown = false;
+    }
+  }
 };
 </script>
