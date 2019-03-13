@@ -7,6 +7,7 @@
 
 /*========== Sub Components ==========*/
 @import "components/user/avatar-dropdown";
+@import "components/charts/charts";
 
 /*========== Widgets ==========*/
 @import "components/widgets/general-stats";
@@ -15,6 +16,7 @@
 @import "components/widgets/sparkline-stats";
 @import "components/widgets/news";
 @import "components/widgets/timeline";
+@import "components/widgets/nodes-map";
 
 /*========== Modifiers ==========*/
 @import "components/modifiers/blinks";

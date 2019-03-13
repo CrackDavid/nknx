@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.2.0",
+    "@amcharts/amcharts4-geodata": "^4.1.4",
     "@nuxtjs/axios": "^5.4.1",
     "@nuxtjs/moment": "^1.2.0",
     "@nuxtjs/pwa": "^2.6.0",
