@@ -5,7 +5,7 @@ module.exports = {
 
   // -- Authorization --
 
-  scopeKey: 'scope',
+  scopeKey: "scope",
 
   // -- Redirects --
 
@@ -16,43 +16,43 @@ module.exports = {
   watchLoggedIn: true,
 
   redirect: {
-    login: '/login',
-    logout: '/',
-    home: '/',
-    callback: '/login'
+    login: "/login",
+    logout: "/",
+    home: "/",
+    callback: "/login"
   },
 
   //  -- Vuex Store --
 
   vuex: {
-    namespace: 'auth'
+    namespace: "auth"
   },
 
   // -- Cookie Store --
 
   cookie: {
-    prefix: 'auth.',
+    prefix: "auth.",
     options: {
-      path: '/'
+      path: "/"
     }
   },
 
   // -- localStorage Store --
 
   localStorage: {
-    prefix: 'auth.'
+    prefix: "auth."
   },
 
   // -- Token --
 
   token: {
-    prefix: '_token.'
+    prefix: "_token."
   },
 
   // -- Refresh token --
 
   refresh_token: {
-    prefix: '_refresh_token.'
+    prefix: "_refresh_token."
   },
 
   // -- Strategies --
@@ -63,20 +63,20 @@ module.exports = {
     local: {
       endpoints: {
         login: {
-          url: '/api/auth/login',
-          method: 'post',
-          propertyName: 'token'
+          url: "/api/auth/login",
+          method: "post",
+          propertyName: "token"
         },
         logout: {
-          url: '/api/auth/logout',
-          method: 'post'
+          url: "/api/auth/logout",
+          method: "post"
         },
         user: {
-          url: '/api/auth/user',
-          method: 'get',
-          propertyName: 'user'
+          url: "/api/auth/user",
+          method: "get",
+          propertyName: "user"
         }
       }
     }
   }
-}
+};

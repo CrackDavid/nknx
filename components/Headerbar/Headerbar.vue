@@ -51,7 +51,7 @@
             class="headerbar__item"
             @click="$auth.loginWith('auth0')"
           >Login</span>
-          <span v-if="$auth.loggedIn" class="headerbar__item" @click="$auth.logout()">{{$auth.user}}</span>
+          <AvatarDropdown v-if="$auth.loggedIn" class="headerbar__item"></AvatarDropdown>
           <span class="headerbar__item">
             <button class="headerbar__button">
               <span class="fe fe-moon"/>
@@ -63,7 +63,11 @@
   </div>
 </template>
 <script>
+import AvatarDropdown from "~/components/User/AvatarDropdown/AvatarDropdown.vue";
 export default {
+  components: {
+    AvatarDropdown
+  },
   methods: {
     toggleSidebar() {
       this.$store.dispatch("sidebar/toggleSidebar");

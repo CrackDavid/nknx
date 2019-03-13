@@ -5,6 +5,9 @@
 @import "components/sidebar";
 @import "components/card";
 
+/*========== Sub Components ==========*/
+@import "components/user/avatar-dropdown";
+
 /*========== Widgets ==========*/
 @import "components/widgets/general-stats";
 @import "components/widgets/market-stats";

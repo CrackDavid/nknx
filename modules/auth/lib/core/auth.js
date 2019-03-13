@@ -1,358 +1,367 @@
-import getProp from 'dotprop'
+import getProp from "dotprop";
 
-import Storage from './storage'
-import { routeOption, isRelativeURL, isSet, isSameURL } from './utilities'
+import Storage from "./storage";
+import { routeOption, isRelativeURL, isSet, isSameURL } from "./utilities";
 
 export default class Auth {
-  constructor (ctx, options) {
-    this.ctx = ctx
-    this.options = options
+  constructor(ctx, options) {
+    this.ctx = ctx;
+    this.options = options;
 
     // Strategies
-    this.strategies = {}
+    this.strategies = {};
 
     // Error listeners
-    this._errorListeners = []
+    this._errorListeners = [];
 
     // Storage & State
-    options.initialState = { user: null, loggedIn: false }
-    const storage = new Storage(ctx, options)
+    options.initialState = { user: null, loggedIn: false };
+    const storage = new Storage(ctx, options);
 
-    this.$storage = storage
-    this.$state = storage.state
+    this.$storage = storage;
+    this.$state = storage.state;
   }
 
-  async init () {
+  async init() {
     // Restore strategy
-    this.$storage.syncUniversal('strategy', this.options.defaultStrategy)
+    this.$storage.syncUniversal("strategy", this.options.defaultStrategy);
 
     // Set default strategy if current one is invalid
     if (!this.strategy) {
-      this.$storage.setUniversal('strategy', this.options.defaultStrategy)
+      this.$storage.setUniversal("strategy", this.options.defaultStrategy);
 
       // Give up if still invalid
       if (!this.strategy) {
-        return Promise.resolve()
+        return Promise.resolve();
       }
     }
 
     // Call mounted for active strategy on initial load
-    await this.mounted()
+    await this.mounted();
 
     // Watch for loggedIn changes only in client side
     if (process.browser && this.options.watchLoggedIn) {
-      this.$storage.watchState('loggedIn', loggedIn => {
-        if (!routeOption(this.ctx.route, 'auth', false)) {
-          this.redirect(loggedIn ? 'home' : 'logout')
+      this.$storage.watchState("loggedIn", loggedIn => {
+        if (!routeOption(this.ctx.route, "auth", false)) {
+          this.redirect(loggedIn ? "home" : "logout");
         }
-      })
+      });
     }
   }
 
   // Backward compatibility
-  get state () {
+  get state() {
     if (!this._state_warn_shown) {
-      this._state_warn_shown = true
+      this._state_warn_shown = true;
       // eslint-disable-next-line no-console
-      console.warn('[AUTH] $auth.state is deprecated. Please use $auth.$state or top level props like $auth.loggedIn')
+      console.warn(
+        "[AUTH] $auth.state is deprecated. Please use $auth.$state or top level props like $auth.loggedIn"
+      );
     }
 
-    return this.$state
+    return this.$state;
   }
 
-  getState (key) {
+  getState(key) {
     if (!this._get_state_warn_shown) {
-      this._get_state_warn_shown = true
+      this._get_state_warn_shown = true;
       // eslint-disable-next-line no-console
-      console.warn('[AUTH] $auth.getState is deprecated. Please use $auth.$storage.getState() or top level props like $auth.loggedIn')
+      console.warn(
+        "[AUTH] $auth.getState is deprecated. Please use $auth.$storage.getState() or top level props like $auth.loggedIn"
+      );
     }
 
-    return this.$storage.getState(key)
+    return this.$storage.getState(key);
   }
 
   // ---------------------------------------------------------------
   // Strategy and Scheme
   // ---------------------------------------------------------------
 
-  get strategy () {
-    return this.strategies[this.$state.strategy]
+  get strategy() {
+    return this.strategies[this.$state.strategy];
   }
 
-  registerStrategy (name, strategy) {
-    this.strategies[name] = strategy
+  registerStrategy(name, strategy) {
+    this.strategies[name] = strategy;
   }
 
-  setStrategy (name) {
-    if (name === this.$storage.getUniversal('strategy')) {
-      return Promise.resolve()
+  setStrategy(name) {
+    if (name === this.$storage.getUniversal("strategy")) {
+      return Promise.resolve();
     }
 
     // Set strategy
-    this.$storage.setUniversal('strategy', name)
+    this.$storage.setUniversal("strategy", name);
 
     // Call mounted hook on active strategy
-    return this.mounted()
+    return this.mounted();
   }
 
-  mounted () {
+  mounted() {
     if (!this.strategy.mounted) {
-      return this.fetchUserOnce()
+      return this.fetchUserOnce();
     }
 
     return Promise.resolve(this.strategy.mounted(...arguments)).catch(error => {
-      this.callOnError(error, { method: 'mounted' })
-      return Promise.reject(error)
-    })
+      this.callOnError(error, { method: "mounted" });
+      return Promise.reject(error);
+    });
   }
 
-  loginWith (name, ...args) {
-    return this.setStrategy(name).then(() => this.login(...args))
+  loginWith(name, ...args) {
+    return this.setStrategy(name).then(() => this.login(...args));
   }
 
-  login () {
+  login() {
     if (!this.strategy.login) {
-      return Promise.resolve()
+      return Promise.resolve();
     }
 
     return this.wrapLogin(this.strategy.login(...arguments)).catch(error => {
-      this.callOnError(error, { method: 'login' })
-      return Promise.reject(error)
-    })
+      this.callOnError(error, { method: "login" });
+      return Promise.reject(error);
+    });
   }
 
-  fetchUser () {
+  fetchUser() {
     if (!this.strategy.fetchUser) {
-      return Promise.resolve()
+      return Promise.resolve();
     }
 
-    return Promise.resolve(this.strategy.fetchUser(...arguments)).catch(error => {
-      this.callOnError(error, { method: 'fetchUser' })
-      return Promise.reject(error)
-    })
+    return Promise.resolve(this.strategy.fetchUser(...arguments)).catch(
+      error => {
+        this.callOnError(error, { method: "fetchUser" });
+        return Promise.reject(error);
+      }
+    );
   }
 
-  logout () {
+  logout() {
     if (!this.strategy.logout) {
-      this.reset()
-      return Promise.resolve()
+      this.reset();
+      return Promise.resolve();
     }
 
     return Promise.resolve(this.strategy.logout(...arguments)).catch(error => {
-      this.callOnError(error, { method: 'logout' })
-      return Promise.reject(error)
-    })
+      this.callOnError(error, { method: "logout" });
+      return Promise.reject(error);
+    });
   }
 
-  reset () {
+  reset() {
     if (!this.strategy.reset) {
-      this.setUser(false)
-      this.setToken(this.$state.strategy, false)
-      this.setRefreshToken(this.$state.strategy, false)
-      return Promise.resolve()
+      this.setUser(false);
+      this.setToken(this.$state.strategy, false);
+      this.setRefreshToken(this.$state.strategy, false);
+      return Promise.resolve();
     }
 
     return Promise.resolve(this.strategy.reset(...arguments)).catch(error => {
-      this.callOnError(error, { method: 'reset' })
-      return Promise.reject(error)
-    })
+      this.callOnError(error, { method: "reset" });
+      return Promise.reject(error);
+    });
   }
 
   // ---------------------------------------------------------------
   // Token helpers
   // ---------------------------------------------------------------
 
-  getToken (strategy) {
-    const _key = this.options.token.prefix + strategy
+  getToken(strategy) {
+    const _key = this.options.token.prefix + strategy;
 
-    return this.$storage.getUniversal(_key)
+    return this.$storage.getUniversal(_key);
   }
 
-  setToken (strategy, token) {
-    const _key = this.options.token.prefix + strategy
+  setToken(strategy, token) {
+    const _key = this.options.token.prefix + strategy;
 
-    return this.$storage.setUniversal(_key, token)
+    return this.$storage.setUniversal(_key, token);
   }
 
-  syncToken (strategy) {
-    const _key = this.options.token.prefix + strategy
+  syncToken(strategy) {
+    const _key = this.options.token.prefix + strategy;
 
-    return this.$storage.syncUniversal(_key)
+    return this.$storage.syncUniversal(_key);
   }
 
   // ---------------------------------------------------------------
   // Refresh token helpers
   // ---------------------------------------------------------------
 
-  getRefreshToken (strategy) {
-    const _key = this.options.refresh_token.prefix + strategy
+  getRefreshToken(strategy) {
+    const _key = this.options.refresh_token.prefix + strategy;
 
-    return this.$storage.getUniversal(_key)
+    return this.$storage.getUniversal(_key);
   }
 
-  setRefreshToken (strategy, refreshToken) {
-    const _key = this.options.refresh_token.prefix + strategy
+  setRefreshToken(strategy, refreshToken) {
+    const _key = this.options.refresh_token.prefix + strategy;
 
-    return this.$storage.setUniversal(_key, refreshToken)
+    return this.$storage.setUniversal(_key, refreshToken);
   }
 
-  syncRefreshToken (strategy) {
-    const _key = this.options.refresh_token.prefix + strategy
+  syncRefreshToken(strategy) {
+    const _key = this.options.refresh_token.prefix + strategy;
 
-    return this.$storage.syncUniversal(_key)
+    return this.$storage.syncUniversal(_key);
   }
 
   // ---------------------------------------------------------------
   // User helpers
   // ---------------------------------------------------------------
 
-  get user () {
-    return this.$state.user
+  get user() {
+    return this.$state.user;
   }
 
-  get loggedIn () {
-    return this.$state.loggedIn
+  get loggedIn() {
+    return this.$state.loggedIn;
   }
 
-  fetchUserOnce () {
+  fetchUserOnce() {
     if (!this.$state.user) {
-      return this.fetchUser(...arguments)
+      return this.fetchUser(...arguments);
     }
-    return Promise.resolve()
+    return Promise.resolve();
   }
 
-  setUser (user) {
-    this.$storage.setState('loggedIn', Boolean(user))
-    this.$storage.setState('user', user)
+  setUser(user) {
+    this.$storage.setState("loggedIn", Boolean(user));
+    this.$storage.setState("user", user);
   }
 
   // ---------------------------------------------------------------
   // Utils
   // ---------------------------------------------------------------
 
-  get busy () {
-    return this.$storage.getState('busy')
+  get busy() {
+    return this.$storage.getState("busy");
   }
 
-  request (endpoint, defaults) {
+  request(endpoint, defaults) {
     const _endpoint =
-      typeof defaults === 'object'
+      typeof defaults === "object"
         ? Object.assign({}, defaults, endpoint)
-        : endpoint
+        : endpoint;
 
     return this.ctx.app.$axios
       .request(_endpoint)
       .then(response => {
         if (_endpoint.propertyName) {
-          return getProp(response.data, _endpoint.propertyName)
+          return getProp(response.data, _endpoint.propertyName);
         } else {
-          return response.data
+          return response.data;
         }
       })
       .catch(error => {
         // Call all error handlers
-        this.callOnError(error, { method: 'request' })
+        this.callOnError(error, { method: "request" });
 
         // Throw error
-        return Promise.reject(error)
-      })
+        return Promise.reject(error);
+      });
   }
 
-  requestWith (strategy, endpoint, defaults) {
-    const token = this.getToken(strategy)
+  requestWith(strategy, endpoint, defaults) {
+    const token = this.getToken(strategy);
 
-    const _endpoint = Object.assign({}, defaults, endpoint)
+    const _endpoint = Object.assign({}, defaults, endpoint);
 
     if (!_endpoint.headers) {
-      _endpoint.headers = {}
+      _endpoint.headers = {};
     }
-    if (!_endpoint.headers['Authorization'] && isSet(token) && token) {
-      _endpoint.headers['Authorization'] = token
+    if (!_endpoint.headers["Authorization"] && isSet(token) && token) {
+      _endpoint.headers["Authorization"] = token;
     }
 
-    return this.request(_endpoint)
+    return this.request(_endpoint);
   }
 
-  wrapLogin (promise) {
-    this.$storage.setState('busy', true)
-    this.error = null
+  wrapLogin(promise) {
+    this.$storage.setState("busy", true);
+    this.error = null;
 
     return Promise.resolve(promise)
       .then(() => {
-        this.$storage.setState('busy', false)
+        this.$storage.setState("busy", false);
       })
       .catch(error => {
-        this.$storage.setState('busy', false)
-        return Promise.reject(error)
-      })
+        this.$storage.setState("busy", false);
+        return Promise.reject(error);
+      });
   }
 
-  onError (listener) {
-    this._errorListeners.push(listener)
+  onError(listener) {
+    this._errorListeners.push(listener);
   }
 
-  callOnError (error, payload = {}) {
-    this.error = error
+  callOnError(error, payload = {}) {
+    this.error = error;
 
     for (let fn of this._errorListeners) {
-      fn(error, payload)
+      fn(error, payload);
     }
   }
 
-  redirect (name, noRouter = false) {
+  redirect(name, noRouter = false) {
     if (!this.options.redirect) {
-      return
+      return;
     }
 
-    const from = this.options.fullPathRedirect ? this.ctx.route.fullPath : this.ctx.route.path
+    const from = this.options.fullPathRedirect
+      ? this.ctx.route.fullPath
+      : this.ctx.route.path;
 
-    let to = this.options.redirect[name]
+    let to = this.options.redirect[name];
     if (!to) {
-      return
+      return;
     }
 
     // Apply rewrites
     if (this.options.rewriteRedirects) {
-      if (name === 'login' && isRelativeURL(from) && !isSameURL(to, from)) {
-        this.$storage.setUniversal('redirect', from)
+      if (name === "login" && isRelativeURL(from) && !isSameURL(to, from)) {
+        this.$storage.setUniversal("redirect", from);
       }
 
-      if (name === 'home') {
-        const redirect = this.$storage.getUniversal('redirect')
-        this.$storage.setUniversal('redirect', null)
+      if (name === "home") {
+        const redirect = this.$storage.getUniversal("redirect");
+        this.$storage.setUniversal("redirect", null);
 
         if (isRelativeURL(redirect)) {
-          to = redirect
+          to = redirect;
         }
       }
     }
 
     // Prevent infinity redirects
     if (isSameURL(to, from)) {
-      return
+      return;
     }
 
     if (process.browser) {
       if (noRouter) {
-        window.location.replace(to)
+        window.location.replace(to);
       } else {
-        this.ctx.redirect(to)
+        this.ctx.redirect(to);
       }
     } else {
-      this.ctx.redirect(to)
+      this.ctx.redirect(to);
     }
   }
 
-  hasScope (scope) {
-    const userScopes = this.$state.user && getProp(this.$state.user, this.options.scopeKey)
+  hasScope(scope) {
+    const userScopes =
+      this.$state.user && getProp(this.$state.user, this.options.scopeKey);
 
     if (!userScopes) {
-      return undefined
+      return undefined;
     }
 
     if (Array.isArray(userScopes)) {
-      return userScopes.includes(scope)
+      return userScopes.includes(scope);
     }
 
-    return Boolean(getProp(userScopes, scope))
+    return Boolean(getProp(userScopes, scope));
   }
 }

@@ -1,35 +1,35 @@
-const axios = require('axios')
-const bodyParser = require('body-parser')
+const axios = require("axios");
+const bodyParser = require("body-parser");
 
-function assignDefaults (strategy, defaults) {
-  Object.assign(strategy, Object.assign({}, defaults, strategy))
+function assignDefaults(strategy, defaults) {
+  Object.assign(strategy, Object.assign({}, defaults, strategy));
 }
 
-function addAuthorize (strategy) {
+function addAuthorize(strategy) {
   // Get client_secret, client_id and token_endpoint
-  const clientSecret = strategy.client_secret
-  const clientID = strategy.client_id
-  const tokenEndpoint = strategy.token_endpoint
+  const clientSecret = strategy.client_secret;
+  const clientID = strategy.client_id;
+  const tokenEndpoint = strategy.token_endpoint;
 
   // IMPORTANT: remove client_secret from generated bundle
-  delete strategy.client_secret
+  delete strategy.client_secret;
 
   // Endpoint
-  const endpoint = `/_auth/oauth/${strategy._name}/authorize`
-  strategy.access_token_endpoint = endpoint
+  const endpoint = `/_auth/oauth/${strategy._name}/authorize`;
+  strategy.access_token_endpoint = endpoint;
 
   // Set response_type to code
-  strategy.response_type = 'code'
+  strategy.response_type = "code";
 
   // Form data parser
-  const formMiddleware = bodyParser.urlencoded()
+  const formMiddleware = bodyParser.urlencoded();
 
   // Register endpoint
   this.options.serverMiddleware.unshift({
     path: endpoint,
     handler: (req, res, next) => {
-      if (req.method !== 'POST') {
-        return next()
+      if (req.method !== "POST") {
+        return next();
       }
 
       formMiddleware(req, res, () => {
@@ -38,15 +38,15 @@ function addAuthorize (strategy) {
           redirect_uri: redirectUri = strategy.redirect_uri,
           response_type: responseType = strategy.response_type,
           grant_type: grantType = strategy.grant_type
-        } = req.body
+        } = req.body;
 
         if (!code) {
-          return next()
+          return next();
         }
 
         axios
           .request({
-            method: 'post',
+            method: "post",
             url: tokenEndpoint,
             data: {
               client_id: clientID,
@@ -57,19 +57,19 @@ function addAuthorize (strategy) {
               code
             },
             headers: {
-              Accept: 'application/json'
+              Accept: "application/json"
             }
           })
           .then(response => {
-            res.end(JSON.stringify(response.data))
+            res.end(JSON.stringify(response.data));
           })
-          .catch(error => next(error))
-      })
+          .catch(error => next(error));
+      });
     }
-  })
+  });
 }
 
 module.exports = {
   addAuthorize,
   assignDefaults
-}
+};
