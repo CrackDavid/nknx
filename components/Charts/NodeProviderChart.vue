@@ -21,7 +21,6 @@ export default {
 
   destroyed() {},
   mounted: function() {
-    console.log(this.networkNodes);
     const chart = am4core.create(this.$refs.chartdiv, am4charts.PieChart);
     // Add data
     chart.data = this.networkNodes.providers;

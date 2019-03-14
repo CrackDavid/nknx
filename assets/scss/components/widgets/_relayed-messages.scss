@@ -1,0 +1,14 @@
+.relayed-messages {
+  padding: $padding-normal;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+  }
+  &__title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semi-bold;
+    color: $text-grey-light;
+  }
+}
