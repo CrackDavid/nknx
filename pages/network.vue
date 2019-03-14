@@ -11,7 +11,7 @@
         <DailyAverageBlocks/>
       </div>
       <div class="col col_xs_3">
-        <RelayedMessages/>
+        <Performance/>
       </div>
     </div>
     <div class="row">
@@ -38,7 +38,7 @@ import DailyAverageBlocks from "~/components/Widgets/Network/DailyAverageBlocks/
 import NodesMap from "~/components/Widgets/Network/NodesMap/NodesMap.vue";
 import NodeProvider from "~/components/Widgets/Network/NodeProvider/NodeProvider.vue";
 import Releases from "~/components/Widgets/News/Releases/Releases.vue";
-import RelayedMessages from "~/components/Widgets/Node/RelayedMessages/RelayedMessages.vue";
+import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
 
 export default {
   auth: false,
@@ -49,7 +49,7 @@ export default {
     Releases,
     NodesMap,
     NodeProvider,
-    RelayedMessages
+    Performance
   }
 };
 </script>
