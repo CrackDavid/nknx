@@ -1,3 +1,5 @@
+import Fuse from "fuse.js";
+
 export const state = () => ({
   networkStatus: false,
   networkNodes: false
@@ -45,19 +47,41 @@ export const actions = {
         }
 
         // Getting providers
-        const providerList = [];
+        let providerList = [];
         const providerListTemp = nodeList.reduce(function(rv, x) {
-          (rv[x["organization"]] = rv[x["organization"]] || []).push(x);
+          (rv[x["isp"]] = rv[x["isp"]] || []).push(x); // could switch to "isp"
           return rv;
         }, {});
-
         for (var propertyNameProvider in providerListTemp) {
           providerList.push({
             provider: propertyNameProvider,
             count: providerListTemp[propertyNameProvider].length
           });
         }
-
+        let options = { keys: ["provider"], shouldSort: true, threshold: 0.3 };
+        let options2 = { keys: ["provider"] };
+        let fuse = new Fuse(providerList, options);
+        let providerSortedList = [];
+        for (let i in providerListTemp) {
+          let fuse2 = new Fuse(providerSortedList, options2);
+          if (!fuse2.search(i).length) {
+            const searchingProvider = fuse.search(i);
+            let searchingProviderCount = 0;
+            searchingProvider.forEach(function(y) {
+              searchingProviderCount += y.count;
+            });
+            providerSortedList.push({
+              provider: i,
+              count: searchingProviderCount
+            });
+          }
+        }
+        function sortProviderByCount(a, b) {
+          if (a.count < b.count) return 1;
+          if (a.count > b.count) return -1;
+          return 0;
+        }
+        providerList = providerSortedList.sort(sortProviderByCount);
         const networkNodes = {
           stats: {
             totalNodes: nodeList.length,
