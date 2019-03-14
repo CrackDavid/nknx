@@ -44,7 +44,7 @@ export default {
     pieSeries.tooltip.getFillFromObject = false;
     pieSeries.tooltip.autoTextColor = false;
     pieSeries.tooltip.html =
-      "<div style='display:flex;align-items:center;'><div style='height:8px;width:8px;background:#7E9BFF;border-radius:100%;margin-right:10px;'></div>{category} {value}</div>";
+      "<div style='display:flex;align-items:center;'><div style='height:8px;width:8px;background:#7E9BFF;border-radius:100%;margin-right:10px;'></div>{category} <span style='color:#000000;font-weight:bold;margin-left:8px;'>{value}</span></div>";
     pieSeries.tooltip.label.fill = am4core.color("#272634");
     pieSeries.tooltip.background.fill = am4core.color("#FFFFFF");
 
