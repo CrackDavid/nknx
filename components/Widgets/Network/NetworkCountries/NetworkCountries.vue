@@ -26,10 +26,10 @@
           <span class="country-list__country-name">{{item.country}}</span>
         </div>
         <div class="country-list__stats w-70">
-          <div class="country-list__chart" :style="{width: item.percentage+'%'}"></div>
+          <div class="country-list__chart" :style="{width: item.relativePercentage+'%'}"></div>
           <div class="country-list__value">{{item.count}}</div>
         </div>
-        <div class="country-list__network w-10 text-right">{{item.percentage}}%</div>
+        <div class="country-list__network w-10 text-right">{{item.networkPercentage}}%</div>
       </div>
     </div>
   </Card>
@@ -64,9 +64,14 @@ export default {
   methods: {
     getCountryList: function() {
       const totalCountries = this.networkNodes.countries;
+      const totalNodes = this.networkNodes.nodes.length;
       totalCountries.forEach(country => {
-        country.percentage = (
+        country.relativePercentage = (
           (country.count / totalCountries[0].count) *
+          100
+        ).toFixed(0);
+        country.networkPercentage = (
+          (country.count / totalNodes) *
           100
         ).toFixed(0);
       });
