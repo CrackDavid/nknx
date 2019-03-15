@@ -1,0 +1,24 @@
+<svg version="1.1" id="Layer_1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 354 354" style="enable-background:new 0 0 354 354;" xml:space="preserve">
+  <metadata id="metadata8">image/svg+xml</metadata>
+  <defs>
+    <clipPath id="clipPath16">
+      <path id="path18" d="m0,268.631503l444.793,0l0,-283.46l-444.793,0l0,283.46z"/>
+    </clipPath>
+  </defs>
+  <g>
+    <g id="g10" transform="matrix(3.1876105481577564,0,0,-3.1876105481577564,-536.1585691966068,660.6417527110556) ">
+      <g id="g12">
+        <g id="g14" clip-path="url(#clipPath16)">
+          <g id="g20">
+            <path fill="#264670" fill-rule="nonzero" id="path22" d="m271.608795,179.465006l-11.769,-20.452l-12.361,0l-14.588,-25.314l12.382,0l-9.365,-16.261l30.413,0c7.774,9.502 12.443,21.645 12.443,34.879c0,9.874 -2.609,19.132 -7.155,27.148"/>
+          </g>
+          <g id="g24">
+            <path fill="#264670" fill-rule="nonzero" id="path26" d="m211.375702,117.438105l0,0l0.03,0l-0.015,0.027l37.79,65.633l-31.969,0l-21.795,-37.878l-19.727,34.276c-4.557,-8.022 -7.173,-17.292 -7.173,-27.179c0,-13.235 4.668,-25.377 12.443,-34.879l30.416,0z"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

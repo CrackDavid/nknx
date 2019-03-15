@@ -13,7 +13,9 @@
         <div>64% VPS {{$t('hosted')}}</div>
       </div>
       <div v-for="item in providersTop" :key="item.provider" class="provider-top__item">
-        <div class="provider-top__icon"></div>
+        <div class="provider-top__icon">
+          <img :src="'/icons/'+item.provider + '.svg' || '' " alt>
+        </div>
         <div class="provider-top__stats">
           <div class="provider-top__heading">
             <div class="provider-top__name">{{item.provider}}</div>
@@ -49,6 +51,10 @@ export default {
   },
   methods: {
     getProvidersTop: function() {
+      this.networkNodes.providers.forEach(provider => {
+        console.log(provider.provider);
+      });
+
       const providersTop = this.networkNodes.providers.slice(0, 3);
       providersTop.forEach(provider => {
         provider.percentage = (

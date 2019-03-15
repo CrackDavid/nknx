@@ -24,6 +24,8 @@
     border: $card-border;
     border-radius: 16px;
     margin-right: $padding-normal;
+    padding: $padding-normal/2;
+    box-sizing: border-box;
   }
   &__item {
     display: flex;
