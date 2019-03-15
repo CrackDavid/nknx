@@ -51,10 +51,6 @@ export default {
   },
   methods: {
     getProvidersTop: function() {
-      this.networkNodes.providers.forEach(provider => {
-        console.log(provider.provider);
-      });
-
       const providersTop = this.networkNodes.providers.slice(0, 3);
       providersTop.forEach(provider => {
         provider.percentage = (

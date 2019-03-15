@@ -34,7 +34,12 @@ export const actions = {
     await this.$axios
       .$get("https://api2.nknx.org/crawledNodes?withLocation=true")
       .then(function(nodeList) {
-        const countryList = [];
+        function sortByCount(a, b) {
+          if (a.count < b.count) return 1;
+          if (a.count > b.count) return -1;
+          return 0;
+        }
+        let countryList = [];
         const countryListTemp = nodeList.reduce(function(rv, x) {
           (rv[x["country_name"]] = rv[x["country_name"]] || []).push(x);
           return rv;
@@ -42,10 +47,11 @@ export const actions = {
         for (var propertyNameCountry in countryListTemp) {
           countryList.push({
             country: propertyNameCountry,
+            countryCode: countryListTemp[propertyNameCountry][0].country_code2,
             count: countryListTemp[propertyNameCountry].length
           });
         }
-
+        countryList = countryList.sort(sortByCount);
         // Getting providers
         let providerList = [];
         const providerListTemp = nodeList.reduce(function(rv, x) {
@@ -76,12 +82,8 @@ export const actions = {
             });
           }
         }
-        function sortProviderByCount(a, b) {
-          if (a.count < b.count) return 1;
-          if (a.count > b.count) return -1;
-          return 0;
-        }
-        providerList = providerSortedList.sort(sortProviderByCount);
+
+        providerList = providerSortedList.sort(sortByCount);
         const networkNodes = {
           stats: {
             totalNodes: nodeList.length,

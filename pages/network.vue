@@ -23,7 +23,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col col_xs_8"></div>
+      <div class="col col_xs_8">
+        <NetworkCountries/>
+      </div>
       <div class="col col_xs_4">
         <Releases/>
       </div>
@@ -39,6 +41,7 @@ import NodesMap from "~/components/Widgets/Network/NodesMap/NodesMap.vue";
 import NodeProvider from "~/components/Widgets/Network/NodeProvider/NodeProvider.vue";
 import Releases from "~/components/Widgets/News/Releases/Releases.vue";
 import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
+import NetworkCountries from "~/components/Widgets/Network/NetworkCountries/NetworkCountries.vue";
 
 export default {
   auth: false,
@@ -49,7 +52,8 @@ export default {
     Releases,
     NodesMap,
     NodeProvider,
-    Performance
+    Performance,
+    NetworkCountries
   }
 };
 </script>

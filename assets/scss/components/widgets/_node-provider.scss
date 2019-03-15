@@ -26,6 +26,10 @@
     margin-right: $padding-normal;
     padding: $padding-normal/2;
     box-sizing: border-box;
+    img {
+      height: 22px;
+      width: 22px;
+    }
   }
   &__item {
     display: flex;
