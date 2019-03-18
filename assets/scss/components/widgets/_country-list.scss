@@ -33,7 +33,7 @@
   }
   &__item {
     display: flex;
-    padding: $padding-normal;
+    padding: $padding-default $padding-normal;
     align-items: center;
     &:not(:last-child) {
       border-bottom: $card-border;
