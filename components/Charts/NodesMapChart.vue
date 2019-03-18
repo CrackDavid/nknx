@@ -50,9 +50,9 @@ export default {
       });
     });
     var chart = am4core.create(this.$refs.chartdiv, am4maps.MapChart);
-
     // Set map definition
     chart.geodata = am4geodataWorldLow;
+    chart.zoomControl = new am4maps.ZoomControl();
 
     // Set projection
     chart.projection = new am4maps.projections.Miller();
@@ -72,18 +72,19 @@ export default {
       max: am4core.color("#4A4D5D")
     });
     polygonSeries.data = countriesData;
+
     // Place series
     var placeSeries = chart.series.push(new am4maps.MapImageSeries());
+    placeSeries.data = chartData;
+    placeSeries.tooltip.getFillFromObject = false;
+    placeSeries.tooltip.background.fill = am4core.color("#5769DF");
+    placeSeries.tooltip.label.fill = am4core.color("#fff");
+
     var place = placeSeries.mapImages.template;
     place.tooltipText = "{name} {count}";
     place.nonScaling = true;
     place.propertyFields.latitude = "latitude";
     place.propertyFields.longitude = "longitude";
-    placeSeries.data = chartData;
-    placeSeries.tooltip.getFillFromObject = false;
-
-    placeSeries.tooltip.background.fill = am4core.color("#5769DF");
-    placeSeries.tooltip.label.fill = am4core.color("#fff");
 
     var marker = place.createChild(am4core.Circle);
     marker.radius = 4;
@@ -104,8 +105,6 @@ export default {
     var hs = polygonTemplate.states.create("hover");
     hs.properties.fill = am4core.color("#363165");
 
-    this.chart = chart;
-
     // Add line series
     var lineSeries = chart.series.push(new am4maps.MapArcSeries());
     lineSeries.mapLines.template.strokeWidth = 4;
@@ -115,30 +114,49 @@ export default {
 
     var line = lineSeries.mapLines.create();
 
+    var activeNodeSeries = chart.series.push(new am4maps.MapImageSeries());
+    activeNodeSeries.tooltip.getFillFromObject = false;
+    activeNodeSeries.tooltip.background.fill = am4core.color("#2BD289");
+    activeNodeSeries.tooltip.label.fill = am4core.color("#fff");
+
+    var activeNode = activeNodeSeries.mapImages.template;
+    activeNode.tooltipText = "{name}";
+    activeNode.nonScaling = true;
+    activeNode.propertyFields.latitude = "latitude";
+    activeNode.propertyFields.longitude = "longitude";
+
+    var activeNodeMarker = activeNode.createChild(am4core.Circle);
+    activeNodeMarker.radius = 8;
+    activeNodeMarker.hoverable = true;
+    activeNodeMarker.fill = am4core.color("#2BD289");
+    activeNodeMarker.strokeWidth = 1;
+    activeNodeMarker.stroke = am4core.color("#fff");
+
     const drawLine = () => {
       let latestTx = this.latestSigchainTransaction[0].node_tracing;
       let txPath = [];
+      let activeNodesData = [];
       latestTx.forEach(function(node) {
         if (node.latitude) {
           txPath.push({
             latitude: node.latitude,
             longitude: node.longitude
           });
+          activeNodesData.push({
+            latitude: Number(node.latitude),
+            longitude: Number(node.longitude),
+            name: node.city
+          });
         }
       });
-      line.multiGeoLine = [txPath];
+      if (txPath.length) {
+        activeNodeSeries.data = [];
+        activeNodeSeries.data = activeNodesData;
+        line.multiGeoLine = [txPath];
+      }
     };
     drawLine();
     this.intervaldrawLine = setInterval(drawLine, 65000);
-
-    // Add a map object to line
-    var bullet = line.lineObjects.create();
-    bullet.nonScaling = true;
-    bullet.position = 0.5;
-    bullet.width = 48;
-    bullet.height = 48;
-    bullet.horizontalCenter = "middle";
-    bullet.verticalCenter = "middle";
 
     this.chart = chart;
   },
@@ -154,7 +172,7 @@ export default {
 <style>
 #chartdiv {
   width: 100%;
-  height: 500px;
+  height: 100%;
   overflow: hidden;
 }
 </style>
