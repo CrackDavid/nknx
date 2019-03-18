@@ -52,6 +52,20 @@ export const actions = {
           });
         }
         countryList = countryList.sort(sortByCount);
+
+        let cityList = [];
+        const cityListTemp = nodeList.reduce(function(rv, x) {
+          (rv[x["city"]] = rv[x["city"]] || []).push(x);
+          return rv;
+        }, {});
+        for (var propertyNameCity in cityListTemp) {
+          cityList.push({
+            city: propertyNameCity,
+            latitude: cityListTemp[propertyNameCity][0].latitude,
+            longitude: cityListTemp[propertyNameCity][0].longitude,
+            count: cityListTemp[propertyNameCity].length
+          });
+        }
         // Getting providers
         let providerList = [];
         const providerListTemp = nodeList.reduce(function(rv, x) {
@@ -92,6 +106,7 @@ export const actions = {
           },
           nodes: nodeList,
           countries: countryList,
+          cities: cityList,
           providers: providerList
         };
         commit("setNetworkNodes", networkNodes);

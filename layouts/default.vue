@@ -1,10 +1,10 @@
 <template>
   <div>
     <Preloader
-      v-if="!price || !networkStatus || !networkNodes || !dailyTransactions || !dailyBlocks || !dailyHistoryPrice"
+      v-if="!latestSigchainTransaction|| !price || !networkStatus || !networkNodes || !dailyTransactions || !dailyBlocks || !dailyHistoryPrice"
     />
     <div
-      v-if="price && networkStatus && networkNodes && dailyTransactions && dailyBlocks && dailyHistoryPrice"
+      v-if="latestSigchainTransaction&& price && networkStatus && networkNodes && dailyTransactions && dailyBlocks && dailyHistoryPrice"
       class="page-wrapper"
     >
       <div class="row">
@@ -54,6 +54,8 @@ export default {
     networkStatus: "network/getNetworkStatus",
     networkNodes: "network/getNetworkNodes",
     dailyTransactions: "transactions/getDailyTransactions",
+    latestSigchainTransaction: "transactions/getLatestSigchainTransaction",
+
     dailyBlocks: "blocks/getDailyBlocks"
   }),
   mounted: function() {
@@ -62,6 +64,8 @@ export default {
     this.$store.dispatch("price/getCurrentPrice");
     this.$store.dispatch("price/getDailyHistoryPrice");
     this.$store.dispatch("transactions/getDailyTransactions");
+    this.$store.dispatch("transactions/getLatestSigchainTransaction");
+
     this.$store.dispatch("blocks/getDailyBlocks");
   }
 };

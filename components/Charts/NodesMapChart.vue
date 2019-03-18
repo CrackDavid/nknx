@@ -17,57 +17,119 @@ export default {
     return {};
   },
   computed: mapGetters({
-    networkNodes: "network/getNetworkNodes"
+    networkNodes: "network/getNetworkNodes",
+    latestSigchainTransaction: "transactions/getLatestSigchainTransaction"
   }),
-
-  destroyed() {},
+  methods: {
+    getLatestTx() {
+      this.$store.dispatch("transactions/getLatestSigchainTransaction");
+    }
+  },
+  destroyed() {
+    clearInterval(this.intervalTx);
+    clearInterval(this.intervaldrawLine);
+  },
   mounted: function() {
-    const chart = am4core.create(this.$refs.chartdiv, am4maps.MapChart);
+    this.intervalTx = setInterval(this.getLatestTx, 60000);
+    const chartData = [];
+    const countriesData = [];
+    let countries = this.networkNodes.countries;
+    let nodes = this.networkNodes.cities;
+    nodes.forEach(node => {
+      chartData.push({
+        latitude: Number(node.latitude),
+        longitude: Number(node.longitude),
+        name: node.city,
+        count: node.count
+      });
+    });
+    countries.forEach(country => {
+      countriesData.push({
+        id: country.countryCode,
+        value: country.count
+      });
+    });
+    var chart = am4core.create(this.$refs.chartdiv, am4maps.MapChart);
+
+    // Set map definition
     chart.geodata = am4geodataWorldLow;
+
+    // Set projection
     chart.projection = new am4maps.projections.Miller();
 
     // Create map polygon series
     var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
 
+    // Exclude Antartica
+    polygonSeries.exclude = ["AQ"];
+
     // Make map load polygon (like country names) data from GeoJSON
     polygonSeries.useGeodata = true;
+    polygonSeries.heatRules.push({
+      property: "fill",
+      target: polygonSeries.mapPolygons.template,
+      min: am4core.color("#E1E1ED"),
+      max: am4core.color("#4A4D5D")
+    });
+    polygonSeries.data = countriesData;
+    // Place series
+    var placeSeries = chart.series.push(new am4maps.MapImageSeries());
+    var place = placeSeries.mapImages.template;
+    place.tooltipText = "{name} {count}";
+    place.nonScaling = true;
+    place.propertyFields.latitude = "latitude";
+    place.propertyFields.longitude = "longitude";
+    placeSeries.data = chartData;
+    placeSeries.tooltip.getFillFromObject = false;
+
+    placeSeries.tooltip.background.fill = am4core.color("#5769DF");
+    placeSeries.tooltip.label.fill = am4core.color("#fff");
+
+    var marker = place.createChild(am4core.Circle);
+    marker.radius = 4;
+    marker.hoverable = true;
+    marker.fill = am4core.color("#5769df");
+    marker.strokeWidth = 1;
+    marker.stroke = am4core.color("#fff");
 
     // Configure series
     var polygonTemplate = polygonSeries.mapPolygons.template;
-    polygonTemplate.tooltipText = "{name}";
-    polygonTemplate.fill = am4core.color("#F7F7FA");
+    polygonTemplate.tooltipText = "{name} {value}";
+    polygonTemplate.fill = am4core.color("#E1E1ED");
+    polygonSeries.tooltip.getFillFromObject = false;
+    polygonSeries.tooltip.background.fill = am4core.color("#363165");
+    polygonSeries.tooltip.label.fill = am4core.color("#fff");
 
-    // Remove Antarctica
-    polygonSeries.exclude = ["AQ"];
+    // Create hover state and set alternative fill color
+    var hs = polygonTemplate.states.create("hover");
+    hs.properties.fill = am4core.color("#363165");
 
-    // Add some data
-    polygonSeries.data = [
-      {
-        id: "US",
-        name: "United States",
-        value: 100
-      },
-      {
-        id: "FR",
-        name: "France",
-        value: 50
-      }
-    ];
+    this.chart = chart;
 
     // Add line series
-    var lineSeries = chart.series.push(new am4maps.MapLineSeries());
+    var lineSeries = chart.series.push(new am4maps.MapArcSeries());
     lineSeries.mapLines.template.strokeWidth = 4;
-    lineSeries.mapLines.template.stroke = am4core.color("#e03e96");
+    lineSeries.mapLines.controlPointDistance = 0.5;
+    lineSeries.mapLines.template.stroke = am4core.color("#2bd289");
     lineSeries.mapLines.template.nonScalingStroke = true;
 
     var line = lineSeries.mapLines.create();
-    line.multiGeoLine = [
-      [
-        { latitude: 48.856614, longitude: 2.352222 },
-        { latitude: 40.712775, longitude: -74.005973 },
-        { latitude: 49.282729, longitude: -123.120738 }
-      ]
-    ];
+
+    const drawLine = () => {
+      let latestTx = this.latestSigchainTransaction[0].node_tracing;
+      let txPath = [];
+      latestTx.forEach(function(node) {
+        if (node.latitude) {
+          txPath.push({
+            latitude: node.latitude,
+            longitude: node.longitude
+          });
+        }
+      });
+      line.multiGeoLine = [txPath];
+    };
+    drawLine();
+    this.intervaldrawLine = setInterval(drawLine, 65000);
 
     // Add a map object to line
     var bullet = line.lineObjects.create();
@@ -79,34 +141,20 @@ export default {
     bullet.verticalCenter = "middle";
 
     this.chart = chart;
-
-    var plane = bullet.createChild(am4core.Sprite);
-    plane.scale = 0.15;
-    plane.path =
-      "m2,106h28l24,30h72l-44,-133h35l80,132h98c21,0 21,34 0,34l-98,0 -80,134h-35l43,-133h-71l-24,30h-28l15,-47";
-    plane.fill = am4core.color("#3e96e0");
-    plane.strokeOpacity = 0;
-
-    function goPlane() {
-      bullet.animate(
-        {
-          from: 0,
-          to: 1,
-          property: "position"
-        },
-        5000,
-        am4core.ease.sinInOut
-      );
-    }
-
-    goPlane();
   },
 
   beforeDestroy() {
     if (this.chart) {
       this.chart.dispose();
     }
-  },
-  methods: {}
+  }
 };
 </script>
+<!-- Styles -->
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+</style>
