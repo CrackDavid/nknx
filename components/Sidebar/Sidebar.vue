@@ -23,6 +23,11 @@ export default {
     return {
       routes: [
         {
+          path: "/components",
+          icon: "fe-codepen",
+          title: "Components"
+        },
+        {
           path: "/",
           icon: "fe-grid",
           title: "Dashboard"

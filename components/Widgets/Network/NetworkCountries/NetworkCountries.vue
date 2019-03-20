@@ -76,7 +76,7 @@ export default {
         ).toFixed(0);
       });
       this.totalCountries = totalCountries;
-      this.topCountries = totalCountries.slice(0, 8);
+      this.topCountries = totalCountries.slice(0, 6);
       this.currentCountries = this.topCountries;
     },
     toggleCurrentCountries: function() {

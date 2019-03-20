@@ -45,6 +45,7 @@ $darkest: #363165;
 $primary: $royal-blue !default;
 $secondary: $toolbox !default;
 $accent-green: $mountain-meadow !default;
+$accent-warning: #ff3553 !default;
 $accent-blush: $blush !default;
 $success: #27ce60 !default;
 $error: #fea0ae !default;
@@ -53,11 +54,11 @@ $error: #fea0ae !default;
 $theme-colors: () !default;
 $theme-colors: map-merge(
   (
-    'primary': $primary,
-    'secondary': $secondary,
-    'accent-green': $accent-green,
-    'accent-blush': $accent-blush,
-    'success': $success
+    "primary": $primary,
+    "secondary": $secondary,
+    "accent-green": $accent-green,
+    "accent-blush": $accent-blush,
+    "success": $success
   ),
   $theme-colors
 );
@@ -110,8 +111,28 @@ $transition-3: 0.4s cubic-bezier(0.25, -0.25, 0.75, 1.25);
 // Settings for the `<body>` element.
 $body-bg: $base;
 $body-color: $text-grey-darker;
-$font-family-base: 'Rubik', sans-serif;
+$font-family-base: "Rubik", sans-serif;
 $border-color: $platinum;
+
+// Buttons
+$btn-br: 7px;
+$btn-border-default: 2px solid transparent;
+$btn-fz-default: $font-size-md;
+$btn-fz-small: $font-size-sm;
+$btn-fz-widget: 13px;
+$btn-padding-default: 19px 67px;
+$btn-padding-small: 15px 73px;
+$btn-padding-widget: 8px 26px;
+$btn-color-default: $white;
+$btn-color-disabled: $quick-silver;
+$btn-default: $platinum;
+$btn-default-color: $quick-silver;
+$btn-primary: $primary;
+$btn-secondary: $secondary;
+$btn-success: $accent-green;
+$btn-error: $accent-warning;
+$btn-disabled: $platinum;
+
 // Preloader
 $preloader-icon-size: 48px;
 $preloader-icon-color: $primary;
