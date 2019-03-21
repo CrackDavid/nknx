@@ -10,9 +10,7 @@
       <div class="col col_xs_3">
         <DailyAverageBlocks/>
       </div>
-      <div class="col col_xs_3">
-        <Performance/>
-      </div>
+      <div class="col col_xs_3"></div>
     </div>
     <div class="row">
       <div class="col col_xs_9">
@@ -40,7 +38,6 @@ import DailyAverageBlocks from "~/components/Widgets/Network/DailyAverageBlocks/
 import NodesMap from "~/components/Widgets/Network/NodesMap/NodesMap.vue";
 import NodeProvider from "~/components/Widgets/Network/NodeProvider/NodeProvider.vue";
 import Releases from "~/components/Widgets/News/Releases/Releases.vue";
-import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
 import NetworkCountries from "~/components/Widgets/Network/NetworkCountries/NetworkCountries.vue";
 
 export default {
@@ -52,7 +49,6 @@ export default {
     Releases,
     NodesMap,
     NodeProvider,
-    Performance,
     NetworkCountries
   }
 };

@@ -25,6 +25,9 @@
   padding-bottom: 32px;
   display: flex;
   position: relative;
+  &:last-child {
+    padding-bottom: 0;
+  }
   &:after {
     content: "";
     display: block;

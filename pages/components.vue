@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col col_xs_9">
+      <div class="col col_xs_6">
         <h1>Buttons</h1>
         <div class="guideline">
           <div class="guideline-item">
@@ -32,14 +32,33 @@
           </div>
         </div>
       </div>
+      <div class="col col_xs_6">
+        <h1>User node</h1>
+        <div class="row">
+          <div class="col col_xs_6">
+            <h2>Node Performance</h2>
+            <Performance/>
+          </div>
+          <div class="col col_xs_6">
+            <h2>Node Relayed Messages</h2>
+            <Relayed/>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
+import Relayed from "~/components/Widgets/Node/RelayedMessages/RelayedMessages.vue";
+
 export default {
   auth: false,
-  components: {}
+  components: {
+    Performance,
+    Relayed
+  }
 };
 </script>
 <style lang="scss">

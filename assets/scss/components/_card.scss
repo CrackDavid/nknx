@@ -4,6 +4,7 @@
   margin: $half-gutter-width 0;
   position: relative;
   overflow: hidden;
+  height: calc(100% - 2 * #{$half-gutter-width});
   &_bg_default {
     background: $card-bg-default;
   }
