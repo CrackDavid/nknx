@@ -56,7 +56,11 @@
         <div class="row">
           <div class="col col_xs_9">
             <h2>Wallet Panel</h2>
-            <WalletPanel/>
+            <WalletPanel
+              address="NiNvBp3cNYvpfGdR2kAUhbQd8RqN4yHEEE"
+              label="My Primary Wallet"
+              balance="84,650"
+            />
           </div>
         </div>
       </div>

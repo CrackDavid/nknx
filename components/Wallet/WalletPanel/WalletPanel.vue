@@ -36,12 +36,9 @@ export default {
   components: {
     Card
   },
+  props: ["address", "label", "balance"],
   data: () => {
-    return {
-      address: "NiNvBp3cNYvpfGdR2kAUhbQd8RqN4yHEEE",
-      label: "My Primary Wallet",
-      balance: "84,650"
-    };
+    return {};
   },
 
   destroyed() {},
