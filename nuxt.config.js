@@ -19,6 +19,10 @@ module.exports = {
         rel: "stylesheet",
         href:
           "https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&amp;subset=cyrillic"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       }
     ]
   },
@@ -66,7 +70,8 @@ module.exports = {
     ],
     "~/modules/auth",
     "nuxt-svg-loader",
-    "@nuxtjs/moment"
+    "@nuxtjs/moment",
+    "nuxt-clipboard2"
   ],
 
   auth: {

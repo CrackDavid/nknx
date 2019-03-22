@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col col_xs_6">
+      <div class="col col_xs_12">
         <h1>Buttons</h1>
         <div class="guideline">
           <div class="guideline-item">
@@ -32,7 +32,10 @@
           </div>
         </div>
       </div>
-      <div class="col col_xs_6">
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col col_xs_12">
         <h1>User node</h1>
         <div class="row">
           <div class="col col_xs_6">
@@ -46,22 +49,39 @@
         </div>
       </div>
     </div>
+    <hr>
+    <div class="row">
+      <div class="col col_xs_12">
+        <h1>User wallet</h1>
+        <div class="row">
+          <div class="col col_xs_9">
+            <h2>Wallet Panel</h2>
+            <WalletPanel/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
 import Relayed from "~/components/Widgets/Node/RelayedMessages/RelayedMessages.vue";
+import WalletPanel from "~/components/Wallet/WalletPanel/WalletPanel.vue";
 
 export default {
   auth: false,
   components: {
     Performance,
-    Relayed
+    Relayed,
+    WalletPanel
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.row {
+  margin-bottom: 30px;
+}
 h1 {
   font-size: 32px;
 }
