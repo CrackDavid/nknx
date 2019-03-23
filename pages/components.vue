@@ -57,10 +57,16 @@
           <div class="col col_xs_9">
             <h2>Wallet Panel</h2>
             <WalletPanel
-              address="NiNvBp3cNYvpfGdR2kAUhbQd8RqN4yHEEE"
+              address="NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH"
               label="My Primary Wallet"
               balance="84,650"
             />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col_xs_9">
+            <h2>Wallet Transactions</h2>
+            <WalletTransactions address="NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH"/>
           </div>
         </div>
       </div>
@@ -72,13 +78,15 @@
 import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
 import Relayed from "~/components/Widgets/Node/RelayedMessages/RelayedMessages.vue";
 import WalletPanel from "~/components/Wallet/WalletPanel/WalletPanel.vue";
+import WalletTransactions from "~/components/Wallet/WalletTransactions/WalletTransactions.vue";
 
 export default {
   auth: false,
   components: {
     Performance,
     Relayed,
-    WalletPanel
+    WalletPanel,
+    WalletTransactions
   }
 };
 </script>

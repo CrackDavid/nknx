@@ -160,6 +160,7 @@ $card-border-radius: 7px;
 $card-shadow: $shadow-1;
 $card-border: 1px solid $platinum;
 // App Spacing
+$padding-micro: 12px;
 $padding-small: 14px;
 $padding-default: 16px;
 $padding-normal: 24px;
@@ -169,7 +170,7 @@ $padding-max: 64px;
 // Sparkline-stats
 $sparkline-chart-height: 120px;
 
-//WalletPanel
+//Wallet Panel
 $walletpanel-bg: linear-gradient(
   96.13deg,
   #f4a271 0.12%,
@@ -183,3 +184,19 @@ $walletpanel-btn-active-bg: rgba(0, 0, 0, 0.5);
 $walletpanel-btn-width: 140px;
 $walletpanel-btn-more-width: 40px;
 $walletpanel-icon-size: 24px;
+
+//Data Table
+$data-table-fz: 13px;
+$data-table-header-padding: $padding-micro $padding-normal;
+$data-table-header-bg: $ghost-white;
+$data-table-header-color: $text-grey-light;
+$data-table-item-link-color: $primary;
+$data-table-item-padding: $padding-small $padding-normal;
+$data-switcher-padding: $padding-normal;
+$data-switcher-fz: $font-size-md;
+$data-switcher-color: $text-grey-light;
+$data-switcher-active-color: $text-grey-darker;
+$data-switcher-marker-color: $primary;
+$data-switcher-marker-height: 4px;
+$data-switcher-marker-width: 180px;
+$data-switcher-marker-br: 7px;
