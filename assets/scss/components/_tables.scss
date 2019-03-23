@@ -37,7 +37,7 @@
       color: $success;
     }
     &_negative {
-      color: $error;
+      color: $accent-warning;
     }
   }
 }
@@ -51,11 +51,15 @@
     cursor: pointer;
     font-size: $data-switcher-fz;
     font-weight: $font-weight-semi-bold;
-    color: $data-switcher-color;
+    color: $data-switcher-active-color;
     transition: $transition-1;
     line-height: normal;
+    opacity: 0.5;
     &_active {
-      color: $data-switcher-active-color;
+      opacity: 1 !important;
+    }
+    &:hover {
+      opacity: 0.75;
     }
   }
   &__marker {

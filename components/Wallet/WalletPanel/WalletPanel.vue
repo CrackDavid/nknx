@@ -7,7 +7,7 @@
           {{balance}}
           <span class="wallet-panel__currency">NKN</span>
         </div>
-        <div class="wallet-panel__address" v-clipboard:copy="address">
+        <div v-clipboard:copy="address" class="wallet-panel__address">
           {{address}}
           <i class="fas fa-copy"></i>
         </div>
@@ -36,7 +36,20 @@ export default {
   components: {
     Card
   },
-  props: ["address", "label", "balance"],
+  props: {
+    address: {
+      type: String,
+      default: ""
+    },
+    label: {
+      type: String,
+      default: ""
+    },
+    balance: {
+      type: Number,
+      default: 0
+    }
+  },
   data: () => {
     return {};
   },

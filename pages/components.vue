@@ -69,6 +69,12 @@
             <WalletTransactions address="NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH"/>
           </div>
         </div>
+        <div class="row">
+          <div class="col col_xs_9">
+            <h2>Wallet Balance History</h2>
+            <WalletBalanceHistory address="NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH"/>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -79,6 +85,7 @@ import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
 import Relayed from "~/components/Widgets/Node/RelayedMessages/RelayedMessages.vue";
 import WalletPanel from "~/components/Wallet/WalletPanel/WalletPanel.vue";
 import WalletTransactions from "~/components/Wallet/WalletTransactions/WalletTransactions.vue";
+import WalletBalanceHistory from "~/components/Wallet/WalletBalanceHistory/WalletBalanceHistory.vue";
 
 export default {
   auth: false,
@@ -86,7 +93,8 @@ export default {
     Performance,
     Relayed,
     WalletPanel,
-    WalletTransactions
+    WalletTransactions,
+    WalletBalanceHistory
   }
 };
 </script>
@@ -102,6 +110,7 @@ h2 {
 }
 .guideline {
   display: flex;
+  background: #fff;
 }
 .guideline-item {
   display: flex;

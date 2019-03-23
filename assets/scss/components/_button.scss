@@ -40,7 +40,7 @@
   }
   &_theme {
     &_default {
-      color: $btn-default-color;
+      color: $btn-default-color !important;
       background-color: $btn-default;
       border-color: $btn-default;
     }

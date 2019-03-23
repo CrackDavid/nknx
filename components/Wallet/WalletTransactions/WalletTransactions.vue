@@ -90,7 +90,12 @@ export default {
   components: {
     Card
   },
-  props: ["address"],
+  props: {
+    address: {
+      type: String,
+      default: ""
+    }
+  },
   data: () => {
     return {
       currentData: "transactions",
