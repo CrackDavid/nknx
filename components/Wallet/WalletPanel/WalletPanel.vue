@@ -4,7 +4,7 @@
       <div class="wallet-panel__left">
         <div class="wallet-panel__label">{{label}}</div>
         <div class="wallet-panel__value">
-          {{balance}}
+          {{balanceNKN}}
           <span class="wallet-panel__currency">NKN</span>
         </div>
         <div v-clipboard:copy="address" class="wallet-panel__address">
@@ -45,7 +45,7 @@ export default {
       type: String,
       default: ""
     },
-    balance: {
+    balanceNKN: {
       type: Number,
       default: 0
     }

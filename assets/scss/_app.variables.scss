@@ -170,7 +170,7 @@ $padding-max: 64px;
 // Sparkline-stats
 $sparkline-chart-height: 120px;
 
-//Wallet Panel
+// Wallet Panel
 $walletpanel-bg: linear-gradient(
   96.13deg,
   #f4a271 0.12%,
@@ -184,8 +184,12 @@ $walletpanel-btn-active-bg: rgba(0, 0, 0, 0.5);
 $walletpanel-btn-width: 140px;
 $walletpanel-btn-more-width: 40px;
 $walletpanel-icon-size: 24px;
+// Wallet Mini
+$wallet-mini-icon-size: 64px;
+$wallet-mini-icon-color: $primary;
+$wallet-mini-icon-bg: #eef0fc;
 
-//Data Table
+// Data Table
 $data-table-fz: 13px;
 $data-table-header-padding: $padding-micro $padding-normal;
 $data-table-header-bg: $ghost-white;

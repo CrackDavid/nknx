@@ -59,7 +59,7 @@
             <WalletPanel
               address="NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH"
               label="My Primary Wallet"
-              balance="84,650"
+              :balanceNKN="84650"
             />
           </div>
         </div>
@@ -75,6 +75,16 @@
             <WalletBalanceHistory address="NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH"/>
           </div>
         </div>
+        <div class="row">
+          <div class="col col_xs_3">
+            <h2>Wallet Mini</h2>
+            <WalletMini
+              :balanceNKN="86450"
+              label="My primary wallet"
+              address="NhWjY9iwD5Ad8DafiEWbTo4buLpBomdttH"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -84,6 +94,7 @@
 import Performance from "~/components/Widgets/Node/Performance/Performance.vue";
 import Relayed from "~/components/Widgets/Node/RelayedMessages/RelayedMessages.vue";
 import WalletPanel from "~/components/Wallet/WalletPanel/WalletPanel.vue";
+import WalletMini from "~/components/Wallet/WalletMini/WalletMini.vue";
 import WalletTransactions from "~/components/Wallet/WalletTransactions/WalletTransactions.vue";
 import WalletBalanceHistory from "~/components/Wallet/WalletBalanceHistory/WalletBalanceHistory.vue";
 
@@ -93,6 +104,7 @@ export default {
     Performance,
     Relayed,
     WalletPanel,
+    WalletMini,
     WalletTransactions,
     WalletBalanceHistory
   }
