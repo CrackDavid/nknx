@@ -36,6 +36,11 @@ export default {
           path: "/network",
           icon: "fe-activity",
           title: "Network"
+        },
+        {
+          path: "/wallet-tracker",
+          icon: "fe-credit-card",
+          title: "Wallet Tracker"
         }
       ]
     };

@@ -1,0 +1,21 @@
+.wallet-side {
+  margin-top: -$flexboxgrid-outer-margin;
+  height: calc(100% + #{$flexboxgrid-outer-margin * 0.25});
+  background: $wallet-side-bg;
+  margin-right: -$flexboxgrid-outer-margin;
+  padding-top: calc(#{$padding-medium} + #{$half-gutter-width});
+  color: $wallet-side-color;
+  &__title {
+    font-size: 17px;
+    line-height: normal;
+    font-weight: $font-weight-semi-bold;
+    padding: 0 $padding-normal;
+    padding-bottom: $padding-default;
+  }
+  &__divider {
+    margin: 32px $padding-normal;
+    height: 1px;
+    background: $white;
+    opacity: 0.15;
+  }
+}
