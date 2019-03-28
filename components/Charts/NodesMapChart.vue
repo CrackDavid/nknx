@@ -20,11 +20,6 @@ export default {
     networkNodes: "network/getNetworkNodes",
     latestSigchainTransaction: "transactions/getLatestSigchainTransaction"
   }),
-  methods: {
-    getLatestTx() {
-      this.$store.dispatch("transactions/getLatestSigchainTransaction");
-    }
-  },
   destroyed() {
     clearInterval(this.intervalTx);
     clearInterval(this.intervaldrawLine);
@@ -164,6 +159,11 @@ export default {
   beforeDestroy() {
     if (this.chart) {
       this.chart.dispose();
+    }
+  },
+  methods: {
+    getLatestTx() {
+      this.$store.dispatch("transactions/getLatestSigchainTransaction");
     }
   }
 };

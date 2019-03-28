@@ -8,6 +8,9 @@
   &_active {
     border-left: 4px solid $secondary;
     background-color: $wallet-preview-bg-active !important;
+    .wallet-preview__converter {
+      color: $white;
+    }
   }
   &:hover {
     background-color: $wallet-preview-bg-hover;
@@ -40,6 +43,7 @@
     opacity: 0.85;
     font-weight: $font-weight-semi-bold;
     line-height: normal;
+    color: #adb2c5;
   }
   &__chart {
     width: $wallet-preview-chart-width;
