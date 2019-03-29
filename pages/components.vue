@@ -7,6 +7,9 @@
           <div class="guideline-item">
             <h2>Theme</h2>
             <button class="btn btn_type_default btn_theme_primary btn_size_default">Primary</button>
+            <button
+              class="btn btn_type_default btn_theme_primary-gradient btn_size_default"
+            >Primary Gradient</button>
             <button class="btn btn_type_default btn_theme_secondary btn_size_default">Secondary</button>
             <button class="btn btn_type_default btn_theme_default btn_size_default">Default</button>
             <button class="btn btn_type_default btn_theme_success btn_size_default">Success</button>

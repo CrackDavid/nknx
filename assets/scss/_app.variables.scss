@@ -97,6 +97,7 @@ $primary-gradient: linear-gradient(
   $royal-blue 24.12%,
   #5fcff9 102.64%
 );
+$primary-gradient-2: linear-gradient(99.95deg, $primary 0.78%, #9f30e2 100.4%);
 $orange-gradient: linear-gradient(90deg, $blush 0.24%, #f7bb97 97.08%);
 $error-gradient: linear-gradient(114.68deg, $jasper 3.09%, #e33961 98.24%);
 $green-gradient: linear-gradient(
@@ -134,6 +135,7 @@ $btn-color-disabled: $quick-silver;
 $btn-default: $ghost-white;
 $btn-default-color: $quick-silver;
 $btn-primary: $primary;
+$btn-primary-gradient: $primary-gradient-2;
 $btn-secondary: $secondary;
 $btn-success: $accent-green;
 $btn-error: $accent-warning;
@@ -222,3 +224,19 @@ $data-switcher-marker-color: $primary;
 $data-switcher-marker-height: 4px;
 $data-switcher-marker-width: 180px;
 $data-switcher-marker-br: 7px;
+
+// Select
+$select-dark-bg: #232c6a;
+$select-dark-color: $white;
+$select-dark-arrow: $quick-silver;
+$select-padding: $padding-micro $padding-default;
+$select-br: 5px;
+$select-fz: $font-size-sm;
+
+// Input
+$input-dark-bg: #232c6a;
+$input-dark-color: $white;
+$input-dark-arrow: $quick-silver;
+$input-padding: $padding-micro $padding-default;
+$input-br: 5px;
+$input-fz: $font-size-sm;

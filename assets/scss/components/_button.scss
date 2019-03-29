@@ -54,6 +54,10 @@
       background-color: $btn-secondary;
       border-color: $btn-secondary;
     }
+    &_primary-gradient {
+      background: $btn-primary-gradient;
+      border: 0 !important;
+    }
     &_success {
       color: $btn-success;
       background-color: $btn-success;

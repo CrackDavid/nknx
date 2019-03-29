@@ -13,15 +13,18 @@
     />
     <div class="wallet-side__divider"></div>
     <div class="wallet-side__title">{{$t('quickTransfer')}}</div>
+    <WalletQuickTransfer/>
   </div>
 </template>
 
 <script>
 import WalletPreview from "~/components/Wallet/WalletPreview/WalletPreview/";
+import WalletQuickTransfer from "~/components/Wallet/WalletQuickTransfer/WalletQuickTransfer/";
 
 export default {
   components: {
-    WalletPreview
+    WalletPreview,
+    WalletQuickTransfer
   },
   props: {
     address: {

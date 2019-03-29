@@ -6,6 +6,7 @@
 @import "components/card";
 @import "components/button";
 @import "components/tables";
+@import "components/controls";
 
 /*========== Sub Components ==========*/
 @import "components/user/avatar-dropdown";
@@ -17,6 +18,7 @@
 @import "components/wallet/wallet-balance-history";
 @import "components/wallet/wallet-side";
 @import "components/wallet/wallet-preview";
+@import "components/wallet/wallet-quick-transfers";
 
 /*========== Widgets ==========*/
 @import "components/widgets/general-stats";
