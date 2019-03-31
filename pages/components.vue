@@ -39,6 +39,22 @@
     <hr>
     <div class="row">
       <div class="col col_xs_12">
+        <h1>Loaders</h1>
+        <div class="row">
+          <div class="col col_xs_4 white">
+            <h2>News Loader</h2>
+            <NewsLoader/>
+          </div>
+          <div class="col col_xs_12 white">
+            <h2>Table Row Loader</h2>
+            <TableRowLoader/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col col_xs_12">
         <h1>User node</h1>
         <div class="row">
           <div class="col col_xs_6">
@@ -100,6 +116,8 @@ import WalletPanel from "~/components/Wallet/WalletPanel/WalletPanel.vue";
 import WalletMini from "~/components/Wallet/WalletMini/WalletMini.vue";
 import WalletTransactions from "~/components/Wallet/WalletTransactions/WalletTransactions.vue";
 import WalletBalanceHistory from "~/components/Wallet/WalletBalanceHistory/WalletBalanceHistory.vue";
+import NewsLoader from "~/components/Loaders/NewsLoader/NewsLoader.vue";
+import TableRowLoader from "~/components/Loaders/TableRowLoader/TableRowLoader.vue";
 
 export default {
   auth: false,
@@ -109,7 +127,9 @@ export default {
     WalletPanel,
     WalletMini,
     WalletTransactions,
-    WalletBalanceHistory
+    WalletBalanceHistory,
+    NewsLoader,
+    TableRowLoader
   }
 };
 </script>
@@ -133,5 +153,8 @@ h2 {
 }
 .guideline-item > * {
   margin: 10px;
+}
+.white {
+  background: #fff;
 }
 </style>

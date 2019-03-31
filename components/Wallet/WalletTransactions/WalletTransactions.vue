@@ -17,6 +17,9 @@
       >{{$t('transfers')}}</div>
       <div class="data-switcher__marker"></div>
     </div>
+    <div v-if="transactionLoader">
+      <TableRowLoader v-for="row in defaultRows" :key="row"></TableRowLoader>
+    </div>
     <!-- Transactions -->
     <table v-if="!transactionLoader && currentData === 'transactions'" class="data-table">
       <thead class="data-table__header">
@@ -86,9 +89,11 @@
 
 <script>
 import Card from "~/components/Card/Card.vue";
+import TableRowLoader from "~/components/Loaders/TableRowLoader/TableRowLoader.vue";
 export default {
   components: {
-    Card
+    Card,
+    TableRowLoader
   },
   props: {
     address: {
@@ -98,6 +103,7 @@ export default {
   },
   data: () => {
     return {
+      defaultRows: 10,
       currentData: "transactions",
       next_pageTransactions: null,
       prev_pageTransactions: null,

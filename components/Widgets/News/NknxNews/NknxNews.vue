@@ -7,7 +7,11 @@
           <MediumIcon></MediumIcon>
         </div>
       </div>
-      <transition-group tag="div" name="fade-out-in">
+
+      <div v-if="mediumNews.length < 1">
+        <NewsLoader v-for="i in itemsOnPage" :key="i"></NewsLoader>
+      </div>
+      <transition-group tag="div" name="fade-out-in" v-if="mediumNews.length > 1">
         <div v-for="(news, index) in paginatedData" :key="news.title" class="news__item">
           <div class="news-item__header">
             <div class="news-item__date">{{$moment(news.pubDate).format('DD/MM/YYYY')}}</div>
@@ -43,6 +47,7 @@
 
 <script>
 import Card from "~/components/Card/Card.vue";
+import NewsLoader from "~/components/Loaders/NewsLoader/NewsLoader.vue";
 import MediumIcon from "~/assets/icons/medium.svg";
 import ArrowRight from "~/assets/icons/arrow-right.svg";
 
@@ -50,7 +55,8 @@ export default {
   components: {
     Card,
     MediumIcon,
-    ArrowRight
+    ArrowRight,
+    NewsLoader
   },
   data: () => {
     return {
@@ -58,11 +64,7 @@ export default {
       itemsOnPage: 3,
       currentItems: 3,
       currentNumber: 3,
-      mediumNews: [
-        {
-          title: null
-        }
-      ]
+      mediumNews: []
     };
   },
   computed: {
