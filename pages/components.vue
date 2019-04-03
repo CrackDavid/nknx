@@ -106,6 +106,18 @@
         </div>
       </div>
     </div>
+    <hr>
+    <div class="row">
+      <div class="col col_xs_12">
+        <h1>Nodes</h1>
+        <div class="row">
+          <div class="col col_xs_12 white">
+            <h2>Nodes Average Stats</h2>
+            <NodesAverageStats/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -118,6 +130,7 @@ import WalletTransactions from "~/components/Wallet/WalletTransactions/WalletTra
 import WalletBalanceHistory from "~/components/Wallet/WalletBalanceHistory/WalletBalanceHistory.vue";
 import NewsLoader from "~/components/Loaders/NewsLoader/NewsLoader.vue";
 import TableRowLoader from "~/components/Loaders/TableRowLoader/TableRowLoader.vue";
+import NodesAverageStats from "~/components/Widgets/Node/NodesAverageStats/NodesAverageStats.vue";
 
 export default {
   auth: false,
@@ -129,7 +142,8 @@ export default {
     WalletTransactions,
     WalletBalanceHistory,
     NewsLoader,
-    TableRowLoader
+    TableRowLoader,
+    NodesAverageStats
   }
 };
 </script>

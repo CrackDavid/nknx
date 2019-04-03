@@ -26,13 +26,13 @@ export const getters = {
 export const actions = {
   async getCurrentNetworkStatus({ commit }) {
     const data = await this.$axios.$get(
-      "https://api2.nknx.org/statistics/network"
+      "https://api.nknx.org/statistics/network"
     );
     commit("setNetworkStatus", data);
   },
   async getCurrentNetworkNodes({ commit }) {
     await this.$axios
-      .$get("https://api2.nknx.org/crawledNodes?withLocation=true")
+      .$get("https://api.nknx.org/crawledNodes?withLocation=true")
       .then(function(nodeList) {
         function sortByCount(a, b) {
           if (a.count < b.count) return 1;

@@ -1,0 +1,66 @@
+.nodes-average {
+  margin: $padding-medium 0;
+  &__item {
+    display: flex;
+  }
+  &__icon {
+    height: $nodes-average-icon-size;
+    width: $nodes-average-icon-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 100%;
+    font-size: 20px;
+
+    &_color {
+      &_purple {
+        color: $primary;
+        background: $primary-ghost;
+      }
+      &_green {
+        color: $accent-green;
+        background: $accent-green-ghost;
+      }
+      &_red {
+        color: $blush;
+        background: $blush-ghost;
+      }
+      &_orange {
+        color: $orange;
+        background: $orange-ghost;
+      }
+    }
+  }
+  &__title {
+    line-height: normal;
+    font-size: $nodes-average-title-fz;
+    font-weight: $font-weight-semi-bold;
+    color: $text-grey-light;
+  }
+  &__value {
+    font-weight: $font-weight-semi-bold;
+    line-height: normal;
+    font-size: $nodes-average-value-fz;
+    margin: 6px 0;
+  }
+  &__currency {
+    vertical-align: top;
+    position: relative;
+    top: 8px;
+    font-weight: $font-weight-bold;
+    font-size: $nodes-average-currency-fz;
+  }
+  &__tooltip {
+    font-weight: $font-weight-semi-bold;
+    line-height: normal;
+    font-size: $nodes-average-tooltip-fz;
+    color: $text-grey-light;
+    &_positive {
+      color: $success;
+    }
+    &_negative {
+      color: $error;
+    }
+  }
+}

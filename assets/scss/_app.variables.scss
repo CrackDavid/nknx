@@ -33,6 +33,13 @@ $toolbox: #7276c5;
 $mountain-meadow: #2bd289;
 $jasper: #d63649;
 $blush: #dd5e89;
+$orange: #f4a271;
+
+// Ghost colors
+$primary-ghost: #eef0fc;
+$accent-green-ghost: #e5f9f0;
+$blush-ghost: #fff4f8;
+$orange-ghost: #fdefe6;
 
 //Neutral Colors
 $ghost-white: #f8f8fb;
@@ -196,7 +203,7 @@ $walletpanel-icon-size: 24px;
 // Wallet Mini
 $wallet-mini-icon-size: 64px;
 $wallet-mini-icon-color: $primary;
-$wallet-mini-icon-bg: #eef0fc;
+$wallet-mini-icon-bg: $primary-ghost;
 
 // Wallet Side
 $wallet-side-bg: $dark-gradient;
@@ -224,6 +231,13 @@ $data-switcher-marker-color: $primary;
 $data-switcher-marker-height: 4px;
 $data-switcher-marker-width: 180px;
 $data-switcher-marker-br: 7px;
+
+// Nodes Average Stats
+$nodes-average-icon-size: 48px;
+$nodes-average-title-fz: $font-size-sm;
+$nodes-average-value-fz: 36px;
+$nodes-average-currency-fz: 11px;
+$nodes-average-tooltip-fz: 13px;
 
 // Select
 $select-dark-bg: #232c6a;

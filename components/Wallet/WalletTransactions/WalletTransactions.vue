@@ -134,7 +134,7 @@ export default {
 
       this.$axios
         .$get(
-          "https://api2.nknx.org/transactions/?withoutpayload=true&txType=0,16,66&per_page=10&withoutattributes=true&withoutinputs=true&address=" +
+          "https://api.nknx.org/transactions/?withoutpayload=true&txType=0,16,66&per_page=10&withoutattributes=true&withoutinputs=true&address=" +
             this.address
         )
         .then(function(response) {
@@ -151,7 +151,7 @@ export default {
 
       this.$axios
         .$get(
-          "https://api2.nknx.org/transactions/?txType=16&per_page=10&withoutpayload=true&withoutattributes=true&withoutinputs=true&address=" +
+          "https://api.nknx.org/transactions/?txType=16&per_page=10&withoutpayload=true&withoutattributes=true&withoutinputs=true&address=" +
             this.address
         )
         .then(function(response) {
