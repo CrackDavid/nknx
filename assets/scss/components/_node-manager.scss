@@ -7,7 +7,11 @@
   }
   &__header {
     padding-bottom: 40px;
+    padding-left: 0px !important;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     &:after {
       content: "";
       position: absolute;
@@ -52,5 +56,8 @@
       -webkit-background-clip: padding-box; /* for Safari */
       background-clip: padding-box;
     }
+  }
+  &__button {
+    margin-right: $padding-default;
   }
 }

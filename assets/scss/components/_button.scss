@@ -22,9 +22,13 @@
       color: $btn-color-default !important;
       border-color: transparent !important;
       &:disabled {
+        cursor: not-allowed;
         color: $btn-color-disabled !important;
         border-color: $btn-disabled;
         background-color: $btn-disabled !important;
+        &:before {
+          color: $btn-color-disabled !important;
+        }
       }
       &:before {
         color: $btn-color-default !important;
@@ -33,8 +37,12 @@
     &_outline {
       background-color: transparent !important;
       &:disabled {
+        cursor: not-allowed;
         color: $btn-color-disabled;
         border-color: $btn-disabled;
+        &:before {
+          color: $btn-color-disabled !important;
+        }
       }
     }
   }
@@ -104,6 +112,58 @@
         color: $btn-error;
         margin-top: 2px;
         left: 20px;
+      }
+    }
+  }
+  &_icon {
+    &_plus {
+      &:before {
+        font-family: "Feather" !important;
+        speak: none;
+        font-style: normal;
+        -webkit-font-feature-settings: normal;
+        font-feature-settings: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "\e9b1";
+        display: inline-block;
+        margin-right: 6px;
+      }
+    }
+    &_report {
+      &:before {
+        font-family: "Feather" !important;
+        speak: none;
+        font-style: normal;
+        -webkit-font-feature-settings: normal;
+        font-feature-settings: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "\e964";
+        display: inline-block;
+        margin-right: 6px;
+      }
+    }
+    &_chart {
+      &:before {
+        font-family: "Feather" !important;
+        speak: none;
+        font-style: normal;
+        -webkit-font-feature-settings: normal;
+        font-feature-settings: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "\e91b";
+        display: inline-block;
       }
     }
   }
