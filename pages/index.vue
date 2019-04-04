@@ -17,9 +17,7 @@
       </div>
 
       <div class="col col_xs_3">
-
-          <NknxNews/>
-
+        <NknxNews/>
       </div>
     </div>
   </div>

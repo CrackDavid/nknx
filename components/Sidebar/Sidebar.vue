@@ -41,6 +41,11 @@ export default {
           path: "/wallet-tracker",
           icon: "fe-credit-card",
           title: "Wallet Tracker"
+        },
+        {
+          path: "/node-manager",
+          icon: "fe-layers",
+          title: "Node Manager"
         }
       ]
     };

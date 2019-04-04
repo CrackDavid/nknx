@@ -10,6 +10,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   box-sizing: border-box;
+  border-bottom: $card-border;
   &__search-input {
     flex: 1;
     padding: 0px 10px;
