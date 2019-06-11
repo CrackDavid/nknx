@@ -1,72 +1,55 @@
 <template>
   <div>
-    <Preloader
-      v-if="!latestSigchainTransaction|| !price || !networkStatus || !networkNodes || !dailyTransactions || !dailyBlocks || !dailyHistoryPrice"
-    />
-    <div
-      v-if="latestSigchainTransaction&& price && networkStatus && networkNodes && dailyTransactions && dailyBlocks && dailyHistoryPrice"
-      class="page-wrapper"
-    >
-      <div class="row">
-        <div class="col col_xs_12">
-          <Topbar/>
-        </div>
-      </div>
-      <div class="row">
-        <Sidebar/>
-        <div class="main">
-          <div class="row">
-            <div class="col col_xs_12">
-              <Headerbar/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col_xs_12">
-              <div class="content">
-                <nuxt/>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <nuxt />
   </div>
 </template>
 
-<script>
-import Preloader from "~/components/Preloader/Preloader.vue";
-import Topbar from "~/components/Topbar/Topbar.vue";
-import Sidebar from "~/components/Sidebar/Sidebar.vue";
-import Headerbar from "~/components/Headerbar/Headerbar.vue";
+<style>
+html {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
 
-import { mapGetters } from "vuex";
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
 
-export default {
-  components: {
-    Preloader,
-    Topbar,
-    Sidebar,
-    Headerbar
-  },
-  computed: mapGetters({
-    price: "price/getCurrentPrice",
-    dailyHistoryPrice: "price/getDailyHistoryPrice",
-    networkStatus: "network/getNetworkStatus",
-    networkNodes: "network/getNetworkNodes",
-    dailyTransactions: "transactions/getDailyTransactions",
-    latestSigchainTransaction: "transactions/getLatestSigchainTransaction",
+.button--green {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 10px 30px;
+}
 
-    dailyBlocks: "blocks/getDailyBlocks"
-  }),
-  mounted: function() {
-    this.$store.dispatch("network/getCurrentNetworkStatus");
-    this.$store.dispatch("network/getCurrentNetworkNodes");
-    this.$store.dispatch("price/getCurrentPrice");
-    this.$store.dispatch("price/getDailyHistoryPrice");
-    this.$store.dispatch("transactions/getDailyTransactions");
-    this.$store.dispatch("transactions/getLatestSigchainTransaction");
+.button--green:hover {
+  color: #fff;
+  background-color: #3b8070;
+}
 
-    this.$store.dispatch("blocks/getDailyBlocks");
-  }
-};
-</script>
+.button--grey {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
+
+.button--grey:hover {
+  color: #fff;
+  background-color: #35495e;
+}
+</style>

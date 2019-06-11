@@ -77,13 +77,12 @@ dist
 # Serverless directories
 .serverless
 
-# IDE
+# IDE / Editor
 .idea
+.editorconfig
 
 # Service worker
 sw.*
 
-# NPM Package file
-package-lock.json
-package-lock.json
-yarn.lock
+# Mac OSX
+.DS_Store

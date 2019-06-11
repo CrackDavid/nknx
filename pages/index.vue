@@ -1,39 +1,67 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col col_xs_9">
-        <div class="row">
-          <div class="col col_xs_4">
-            <NetworkState/>
-          </div>
-          <div class="col col_xs_4"/>
-          <div class="col col_xs_4"/>
-        </div>
-        <div class="row">
-          <div class="col col_xs_12">
-            <MarketStats/>
-          </div>
-        </div>
-      </div>
-
-      <div class="col col_xs_3">
-        <NknxNews/>
+  <div class="container">
+    <div>
+      <logo />
+      <h1 class="title">
+        nknx
+      </h1>
+      <h2 class="subtitle">
+        The NKN node and wallet tracker
+      </h2>
+      <div class="links">
+        <a href="https://nuxtjs.org/" target="_blank" class="button--green"
+          >Documentation</a
+        >
+        <a
+          href="https://github.com/nuxt/nuxt.js"
+          target="_blank"
+          class="button--grey"
+          >GitHub</a
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import NetworkState from "~/components/Widgets/Network/NetworkState/NetworkState.vue";
-import MarketStats from "~/components/Widgets/Market/MarketStats/MarketStats.vue";
-import NknxNews from "~/components/Widgets/News/NknxNews/NknxNews.vue";
+import Logo from '~/components/Logo.vue'
 
 export default {
-  auth: false,
   components: {
-    NetworkState,
-    MarketStats,
-    NknxNews
+    Logo
   }
-};
+}
 </script>
+
+<style>
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.links {
+  padding-top: 15px;
+}
+</style>
