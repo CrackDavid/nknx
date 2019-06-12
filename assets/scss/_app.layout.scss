@@ -1,0 +1,9 @@
+.content {
+  padding-top: calc(#{$topbar-height} + #{$headerbar-height});
+  padding-left: $nav-width-collapsed;
+  transition: $transition-1;
+
+  &_collapsed {
+    padding-left: $nav-width-expanded;
+  }
+}

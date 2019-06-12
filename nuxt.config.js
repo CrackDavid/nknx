@@ -71,6 +71,21 @@ export default {
         ],
         defaultLocale: 'en'
       }
+    ],
+    [
+      'nuxt-i18n',
+      {
+        defaultLocale: 'en',
+        locales: [
+          {
+            code: 'en',
+            iso: 'en-US',
+            file: 'en-US.js'
+          }
+        ],
+        lazy: true,
+        langDir: 'lang/'
+      }
     ]
   ],
   styleResources: {

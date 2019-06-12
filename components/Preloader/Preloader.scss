@@ -1,0 +1,28 @@
+.preloader {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+
+  &__item {
+    height: 50px;
+    width: 50px;
+    path {
+      fill: $primary-dark;
+    }
+  }
+
+  &__text {
+    color: $primary-dark;
+    font-family: monospace;
+    overflow: hidden;
+    border-right: 0.15em solid $primary-dark;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    margin-top: 20px;
+    animation: typing 2.5s steps(30, end) infinite,
+      blink-caret 0.5s step-end infinite;
+  }
+}
