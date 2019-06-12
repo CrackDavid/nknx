@@ -1,0 +1,66 @@
+.topbar {
+  height: $topbar-height;
+  color: $white;
+  background-color: $secondary;
+  width: 100%;
+  padding: 0px $padding-normal;
+  display: flex;
+  align-items: center;
+  font-size: 0.7em;
+  box-sizing: border-box;
+  position: fixed;
+  justify-content: space-between;
+
+  &__left {
+    display: flex;
+  }
+
+  &__right {
+    display: flex;
+  }
+
+  &__block {
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+
+    &_positive {
+      margin-left: 5px;
+      color: $success;
+    }
+
+    &_negative {
+      margin-left: 5px;
+      color: $error;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  &__status {
+    display: block;
+    width: 0.75em;
+    height: 0.75em;
+    border-radius: 50%;
+    margin-right: 5px;
+
+    &_positive {
+      background-color: $success;
+    }
+
+    &_warning {
+      background-color: $error;
+    }
+
+    &_error {
+      background-color: $error;
+    }
+  }
+
+  &__icon {
+    height: 1em;
+    margin-right: 8px;
+  }
+}
