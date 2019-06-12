@@ -1,0 +1,67 @@
+.sidebar {
+  box-sizing: border-box;
+  background-color: $card-bg-default;
+  width: $nav-width-collapsed;
+  overflow-y: auto;
+  top: $topbar-height;
+  height: 100%;
+  border-right: $card-border;
+  transition: $transition-1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  position: fixed;
+
+  &_expanded {
+    width: $nav-width-expanded;
+
+    .sidebar__title {
+      opacity: 1;
+      margin-left: calc(#{$padding-normal} + #{$nav-icon-size});
+      transform: translateX(0px);
+    }
+  }
+
+  &__marker {
+    height: $nav-item-height;
+    width: 4px;
+    background-color: $nav-color-active;
+    position: absolute;
+    right: 0px;
+    transition: $transition-1;
+    border-radius: $nav-marker-border-radius;
+  }
+
+  &__item {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    color: $nav-color-default;
+    height: $nav-item-height;
+    align-items: center;
+    overflow: hidden;
+    font-weight: 400;
+    transition: $transition-1 color;
+
+    &.nuxt-link-exact-active {
+      color: $nav-color-active;
+      font-weight: $nav-weight-active;
+    }
+
+    &:hover {
+      color: $nav-color-active;
+    }
+  }
+
+  &__icon {
+    font-size: $nav-icon-size;
+    position: absolute;
+  }
+
+  &__title {
+    transform: translateX(500px);
+    opacity: 0;
+    transition: $transition-1 transform;
+  }
+}

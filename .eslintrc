@@ -7,35 +7,26 @@
   "parserOptions": {
     "parser": "babel-eslint"
   },
-  "extends": [
-    "@nuxtjs",
-    "plugin:vue/recommended",
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "prettier/vue"
-  ],
-  "plugins": [
-    "prettier"
-  ],
+  "extends": ["@nuxtjs", "eslint:recommended", "prettier/vue"],
+  "plugins": ["prettier"],
   "rules": {
     "vue/component-name-in-template-casing": [
       "error",
       "PascalCase",
       {
-        "ignores": [
-          "nuxt",
-          "nuxt-link"
-        ]
+        "ignores": ["nuxt", "nuxt-link"]
+      }
+    ],
+    "vue/attribute-hyphenation": [
+      "never",
+      {
+        "ignore": ["custom-prop"]
       }
     ],
     "no-console": [
       "error",
       {
-        "allow": [
-          "log",
-          "error",
-          "warn"
-        ]
+        "allow": ["log", "error", "warn"]
       }
     ]
   }
