@@ -23,7 +23,8 @@
     "@amcharts/amcharts4-geodata": "^4.1.4",
     "nuxt-svg-loader": "^1.0.1",
     "vue-content-loader": "^0.2.1",
-    "vue-country-flag": "^1.1.1"
+    "vue-country-flag": "^1.1.1",
+    "vue-clickaway": "^2.2.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
@@ -44,5 +45,8 @@
     "prettier": "^1.16.4",
     "sass-loader": "^7.1.0",
     "vue-i18n-extract": "^0.4.14"
-  }
+  },
+  "eslintIgnore": [
+    "modules/auth/lib/module/plugin.js"
+  ]
 }

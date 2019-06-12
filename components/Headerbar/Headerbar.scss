@@ -1,0 +1,88 @@
+.headerbar {
+  background-color: $card-bg-default;
+  box-shadow: $card-shadow;
+  width: 100%;
+  padding: $padding-small $padding-normal;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  border-bottom: $card-border;
+  position: fixed;
+  top: $topbar-height;
+  padding-left: calc(#{$nav-width-collapsed} + #{$padding-normal});
+  transition: $transition-1;
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &_collapsed {
+    padding-left: calc(#{$nav-width-expanded} + #{$padding-normal});
+  }
+
+  &__search-input {
+    width: $headerbar-search-width;
+  }
+
+  &__item {
+    margin-right: 25px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  &__toggle {
+    svg {
+      height: 40px;
+      position: relative;
+      top: 2px;
+
+      path {
+        fill: none;
+        transition: stroke-dashoffset $transition-3,
+          stroke-dasharray $transition-3;
+        stroke-width: 8px;
+        stroke-linecap: round;
+        stroke: $text-grey-light;
+        stroke-dashoffset: -20px;
+        &#top,
+        &#bottom,
+        &#middle {
+          stroke-dasharray: 60px 300px;
+        }
+      }
+    }
+
+    &.arrow path {
+      &#top,
+      &#bottom {
+        stroke-dasharray: 25px 300px;
+        stroke-dashoffset: -230px;
+      }
+    }
+    cursor: pointer;
+  }
+  &__button {
+    background: transparent;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: $quick-silver;
+    font-size: $headerbar-button-size;
+
+    &:hover {
+      cursor: pointer;
+      background: $ghost-white;
+    }
+  }
+}

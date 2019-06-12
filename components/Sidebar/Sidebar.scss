@@ -10,7 +10,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  position: relative;
   position: fixed;
 
   &_expanded {
@@ -36,8 +35,8 @@
   &__item {
     text-decoration: none;
     display: flex;
-    justify-content: center;
     color: $nav-color-default;
+    padding-left: $padding-normal;
     height: $nav-item-height;
     align-items: center;
     overflow: hidden;

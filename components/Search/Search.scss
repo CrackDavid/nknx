@@ -1,0 +1,72 @@
+.search {
+  background-color: $ghost-white;
+  display: flex;
+  align-items: center;
+  padding: $padding-small $padding-default;
+  border-radius: 50px;
+  transition: $transition-1;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border: 1px solid $platinum;
+
+  &__control {
+    flex: 1;
+    color: $quick-silver;
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+
+    &::-webkit-input-placeholder {
+      /* WebKit, Blink, Edge */
+      color: $quick-silver;
+    }
+
+    &:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: $quick-silver;
+      opacity: 1;
+    }
+
+    &::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: $quick-silver;
+      opacity: 1;
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: $quick-silver;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: $quick-silver;
+    }
+
+    &::placeholder {
+      /* Most modern browsers support this now. */
+      color: $quick-silver;
+    }
+  }
+
+  &__icon {
+    color: $quick-silver;
+    font-size: $font-size-lg;
+    margin-right: $padding-micro;
+    cursor: pointer;
+    transition: $transition-1;
+  }
+
+  &_error {
+    border: 1px solid #d63649;
+
+    .search__control {
+      color: #d63649;
+
+      &::placeholder {
+        color: #d63649;
+      }
+    }
+  }
+}
