@@ -3,6 +3,11 @@
 // App Global Font Size
 $html-font-size: 16px;
 
+// Media Size
+$desktop-size-sm: 956px;
+$desktop-size-md: 1200px;
+$desktop-size-lg: 1440px;
+
 //Default Colors
 $white: #fff;
 $black: #000;
@@ -143,3 +148,7 @@ $nav-weight-active: $font-weight-semi-bold;
 $nav-item-height: 64px;
 $nav-icon-size: 24px;
 $nav-marker-border-radius: 7px;
+
+// Grid
+$grid-template-columns: repeat(12, 1fr);
+$grid-gap: 32px;

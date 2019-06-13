@@ -9,7 +9,7 @@
       @mouseleave.native="markerInitialize"
     >
       <span class="fe sidebar__icon" :class="route.icon"/>
-      <span class="sidebar__title">{{ route.title }}</span>
+      <span class="sidebar__title">{{$t(route.title)}}</span>
     </nuxt-link>
     <div class="sidebar__marker"/>
   </aside>
@@ -28,22 +28,22 @@ export default {
         {
           path: '/',
           icon: 'fe-grid',
-          title: 'Dashboard'
+          title: 'dashboard'
         },
         {
           path: '/network',
           icon: 'fe-activity',
-          title: 'Network'
+          title: 'network'
         },
         {
           path: '/wallet-tracker',
           icon: 'fe-credit-card',
-          title: 'Wallet Tracker'
+          title: 'walletTracker'
         },
         {
           path: '/node-manager',
           icon: 'fe-layers',
-          title: 'Node Manager'
+          title: 'nodeManager'
         }
       ]
     }

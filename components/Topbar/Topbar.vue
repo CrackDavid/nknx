@@ -23,7 +23,7 @@
       </span>
       <span v-if="networkStats" class="topbar__block">
         <span class="fe fe-layers topbar__icon"/>
-        {{ networkStats.totalNodes | commaNumber}} Total Nodes
+        {{ networkStats.totalNodes | commaNumber}} {{$t('totalNodes')}}
       </span>
       <span v-if="networkStatus" class="topbar__block">
         <span class="fe fe-git-branch topbar__icon"/>
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     updatePrice() {
-      this.$store.dispatch('price/getCurrentPrice')
+      this.$store.dispatch('price/updateCurrentPrice')
     },
     updateNetworkStats() {
       this.$store.dispatch('network/updateNetworkStats')

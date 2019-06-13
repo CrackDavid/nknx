@@ -29,7 +29,7 @@
           </svg>
         </div>
       </span>
-      <Search class="headerbar__search-input" text="Search by Block, Hash or Address"/>
+      <Search class="headerbar__search-input" :text="$t('search')"/>
     </div>
     <div class="headerbar__right">
       <span class="headerbar__item">
@@ -38,7 +38,7 @@
         </button>
       </span>
       <!-- v-if="!$auth.loggedIn" -->
-      <span class="headerbar__item" @click="$auth.loginWith('auth0')">Login</span>
+      <span class="headerbar__item" @click="$auth.loginWith('auth0')">{{$t('login')}}</span>
       <!-- v-if="$auth.loggedIn" -->
       <AvatarDropdown class="headerbar__item"></AvatarDropdown>
       <span class="headerbar__item">

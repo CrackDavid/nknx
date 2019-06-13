@@ -10,6 +10,7 @@
   box-sizing: border-box;
   position: fixed;
   justify-content: space-between;
+  z-index: 10;
 
   &__left {
     display: flex;

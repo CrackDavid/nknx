@@ -1,0 +1,93 @@
+.card {
+  background: $card-bg-default;
+  border-radius: $card-border-radius;
+  box-sizing: border-box;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+
+  &_col {
+    &_1 {
+      grid-column: span 1;
+    }
+
+    &_2 {
+      grid-column: span 2;
+    }
+
+    &_3 {
+      grid-column: span 3;
+    }
+
+    &_4 {
+      grid-column: span 4;
+    }
+
+    &_5 {
+      grid-column: span 5;
+    }
+
+    &_6 {
+      grid-column: span 6;
+    }
+
+    &_7 {
+      grid-column: span 7;
+    }
+
+    &_8 {
+      grid-column: span 8;
+    }
+
+    &_9 {
+      grid-column: span 9;
+    }
+
+    &_10 {
+      grid-column: span 10;
+    }
+
+    &_11 {
+      grid-column: span 11;
+    }
+
+    &_12 {
+      grid-column: span 12;
+    }
+  }
+
+  &_row {
+    &_1 {
+      grid-row: span 1;
+    }
+
+    &_2 {
+      grid-row: span 2;
+    }
+
+    &_3 {
+      grid-row: span 3;
+    }
+
+    &_4 {
+      grid-row: span 4;
+    }
+
+    &_5 {
+      grid-row: span 5;
+    }
+
+    &_6 {
+      grid-row: span 6;
+    }
+  }
+
+  &_padding {
+    &_normal {
+      padding: $padding-normal;
+    }
+
+    &_none {
+      padding: 0;
+    }
+  }
+}

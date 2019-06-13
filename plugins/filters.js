@@ -23,3 +23,19 @@ Vue.filter('hexConverter', function(hex) {
     str += String.fromCharCode(parseInt(hex.substr(i, 2), 16))
   return str
 })
+
+Vue.filter('striphtml', function(value) {
+  const div = document.createElement('div')
+  div.innerHTML = value
+  const text = div.textContent || div.innerText || ''
+  return text
+})
+
+Vue.filter('excerpt', function(value, arg1) {
+  return (
+    value
+      .split(/\s+/)
+      .slice(0, arg1)
+      .join(' ') + '...'
+  )
+})

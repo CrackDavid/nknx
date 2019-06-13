@@ -22,13 +22,13 @@ export const getters = {
 }
 
 export const actions = {
-  async getCurrentPrice({ commit }) {
+  async updateCurrentPrice({ commit }) {
     const data = await this.$axios.$get(
       'https://price.nknx.org/price?quote=NKN&currency=USD,ETH'
     )
     commit('setCurrentPrice', data[0])
   },
-  async getDailyHistoryPrice({ commit }) {
+  async updateDailyHistoryPrice({ commit }) {
     const data = await this.$axios.$get(
       'https://price.nknx.org/history?quote=NKN&currency=USD,ETH&aggregate=days'
     )
