@@ -4,6 +4,7 @@
   box-sizing: border-box;
   box-shadow: $card-shadow;
   overflow: hidden;
+  position: relative;
 
   &_col {
     &_1 {

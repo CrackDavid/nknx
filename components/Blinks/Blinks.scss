@@ -1,0 +1,58 @@
+.blinks {
+  &__item {
+    position: absolute;
+    background: $white;
+    border-radius: 100%;
+    z-index: 1;
+
+    &_right_1 {
+      height: 180px;
+      width: 180px;
+      opacity: 0.12;
+      left: 84.17%;
+      right: -29.4%;
+      top: -50%;
+      bottom: 67.62%;
+    }
+
+    &_right_2 {
+      height: 240px;
+      width: 240px;
+      opacity: 0.08;
+      left: 76.13%;
+      right: -37.44%;
+      top: -64.76%;
+      bottom: 52.86%;
+    }
+
+    &_right_3 {
+      height: 300px;
+      width: 300px;
+      opacity: 0.04;
+      left: 69.1%;
+      right: -44.47%;
+      top: -77.62%;
+      bottom: 40%;
+    }
+
+    &_left_1 {
+      height: 500px;
+      width: 500px;
+      opacity: 0.05;
+      left: -117.43%;
+      right: 89.09%;
+      top: -66.89%;
+      bottom: -67.37%;
+    }
+
+    &_left_2 {
+      height: 620px;
+      width: 620px;
+      opacity: 0.03;
+      left: -132.16%;
+      right: 74.36%;
+      top: -93.81%;
+      bottom: -94.29%;
+    }
+  }
+}

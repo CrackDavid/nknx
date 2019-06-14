@@ -101,6 +101,7 @@ $dark-gradient: linear-gradient(
     rgba(0, 0, 0, 0.2) 98.29%
   ),
   $primary;
+$success-gradient: linear-gradient(118.17deg, #61e786 2.8%, #2ccb96 84.22%);
 
 // Transitions
 $transition-1: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -152,3 +153,6 @@ $nav-marker-border-radius: 7px;
 // Grid
 $grid-template-columns: repeat(12, 1fr);
 $grid-gap: 32px;
+
+// Sparkline-stats
+$sparkline-chart-height: 120px;
