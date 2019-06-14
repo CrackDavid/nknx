@@ -5,6 +5,7 @@
         <NetworkStatus/>
         <DailyTransactions/>
         <DailyBlocks/>
+        <NetworkMap/>
       </Grid>
     </ContentWrapper>
   </div>
@@ -16,6 +17,7 @@ import Grid from '~/components/Grid/Grid.vue'
 import NetworkStatus from '~/components/NetworkStatus/NetworkStatus.vue'
 import DailyTransactions from '~/components/DailyTransactions/DailyTransactions.vue'
 import DailyBlocks from '~/components/DailyBlocks/DailyBlocks.vue'
+import NetworkMap from '~/components/NetworkMap/NetworkMap.vue'
 
 export default {
   components: {
@@ -23,7 +25,8 @@ export default {
     Grid,
     NetworkStatus,
     DailyTransactions,
-    DailyBlocks
+    DailyBlocks,
+    NetworkMap
   }
 }
 </script>
