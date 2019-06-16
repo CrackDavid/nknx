@@ -21,3 +21,133 @@ h3 {
   font-size: $h3-font-size;
   font-weight: 500;
 }
+
+.card-header {
+  padding: $padding-normal;
+  display: flex;
+  justify-content: space-between;
+
+  &__counter {
+    margin-left: $padding-medium;
+    color: $primary;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semi-bold;
+  }
+
+  &__viewAll {
+    text-align: right;
+    color: $primary;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: $transition-1;
+    text-decoration: none;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+
+/*========== Text ==========*/
+.text {
+  &_align {
+    &_right {
+      text-align: right !important;
+    }
+
+    &_left {
+      text-align: left !important;
+    }
+  }
+}
+
+/*========== Table ==========*/
+.table {
+  font-size: $table-fz;
+  width: 100%;
+
+  &__header {
+    background: $table-header-bg;
+    border-top: $card-border;
+    border-bottom: $card-border;
+  }
+
+  &__row {
+    &:not(:last-child) {
+      border-bottom: $card-border;
+    }
+  }
+
+  &__title {
+    color: $table-header-color;
+    font-weight: $font-weight-semi-bold;
+    padding: $table-header-padding;
+    text-align: left;
+  }
+
+  &__item {
+    padding: $table-item-padding;
+    position: relative;
+
+    &_link {
+      transition: $transition-1;
+      color: $table-item-link-color;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+
+    &_overflow {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &_positive {
+      color: $success;
+    }
+
+    &_negative {
+      color: $error;
+    }
+  }
+}
+
+.switcher {
+  display: flex;
+  position: relative;
+
+  &__btn {
+    width: $switcher-marker-width;
+    padding: $switcher-padding 0px;
+    text-align: center;
+    cursor: pointer;
+    font-size: $switcher-fz;
+    font-weight: $font-weight-semi-bold;
+    color: $switcher-active-color;
+    transition: $transition-1;
+    line-height: normal;
+    opacity: 0.5;
+
+    &_active {
+      opacity: 1 !important;
+    }
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  &__marker {
+    width: $switcher-marker-width;
+    height: $switcher-marker-height;
+    background-color: $switcher-marker-color;
+    position: absolute;
+    left: 0px;
+    transition: $transition-1;
+    border-radius: $switcher-marker-br;
+  }
+}

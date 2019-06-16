@@ -156,3 +156,21 @@ $grid-gap: 32px;
 
 // Sparkline-stats
 $sparkline-chart-height: 120px;
+
+// Data Table
+$table-fz: 13px;
+$table-header-padding: $padding-micro $padding-normal;
+$table-header-bg: $ghost-white;
+$table-header-color: $text-grey-light;
+$table-item-link-color: $primary;
+$table-item-padding: $padding-small $padding-normal;
+
+// Switcher
+$switcher-padding: $padding-normal;
+$switcher-fz: $font-size-md;
+$switcher-color: $text-grey-light;
+$switcher-active-color: $text-grey-darker;
+$switcher-marker-color: $primary;
+$switcher-marker-height: 4px;
+$switcher-marker-width: 180px;
+$switcher-marker-br: 7px;

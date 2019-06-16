@@ -1,0 +1,19 @@
+.country-list {
+  &__flag {
+    position: absolute;
+    top: -9px;
+    border-radius: 26px;
+  }
+
+  &__country {
+    margin-left: 40px;
+  }
+
+  &__percentage {
+    display: inline-block;
+    height: 8px;
+    background-color: $secondary;
+    border-radius: 100px;
+    margin-right: 14px;
+  }
+}

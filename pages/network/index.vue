@@ -6,6 +6,7 @@
         <DailyTransactions/>
         <DailyBlocks/>
         <NetworkMap/>
+        <CountryList/>
         <Releases/>
       </Grid>
     </ContentWrapper>
@@ -20,6 +21,7 @@ import DailyTransactions from '~/components/DailyTransactions/DailyTransactions.
 import DailyBlocks from '~/components/DailyBlocks/DailyBlocks.vue'
 import NetworkMap from '~/components/NetworkMap/NetworkMap.vue'
 import Releases from '~/components/Releases/Releases.vue'
+import CountryList from '~/components/CountryList/CountryList.vue'
 
 export default {
   components: {
@@ -29,7 +31,8 @@ export default {
     DailyTransactions,
     DailyBlocks,
     NetworkMap,
-    Releases
+    Releases,
+    CountryList
   }
 }
 </script>
