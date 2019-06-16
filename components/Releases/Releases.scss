@@ -1,0 +1,120 @@
+.releases {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 32px;
+  }
+
+  &__title {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semi-bold;
+  }
+
+  &__link {
+    color: $primary;
+    font-size: $font-size-sm;
+    text-decoration: none;
+    transition: $transition-1;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+
+.releases-item {
+  padding-bottom: 32px;
+  display: flex;
+  position: relative;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 1px;
+    border-left: 1px dashed $platinum;
+    bottom: 0px;
+    position: absolute;
+    left: 27px;
+  }
+
+  &__tag {
+    width: 54px;
+    height: 54px;
+    margin-right: $padding-normal;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eef0fc;
+    font-size: $font-size-xs;
+    color: $primary;
+    z-index: 1;
+    position: relative;
+
+    &_active {
+      background: $primary;
+      font-weight: $font-weight-semi-bold;
+      color: $white;
+    }
+  }
+
+  &__body {
+    width: calc(100% - 64px);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: $text-grey-light;
+  }
+
+  &__title {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semi-bold;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    span:first-child {
+      margin-right: 8px;
+    }
+  }
+
+  &__description {
+    font-size: 13px;
+    line-height: 16px;
+    color: $text-grey-light;
+    margin-bottom: 12px;
+  }
+
+  &__more {
+    color: $primary;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    svg {
+      left: 12px;
+      position: relative;
+      transition: $transition-1;
+    }
+
+    &:hover {
+      svg {
+        left: 18px;
+      }
+    }
+  }
+}
