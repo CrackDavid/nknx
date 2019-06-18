@@ -16,7 +16,8 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.4.1",
     "@amcharts/amcharts4-geodata": "^4.1.4",
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/auth": "^4.7.0",
+    "@nuxtjs/axios": "^5.5.4",
     "@nuxtjs/moment": "^1.2.0",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/style-resources": "^0.1.2",

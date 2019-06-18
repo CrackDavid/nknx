@@ -49,6 +49,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     'nuxt-svg-loader',
@@ -100,6 +101,15 @@ export default {
    */
   axios: {
     baseURL: 'https://api2.nknx.org/'
+  },
+  auth: {
+    strategies: {
+      'laravel.passport': {
+        url: 'https://api2.nknx.org',
+        client_id: 1,
+        client_secret: 'eeI1mSLAU2uG5hjiJIgnQAcLhE43w1NSZqb3yxhz'
+      },
+    }
   },
   /*
    ** Build configuration

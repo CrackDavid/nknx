@@ -1217,7 +1217,20 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^3.2.0"
 
-"@nuxtjs/axios@^5.3.6":
+"@nuxtjs/auth@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/auth/-/auth-4.7.0.tgz#706de9bc93d8bd0fcb5f23c062129460b0c5cc0d"
+  integrity sha512-K+lBU6ZB16SHwBH8SyVfdAYW2Qf/iW+avDxqwbNNzqgOQ9OFd/GQ9UZK6zdVfpmNFtPrQ5d+N4q2m1FU1o5g4A==
+  dependencies:
+    "@nuxtjs/axios" "^5.5.4"
+    consola "^2.7.1"
+    cookie "^0.4.0"
+    dotprop "^1.2.0"
+    js-cookie "^2.2.0"
+    lodash "^4.17.11"
+    nanoid "^2.0.1"
+
+"@nuxtjs/axios@^5.5.4":
   version "5.5.4"
   resolved "https://registry.yarnpkg.com/@nuxtjs/axios/-/axios-5.5.4.tgz#c4aee2322901b19d4072670c03144662a73ea6f4"
   integrity sha512-/Ljsyh5VIc9paXGrQue7RQ+PpBNES1oit0g4l+ya1tfyKnZMpHSbghuLcv0xq+BpXlSEr690uemHbz54/N6U5w==
@@ -3560,6 +3573,11 @@ dot-prop@^4.1.0, dot-prop@^4.1.1:
   integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
   dependencies:
     is-obj "^1.0.0"
+
+dotprop@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/dotprop/-/dotprop-1.2.0.tgz#8fdf345c757da479ec8af218ae4239a73df721a7"
+  integrity sha512-mVQb8y5u3UkzNua2Hc8Ut/uKyCjm9GG2MRk/0fxJ9Mxo8Nb8XyWqaP0wVXerMucmu0mQmlcZm3S1mjOdcbCwQA==
 
 duplexer2@~0.1.4:
   version "0.1.4"
@@ -6301,6 +6319,11 @@ nan@^2.12.1, nan@^2.13.2:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+
+nanoid@^2.0.1:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.0.3.tgz#dde999e173bc9d7bd2ee2746b89909ade98e075e"
+  integrity sha512-NbaoqdhIYmY6FXDRB4eYtDVC9Z9eCbn8TyaiC16LNKtpPv/aqa0tOPD8y6gNE4yUNnaZ7LLhYtXOev/6+cBtfw==
 
 nanomatch@^1.2.9:
   version "1.2.13"

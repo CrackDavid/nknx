@@ -37,10 +37,14 @@
           <span class="fe fe-bell"/>
         </button>
       </span>
-      <!-- v-if="!$auth.loggedIn" -->
-      <span class="headerbar__item" @click="$auth.loginWith('auth0')">{{$t('login')}}</span>
+
+      <span
+        v-if="!$auth.loggedIn"
+        class="headerbar__item"
+        @click="$auth.loginWith('laravel.passport')"
+      >{{$t('login')}}</span>
       <!-- v-if="$auth.loggedIn" -->
-      <AvatarDropdown class="headerbar__item"></AvatarDropdown>
+      <AvatarDropdown v-if="$auth.loggedIn" class="headerbar__item"></AvatarDropdown>
       <span class="headerbar__item">
         <button class="headerbar__button">
           <span class="fe fe-moon"/>
