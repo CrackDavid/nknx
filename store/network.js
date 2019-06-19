@@ -2,7 +2,8 @@ export const state = () => ({
   networkStats: false,
   networkStatus: false,
   networkCities: false,
-  networkCountries: false
+  networkCountries: false,
+  networkProviders: false
 })
 
 export const mutations = {
@@ -17,6 +18,9 @@ export const mutations = {
   },
   setNetworkCountries(state, countriesObj) {
     state.networkCountries = countriesObj
+  },
+  setNetworkProviders(state, providersObj) {
+    state.networkProviders = providersObj
   }
 }
 
@@ -32,6 +36,9 @@ export const getters = {
   },
   getNetworkCountries(state) {
     return state.networkCountries
+  },
+  getNetworkProviders(state) {
+    return state.networkProviders
   }
 }
 
@@ -53,5 +60,9 @@ export const actions = {
       'https://api2.nknx.org/network/countries'
     )
     commit('setNetworkCountries', data)
+  },
+  async updateNetworkProviders({ commit }) {
+    const data = await this.$axios.$get('https://api2.nknx.org/network/isps')
+    commit('setNetworkProviders', data)
   }
 }
