@@ -6,11 +6,6 @@
     padding-bottom: 32px;
   }
 
-  &__title {
-    font-size: $font-size-md;
-    font-weight: $font-weight-semi-bold;
-  }
-
   &__link {
     color: $primary;
     font-size: $font-size-sm;
@@ -80,7 +75,7 @@
     margin-top: 8px;
     margin-bottom: 16px;
     font-size: $font-size-md;
-    font-weight: $font-weight-semi-bold;
+    font-weight: $font-weight-bold;
   }
 
   &__date {

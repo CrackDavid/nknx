@@ -1,6 +1,7 @@
 <template>
   <div>
     <ContentWrapper>
+      <h1 class="page__title">{{$t('dashboard')}}</h1>
       <Grid>
         <GeneralStats/>
         <GeneralStats/>

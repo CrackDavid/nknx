@@ -18,7 +18,7 @@
             <div class="news-item__date">{{$moment(news.pubDate).format('DD/MM/YYYY')}}</div>
             <div class="news-item__authour">{{$t('by')}} {{news.author}}</div>
           </div>
-          <h4 class="news-item__title">{{news.title}}</h4>
+          <div class="news-item__title text_wrap_none">{{news.title}}</div>
           <div class="news-item__content">{{news.content | striphtml | excerpt(20)}}</div>
           <a class="news-item__more" target="_blank" :href="news.link">
             {{$t('readMore')}}

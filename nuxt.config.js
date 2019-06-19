@@ -18,11 +18,6 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&amp;subset=cyrillic'
-      },
-      {
-        rel: 'stylesheet',
         href: 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'
       }
     ]
@@ -108,7 +103,7 @@ export default {
         url: 'https://api2.nknx.org',
         client_id: 1,
         client_secret: 'eeI1mSLAU2uG5hjiJIgnQAcLhE43w1NSZqb3yxhz'
-      },
+      }
     }
   },
   /*

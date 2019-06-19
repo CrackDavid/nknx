@@ -1,4 +1,5 @@
 /*========== Body ==========*/
+
 html {
   overflow-x: hidden;
 }
@@ -17,15 +18,41 @@ a {
   color: inherit;
 }
 
+/*========== Typography ==========*/
+
+h1 {
+  font-size: $h1-font-size;
+  font-weight: bold;
+  line-height: 29px;
+}
+
+h2 {
+  font-size: $h2-font-size;
+  font-weight: normal;
+  line-height: 24px;
+}
+
 h3 {
   font-size: $h3-font-size;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 20px;
 }
+
+/*========== Page ==========*/
+
+.page {
+  &__title {
+    margin-bottom: $padding-normal;
+  }
+}
+
+/*========== Card ==========*/
 
 .card-header {
   padding: $padding-normal;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   &__counter {
     margin-left: $padding-medium;
@@ -49,6 +76,7 @@ h3 {
 }
 
 /*========== Text ==========*/
+
 .text {
   &_align {
     &_right {
@@ -59,9 +87,18 @@ h3 {
       text-align: left !important;
     }
   }
+
+  &_wrap {
+    &_none {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 /*========== Table ==========*/
+
 .table {
   font-size: $table-fz;
   width: 100%;
