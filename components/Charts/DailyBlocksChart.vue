@@ -19,7 +19,7 @@ export default {
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let blocksAverage = this.dailyBlocks
-    blocksAverage = blocksAverage.slice(0, 7)
+    blocksAverage = blocksAverage.slice(1, 7)
     const data = []
     for (let i = blocksAverage.length - 1; i >= 0; i--) {
       data.push({

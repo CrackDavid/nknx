@@ -20,7 +20,7 @@ export default {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let txAverage = this.dailyTransactions
 
-    txAverage = txAverage.slice(0, 7)
+    txAverage = txAverage.slice(1, 7)
     const data = []
     for (let i = txAverage.length - 1; i >= 0; i--) {
       data.push({

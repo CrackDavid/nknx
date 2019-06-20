@@ -1,5 +1,5 @@
 <template>
-  <SparklineStats title="blocksPerDay" :change="change" :dailyValue="dailyValue">
+  <SparklineStats title="avgBlocksPerDay" :change="change" :dailyValue="valueArr | avg">
     <DailyBlocksChart/>
   </SparklineStats>
 </template>
@@ -17,7 +17,7 @@ export default {
   data: () => {
     return {
       change: null,
-      dailyValue: null
+      valueArr: []
     }
   },
   computed: mapGetters({
@@ -25,10 +25,10 @@ export default {
   }),
   destroyed() {},
   mounted: function() {
-    const day1 = this.dailyBlocks[0].count
-    const day2 = this.dailyBlocks[1].count
+    const day1 = this.dailyBlocks[1].count
+    const day2 = this.dailyBlocks[2].count
     this.change = (((day1 - day2) / day1) * 100).toFixed(2)
-    this.dailyValue = day1
+    this.valueArr = this.dailyBlocks.map(x => x.count)
   },
   methods: {}
 }

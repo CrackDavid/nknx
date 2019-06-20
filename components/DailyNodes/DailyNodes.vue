@@ -1,5 +1,5 @@
 <template>
-  <SparklineStats title="nodesPerDay" :change="change" :dailyValue="dailyValue">
+  <SparklineStats title="avgNodesPerDay" :change="change" :dailyValue="valueArr | avg">
     <DailyNodesChart/>
   </SparklineStats>
 </template>
@@ -17,7 +17,7 @@ export default {
   data: () => {
     return {
       change: null,
-      dailyValue: null
+      valueArr: []
     }
   },
   computed: mapGetters({
@@ -28,7 +28,7 @@ export default {
     const day1 = this.dailyNodes[0].avg_cnodecount
     const day2 = this.dailyNodes[1].avg_cnodecount
     this.change = (((day1 - day2) / day1) * 100).toFixed(2)
-    this.dailyValue = day1
+    this.valueArr = this.dailyNodes.map(x => x.avg_cnodecount)
   },
   methods: {}
 }
