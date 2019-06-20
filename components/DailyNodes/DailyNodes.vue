@@ -1,18 +1,18 @@
 <template>
-  <SparklineStats title="blocksPerDay" :change="change" :dailyValue="dailyValue">
-    <DailyBlocksChart/>
+  <SparklineStats title="nodesPerDay" :change="change" :dailyValue="dailyValue">
+    <DailyNodesChart/>
   </SparklineStats>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 
 import SparklineStats from '~/components/SparklineStats/SparklineStats.vue'
-import DailyBlocksChart from '~/components/Charts/DailyBlocksChart.vue'
+import DailyNodesChart from '~/components/Charts/DailyNodesChart.vue'
 
 export default {
   components: {
     SparklineStats,
-    DailyBlocksChart
+    DailyNodesChart
   },
   data: () => {
     return {
@@ -21,12 +21,12 @@ export default {
     }
   },
   computed: mapGetters({
-    dailyBlocks: 'blocks/getDailyBlocks'
+    dailyNodes: 'nodes/getDailyNodes'
   }),
   destroyed() {},
   mounted: function() {
-    const day1 = this.dailyBlocks[0].count
-    const day2 = this.dailyBlocks[1].count
+    const day1 = this.dailyNodes[0].avg_cnodecount
+    const day2 = this.dailyNodes[1].avg_cnodecount
     this.change = (((day1 - day2) / day1) * 100).toFixed(2)
     this.dailyValue = day1
   },

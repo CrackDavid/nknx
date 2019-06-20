@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders"
+    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes"
   >
     <Topbar/>
     <Headerbar/>
@@ -35,6 +35,7 @@ export default {
     dailyHistoryPrice: 'price/getDailyHistoryPrice',
     dailyTransactions: 'transactions/getDailyTransactions',
     dailyBlocks: 'blocks/getDailyBlocks',
+    dailyNodes: 'nodes/getDailyNodes',
     latestSigchain: 'latestSigchain/getLatestSigchain'
   }),
   destroyed() {
@@ -47,6 +48,7 @@ export default {
     clearInterval(this.intervalDailyHistoryPrice)
     clearInterval(this.intervalDailyTransactions)
     clearInterval(this.intervalDailyBlocks)
+    clearInterval(this.intervalDailyNodes)
     clearInterval(this.intervalLatestSigchain)
   },
   mounted: function() {
@@ -59,6 +61,7 @@ export default {
     this.updateDailyHistoryPrice()
     this.updateDailyTransactions()
     this.updateDailyBlocks()
+    this.updateDailyNodes()
     this.updateLatestSigchain()
 
     this.intervalPrice = setInterval(this.updatePrice, 60000)
@@ -82,6 +85,7 @@ export default {
       60000
     )
     this.intervalDailyBlocks = setInterval(this.updateDailyBlocks, 60000)
+    this.intervalDailyNodes = setInterval(this.updateDailyNodes, 60000)
     this.intervalLatestSigchain = setInterval(this.updateLatestSigchain, 60000)
   },
   methods: {
@@ -111,6 +115,9 @@ export default {
     },
     updateDailyBlocks() {
       this.$store.dispatch('blocks/updateDailyBlocks')
+    },
+    updateDailyNodes() {
+      this.$store.dispatch('nodes/updateDailyNodes')
     },
     updateLatestSigchain() {
       this.$store.dispatch('latestSigchain/updateLatestSigchain')

@@ -1,5 +1,5 @@
 <template>
-  <SparklineStats title="avgTxPerDay" :change="change" :dailyValue="dailyValue">
+  <SparklineStats title="txPerDay" :change="change" :dailyValue="dailyValue">
     <DailyTransactionsChart/>
   </SparklineStats>
 </template>
