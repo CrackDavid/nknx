@@ -1,0 +1,13 @@
+.node-manager {
+  grid-column: span 12;
+  width: 100%;
+
+  table {
+    box-shadow: $shadow-1;
+    border-radius: $card-border-radius;
+  }
+
+  td {
+    padding: $padding-normal;
+  }
+}

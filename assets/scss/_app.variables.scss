@@ -160,7 +160,7 @@ $grid-gap: 32px;
 $sparkline-chart-height: 120px;
 
 // Data Table
-$table-fz: 13px;
+$table-fz: $font-size-sm;
 $table-header-padding: $padding-micro $padding-normal;
 $table-header-bg: $ghost-white;
 $table-header-color: $text-grey-light;

@@ -1,0 +1,26 @@
+.node-status {
+  display: flex;
+  align-items: center;
+
+  &_state {
+    &_syncing {
+      color: $orange;
+    }
+
+    &_mining {
+      color: $success;
+    }
+
+    &_error {
+      color: $error;
+    }
+
+    &_offline {
+      color: $quick-silver;
+    }
+  }
+
+  &__icon {
+    padding-right: $padding-small;
+  }
+}

@@ -37,7 +37,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~plugins/filters.js'],
+  plugins: [
+    '~plugins/filters.js',
+    '~plugins/i18n.js',
+    { src: '~plugins/vue-tables-2.js', ssr: false }
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -102,7 +106,7 @@ export default {
       'laravel.passport': {
         url: 'https://api2.nknx.org',
         client_id: 1,
-        client_secret: 'eeI1mSLAU2uG5hjiJIgnQAcLhE43w1NSZqb3yxhz'
+        client_secret: 'UcDGBY9H7biHl1Qv9cdv9h5Z9kpstn5ECNhaUdcT'
       }
     }
   },
@@ -113,6 +117,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    vendor: ['vue-tables-2'],
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {

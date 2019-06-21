@@ -86,18 +86,16 @@ export default {
       this.$axios
         .$post('nodes', {
           label: 'testlabel',
-          ip: 'https://nknx.org'
+          ip: 'devnet-seed-0003.nkn.org'
         })
         .then(function(response) {
           console.log(response.data)
         })
     },
     detachNode() {
-      this.$axios
-        .$delete('nodes/3')
-        .then(function(response) {
-          console.log(response.data)
-        })
+      this.$axios.$delete('nodes/3').then(function(response) {
+        console.log(response.data)
+      })
     },
     detachAllNodes() {
       this.$axios.$delete('nodes').then(function(response) {

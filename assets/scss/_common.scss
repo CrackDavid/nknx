@@ -99,30 +99,36 @@ h3 {
 
 /*========== Table ==========*/
 
-.table {
+.table,
+table {
   font-size: $table-fz;
   width: 100%;
+  background: $white;
 
-  &__header {
+  &__header,
+  thead {
     background: $table-header-bg;
     border-top: $card-border;
     border-bottom: $card-border;
   }
 
-  &__row {
+  &__row,
+  tr {
     &:not(:last-child) {
       border-bottom: $card-border;
     }
   }
 
-  &__title {
+  &__title,
+  th {
     color: $table-header-color;
     font-weight: $font-weight-semi-bold;
     padding: $table-header-padding;
     text-align: left;
   }
 
-  &__item {
+  &__item,
+  td {
     padding: $table-item-padding;
     position: relative;
 
