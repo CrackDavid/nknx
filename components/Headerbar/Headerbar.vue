@@ -32,6 +32,9 @@
       <Search class="headerbar__search-input" :text="$t('search')"/>
     </div>
     <div class="headerbar__right">
+      <button v-if="$auth.loggedIn" @click="getNodes">get nodes</button>
+      <button v-if="$auth.loggedIn" @click="addNode">Add nknx node</button>
+      <button v-if="$auth.loggedIn" @click="detachNode">detach nknx node</button>
       <span class="headerbar__item">
         <button class="headerbar__button">
           <span class="fe fe-bell"/>
@@ -74,6 +77,33 @@ export default {
   }),
 
   methods: {
+    getNodes() {
+      this.$axios.$get('nodes').then(function(response) {
+        console.log(response.data)
+      })
+    },
+    addNode() {
+      this.$axios
+        .$post('nodes', {
+          label: 'testlabel',
+          ip: 'https://nknx.org'
+        })
+        .then(function(response) {
+          console.log(response.data)
+        })
+    },
+    detachNode() {
+      this.$axios
+        .$delete('nodes/3')
+        .then(function(response) {
+          console.log(response.data)
+        })
+    },
+    detachAllNodes() {
+      this.$axios.$delete('nodes').then(function(response) {
+        console.log(response.data)
+      })
+    },
     toggleSidebar() {
       this.$store.dispatch('sidebar/toggleSidebar')
       const burger = document.getElementsByClassName('headerbar__toggle')[0]
