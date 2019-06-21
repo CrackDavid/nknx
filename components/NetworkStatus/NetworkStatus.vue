@@ -3,7 +3,7 @@
     <Blinks/>
     <div
       class="network-status"
-      :class="{'network-status_negative': networkSatus!='PersistFinished', 'network-status_positive': networkSatus=='PersistFinished'}"
+      :class="networkSatus === 'PERSIST_FINISHED' ? 'network-status_positive' :  'network-status_negative'"
     >
       <div class="network-status__version">{{ networkVersion | nodeVersion}}</div>
       <div class="network-status__status">{{ networkSatus }}</div>
