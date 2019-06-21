@@ -16,6 +16,12 @@ Vue.filter('nodeVersion', function(x) {
   return x.toString().slice(0, 6)
 })
 
+Vue.filter('avg', function(arr) {
+  return (arr.reduce((p, c) => Number(p) + Number(c), 0) / arr.length).toFixed(
+    0
+  )
+})
+
 Vue.filter('hexConverter', function(hex) {
   hex = hex.toString()
   let str = ''

@@ -2,7 +2,7 @@
   <Card col="4">
     <div class="releases">
       <div class="releases__header">
-        <div class="releases__title">{{$t('latestReleases')}}</div>
+        <h3 class="releases__title">{{$t('latestReleases')}}</h3>
         <a
           class="releases__link"
           target="_blank"

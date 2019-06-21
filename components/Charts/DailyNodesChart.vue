@@ -13,22 +13,20 @@ am4core.useTheme(am4themesAnimated)
 
 export default {
   computed: mapGetters({
-    dailyTransactions: 'transactions/getDailyTransactions'
+    dailyNodes: 'nodes/getDailyNodes'
   }),
 
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
-    let txAverage = this.dailyTransactions
-
-    txAverage = txAverage.slice(1, 7)
+    let nodesAverage = this.dailyNodes
+    nodesAverage = nodesAverage.slice(0, 7)
     const data = []
-    for (let i = txAverage.length - 1; i >= 0; i--) {
+    for (let i = nodesAverage.length - 1; i >= 0; i--) {
       data.push({
-        date: new Date(txAverage[i].date),
-        count: txAverage[i].count
+        date: new Date(nodesAverage[i].date),
+        count: nodesAverage[i].avg_cnodecount
       })
     }
-
     chart.data = data
     const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
     dateAxis.renderer.grid.template.disabled = true
@@ -45,8 +43,8 @@ export default {
     valueAxis.renderer.labels.template.disabled = true
     valueAxis.cursorTooltipEnabled = false
     const gradient1 = new am4core.LinearGradient()
-    gradient1.addColor(am4core.color('#61E786'))
-    gradient1.addColor(am4core.color('#2CCB96'))
+    gradient1.addColor(am4core.color('#6c64ff'))
+    gradient1.addColor(am4core.color('#5fcff9'))
     const series = chart.series.push(new am4charts.LineSeries())
     series.dataFields.dateX = 'date'
     series.dataFields.valueY = 'count'

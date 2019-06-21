@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries"
+    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes"
   >
     <Topbar/>
     <Headerbar/>
@@ -31,9 +31,11 @@ export default {
     networkStatus: 'network/getNetworkStatus',
     networkCities: 'network/getNetworkCities',
     networkCountries: 'network/getNetworkCountries',
+    networkProviders: 'network/getNetworkProviders',
     dailyHistoryPrice: 'price/getDailyHistoryPrice',
     dailyTransactions: 'transactions/getDailyTransactions',
     dailyBlocks: 'blocks/getDailyBlocks',
+    dailyNodes: 'nodes/getDailyNodes',
     latestSigchain: 'latestSigchain/getLatestSigchain'
   }),
   destroyed() {
@@ -42,9 +44,11 @@ export default {
     clearInterval(this.intervalNetworkStatus)
     clearInterval(this.intervalNetworkCities)
     clearInterval(this.intervalNetworkCountries)
+    clearInterval(this.intervalNetworkProviders)
     clearInterval(this.intervalDailyHistoryPrice)
     clearInterval(this.intervalDailyTransactions)
     clearInterval(this.intervalDailyBlocks)
+    clearInterval(this.intervalDailyNodes)
     clearInterval(this.intervalLatestSigchain)
   },
   mounted: function() {
@@ -53,9 +57,11 @@ export default {
     this.updateNetworkStatus()
     this.updateNetworkCities()
     this.updateNetworkCountries()
+    this.updateNetworkProviders()
     this.updateDailyHistoryPrice()
     this.updateDailyTransactions()
     this.updateDailyBlocks()
+    this.updateDailyNodes()
     this.updateLatestSigchain()
 
     this.intervalPrice = setInterval(this.updatePrice, 60000)
@@ -66,7 +72,10 @@ export default {
       this.updateNetworkCountries,
       60000
     )
-
+    this.intervalNetworkProviders = setInterval(
+      this.updateNetworkProviders,
+      60000
+    )
     this.intervalDailyHistoryPrice = setInterval(
       this.updateDailyHistoryPrice,
       60000
@@ -76,6 +85,7 @@ export default {
       60000
     )
     this.intervalDailyBlocks = setInterval(this.updateDailyBlocks, 60000)
+    this.intervalDailyNodes = setInterval(this.updateDailyNodes, 60000)
     this.intervalLatestSigchain = setInterval(this.updateLatestSigchain, 60000)
   },
   methods: {
@@ -94,6 +104,9 @@ export default {
     updateNetworkCountries() {
       this.$store.dispatch('network/updateNetworkCountries')
     },
+    updateNetworkProviders() {
+      this.$store.dispatch('network/updateNetworkProviders')
+    },
     updateDailyHistoryPrice() {
       this.$store.dispatch('price/updateDailyHistoryPrice')
     },
@@ -102,6 +115,9 @@ export default {
     },
     updateDailyBlocks() {
       this.$store.dispatch('blocks/updateDailyBlocks')
+    },
+    updateDailyNodes() {
+      this.$store.dispatch('nodes/updateDailyNodes')
     },
     updateLatestSigchain() {
       this.$store.dispatch('latestSigchain/updateLatestSigchain')

@@ -1,6 +1,7 @@
 .news {
   height: 720px;
   overflow: hidden;
+  position: relative;
 
   &__header {
     display: flex;
@@ -14,6 +15,9 @@
     align-items: center;
     justify-content: space-between;
     padding-top: $padding-medium;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
   }
 
   &__pages {
@@ -51,9 +55,7 @@
       margin-top: 8px;
       margin-bottom: 16px;
       font-size: $font-size-md;
-      line-height: $font-size-md;
-      font-weight: $font-weight-semi-bold;
-      height: calc(#{$font-size-md} * 2);
+      font-weight: $font-weight-bold;
     }
 
     &__content {
