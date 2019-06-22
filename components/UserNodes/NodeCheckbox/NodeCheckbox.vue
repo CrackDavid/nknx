@@ -1,7 +1,13 @@
 <template>
   <div class="node-checkbox">
-    <input v-model="checked" class="node-checkbox__control" type="checkbox" :value="val">
-    <label class="node-checkbox__label" @click="onChange"></label>
+    <input
+      v-model="checked"
+      class="node-checkbox__control"
+      type="checkbox"
+      :value="val"
+      @change="onChange"
+    >
+    <label class="node-checkbox__label"></label>
   </div>
 </template>
 
