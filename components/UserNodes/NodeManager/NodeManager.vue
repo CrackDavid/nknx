@@ -1,10 +1,10 @@
 <template>
   <v-client-table :columns="columns" :data="nodes" :options="options" class="node-manager">
     <template slot="h__check">
-      <input type="checkbox" id="checkbox" @click="selectAll()">
+      <NodeCheckbox @click.native="selectAll()"/>
     </template>
     <template slot="check" slot-scope="props">
-      <input type="checkbox" :checked="props.row.selected" v-model="checked" :value="props.row">
+      <NodeCheckbox v-model="selected" :val="props.row"/>
     </template>
     <template slot="syncState" slot-scope="props">
       <NodeStatus :status="props.row.syncState" :online="props.row.online"/>
@@ -18,9 +18,10 @@
 
 <script>
 import NodeStatus from '~/components/UserNodes/NodeStatus/NodeStatus.vue'
+import NodeCheckbox from '~/components/UserNodes/NodeCheckbox/NodeCheckbox.vue'
 
 export default {
-  components: { NodeStatus },
+  components: { NodeStatus, NodeCheckbox },
   props: {
     nodes: {
       type: Array,
@@ -39,7 +40,7 @@ export default {
         'relayMessageCount',
         'actions'
       ],
-      checked: [],
+      selected: [],
       isAll: false,
       options: {
         headings: {
@@ -60,7 +61,7 @@ export default {
   methods: {
     selectAll() {
       this.isAll = !this.isAll
-      this.isAll === true ? (this.checked = this.nodes) : (this.checked = [])
+      this.isAll === true ? (this.selected = this.nodes) : (this.selected = [])
     }
   }
 }

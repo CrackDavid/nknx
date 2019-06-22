@@ -9,5 +9,15 @@
 
   td {
     padding: $padding-normal;
+
+    &:first-child {
+      vertical-align: middle;
+    }
+  }
+
+  th {
+    &:first-child {
+      vertical-align: middle;
+    }
   }
 }
