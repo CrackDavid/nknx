@@ -20,4 +20,12 @@
       vertical-align: middle;
     }
   }
+
+  &_state {
+    &_offline {
+      border-left: 4px solid $error;
+      background: $table-row-offline;
+      color: $text-grey-light;
+    }
+  }
 }

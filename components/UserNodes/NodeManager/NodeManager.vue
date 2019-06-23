@@ -53,7 +53,10 @@ export default {
           actions: 'actions'
         },
         sortable: ['pivot.label', 'latestBlockHeight'],
-        filterable: ['pivot.label', 'latestBlockHeight']
+        filterable: ['pivot.label', 'latestBlockHeight'],
+        rowClassCallback(row) {
+          return row.online !== true ? 'node-manager_state_offline' : null
+        }
       }
     }
   },
