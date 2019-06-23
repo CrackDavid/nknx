@@ -33,7 +33,6 @@ export default {
       const self = this
       this.$axios.$get('nodes').then(response => {
         self.nodes = response
-        console.log(self.nodes)
       })
     }
   }

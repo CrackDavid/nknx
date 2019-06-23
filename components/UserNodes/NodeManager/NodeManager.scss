@@ -2,6 +2,21 @@
   grid-column: span 12;
   width: 100%;
 
+  &__label {
+    color: $primary;
+  }
+
+  &__actions {
+    font-size: 24px;
+    cursor: pointer;
+    color: $text-grey-light;
+    transition: $transition-1;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
   table {
     box-shadow: $shadow-1;
     border-radius: $card-border-radius;
@@ -13,6 +28,10 @@
     &:first-child {
       vertical-align: middle;
     }
+
+    &:last-child {
+      text-align: center;
+    }
   }
 
   th {
@@ -21,6 +40,11 @@
 
     &:first-child {
       vertical-align: middle;
+      width: 1%;
+    }
+
+    &:last-child {
+      text-align: center;
     }
 
     &:hover {
@@ -46,6 +70,11 @@
       margin-left: $padding-micro;
       top: 14px;
       position: absolute;
+    }
+
+    &__search-field {
+      margin-bottom: $padding-normal;
+      width: 100%;
     }
   }
 }
