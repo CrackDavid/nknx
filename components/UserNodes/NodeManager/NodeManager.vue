@@ -52,8 +52,28 @@ export default {
           relayMessageCount: 'relayedMessages',
           actions: 'actions'
         },
-        sortable: ['pivot.label', 'latestBlockHeight'],
-        filterable: ['pivot.label', 'latestBlockHeight'],
+        sortable: [
+          'pivot.label',
+          'latestBlockHeight',
+          'addr',
+          'syncState',
+          'sversion',
+          'relayMessageCount'
+        ],
+        filterable: [
+          'pivot.label',
+          'latestBlockHeight',
+          'addr',
+          'syncState',
+          'sversion',
+          'relayMessageCount'
+        ],
+        sortIcon: {
+          base: 'fe',
+          is: '',
+          up: 'fe-arrow-up',
+          down: 'fe-arrow-down'
+        },
         rowClassCallback(row) {
           return row.online !== true ? 'node-manager_state_offline' : null
         }

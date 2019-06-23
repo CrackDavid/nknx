@@ -16,8 +16,15 @@
   }
 
   th {
+    transition: $transition-1;
+    cursor: pointer;
+
     &:first-child {
       vertical-align: middle;
+    }
+
+    &:hover {
+      color: $darker;
     }
   }
 
@@ -26,6 +33,19 @@
       border-left: 4px solid $error;
       background: $table-row-offline;
       color: $text-grey-light;
+    }
+  }
+
+  .VueTables {
+    &__sortable {
+      cursor: pointer;
+      position: relative;
+    }
+
+    &__sort-icon {
+      margin-left: $padding-micro;
+      top: 14px;
+      position: absolute;
     }
   }
 }
