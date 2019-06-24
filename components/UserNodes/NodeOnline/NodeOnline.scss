@@ -1,0 +1,30 @@
+.node-online {
+  &__title {
+    color: $text-grey-light;
+    font-size: $font-size-sm;
+  }
+
+  &__status {
+    margin-right: 5px;
+    border-radius: 100%;
+    height: 5px;
+    display: inline-block;
+    width: 5px;
+
+    &_positive {
+      border: 3px solid rgba($success, 0.5);
+      background: $success;
+      box-shadow: 0 0 0 3px rgba($success, 0.25);
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+
+    &_negative {
+      border: 3px solid rgba($error, 0.5);
+      background: $error;
+      box-shadow: 0 0 0 3px rgba($error, 0.25);
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+  }
+}

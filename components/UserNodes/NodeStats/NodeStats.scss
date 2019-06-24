@@ -56,9 +56,9 @@
   }
 
   &__currency {
-    vertical-align: top;
+    vertical-align: bottom;
     position: relative;
-    top: 8px;
+    bottom: 8px;
     font-weight: $font-weight-bold;
     font-size: 11px;
   }

@@ -49,6 +49,28 @@ h3 {
     padding: 40px 80px 0px 80px;
     margin: 0 auto;
     background-color: $white;
+
+    &-heading {
+      display: flex;
+      align-items: center;
+      padding-bottom: 40px;
+      position: relative;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 2px;
+        border-radius: 10px;
+        background-color: $platinum;
+        position: absolute;
+        bottom: 0;
+      }
+
+      h1 {
+        margin-right: $padding-default;
+      }
+    }
   }
 }
 

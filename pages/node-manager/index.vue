@@ -1,8 +1,11 @@
 <template>
   <div>
     <div class="page__node-manager">
-      <h1 class="page__title">{{$t('myNodes')}}</h1>
-      <NodeStats/>
+      <div class="page__node-manager-heading">
+        <h1>{{$t('myNodes')}}</h1>
+        <NodeOnline :nodes="nodes"/>
+      </div>
+      <NodeStats :nodes="nodes.length"/>
     </div>
 
     <ContentWrapper>
@@ -18,13 +21,15 @@ import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import NodeManager from '~/components/UserNodes/NodeManager/NodeManager.vue'
 import NodeStats from '~/components/UserNodes/NodeStats/NodeStats.vue'
+import NodeOnline from '~/components/UserNodes/NodeOnline/NodeOnline.vue'
 
 export default {
   components: {
     ContentWrapper,
     Grid,
     NodeManager,
-    NodeStats
+    NodeStats,
+    NodeOnline
   },
   data: () => {
     return {
