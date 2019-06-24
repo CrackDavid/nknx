@@ -44,6 +44,12 @@ h3 {
   &__title {
     margin-bottom: $padding-normal;
   }
+
+  &__node-manager {
+    padding: 40px 80px 0px 80px;
+    margin: 0 auto;
+    background-color: $white;
+  }
 }
 
 /*========== Card ==========*/

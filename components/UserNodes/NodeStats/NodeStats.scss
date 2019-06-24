@@ -1,0 +1,81 @@
+.node-stats {
+  padding: $padding-medium 0;
+  display: grid;
+  grid-gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+
+  &__item {
+    display: flex;
+  }
+
+  &__icon {
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 100%;
+    font-size: 20px;
+
+    &_color {
+      &_purple {
+        color: $primary;
+        background: $primary-ghost;
+      }
+
+      &_green {
+        color: $success;
+        background: $success-ghost;
+      }
+
+      &_red {
+        color: $blush;
+        background: $blush-ghost;
+      }
+
+      &_orange {
+        color: $orange;
+        background: $orange-ghost;
+      }
+    }
+  }
+
+  &__title {
+    line-height: normal;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semi-bold;
+    color: $text-grey-light;
+  }
+
+  &__value {
+    font-weight: $font-weight-semi-bold;
+    line-height: normal;
+    font-size: 36px;
+    margin: 6px 0;
+  }
+
+  &__currency {
+    vertical-align: top;
+    position: relative;
+    top: 8px;
+    font-weight: $font-weight-bold;
+    font-size: 11px;
+  }
+
+  &__tooltip {
+    font-weight: $font-weight-semi-bold;
+    line-height: normal;
+    font-size: 13px;
+    color: $text-grey-light;
+    margin-left: 6px;
+
+    &_positive {
+      color: $success;
+    }
+
+    &_negative {
+      color: $error;
+    }
+  }
+}

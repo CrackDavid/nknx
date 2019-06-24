@@ -1,7 +1,11 @@
 <template>
   <div>
-    <ContentWrapper>
+    <div class="page__node-manager">
       <h1 class="page__title">{{$t('myNodes')}}</h1>
+      <NodeStats/>
+    </div>
+
+    <ContentWrapper>
       <Grid>
         <NodeManager v-if="nodes.length > 0" :nodes="nodes"/>
       </Grid>
@@ -13,12 +17,14 @@
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import NodeManager from '~/components/UserNodes/NodeManager/NodeManager.vue'
+import NodeStats from '~/components/UserNodes/NodeStats/NodeStats.vue'
 
 export default {
   components: {
     ContentWrapper,
     Grid,
-    NodeManager
+    NodeManager,
+    NodeStats
   },
   data: () => {
     return {
