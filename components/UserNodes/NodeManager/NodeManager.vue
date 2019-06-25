@@ -88,6 +88,12 @@ export default {
         },
         rowClassCallback(row) {
           return row.online !== true ? 'node-manager_state_offline' : null
+        },
+        orderBy: { column: 'syncState' },
+        perPageValues: [10, 25, 50, 100],
+        texts: {
+          filter: '',
+          filterPlaceholder: 'searchAllNodes'
         }
       }
     }

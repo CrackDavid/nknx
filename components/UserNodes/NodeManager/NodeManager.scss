@@ -1,6 +1,7 @@
 .node-manager {
   grid-column: span 12;
   width: 100%;
+  position: relative;
 
   &__label {
     color: $primary;
@@ -61,6 +62,10 @@
   }
 
   .VueTables {
+    &__table {
+      margin-top: $padding-default;
+    }
+
     &__sortable {
       cursor: pointer;
       position: relative;
@@ -73,8 +78,140 @@
     }
 
     &__search-field {
-      margin-bottom: $padding-normal;
       width: 100%;
+
+      .form-control {
+        border: none;
+        outline: none;
+        font-size: $font-size-sm;
+
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: $text-grey-light;
+          font-style: italic;
+        }
+
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          color: $text-grey-light;
+          font-style: italic;
+        }
+
+        &:-ms-input-placeholder {
+          /* IE 10+ */
+          color: $text-grey-light;
+          font-style: italic;
+        }
+
+        &:-moz-placeholder {
+          /* Firefox 18- */
+          color: $text-grey-light;
+          font-style: italic;
+        }
+      }
+    }
+
+    &__search {
+      padding: 18px $padding-normal;
+      background-color: $white;
+      border-radius: $card-border-radius;
+      box-shadow: $shadow-1;
+    }
+  }
+
+  .VuePagination {
+    &__count {
+      display: none;
+    }
+
+    &__pagination {
+      position: absolute;
+      top: 13px;
+      right: 24px;
+      display: flex;
+
+      &-item {
+        height: 32px;
+        width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: $font-size-xs;
+        line-height: 15px;
+        background-color: #efeff6;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: $transition-1;
+
+        &.active {
+          background-color: $primary;
+          color: $white;
+        }
+
+        &.disabled {
+          background-color: #efeff6;
+          color: $text-grey-light;
+        }
+
+        &-prev {
+          &-chunk {
+            display: none;
+          }
+
+          &-page {
+            margin-right: 8px;
+            content: '';
+            font-family: 'Feather' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            -webkit-font-feature-settings: normal;
+            font-feature-settings: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            .page-link {
+              display: none;
+            }
+
+            &:after {
+              content: '\e92f';
+            }
+          }
+        }
+
+        &-next {
+          &-chunk {
+            display: none;
+          }
+
+          &-page {
+            margin-left: 8px;
+            font-family: 'Feather' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            -webkit-font-feature-settings: normal;
+            font-feature-settings: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            .page-link {
+              display: none;
+            }
+
+            &:after {
+              content: '\e930';
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -7,7 +7,7 @@
       @click="filterNodes(filter)"
       @mousemove="markerMove"
       @mouseleave="markerInitialize"
-    >{{$t(filter.title)}}</li>
+    >{{$t(filter.title)}} ({{filterNumber(filter.state)}})</li>
     <li class="node-filter__marker"></li>
   </ul>
 </template>
@@ -70,6 +70,16 @@ export default {
       }
       this.active = state
       this.$emit('getFilteredNodes', filteredNodes)
+    },
+    filterNumber(state) {
+      if (state === 'All') {
+        return this.nodes.length
+      } else {
+        const filteredNodes = this.nodes.filter(node => {
+          return node.syncState === state
+        })
+        return filteredNodes.length
+      }
     },
     markerInitialize() {
       const marker = document.getElementsByClassName('node-filter__marker')[0]

@@ -37,7 +37,8 @@ export default {
   data: () => {
     return {
       nodes: [],
-      filteredNodes: []
+      filteredNodes: [],
+      wallets: []
     }
   },
   mounted() {
