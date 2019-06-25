@@ -6,11 +6,12 @@
         <NodeOnline :nodes="nodes"/>
       </div>
       <NodeStats :nodes="nodes.length"/>
+      <NodeFilter :nodes="nodes" @getFilteredNodes="getFilteredNodes"/>
     </div>
 
     <ContentWrapper>
       <Grid>
-        <NodeManager v-if="nodes.length > 0" :nodes="nodes"/>
+        <NodeManager v-if="nodes.length > 0" :nodes="filteredNodes"/>
       </Grid>
     </ContentWrapper>
   </div>
@@ -22,6 +23,7 @@ import Grid from '~/components/Grid/Grid.vue'
 import NodeManager from '~/components/UserNodes/NodeManager/NodeManager.vue'
 import NodeStats from '~/components/UserNodes/NodeStats/NodeStats.vue'
 import NodeOnline from '~/components/UserNodes/NodeOnline/NodeOnline.vue'
+import NodeFilter from '~/components/UserNodes/NodeFilter/NodeFilter.vue'
 
 export default {
   components: {
@@ -29,11 +31,13 @@ export default {
     Grid,
     NodeManager,
     NodeStats,
-    NodeOnline
+    NodeOnline,
+    NodeFilter
   },
   data: () => {
     return {
-      nodes: []
+      nodes: [],
+      filteredNodes: []
     }
   },
   mounted() {
@@ -44,7 +48,11 @@ export default {
       const self = this
       this.$axios.$get('nodes').then(response => {
         self.nodes = response
+        self.filteredNodes = self.nodes
       })
+    },
+    getFilteredNodes(filtered) {
+      this.filteredNodes = filtered
     }
   }
 }

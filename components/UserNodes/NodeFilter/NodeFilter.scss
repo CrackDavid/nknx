@@ -1,0 +1,32 @@
+.node-filter {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &__item {
+    padding: $padding-normal 35px;
+    font-size: $font-size-sm;
+    line-height: 19px;
+    color: $text-grey-light;
+    cursor: pointer;
+    transition: $transition-1;
+    text-align: center;
+
+    &_active {
+      color: $darker;
+    }
+
+    &:hover {
+      color: $darker;
+    }
+  }
+
+  &__marker {
+    height: 4px;
+    background-color: $primary;
+    position: absolute;
+    bottom: 0px;
+    transition: $transition-1;
+    border-radius: $card-border-radius;
+  }
+}
