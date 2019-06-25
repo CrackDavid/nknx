@@ -84,6 +84,7 @@
         border: none;
         outline: none;
         font-size: $font-size-sm;
+        width: 50%;
 
         &::-webkit-input-placeholder {
           /* Chrome/Opera/Safari */
@@ -129,6 +130,8 @@
       top: 13px;
       right: 24px;
       display: flex;
+      padding-left: $padding-normal;
+      border-left: $card-border;
 
       &-item {
         height: 32px;
@@ -151,11 +154,43 @@
         &.disabled {
           background-color: #efeff6;
           color: $text-grey-light;
+          cursor: not-allowed;
         }
 
         &-prev {
           &-chunk {
-            display: none;
+            margin-right: 8px;
+            content: '';
+            font-family: 'Feather' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            -webkit-font-feature-settings: normal;
+            font-feature-settings: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            .page-link {
+              display: none;
+            }
+
+            &:after {
+              content: '\e933';
+            }
+
+            &:nth-child(2) {
+              display: none;
+            }
+
+            &:last-child {
+              margin-left: 8px;
+              &:after {
+                content: '\e934';
+              }
+            }
           }
 
           &-page {
@@ -185,6 +220,23 @@
 
         &-next {
           &-chunk {
+            margin-left: 8px;
+            content: '';
+            font-family: 'Feather' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            -webkit-font-feature-settings: normal;
+            font-feature-settings: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            .page-link {
+              display: none;
+            }
             display: none;
           }
 

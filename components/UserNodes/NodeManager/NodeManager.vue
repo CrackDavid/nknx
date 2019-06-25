@@ -91,6 +91,7 @@ export default {
         },
         orderBy: { column: 'syncState' },
         perPageValues: [10, 25, 50, 100],
+        pagination: { edge: true, chunk: 1, nav: 'fixed' },
         texts: {
           filter: '',
           filterPlaceholder: 'searchAllNodes'
