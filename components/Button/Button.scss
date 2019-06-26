@@ -1,0 +1,50 @@
+.button {
+  padding: $padding-small;
+  border-radius: 5px;
+  text-align: center;
+  transition: $transition-1;
+  cursor: pointer !important;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  display: block;
+  background: $white;
+  font-size: $font-size-md;
+
+  &_theme {
+    &_gradient {
+      min-height: 48px;
+      color: $white;
+      background: $primary-gradient-3;
+
+      &:hover {
+        filter: brightness(120%);
+      }
+
+      &:active {
+        filter: brightness(90%);
+      }
+    }
+
+    &_ghost {
+      color: $primary;
+      border: 1px solid $primary;
+      padding: 8px $padding-default;
+
+      &:hover {
+        color: darken($primary, 20%);
+        border-color: darken($primary, 20%);
+      }
+
+      &:active {
+        color: lighten($primary, 20%);
+        border-color: lighten($primary, 20%);
+      }
+    }
+  }
+
+  &_full {
+    width: 100%;
+  }
+}

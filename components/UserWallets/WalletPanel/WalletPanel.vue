@@ -3,16 +3,16 @@
     <div class="wallet-panel">
       <div class="wallet-panel__left">
         <div class="wallet-panel__label">
-          <span v-if="wallet.pivot !== undefined">{{wallet.pivot.label}}</span>
+          <span v-if="activeWallet.pivot !== undefined">{{activeWallet.pivot.label}}</span>
           <span v-else>{{$t('loading')}}</span>
         </div>
         <div class="wallet-panel__value">
-          <span v-if="wallet.balance !== undefined">{{wallet.balance}}</span>
+          <span v-if="activeWallet.balance !== undefined">{{activeWallet.balance | commaNumber}}</span>
           <span v-else>{{$t('loading')}}</span>
           <span class="wallet-panel__currency">NKN</span>
         </div>
-        <div v-clipboard:copy="wallet.address" class="wallet-panel__address">
-          <span v-if="wallet.address !== undefined">{{wallet.address}}</span>
+        <div v-clipboard:copy="activeWallet.address" class="wallet-panel__address">
+          <span v-if="activeWallet.address !== undefined">{{activeWallet.address}}</span>
           <span v-else>{{$t('loading')}}</span>
           <i class="fas fa-copy"></i>
         </div>
@@ -39,20 +39,22 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Card from '~/components/Card/Card.vue'
 
 export default {
   components: {
     Card
   },
-  props: {
-    wallet: {
-      type: Object,
-      default: () => {}
-    }
-  },
+  props: {},
   data: () => {
     return {}
+  },
+  computed: {
+    ...mapGetters({
+      activeWallet: 'activeWallet/getActiveWallet'
+    })
   },
   destroyed() {},
   mounted: function() {},

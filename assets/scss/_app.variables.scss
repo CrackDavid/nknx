@@ -96,6 +96,7 @@ $primary-gradient: linear-gradient(
   #5fcff9 102.64%
 );
 $primary-gradient-2: linear-gradient(99.95deg, $primary 0.78%, #9f30e2 100.4%);
+$primary-gradient-3: linear-gradient(99.95deg, $primary 0.78%, #9f30e2 100.4%);
 $orange-gradient: linear-gradient(90deg, $blush 0.24%, #f7bb97 97.08%);
 $error-gradient: linear-gradient(114.68deg, $jasper 3.09%, #e33961 98.24%);
 $green-gradient: linear-gradient(
@@ -202,3 +203,10 @@ $walletpanel-icon-size: 24px;
 // Wallet Side
 $wallet-side-bg: $dark-gradient;
 $wallet-side-color: $white;
+
+// Wallet Preview
+$wallet-preview-br: 0px 10px 10px 0px;
+$wallet-preview-bg-focus: rgba(121, 135, 229, 0.4);
+$wallet-preview-bg-active: rgba(121, 135, 229, 0.3);
+$wallet-preview-bg-hover: rgba(121, 135, 229, 0.1);
+$wallet-preview-chart-width: 180px;

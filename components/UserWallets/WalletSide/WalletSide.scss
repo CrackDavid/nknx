@@ -2,6 +2,9 @@
   background: $wallet-side-bg;
   color: $wallet-side-color;
   grid-column: span 3;
+  padding: $padding-medium 0;
+  height: calc(100vh - (#{$topbar-height} + #{$headerbar-height}));
+  box-sizing: border-box;
 
   &__title {
     font-size: 17px;
@@ -16,5 +19,10 @@
     height: 1px;
     background: $white;
     opacity: 0.15;
+  }
+
+  &__footer {
+    margin-top: $padding-normal;
+    padding: 0 $padding-normal;
   }
 }

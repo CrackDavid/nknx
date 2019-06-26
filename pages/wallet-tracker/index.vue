@@ -2,14 +2,16 @@
   <div class="page__wallet-tracker">
     <ContentWrapper :centered="false" class="page__wallet-tracker-wrapper">
       <Grid>
-        <WalletPanel :wallet="activeWallet"/>
+        <WalletPanel/>
       </Grid>
     </ContentWrapper>
-    <WalletSide/>
+    <WalletSide :wallets="wallets"/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import WalletPanel from '~/components/UserWallets/WalletPanel/WalletPanel.vue'
@@ -23,7 +25,12 @@ export default {
     WalletSide
   },
   data: () => {
-    return { wallets: [], activeWallet: {} }
+    return { wallets: [] }
+  },
+  computed: {
+    ...mapGetters({
+      activeWallet: 'activeWallet/getActiveWallet'
+    })
   },
   mounted() {
     this.getWallets()
@@ -33,9 +40,11 @@ export default {
       const self = this
       this.$axios.$get('wallets').then(response => {
         self.wallets = response
-        self.activeWallet = response[0]
-        console.log(response)
+        self.setActiveWallet(response[0])
       })
+    },
+    setActiveWallet(wallet) {
+      this.$store.dispatch('activeWallet/updateActiveWallet', wallet)
     }
   }
 }
