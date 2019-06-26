@@ -173,6 +173,7 @@ $table-header-color: $text-grey-light;
 $table-item-link-color: $primary;
 $table-item-padding: $padding-small $padding-normal;
 $table-row-offline: $ghost-white;
+
 // Switcher
 $switcher-padding: $padding-normal;
 $switcher-fz: $font-size-md;
@@ -182,3 +183,22 @@ $switcher-marker-color: $primary;
 $switcher-marker-height: 4px;
 $switcher-marker-width: 180px;
 $switcher-marker-br: 7px;
+
+// Wallet Panel
+$walletpanel-bg: linear-gradient(
+  96.13deg,
+  #f4a271 0.12%,
+  #b35deb 55.06%,
+  #5769df 99.44%
+);
+$walletpanel-color: $white;
+$walletpanel-btn-bg: rgba(0, 0, 0, 0.15);
+$walletpanel-btn-hover-bg: rgba(0, 0, 0, 0.3);
+$walletpanel-btn-active-bg: rgba(0, 0, 0, 0.5);
+$walletpanel-btn-width: 140px;
+$walletpanel-btn-more-width: 40px;
+$walletpanel-icon-size: 24px;
+
+// Wallet Side
+$wallet-side-bg: $dark-gradient;
+$wallet-side-color: $white;

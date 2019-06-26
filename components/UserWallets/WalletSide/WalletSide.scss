@@ -1,0 +1,20 @@
+.wallet-side {
+  background: $wallet-side-bg;
+  color: $wallet-side-color;
+  grid-column: span 3;
+
+  &__title {
+    font-size: 17px;
+    line-height: normal;
+    font-weight: $font-weight-semi-bold;
+    padding: 0 $padding-normal;
+    padding-bottom: $padding-default;
+  }
+
+  &__divider {
+    margin: 32px $padding-normal;
+    height: 1px;
+    background: $white;
+    opacity: 0.15;
+  }
+}

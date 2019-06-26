@@ -1,4 +1,7 @@
 .content-wrapper {
   padding: 40px 80px;
-  margin: 0 auto;
+
+  &_centered {
+    margin: 0 auto;
+  }
 }

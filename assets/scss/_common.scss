@@ -72,6 +72,15 @@ h3 {
       }
     }
   }
+
+  &__wallet-tracker {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    &-wrapper {
+      grid-column: span 9;
+    }
+  }
 }
 
 /*========== Card ==========*/

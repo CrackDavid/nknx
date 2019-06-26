@@ -52,6 +52,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     'nuxt-svg-loader',
+    'nuxt-clipboard2',
     [
       '@nuxtjs/moment',
       {
