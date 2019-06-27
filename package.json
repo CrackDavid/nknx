@@ -48,8 +48,7 @@
     "nodemon": "^1.18.9",
     "prettier": "^1.16.4",
     "sass-loader": "^7.1.0",
-    "vue-i18n-extract": "^0.4.14",
-    "vue-tables-2": "^1.4.70"
+    "vue-i18n-extract": "^0.4.14"
   },
   "eslintIgnore": [
     "modules/auth/lib/module/plugin.js"

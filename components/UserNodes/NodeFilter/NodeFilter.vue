@@ -1,13 +1,13 @@
 <template>
   <ul class="node-filter">
     <li
-      v-for="filter in filters"
-      :key="filter.title"
-      :class="['node-filter__item', filter.state === active ? 'node-filter__item_active' : null]"
-      @click="filterNodes(filter)"
+      v-for="(filterCount, filterName) in filters"
+      :key="filterName"
+      :class="['node-filter__item', filterName === active ? 'node-filter__item_active' : null]"
+      @click="filterNodes(filterName)"
       @mousemove="markerMove"
       @mouseleave="markerInitialize"
-    >{{$t(filter.title)}} ({{filterNumber(filter.state)}})</li>
+    >{{filterName}} ({{filterCount}})</li>
     <li class="node-filter__marker"></li>
   </ul>
 </template>
@@ -23,33 +23,15 @@ export default {
     nodes: {
       type: Array,
       default: () => []
+    },
+    filters: {
+      type: Object,
+      default: () => {}
     }
   },
   data: () => {
     return {
-      active: 'All',
-      filters: [
-        {
-          state: 'All',
-          title: 'All'
-        },
-        {
-          state: 'PERSIST_FINISHED',
-          title: 'PersistFinished'
-        },
-        {
-          state: 'WAIT_FOR_SYNCING',
-          title: 'WaitForSyncing'
-        },
-        {
-          state: 'SYNC_FINISHED ',
-          title: 'SyncFinished'
-        },
-        {
-          state: 'SYNC_STARTED ',
-          title: 'SyncStarted'
-        }
-      ]
+      active: 'ALL'
     }
   },
   destroyed() {},
@@ -58,35 +40,15 @@ export default {
   },
   methods: {
     filterNodes(filterItem) {
-      const { state } = filterItem
-      let filteredNodes = []
-
-      if (this.nodes.length > 0) {
-        if (state === 'All') {
-          filteredNodes = this.nodes
-        } else {
-          filteredNodes = this.nodes.filter(node => {
-            return node.syncState === state
-          })
-        }
+      const self = this
+      let filter = filterItem
+      this.active = filterItem
+      if (filterItem === 'ALL') {
+        filter = ''
       }
-
-      this.active = state
-      this.$emit('getFilteredNodes', filteredNodes)
-    },
-    filterNumber(state) {
-      if (this.nodes.length > 0) {
-        if (state === 'All') {
-          return this.nodes.length
-        } else {
-          const filteredNodes = this.nodes.filter(node => {
-            return node.syncState === state
-          })
-          return filteredNodes.length
-        }
-      } else {
-        return 0
-      }
+      this.$axios.$get(`nodes?syncState=${filter}`).then(response => {
+        self.$emit('getFilteredNodes', response.nodes.data)
+      })
     },
     markerInitialize() {
       const marker = document.getElementsByClassName('node-filter__marker')[0]

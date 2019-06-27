@@ -88,7 +88,7 @@ export default {
       this.$axios
         .$post('nodes', {
           label: 'testlabel',
-          ip: 'devnet-seed-0002.nkn.org'
+          ip: 'devnet-seed-0001.nkn.org'
         })
         .then(function(response) {
           console.log(response)

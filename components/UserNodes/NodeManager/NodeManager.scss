@@ -2,6 +2,8 @@
   grid-column: span 12;
   width: 100%;
   position: relative;
+  box-shadow: $shadow-1;
+  border-radius: $card-border-radius;
 
   &__label {
     color: $primary;
@@ -16,11 +18,6 @@
     &:hover {
       color: $primary;
     }
-  }
-
-  table {
-    box-shadow: $shadow-1;
-    border-radius: $card-border-radius;
   }
 
   td {

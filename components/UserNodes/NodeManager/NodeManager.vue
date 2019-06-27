@@ -1,27 +1,30 @@
 <template>
-  <v-client-table :columns="columns" :data="nodes" :options="options" class="node-manager">
-    <template slot="h__check">
-      <NodeCheckbox @click.native="selectAll()"/>
-    </template>
-    <template slot="pivot.label" slot-scope="props">
-      <span class="node-manager__label">{{props.row.pivot.label}}</span>
-    </template>
-    <template slot="check" slot-scope="props">
-      <NodeCheckbox v-model="selected" :val="props.row"/>
-    </template>
-    <template slot="latestBlockHeight" slot-scope="props">
-      <span>{{props.row.latestBlockHeight | commaNumber}}</span>
-    </template>
-    <template slot="syncState" slot-scope="props">
-      <NodeStatus :status="props.row.syncState" :online="props.row.online"/>
-    </template>
-    <template slot="relayMessageCount" slot-scope="props">
-      <span>{{props.row.relayMessageCount | commaNumber}}</span>
-    </template>
-    <template slot="actions">
-      <span class="node-manager__actions fe fe-more-horizontal"></span>
-    </template>
-  </v-client-table>
+  <table class="node-manager">
+    <thead>
+      <th>
+        <NodeCheckbox @click.native="selectAll()"/>
+      </th>
+      <th v-for="heading in headings" :key="heading">{{$t(heading)}}</th>
+    </thead>
+    <tbody>
+      <tr v-for="node in nodes" :key="node.pivot.node_id">
+        <td>
+          <NodeCheckbox v-model="selected" :val="node"/>
+        </td>
+        <td>{{node.pivot.label}}</td>
+        <td>{{node.addr}}</td>
+        <td>
+          <NodeStatus :status="node.syncState" :online="node.online"/>
+        </td>
+        <td>{{node.latestBlockHeight}}</td>
+        <td>{{node.version | nodeVersion}}</td>
+        <td>{{node.relayMessageCount}}</td>
+        <td>
+          <span class="node-manager__actions fe fe-more-horizontal"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <style lang="scss">
@@ -42,64 +45,22 @@ export default {
   },
   data: () => {
     return {
-      columns: [
-        'check',
-        'pivot.label',
-        'addr',
-        'syncState',
-        'latestBlockHeight',
-        'sversion',
-        'relayMessageCount',
+      headings: [
+        'name',
+        'ipAddress',
+        'status',
+        'latestBlock',
+        'currentVersion',
+        'relayedMessages',
         'actions'
       ],
       selected: [],
-      isAll: false,
-      options: {
-        headings: {
-          'pivot.label': 'name',
-          addr: 'ipAddress',
-          syncState: 'status',
-          latestBlockHeight: 'latestBlock',
-          sversion: 'currentVersion',
-          relayMessageCount: 'relayedMessages',
-          actions: 'actions'
-        },
-        sortable: [
-          'pivot.label',
-          'latestBlockHeight',
-          'addr',
-          'syncState',
-          'sversion',
-          'relayMessageCount'
-        ],
-        filterable: [
-          'pivot.label',
-          'latestBlockHeight',
-          'addr',
-          'syncState',
-          'sversion',
-          'relayMessageCount'
-        ],
-        sortIcon: {
-          base: 'fe',
-          is: '',
-          up: 'fe-arrow-up',
-          down: 'fe-arrow-down'
-        },
-        rowClassCallback(row) {
-          return row.online !== true ? 'node-manager_state_offline' : null
-        },
-        orderBy: { column: 'syncState' },
-        perPageValues: [10, 25, 50, 100],
-        pagination: { edge: true, chunk: 1, nav: 'fixed' },
-        texts: {
-          filter: '',
-          filterPlaceholder: 'searchAllNodes'
-        }
-      }
+      isAll: false
     }
   },
-  mounted: function() {},
+  mounted: function() {
+    console.log(this.nodes)
+  },
   methods: {
     selectAll() {
       this.isAll = !this.isAll

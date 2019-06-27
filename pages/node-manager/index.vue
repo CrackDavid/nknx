@@ -5,8 +5,13 @@
         <h1>{{$t('myNodes')}}</h1>
         <NodeOnline :nodes="nodes"/>
       </div>
-      <NodeStats :nodes="nodes.length"/>
-      <NodeFilter :nodes="nodes" @getFilteredNodes="getFilteredNodes"/>
+      <NodeStats :nodes="nodes.length" :total="total | nknValue" :daily="daily"/>
+      <NodeFilter
+        v-if="nodes.length>0"
+        :nodes="nodes"
+        :filters="filters"
+        @getFilteredNodes="getFilteredNodes"
+      />
     </div>
 
     <ContentWrapper>
@@ -37,7 +42,10 @@ export default {
   data: () => {
     return {
       nodes: [],
-      filteredNodes: []
+      filteredNodes: [],
+      filters: [],
+      total: 0,
+      daily: 0
     }
   },
   mounted() {
@@ -47,8 +55,11 @@ export default {
     getNodes() {
       const self = this
       this.$axios.$get('nodes').then(response => {
+        self.filters = response.statCounts
         self.nodes = response.nodes.data
         self.filteredNodes = self.nodes
+        self.total = response.rewardAll
+        self.today = response.rewardToday
       })
     },
     getFilteredNodes(filtered) {

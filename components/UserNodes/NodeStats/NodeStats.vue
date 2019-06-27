@@ -13,17 +13,12 @@
       <div class="node-stats__item">
         <div class="node-stats__icon node-stats__icon_color_green fe fe-codepen"></div>
         <div class="node-stats__data">
-          <div class="node-stats__title">{{$t('averageRewardPerDay')}}</div>
+          <div class="node-stats__title">{{$t('rewardToday')}}</div>
           <div class="node-stats__value">
             {{daily | commaNumber}}
             <span class="node-stats__currency">NKN</span>
           </div>
-          <div class="node-stats__tooltip">
-            <!-- <span
-              :class="{'node-stats__tooltip_negative': parseFloat(item.tooltip.number)<0 && item.tooltip.isChange, 'node-stats__tooltip_positive': parseFloat(item.tooltip.number)>0 && item.tooltip.isChange}"
-            >{{item.tooltip.number}}</span>-->
-            {{$t('up this week')}}
-          </div>
+          <div class="node-stats__tooltip"></div>
         </div>
       </div>
 
@@ -32,10 +27,9 @@
         <div class="node-stats__data">
           <div class="node-stats__title">{{$t('totalMined')}}</div>
           <div class="node-stats__value">
-            {{total | commaNumber}}
+            {{Number(total).toFixed(2) | commaNumber}}
             <span class="node-stats__currency">NKN</span>
           </div>
-          <div class="node-stats__tooltip">{{monthly | commaNumber}} {{$t('minedIn')}} march</div>
         </div>
       </div>
 
@@ -44,10 +38,14 @@
         <div class="node-stats__data">
           <div class="node-stats__title">{{$t('totalProfit')}}</div>
           <div class="node-stats__value">
-            ${{totalProfit | commaNumber}}
-            <span class="node-stats__currency">USD</span>
+            ${{Number(total * price.prices[0].price).toFixed(0) | commaNumber}}
+            <span
+              class="node-stats__currency"
+            >USD</span>
           </div>
-          <div class="node-stats__tooltip">${{monthlyProfit | commaNumber}} {{$t('profitIn')}} march</div>
+          <div
+            class="node-stats__tooltip"
+          >${{Number(daily * price.prices[0].price).toFixed(0) | commaNumber}} {{$t('profitToday')}}</div>
         </div>
       </div>
     </div>
@@ -83,27 +81,14 @@ export default {
   },
 
   data: () => {
-    return {
-      monthlyProfit: 0,
-      totalProfit: 0
-    }
+    return {}
   },
   computed: mapGetters({
     networkStats: 'network/getNetworkStats',
     price: 'price/getCurrentPrice'
   }),
   destroyed() {},
-  mounted: function() {
-    this.calcProfit()
-  },
-  methods: {
-    calcProfit() {
-      this.monthlyProfit = (this.monthly * this.price.prices[0].price).toFixed(
-        0
-      )
-
-      this.totalProfit = (this.total * this.price.prices[0].price).toFixed(0)
-    }
-  }
+  mounted: function() {},
+  methods: {}
 }
 </script>
