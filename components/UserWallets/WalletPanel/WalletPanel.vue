@@ -3,16 +3,16 @@
     <div class="wallet-panel">
       <div class="wallet-panel__left">
         <div class="wallet-panel__label">
-          <span v-if="activeWallet.pivot !== undefined">{{activeWallet.pivot.label}}</span>
+          <span v-if="activeWallet !== undefined">{{activeWallet.pivot.label}}</span>
           <span v-else>{{$t('loading')}}</span>
         </div>
         <div class="wallet-panel__value">
-          <span v-if="activeWallet.balance !== undefined">{{activeWallet.balance | commaNumber}}</span>
+          <span v-if="activeWallet !== undefined">{{activeWallet.balance | commaNumber}}</span>
           <span v-else>{{$t('loading')}}</span>
           <span class="wallet-panel__currency">NKN</span>
         </div>
         <div v-clipboard:copy="activeWallet.address" class="wallet-panel__address">
-          <span v-if="activeWallet.address !== undefined">{{activeWallet.address}}</span>
+          <span v-if="activeWallet !== undefined">{{activeWallet.address}}</span>
           <span v-else>{{$t('loading')}}</span>
           <i class="fas fa-copy"></i>
         </div>

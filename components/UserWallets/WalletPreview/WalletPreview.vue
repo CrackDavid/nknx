@@ -5,7 +5,9 @@
     @click="toggleActiveWallet(wallet)"
   >
     <div class="wallet-preview__data">
-      <div class="wallet-preview__label">{{wallet.pivot.label}}</div>
+      <div class="wallet-preview__label">
+        <span v-if="wallet.pivot !== undefined">{{wallet.pivot.label}}</span>
+      </div>
       <div class="wallet-preview__value">
         {{Number(wallet.balance).toFixed(2) | commaNumber}}
         <span
