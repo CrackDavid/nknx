@@ -61,24 +61,31 @@ export default {
       const { state } = filterItem
       let filteredNodes = []
 
-      if (state === 'All') {
-        filteredNodes = this.nodes
-      } else {
-        filteredNodes = this.nodes.filter(node => {
-          return node.syncState === state
-        })
+      if (this.nodes.length > 0) {
+        if (state === 'All') {
+          filteredNodes = this.nodes
+        } else {
+          filteredNodes = this.nodes.filter(node => {
+            return node.syncState === state
+          })
+        }
       }
+
       this.active = state
       this.$emit('getFilteredNodes', filteredNodes)
     },
     filterNumber(state) {
-      if (state === 'All') {
-        return this.nodes.length
+      if (this.nodes.length > 0) {
+        if (state === 'All') {
+          return this.nodes.length
+        } else {
+          const filteredNodes = this.nodes.filter(node => {
+            return node.syncState === state
+          })
+          return filteredNodes.length
+        }
       } else {
-        const filteredNodes = this.nodes.filter(node => {
-          return node.syncState === state
-        })
-        return filteredNodes.length
+        return 0
       }
     },
     markerInitialize() {

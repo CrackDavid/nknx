@@ -41,6 +41,12 @@ h3 {
 /*========== Page ==========*/
 
 .page {
+  &-navigation {
+    &__pagination {
+      display: flex;
+    }
+  }
+
   &__title {
     margin-bottom: $padding-normal;
   }

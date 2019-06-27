@@ -15,7 +15,7 @@
       <div class="wallet-preview__converter">${{balanceUSD| commaNumber}} USD</div>
     </div>
     <div class="wallet-preview__chart">
-      <WalletPreviewChart :color1="color1" :color2="color2"/>
+      <WalletPreviewChart :address="wallet.address"/>
     </div>
   </div>
 </template>

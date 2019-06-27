@@ -26,8 +26,11 @@ export default {
   destroyed() {},
   mounted: function() {
     const day1 = this.dailyNodes[0].avg_cnodecount
-    const day2 = this.dailyNodes[1].avg_cnodecount
-    this.change = (((day1 - day2) / day1) * 100).toFixed(2)
+    if (this.dailyNodes.length > 2) {
+      const day2 = this.dailyNodes[1].avg_cnodecount
+      this.change = (((day1 - day2) / day1) * 100).toFixed(2)
+    }
+    this.change = 100
     this.valueArr = this.dailyNodes.map(x => x.avg_cnodecount)
   },
   methods: {}

@@ -39,8 +39,8 @@ export default {
     getWallets() {
       const self = this
       this.$axios.$get('wallets').then(response => {
-        self.wallets = response
-        self.setActiveWallet(response[0])
+        self.wallets = response.data
+        self.setActiveWallet(response.data[0])
       })
     },
     setActiveWallet(wallet) {

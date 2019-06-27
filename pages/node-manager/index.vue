@@ -47,7 +47,7 @@ export default {
     getNodes() {
       const self = this
       this.$axios.$get('nodes').then(response => {
-        self.nodes = response
+        self.nodes = response.nodes.data
         self.filteredNodes = self.nodes
       })
     },

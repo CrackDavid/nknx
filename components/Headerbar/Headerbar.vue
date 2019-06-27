@@ -79,17 +79,17 @@ export default {
   methods: {
     getNodes() {
       this.$axios.$get('nodes').then(function(response) {
-        console.log(response.data)
+        console.log(response)
       })
     },
     addNode() {
       this.$axios
         .$post('nodes', {
           label: 'testlabel',
-          ip: 'devnet-seed-0003.nkn.org'
+          ip: 'devnet-seed-0002.nkn.org'
         })
         .then(function(response) {
-          console.log(response.data)
+          console.log(response)
         })
     },
     detachNode() {

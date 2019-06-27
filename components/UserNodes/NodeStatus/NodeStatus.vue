@@ -49,17 +49,17 @@ export default {
           case 'WAIT_FOR_SYNCING':
             this.name = 'syncing'
             this.className = 'syncing'
-            this.icon = 'refrewsh-cw'
+            this.icon = 'refresh-cw'
             break
           case 'SYNC_STARTED':
             this.name = 'syncing'
             this.className = 'syncing'
-            this.icon = 'refrewsh-cw'
+            this.icon = 'refresh-cw'
             break
           case 'SYNC_FINISHED':
             this.name = 'syncing'
             this.className = 'syncing'
-            this.icon = 'refrewsh-cw'
+            this.icon = 'refresh-cw'
             break
           case 'PERSIST_FINISHED':
             this.name = 'mining'

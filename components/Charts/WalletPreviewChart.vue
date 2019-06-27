@@ -10,17 +10,20 @@ import { mapGetters } from 'vuex'
 am4core.useTheme(am4themesAnimated)
 export default {
   props: {
-    color1: {
-      type: String,
-      default: ''
-    },
-    color2: {
+    address: {
       type: String,
       default: ''
     }
   },
+  data: () => {
+    return {
+      color1: '#DD5E89',
+      color2: '#F7BB97'
+    }
+  },
   computed: mapGetters({
-    dailyBlocks: 'blocks/getDailyBlocks'
+    dailyBlocks: 'blocks/getDailyBlocks',
+    activeWallet: 'activeWallet/getActiveWallet'
   }),
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
