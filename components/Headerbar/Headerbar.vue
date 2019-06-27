@@ -35,6 +35,8 @@
       <button v-if="$auth.loggedIn" @click="getNodes">get nodes</button>
       <button v-if="$auth.loggedIn" @click="addNode">Add nknx node</button>
       <button v-if="$auth.loggedIn" @click="detachNode">detach nknx node</button>
+      <button v-if="$auth.loggedIn" @click="addWallet">add wallet</button>
+
       <span class="headerbar__item">
         <button class="headerbar__button">
           <span class="fe fe-bell"/>
@@ -87,6 +89,16 @@ export default {
         .$post('nodes', {
           label: 'testlabel',
           ip: 'devnet-seed-0002.nkn.org'
+        })
+        .then(function(response) {
+          console.log(response)
+        })
+    },
+    addWallet() {
+      this.$axios
+        .$post('wallets', {
+          label: 'testlabel',
+          address: 'NKNUXioUqbq3a8YPTNs3KaHvX4k2tuw54B2o'
         })
         .then(function(response) {
           console.log(response)

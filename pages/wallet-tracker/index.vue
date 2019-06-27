@@ -2,7 +2,7 @@
   <div class="page__wallet-tracker">
     <ContentWrapper :centered="false" class="page__wallet-tracker-wrapper">
       <Grid>
-        <WalletPanel v-if="activeWallet !== undefined"/>
+        <WalletPanel v-if="activeWallet"/>
       </Grid>
     </ContentWrapper>
     <WalletSide :wallets="wallets"/>
