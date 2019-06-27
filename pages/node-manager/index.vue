@@ -3,9 +3,9 @@
     <div class="page__node-manager">
       <div class="page__node-manager-heading">
         <h1>{{$t('myNodes')}}</h1>
-        <NodeOnline :nodes="nodes"/>
+        <NodeOnline v-if="!loading && filters.ALL > 0" :filters="filters"/>
       </div>
-      <NodeStats :nodes="nodes.length" :total="total | nknValue" :daily="daily"/>
+      <NodeStats :nodes="totalNodes" :total="total | nknValue" :daily="daily"/>
       <NodeFilter
         v-if="nodes.length>0"
         :nodes="nodes"
@@ -43,9 +43,11 @@ export default {
     return {
       nodes: [],
       filteredNodes: [],
-      filters: [],
+      filters: {},
+      totalNodes: 0,
       total: 0,
-      daily: 0
+      daily: 0,
+      loading: true
     }
   },
   mounted() {
@@ -60,6 +62,8 @@ export default {
         self.filteredNodes = self.nodes
         self.total = response.rewardAll
         self.today = response.rewardToday
+        self.totalNodes = response.statCounts.ALL
+        self.loading = false
       })
     },
     getFilteredNodes(filtered) {

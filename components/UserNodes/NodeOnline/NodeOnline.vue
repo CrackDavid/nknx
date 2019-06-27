@@ -1,13 +1,13 @@
 <template>
   <div class="node-online">
     <span
-      :class="['node-online__status', offlineNodes === 0 ? 'node-online__status_positive' : 'node-online__status_negative']"
+      :class="['node-online__status', offlineNodes === false ? 'node-online__status_positive' : 'node-online__status_negative']"
     ></span>
-    <span v-if="offlineNodes === 0" class="node-online__title">{{$t('allNodesAreOnline')}}</span>
+    <span v-if="offlineNodes === false" class="node-online__title">{{$t('allNodesAreMining')}}</span>
     <span
       v-else
       class="node-online__title"
-    >{{offlineNodes}} {{$t('of')}} {{$t('nodes')}} {{nodes.length}} {{$t('areOffline')}}</span>
+    >{{offlineNodes}} {{$t('of')}} {{$t('nodes')}} {{filters.ALL}} {{$t('areNotMining')}}</span>
   </div>
 </template>
 
@@ -19,21 +19,25 @@
 export default {
   components: {},
   props: {
-    nodes: {
-      type: Array,
-      default: () => []
+    filters: {
+      type: Object,
+      default: () => {}
     }
   },
   data: () => {
     return {
-      offlineNodes: 0
+      offlineNodes: false
     }
   },
   destroyed() {},
   mounted: function() {
-    this.nodes.forEach(node => {
-      if (!node.online) {
-        this.offlineNodes += 1
+    Object.keys(this.filters).forEach(key => {
+      if (
+        this.filters[key] > 0 &&
+        key !== 'ALL' &&
+        key !== 'PERSIST_FINISHED'
+      ) {
+        this.offlineNodes += this.filters[key]
       }
     })
   },
