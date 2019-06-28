@@ -40,15 +40,12 @@ export default {
   },
   methods: {
     filterNodes(filterItem) {
-      const self = this
       let filter = filterItem
       this.active = filterItem
       if (filterItem === 'ALL') {
         filter = ''
       }
-      this.$axios.$get(`nodes?syncState=${filter}`).then(response => {
-        self.$emit('getFilteredNodes', response.nodes.data)
-      })
+      this.$emit('getNodes', 1, filter)
     },
     markerInitialize() {
       const marker = document.getElementsByClassName('node-filter__marker')[0]
