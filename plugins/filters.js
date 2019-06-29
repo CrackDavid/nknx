@@ -9,7 +9,7 @@ Vue.filter('commaNumber', function(x) {
 })
 
 Vue.filter('nknValue', function(x) {
-  return x / 100000000
+  return Number(parseFloat(x) / 100000000)
 })
 
 Vue.filter('nodeVersion', function(x) {

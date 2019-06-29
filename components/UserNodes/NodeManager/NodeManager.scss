@@ -57,4 +57,27 @@
       color: $text-grey-light;
     }
   }
+
+  &__sort {
+    &_active {
+      color: $darker;
+      position: relative;
+
+      .node-manager__sort-icon {
+        display: inline-block;
+      }
+    }
+
+    &-icon {
+      right: -20px;
+      position: absolute;
+      margin-left: $padding-micro;
+      display: none;
+      top: 3px;
+    }
+
+    &-title {
+      position: relative;
+    }
+  }
 }

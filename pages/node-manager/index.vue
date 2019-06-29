@@ -3,16 +3,22 @@
     <div class="page__node-manager">
       <div class="page__node-manager-heading">
         <h1>{{$t('myNodes')}}</h1>
-        <NodeOnline v-if="!loading && filters.ALL > 0" :filters="filters"/>
+        <NodeOnline v-if="totalNodes > 0" :filters="filters"/>
       </div>
-      <NodeStats :nodes="totalNodes" :total="total | nknValue" :daily="daily"/>
-      <NodeFilter v-if="nodes.length>0" :nodes="nodes" :filters="filters" @getNodes="getNodes"/>
+      <NodeStats :nodes="totalNodes" :total="total" :daily="daily"/>
+      <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" @getNodes="getNodes"/>
     </div>
 
     <ContentWrapper>
       <Grid>
         <NodeSearchBar :prevPage="prevPage" :nextPage="nextPage" @getNodes="getNodes"/>
-        <NodeManager v-if="nodes.length > 0" :nodes="nodes"/>
+        <NodeManager
+          v-if="totalNodes > 0"
+          :nodes="nodes"
+          :currentPage="currentPage"
+          :activeFilter="activeFilter"
+          @getNodes="getNodes"
+        />
       </Grid>
     </ContentWrapper>
   </div>
@@ -50,25 +56,45 @@ export default {
       currentPage: 1,
       activeFilter: '',
       from: 0,
-      to: 0
+      to: 0,
+      activeSort: 'node_user.label',
+      activeOrder: 'desc'
     }
   },
   mounted() {
-    this.getNodes(this.currentPage, this.activeFilter)
+    this.getNodes(
+      this.currentPage,
+      this.activeFilter,
+      this.activeSort,
+      this.activeOrder
+    )
   },
   methods: {
-    getNodes(page, filter) {
+    getNodes(page, filter, sort, order) {
       const self = this
-
       // Checking if page and filter exists
       if (page === null) {
         return false
       }
+
       if (filter === undefined) {
         filter = self.activeFilter
       } else {
         self.activeFilter = filter
       }
+
+      if (sort === undefined) {
+        sort = self.activeSort
+      } else {
+        self.activeSort = sort
+      }
+
+      if (order === undefined) {
+        order = self.activeOrder
+      } else {
+        self.activeOrder = order
+      }
+
       self.loading = true
       // Disabling pagination untill data fetched
       self.nextPage = null
@@ -76,7 +102,9 @@ export default {
       // Fetcing data
 
       this.$axios
-        .$get(`nodes?page=${page}&syncState=${filter}`)
+        .$get(
+          `nodes?page=${page}&syncState=${filter}&orderBy=${sort}&order=${order}`
+        )
         .then(response => {
           const {
             current_page,
@@ -90,7 +118,7 @@ export default {
           self.nodes = response.nodes.data
           self.filteredNodes = self.nodes
           self.total = response.rewardAll
-          self.today = response.rewardToday
+          self.daily = response.rewardToday
           self.totalNodes = response.statCounts.ALL
           self.from = from
           self.to = to
