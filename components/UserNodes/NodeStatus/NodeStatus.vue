@@ -18,10 +18,6 @@ export default {
     status: {
       type: String,
       default: 'Offline'
-    },
-    online: {
-      type: Boolean,
-      default: false
     }
   },
   data: () => {
@@ -38,37 +34,35 @@ export default {
   methods: {
     getNodeStatus() {
       const status = this.status
-      const online = this.online
 
-      if (online === false) {
-        this.name = 'offline'
-        this.className = 'offline'
-        this.icon = 'cloud-off'
-      } else {
-        switch (status) {
-          case 'WAIT_FOR_SYNCING':
-            this.name = 'syncing'
-            this.className = 'syncing'
-            this.icon = 'refresh-cw'
-            break
-          case 'SYNC_STARTED':
-            this.name = 'syncing'
-            this.className = 'syncing'
-            this.icon = 'refresh-cw'
-            break
-          case 'SYNC_FINISHED':
-            this.name = 'syncing'
-            this.className = 'syncing'
-            this.icon = 'refresh-cw'
-            break
-          case 'PERSIST_FINISHED':
-            this.name = 'mining'
-            this.className = 'mining'
-            this.icon = 'activity'
-            break
-          default:
-            return false
-        }
+      switch (status) {
+        case 'OFFLINE':
+          this.name = 'offline'
+          this.className = 'offline'
+          this.icon = 'cloud-off'
+          break
+        case 'WAIT_FOR_SYNCING':
+          this.name = 'syncing'
+          this.className = 'syncing'
+          this.icon = 'refresh-cw'
+          break
+        case 'SYNC_STARTED':
+          this.name = 'syncing'
+          this.className = 'syncing'
+          this.icon = 'refresh-cw'
+          break
+        case 'SYNC_FINISHED':
+          this.name = 'syncing'
+          this.className = 'syncing'
+          this.icon = 'refresh-cw'
+          break
+        case 'PERSIST_FINISHED':
+          this.name = 'mining'
+          this.className = 'mining'
+          this.icon = 'activity'
+          break
+        default:
+          return false
       }
     }
   }

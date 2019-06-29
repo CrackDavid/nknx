@@ -16,17 +16,17 @@
     </div>
     <div class="topbar__right">
       <span v-if="networkStatus" class="topbar__block">
-        <span class="fe fe-activity topbar__icon"/>
+        <span class="fe fe-activity topbar__icon" />
         <span
-          :class="{'topbar__block_negative': networkStatus.syncState === 'error'}"
+          :class="{'topbar__block_negative': networkStatus.syncState === 'OFFLINE'}"
         >{{ networkStatus.syncState }}</span>
       </span>
       <span v-if="networkStats" class="topbar__block">
-        <span class="fe fe-layers topbar__icon"/>
+        <span class="fe fe-layers topbar__icon" />
         {{ networkStats.totalNodes | commaNumber}} {{$t('totalNodes')}}
       </span>
       <span v-if="networkStatus" class="topbar__block">
-        <span class="fe fe-git-branch topbar__icon"/>
+        <span class="fe fe-git-branch topbar__icon" />
         {{ networkStatus.version | nodeVersion }}
       </span>
     </div>

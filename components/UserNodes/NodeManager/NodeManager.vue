@@ -2,7 +2,7 @@
   <table class="node-manager">
     <thead>
       <th>
-        <NodeCheckbox @click.native="selectAll()"/>
+        <NodeCheckbox @click.native="selectAll()" />
       </th>
       <th
         v-for="heading in headings"
@@ -21,12 +21,12 @@
     <tbody>
       <tr v-for="node in nodes" :key="node.pivot.node_id">
         <td>
-          <NodeCheckbox v-model="selected" :val="node"/>
+          <NodeCheckbox v-model="selected" :val="node" />
         </td>
         <td>{{node.pivot.label}}</td>
         <td>{{node.addr}}</td>
         <td>
-          <NodeStatus :status="node.syncState" :online="node.online"/>
+          <NodeStatus :status="node.syncState" />
         </td>
         <td>{{node.latestBlockHeight}}</td>
         <td>{{node.version | nodeVersion}}</td>
