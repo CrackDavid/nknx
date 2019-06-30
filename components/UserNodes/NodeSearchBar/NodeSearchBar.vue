@@ -2,7 +2,7 @@
   <div class="node-search-bar">
     <div class="node-search-bar__search">
       <input
-        v-model="searchInput"
+        v-model.trim="searchInput"
         class="node-search-bar__control"
         type="text"
         :placeholder="$t('searchAllNodes')"
