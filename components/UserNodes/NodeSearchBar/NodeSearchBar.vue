@@ -1,11 +1,17 @@
 <template>
   <div class="node-search-bar">
     <div class="node-search-bar__search">
-      <input class="node-search-bar__control" type="text" :placeholder="$t('searchAllNodes')">
+      <input
+        v-model="searchInput"
+        class="node-search-bar__control"
+        type="text"
+        :placeholder="$t('searchAllNodes')"
+        @input="search(searchInput)"
+      />
     </div>
     <div class="node-search-bar__pagination">
-      <Pagination :page="prevPage" type="prev" @click.native="$emit('getNodes', prevPage)"/>
-      <Pagination :page="nextPage" type="next" @click.native="$emit('getNodes', nextPage)"/>
+      <Pagination :page="prevPage" type="prev" @click.native="$emit('getNodes', prevPage)" />
+      <Pagination :page="nextPage" type="next" @click.native="$emit('getNodes', nextPage)" />
     </div>
   </div>
 </template>
@@ -16,6 +22,7 @@
 
 <script>
 import Pagination from '~/components/Pagination/Pagination'
+import debounce from 'lodash.debounce'
 
 export default {
   components: { Pagination },
@@ -27,13 +34,42 @@ export default {
     nextPage: {
       type: Number,
       default: null
+    },
+    currentPage: {
+      type: Number,
+      default: 1
+    },
+    activeFilter: {
+      type: String,
+      default: ''
+    },
+    activeSort: {
+      type: String,
+      default: 'node_user.label'
+    },
+    activeOrder: {
+      type: String,
+      default: 'desc'
     }
   },
   data: () => {
-    return {}
+    return {
+      searchInput: ''
+    }
   },
   destroyed() {},
   mounted: function() {},
-  methods: {}
+  methods: {
+    search: debounce(function(searchInput) {
+      this.$emit(
+        'getNodes',
+        this.currentPage,
+        this.activeFilter,
+        this.activeSort,
+        this.activeOrder,
+        searchInput
+      )
+    }, 1500)
+  }
 }
 </script>

@@ -12,11 +12,11 @@
       C180, 80 180, 20  90, 80
       C 60,100  30,120  30,120
     "
-            ></path>
+            />
             <path id="middle" d="
       M 40,100
       L140,100
-    "></path>
+    " />
             <path
               id="bottom"
               d="
@@ -25,21 +25,21 @@
       C180,120 180,180  90,120
       C 60,100  30, 80  30, 80
     "
-            ></path>
+            />
           </svg>
         </div>
       </span>
-      <Search class="headerbar__search-input" :text="$t('search')"/>
+      <Search class="headerbar__search-input" :text="$t('search')" />
     </div>
     <div class="headerbar__right">
       <button v-if="$auth.loggedIn" @click="getNodes">get nodes</button>
       <button v-if="$auth.loggedIn" @click="addNode">Add nknx node</button>
       <button v-if="$auth.loggedIn" @click="detachNode">detach nknx node</button>
       <button v-if="$auth.loggedIn" @click="addWallet">add wallet</button>
-
+      <button v-if="$auth.loggedIn" @click="getWallets">get wallets</button>
       <span class="headerbar__item">
         <button class="headerbar__button">
-          <span class="fe fe-bell"/>
+          <span class="fe fe-bell" />
         </button>
       </span>
 
@@ -52,7 +52,7 @@
       <AvatarDropdown v-if="$auth.loggedIn" class="headerbar__item"></AvatarDropdown>
       <span class="headerbar__item">
         <button class="headerbar__button">
-          <span class="fe fe-moon"/>
+          <span class="fe fe-moon" />
         </button>
       </span>
     </div>
@@ -84,11 +84,16 @@ export default {
         console.log(response)
       })
     },
+    getWallets() {
+      this.$axios.$get('wallets').then(function(response) {
+        console.log(response)
+      })
+    },
     addNode() {
       this.$axios
         .$post('nodes', {
-          label: 'testlabel',
-          ip: 'devnet-seed-0001.nkn.org'
+          label: 'qwe',
+          ip: 'devnet-seed-0003.nkn.org'
         })
         .then(function(response) {
           console.log(response)

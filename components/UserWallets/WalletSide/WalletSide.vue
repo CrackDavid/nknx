@@ -5,13 +5,13 @@
         <div class="wallet-side__title">{{$t('myWallets')}}</div>
         <div class="wallet-side__new fe fe-plus"></div>
       </div>
-      <WalletPreview v-for="wallet in wallets" :key="wallet.address" :wallet="wallet"/>
+      <WalletPreview v-for="wallet in wallets" :key="wallet.address" :wallet="wallet" />
     </div>
     <div class="wallet-side__footer">
       <div v-if="wallets.length > 0" class="page-navigation">
         <div class="page-navigation__pagination">
-          <Pagination :page="prevPage" type="prev" @click.native="getWallets(prevPage)"/>
-          <Pagination :page="nextPage" type="next" @click.native="getWallets(nextPage)"/>
+          <Pagination :page="prevPage" type="prev" @click.native="getWallets(prevPage)" />
+          <Pagination :page="nextPage" type="next" @click.native="getWallets(nextPage)" />
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
           next_page_url,
           from,
           to
-        } = response
+        } = response.wallets
         self.wallets = data
         self.from = from
         self.to = to

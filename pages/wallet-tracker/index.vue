@@ -2,10 +2,10 @@
   <div class="page__wallet-tracker">
     <ContentWrapper :centered="false" class="page__wallet-tracker-wrapper">
       <Grid>
-        <WalletPanel v-if="activeWallet"/>
+        <WalletPanel v-if="activeWallet" />
       </Grid>
     </ContentWrapper>
-    <WalletSide :wallets="wallets"/>
+    <WalletSide :wallets="wallets" />
   </div>
 </template>
 
@@ -39,9 +39,9 @@ export default {
     getWallets() {
       const self = this
       this.$axios.$get('wallets').then(response => {
-        self.wallets = response.data
+        self.wallets = response.wallets.data
         if (self.wallets.length > 0) {
-          self.setActiveWallet(response.data[0])
+          self.setActiveWallet(response.wallets.data[0])
         }
       })
     },

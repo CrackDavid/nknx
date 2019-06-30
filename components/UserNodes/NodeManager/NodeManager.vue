@@ -19,7 +19,11 @@
       </th>
     </thead>
     <tbody>
-      <tr v-for="node in nodes" :key="node.pivot.node_id">
+      <tr
+        v-for="node in nodes"
+        :key="node.pivot.node_id"
+        :class="node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null"
+      >
         <td>
           <NodeCheckbox v-model="selected" :val="node" />
         </td>

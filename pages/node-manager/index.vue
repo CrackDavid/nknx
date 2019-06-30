@@ -3,15 +3,23 @@
     <div class="page__node-manager">
       <div class="page__node-manager-heading">
         <h1>{{$t('myNodes')}}</h1>
-        <NodeOnline v-if="totalNodes > 0" :filters="filters"/>
+        <NodeOnline v-if="totalNodes > 0" :filters="filters" />
       </div>
-      <NodeStats :nodes="totalNodes" :total="total" :daily="daily"/>
-      <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" @getNodes="getNodes"/>
+      <NodeStats :nodes="totalNodes" :total="total" :daily="daily" />
+      <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" @getNodes="getNodes" />
     </div>
 
     <ContentWrapper>
       <Grid>
-        <NodeSearchBar :prevPage="prevPage" :nextPage="nextPage" @getNodes="getNodes"/>
+        <NodeSearchBar
+          :prevPage="prevPage"
+          :nextPage="nextPage"
+          :currentPage="currentPage"
+          :activeFilter="activeFilter"
+          :activeSort="activeSort"
+          :activeOrder="activeOrder"
+          @getNodes="getNodes"
+        />
         <NodeManager
           v-if="totalNodes > 0"
           :nodes="nodes"
@@ -58,7 +66,8 @@ export default {
       from: 0,
       to: 0,
       activeSort: 'node_user.label',
-      activeOrder: 'desc'
+      activeOrder: 'desc',
+      activeSearch: ''
     }
   },
   mounted() {
@@ -70,7 +79,7 @@ export default {
     )
   },
   methods: {
-    getNodes(page, filter, sort, order) {
+    getNodes(page, filter, sort, order, search) {
       const self = this
       // Checking if page and filter exists
       if (page === null) {
@@ -95,6 +104,12 @@ export default {
         self.activeOrder = order
       }
 
+      if (search === undefined) {
+        search = self.activeSearch
+      } else {
+        self.activeSearch = search
+      }
+
       self.loading = true
       // Disabling pagination untill data fetched
       self.nextPage = null
@@ -103,7 +118,7 @@ export default {
 
       this.$axios
         .$get(
-          `nodes?page=${page}&syncState=${filter}&orderBy=${sort}&order=${order}`
+          `nodes?page=${page}&syncState=${filter}&orderBy=${sort}&order=${order}&search=${search}`
         )
         .then(response => {
           const {
