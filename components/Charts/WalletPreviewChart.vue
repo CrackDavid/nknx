@@ -13,6 +13,10 @@ export default {
     address: {
       type: String,
       default: ''
+    },
+    snapshots: {
+      type: Array,
+      default: () => []
     }
   },
   data: () => {
@@ -22,31 +26,34 @@ export default {
     }
   },
   computed: mapGetters({
-    dailyBlocks: 'blocks/getDailyBlocks',
     activeWallet: 'activeWallet/getActiveWallet'
   }),
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
-    let blocksAverage = this.dailyBlocks
-    blocksAverage = blocksAverage.slice(0, 7)
+    let walletData = this.snapshots
+    walletData = walletData.slice(0, 24) // last 24h
     const data = []
-    for (let i = blocksAverage.length - 1; i >= 0; i--) {
+
+    for (let i = walletData.length - 1; i >= 0; i--) {
       data.push({
-        date: new Date(blocksAverage[i].date),
-        count: blocksAverage[i].count,
+        date: new Date(walletData[i].created_at),
+        count: walletData[i].balance,
         opacity: 0
       })
     }
-    data[data.length - 1].opacity = 1
+
+    data[0].opacity = 1
     chart.data = data
     const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
     dateAxis.renderer.grid.template.disabled = true
     dateAxis.renderer.labels.template.disabled = true
     dateAxis.cursorTooltipEnabled = false
-    dateAxis.dateFormats.setKey('day', 'dd/MM')
-    dateAxis.periodChangeDateFormats.setKey('day', 'dd/MM')
+    dateAxis.baseInterval = {
+      timeUnit: 'hour',
+      count: 1
+    } // hourly
+
     const valueAxis = chart.yAxes.push(new am4charts.ValueAxis())
-    valueAxis.min = 0
     valueAxis.renderer.grid.template.disabled = true
     valueAxis.renderer.baseGrid.disabled = true
     valueAxis.renderer.labels.template.disabled = true
@@ -87,7 +94,7 @@ export default {
 <style lang="scss" scoped>
 .price-chart {
   height: 70px;
-  top: 20px;
   position: relative;
+  top: 20px;
 }
 </style>

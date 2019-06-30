@@ -19,10 +19,8 @@ export default {
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let txAverage = this.dailyTransactions
-
-    txAverage = txAverage.slice(1, 7)
     const data = []
-    for (let i = txAverage.length - 1; i >= 0; i--) {
+    for (let i = txAverage.length - 1; i >= txAverage.length - 7; i--) {
       data.push({
         date: new Date(txAverage[i].date),
         count: txAverage[i].count

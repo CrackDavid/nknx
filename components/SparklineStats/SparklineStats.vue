@@ -14,9 +14,9 @@
           {{change}}%
         </div>
       </div>
-      <div class="sparkline-stats__value">{{dailyValue}}</div>
+      <div class="sparkline-stats__value">{{dailyValue | commaNumber}}</div>
       <div class="sparkline-stats__chart">
-        <slot/>
+        <slot />
       </div>
     </div>
   </Card>

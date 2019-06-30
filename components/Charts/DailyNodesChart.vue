@@ -19,9 +19,8 @@ export default {
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let nodesAverage = this.dailyNodes
-    nodesAverage = nodesAverage.slice(0, 7)
     const data = []
-    for (let i = nodesAverage.length - 1; i >= 0; i--) {
+    for (let i = nodesAverage.length - 1; i >= nodesAverage.length - 7; i--) {
       data.push({
         date: new Date(nodesAverage[i].date),
         count: nodesAverage[i].avg_cnodecount

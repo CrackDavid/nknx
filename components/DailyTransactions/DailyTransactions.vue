@@ -1,6 +1,6 @@
 <template>
   <SparklineStats title="avgTxPerDay" :change="change" :dailyValue="valueArr | avg">
-    <DailyTransactionsChart/>
+    <DailyTransactionsChart />
   </SparklineStats>
 </template>
 <script>
@@ -27,8 +27,14 @@ export default {
   mounted: function() {
     const day1 = this.dailyTransactions[1].count
     const day2 = this.dailyTransactions[2].count
-    this.change = (((day1 - day2) / day1) * 100).toFixed(2)
-    this.valueArr = this.dailyTransactions.map(x => x.count)
+    if (day1 > 0 && day2 > 0) {
+      this.change = (((day1 - day2) / day1) * 100).toFixed(2)
+    } else {
+      this.change = 0
+    }
+    this.valueArr = this.dailyTransactions
+      .slice(this.dailyTransactions - 8, this.dailyTransactions.length - 1)
+      .map(x => x.count)
   },
   methods: {}
 }

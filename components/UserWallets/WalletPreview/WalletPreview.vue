@@ -17,7 +17,11 @@
       <div class="wallet-preview__converter">${{balanceUSD| commaNumber}} USD</div>
     </div>
     <div class="wallet-preview__chart">
-      <WalletPreviewChart :address="wallet.address"/>
+      <WalletPreviewChart
+        v-if="wallet.wallet_snapshots.length > 1"
+        :address="wallet.address"
+        :snapshots="wallet.wallet_snapshots"
+      />
     </div>
   </div>
 </template>
