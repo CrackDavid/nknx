@@ -28,7 +28,7 @@
         <td>
           <NodeStatus :status="node.syncState" />
         </td>
-        <td>{{node.latestBlockHeight}}</td>
+        <td>{{node.height}}</td>
         <td>{{node.version | nodeVersion}}</td>
         <td>{{node.relayMessageCount}}</td>
         <td>
