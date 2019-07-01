@@ -103,7 +103,7 @@ export default {
       this.$axios
         .$post('wallets', {
           label: 'testlabel',
-          address: 'NKNFPiSzGFZyTFKYFC3aJPRd3A79S697essL'
+          address: 'NKNNGCwQBbus7asVaQbcNyBukFqdaemmJryw'
         })
         .then(function(response) {
           console.log(response)

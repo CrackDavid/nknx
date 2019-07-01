@@ -92,7 +92,7 @@ export default {
   },
   watch: {
     activeWallet: function(newVal, oldVal) {
-      this.getTransactions()
+      this.getTransactions(1)
       this.getWallet()
     }
   },
