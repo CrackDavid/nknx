@@ -104,6 +104,18 @@ h3 {
     font-weight: $font-weight-semi-bold;
   }
 
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__navigation {
+    margin-right: $padding-default;
+    padding-right: $padding-default;
+    border-right: $card-border;
+  }
+
   &__viewAll {
     text-align: right;
     color: $primary;
@@ -136,6 +148,19 @@ h3 {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+  }
+
+  &_link {
+    color: $primary;
+    transition: $transition-1;
+
+    &:hover {
+      color: $secondary;
+    }
+
+    &:active {
+      color: darken($primary, 10%);
     }
   }
 }

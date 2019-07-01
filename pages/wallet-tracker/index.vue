@@ -1,9 +1,10 @@
 <template>
   <div class="page__wallet-tracker">
     <ContentWrapper :centered="false" class="page__wallet-tracker-wrapper">
-      <Grid>
-        <WalletPanel v-if="activeWallet" />
-        <WalletBalanceHistory v-if="activeWallet" />
+      <Grid v-if="activeWallet">
+        <WalletPanel />
+        <WalletBalanceHistory />
+        <WalletTransactions />
       </Grid>
     </ContentWrapper>
     <WalletSide :wallets="wallets" />
@@ -18,6 +19,7 @@ import Grid from '~/components/Grid/Grid.vue'
 import WalletPanel from '~/components/UserWallets/WalletPanel/WalletPanel.vue'
 import WalletSide from '~/components/UserWallets/WalletSide/WalletSide.vue'
 import WalletBalanceHistory from '~/components/UserWallets/WalletBalanceHistory/WalletBalanceHistory.vue'
+import WalletTransactions from '~/components/UserWallets/WalletTransactions/WalletTransactions.vue'
 
 export default {
   components: {
@@ -25,7 +27,8 @@ export default {
     Grid,
     WalletPanel,
     WalletSide,
-    WalletBalanceHistory
+    WalletBalanceHistory,
+    WalletTransactions
   },
   data: () => {
     return { wallets: [] }
