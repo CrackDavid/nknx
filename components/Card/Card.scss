@@ -91,4 +91,13 @@
       padding: 0;
     }
   }
+
+  &_hover {
+    cursor: pointer;
+    transition: $transition-1;
+
+    &:hover {
+      box-shadow: $shadow-2;
+    }
+  }
 }

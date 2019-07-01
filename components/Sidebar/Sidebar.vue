@@ -4,14 +4,15 @@
       v-for="route in routes"
       :key="route.path"
       :to="route.path"
+      :exact="route.path=='/' ? true : false"
       class="sidebar__item"
       @click.native="markerInitialize"
       @mouseleave.native="markerInitialize"
     >
-      <span class="fe sidebar__icon" :class="route.icon"/>
+      <span class="fe sidebar__icon" :class="route.icon" />
       <span class="sidebar__title">{{$t(route.title)}}</span>
     </nuxt-link>
-    <div class="sidebar__marker"/>
+    <div class="sidebar__marker" />
   </aside>
 </template>
 
@@ -59,7 +60,7 @@ export default {
     markerInitialize() {
       const marker = document.getElementsByClassName('sidebar__marker')[0]
       const currentActiveElement = document.getElementsByClassName(
-        'nuxt-link-exact-active'
+        'nuxt-link-active'
       )[0]
       const bodyScrollTop = document.body.scrollTop
       const currentActiveElementOffset =
@@ -72,7 +73,7 @@ export default {
         totalItems[i].addEventListener('mouseover', function(e) {
           const marker = document.getElementsByClassName('sidebar__marker')[0]
           const currentActiveElement = document.getElementsByClassName(
-            'nuxt-link-exact-active'
+            'nuxt-link-active'
           )[0]
           const bodyScrollTop = document.body.scrollTop
           const currentActiveElementOffset =

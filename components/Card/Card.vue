@@ -1,9 +1,9 @@
 <template>
   <div
     class="card"
-    :class="[col ? `card_col_${col}` : null, row ? `card_row_${row}` : null, padding ? `card_padding_${padding}` : null]"
+    :class="[col ? `card_col_${col}` : null, row ? `card_row_${row}` : null, padding ? `card_padding_${padding}` : null, hover ? 'card_hover' : null]"
   >
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -26,6 +26,10 @@ export default {
     padding: {
       type: String,
       default: 'normal'
+    },
+    hover: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => {

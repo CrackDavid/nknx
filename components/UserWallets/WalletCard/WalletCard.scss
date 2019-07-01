@@ -1,0 +1,57 @@
+.wallet-card {
+  display: flex;
+
+  &__icon {
+    height: 64px;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background: $primary-ghost;
+    margin-right: $padding-default;
+  }
+
+  &__data {
+    flex: 1;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    color: $text-grey-light;
+    min-height: $font-size-sm;
+  }
+
+  &__value {
+    margin-top: 6px;
+    margin-bottom: $padding-micro;
+    font-size: $h1-font-size;
+  }
+
+  &__symbol {
+    font-size: 14px;
+  }
+
+  &__converter {
+    font-size: $font-size-sm;
+    color: $text-grey-light;
+    font-weight: 500;
+  }
+
+  &__actions {
+    cursor: pointer;
+    color: $text-grey-light;
+    transition: $transition-1;
+    font-size: $font-size-title;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
