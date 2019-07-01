@@ -13,6 +13,34 @@
   font-size: $font-size-md;
 
   &_theme {
+    &_secondary {
+      min-height: 48px;
+      color: $white;
+      background: $secondary;
+
+      &:hover {
+        background: darken($secondary, 10%);
+      }
+
+      &:active {
+        background: lighten($secondary, 10%);
+      }
+    }
+
+    &_default {
+      min-height: 48px;
+      color: $quick-silver;
+      background: $ghost-white;
+
+      &:hover {
+        background: darken($ghost-white, 10%);
+      }
+
+      &:active {
+        background: lighten($ghost-white, 10%);
+      }
+    }
+
     &_gradient {
       min-height: 48px;
       color: $white;

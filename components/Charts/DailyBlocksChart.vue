@@ -20,7 +20,7 @@ export default {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let blocksAverage = this.dailyBlocks
     const data = []
-    for (let i = blocksAverage.length - 1; i >= blocksAverage.length - 7; i--) {
+    for (let i = blocksAverage.length - 2; i >= blocksAverage.length - 8; i--) {
       data.push({
         date: new Date(blocksAverage[i].date),
         count: blocksAverage[i].count

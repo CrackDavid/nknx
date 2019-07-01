@@ -1,0 +1,30 @@
+.wallet-balance-history {
+  &__header {
+    border-bottom: $card-border;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: $padding-normal;
+  }
+
+  &__chart {
+    position: relative;
+    height: 300px;
+    top: 30px;
+    left: -10px;
+  }
+
+  &__controls {
+    display: flex;
+  }
+
+  &__btn {
+    min-height: 30px !important;
+    font-size: 13px !important;
+    padding: 6px 16px !important;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}
