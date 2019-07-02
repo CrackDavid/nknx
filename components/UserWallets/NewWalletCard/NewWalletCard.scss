@@ -1,0 +1,69 @@
+.new-wallet-card {
+  grid-column: span 3;
+  border: $card-border;
+  box-sizing: border-box;
+  border-radius: $card-border-radius;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition-1;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $secondary;
+
+    .new-wallet-card__btn {
+      background: $secondary;
+    }
+
+    .new-wallet-card__title {
+      color: $secondary;
+    }
+
+    .new-wallet-card__icon {
+      path {
+        stroke: $white;
+      }
+    }
+  }
+
+  &:active {
+    border-color: $primary;
+
+    .new-wallet-card__btn {
+      background: $primary;
+    }
+
+    .new-wallet-card__title {
+      color: $primary;
+    }
+  }
+
+  &__btn {
+    border: none;
+    border-radius: 100%;
+    margin-right: $padding-normal;
+    background: rgba(225, 225, 237, 0.5);
+    transition: $transition-1;
+    height: 56px;
+    width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &__title {
+    color: $text-grey-light;
+    font-size: 21px;
+    line-height: 27px;
+    transition: $transition-1;
+  }
+
+  &__icon {
+    path {
+      transition: $transition-1;
+    }
+  }
+}
