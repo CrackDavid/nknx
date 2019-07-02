@@ -1,0 +1,56 @@
+.wallet-overview {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__total {
+    .wallet-overview__item {
+      text-align: left;
+    }
+    .wallet-overview__value {
+      font-size: 38px;
+    }
+  }
+
+  &__item {
+    text-align: right;
+
+    &:not(:last-child) {
+      margin-right: $padding-big;
+    }
+  }
+
+  &__symbol {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    color: $text-grey-light;
+    margin-bottom: 6px;
+  }
+
+  &__value {
+    font-size: $font-size-title;
+
+    &_positive {
+      color: $success;
+    }
+
+    &_negative {
+      color: $error;
+    }
+  }
+
+  &__stats {
+    display: flex;
+  }
+
+  &__chart {
+    margin-top: $padding-medium;
+    height: 275px;
+  }
+}

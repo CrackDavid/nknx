@@ -1,7 +1,13 @@
 <template>
   <div>
     <ContentWrapper>
+      <h1 class="page__title">{{$t('walletTracker')}}</h1>
       <Grid>
+        <WalletOverview
+          v-if="sumWalletSnapshots.length > 0"
+          :totalWallets="totalWallets"
+          :sumWalletSnapshots="sumWalletSnapshots"
+        />
         <div class="page__wallet-tracker-heading">
           <h3 class="page__wallet-tracker-title">{{$t('myWallets')}} ({{totalWallets}})</h3>
           <div v-if="wallets.length > 0" class="page-navigation page__wallet-tracker-navigation">
@@ -32,6 +38,7 @@ import Grid from '~/components/Grid/Grid.vue'
 import WalletCard from '~/components/UserWallets/WalletCard/WalletCard.vue'
 import NewWalletCard from '~/components/UserWallets/NewWalletCard/NewWalletCard.vue'
 import Pagination from '~/components/Pagination/Pagination'
+import WalletOverview from '~/components/UserWallets/WalletOverview/WalletOverview'
 
 export default {
   components: {
@@ -39,7 +46,8 @@ export default {
     Grid,
     WalletCard,
     NewWalletCard,
-    Pagination
+    Pagination,
+    WalletOverview
   },
   data: () => {
     return {
@@ -50,6 +58,7 @@ export default {
       current_page: 1,
       from: 0,
       to: 0,
+      sumWalletSnapshots: [],
       loading: false
     }
   },
@@ -83,6 +92,7 @@ export default {
           to,
           total
         } = response.wallets
+        self.sumWalletSnapshots = response.sumWalletSnapshots
         self.wallets = data
         self.totalWallets = total
         self.from = from
