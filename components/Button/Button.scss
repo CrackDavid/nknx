@@ -13,6 +13,38 @@
   font-size: $font-size-md;
 
   &_theme {
+    &_primary {
+      min-height: 48px;
+      box-sizing: border-box;
+      padding: $padding-default $padding-normal;
+      color: $white;
+      background: $primary;
+
+      &:hover {
+        background: darken($primary, 10%);
+      }
+
+      &:active {
+        background: lighten($primary, 10%);
+      }
+    }
+
+    &_white {
+      min-height: 48px;
+      box-sizing: border-box;
+      padding: $padding-default $padding-normal;
+      color: $text-grey-light;
+      background: $white;
+
+      &:hover {
+        background: darken($white, 10%);
+      }
+
+      &:active {
+        background: darken($white, 15%);
+      }
+    }
+
     &_secondary {
       min-height: 48px;
       color: $white;

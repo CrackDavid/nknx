@@ -282,3 +282,207 @@ table {
   height: 1px;
   background-color: $platinum;
 }
+
+/*========== Modals ==========*/
+
+.modal {
+  &-wrapper {
+    position: fixed;
+    min-height: 100vh;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(9, 14, 47, 0.24);
+    transition: $transition-1;
+    z-index: 100;
+  }
+
+  &-form {
+    border-radius: $card-border-radius;
+    box-shadow: $shadow-2;
+    background-color: $white;
+    padding: 32px;
+    min-width: 640px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__heading {
+    line-height: 14px;
+    letter-spacing: 0.03em;
+    font-weight: bold;
+    color: $text-grey-light;
+    font-size: $font-size-xs;
+  }
+
+  &__close {
+    color: $text-grey-light;
+    cursor: pointer;
+
+    &:hover {
+      color: $secondary;
+    }
+
+    &:active {
+      color: $primary;
+    }
+  }
+
+  &__title {
+    line-height: 29px;
+    letter-spacing: 0.03em;
+    font-size: $font-size-title;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+
+  &__body {
+    margin-top: 32px;
+    display: flex;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $padding-medium;
+    align-items: center;
+    position: relative;
+
+    &-button {
+      &:not(:last-child) {
+        margin-right: $padding-default;
+      }
+    }
+
+    &-loader {
+      position: absolute;
+      left: 0;
+      font-size: 24px;
+      color: $primary;
+      animation: Spin 2.5s infinite;
+      opacity: 0;
+
+      &_visible {
+        opacity: 1;
+      }
+    }
+  }
+
+  &-input {
+    flex: 1;
+
+    &:first-child {
+      margin-right: $padding-default;
+    }
+
+    &__label {
+      line-height: 18px;
+      color: $text-grey-light;
+      font-weight: bold;
+      font-size: $font-size-sm;
+    }
+
+    &__wrapper {
+      margin-top: 8px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    &__alert {
+      font-size: $font-size-sm;
+      line-height: 18px;
+      min-height: 18px;
+      transition: $transition-1;
+      opacity: 0;
+      margin-top: 8px;
+    }
+
+    &__control {
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 4px;
+      padding: $padding-default;
+      border: $card-border;
+      outline: none;
+      transition: $transition-1;
+
+      &:focus {
+        border-color: $primary;
+      }
+    }
+
+    &__icon {
+      border: 4px solid $white;
+      font-size: 14px;
+      height: 24px;
+      width: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      color: $white;
+      background-color: transparent;
+      opacity: 0;
+      transition: $transition-1;
+      position: absolute;
+      top: 10px;
+      right: calc(#{$padding-default} - 4px);
+    }
+
+    &_error {
+      .modal-input {
+        &__control {
+          border-color: $error;
+          color: $error;
+        }
+
+        &__alert {
+          opacity: 1;
+          color: $error;
+        }
+
+        &__icon {
+          opacity: 1;
+          background-color: $error;
+        }
+      }
+    }
+
+    &_success {
+      .modal-input {
+        &__control {
+          border-color: $success;
+          color: $success;
+        }
+
+        &__alert {
+          opacity: 1;
+          color: $success;
+        }
+
+        &__icon {
+          opacity: 1;
+          background-color: $success;
+        }
+      }
+    }
+  }
+}
+
+/*========== Transitions ==========*/
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: $transition-1;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

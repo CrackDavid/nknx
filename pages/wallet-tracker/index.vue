@@ -18,7 +18,7 @@
           </div>
           <div class="divider"></div>
         </div>
-        <NewWalletCard />
+        <NewWalletCard @click.native="openNewWalletModal()" />
         <WalletCard
           v-for="wallet in wallets"
           :key="wallet.pivot.wallet_id"
@@ -106,6 +106,9 @@ export default {
     setActiveWallet(wallet) {
       this.$store.dispatch('activeWallet/updateActiveWallet', wallet)
       this.$router.push({ path: `/wallet-tracker/${wallet.address}` })
+    },
+    openNewWalletModal() {
+      this.$store.dispatch('modals/updateNewWalletModalVisible', true)
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="wallet-side__top">
       <div class="wallet-side__header">
         <div class="wallet-side__title">{{$t('myWallets')}}</div>
-        <div class="wallet-side__new fe fe-plus"></div>
+        <div class="wallet-side__new fe fe-plus" @click="openNewWalletModal"></div>
       </div>
       <WalletPreview v-for="wallet in wallets" :key="wallet.address" :wallet="wallet" />
     </div>
@@ -49,6 +49,9 @@ export default {
     this.getWallets(this.current_page)
   },
   methods: {
+    openNewWalletModal() {
+      this.$store.dispatch('modals/updateNewWalletModalVisible', true)
+    },
     getWallets(page) {
       const self = this
       // Checking if page exists

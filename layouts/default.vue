@@ -2,12 +2,15 @@
   <div
     v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes"
   >
-    <Topbar/>
-    <Headerbar/>
-    <Sidebar/>
-    <nuxt class="content" :class="sidebarExpanded ? 'content_collapsed' : null"/>
+    <Topbar />
+    <Headerbar />
+    <Sidebar />
+    <nuxt class="content" :class="sidebarExpanded ? 'content_collapsed' : null" />
+    <transition name="fade">
+      <NewWalletModal v-if="newWalletModalVisible" />
+    </transition>
   </div>
-  <Preloader v-else/>
+  <Preloader v-else />
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -16,15 +19,18 @@ import Sidebar from '~/components/Sidebar/Sidebar'
 import Topbar from '~/components/Topbar/Topbar'
 import Headerbar from '~/components/Headerbar/Headerbar'
 import Preloader from '~/components/Preloader/Preloader'
+import NewWalletModal from '~/components/Modals/NewWalletModal/NewWalletModal'
 
 export default {
   components: {
     Sidebar,
     Topbar,
     Headerbar,
-    Preloader
+    Preloader,
+    NewWalletModal
   },
   computed: mapGetters({
+    newWalletModalVisible: 'modals/getNewWalletModalVisible',
     sidebarExpanded: 'sidebar/get',
     price: 'price/getCurrentPrice',
     networkStats: 'network/getNetworkStats',
