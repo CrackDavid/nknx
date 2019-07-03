@@ -112,6 +112,11 @@ export default {
           }
           self.isLoading = false
         })
+        .catch(error => {
+          self.isError = true
+          self.alertMsg = 'failedWalletAlert'
+          self.isLoading = false
+        })
     }
   }
 }

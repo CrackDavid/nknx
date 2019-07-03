@@ -30,7 +30,9 @@ export default {
   }),
   watch: {
     activeWallet: function(newVal, oldVal) {
-      this.drawChart()
+      if (newVal.address === this.address || oldVal.address === this.address) {
+        this.drawChart()
+      }
     }
   },
   mounted() {
@@ -52,10 +54,8 @@ export default {
       }
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let walletData = this.snapshots
-      walletData = walletData.slice(0, 24) // last 24h
       const data = []
-
-      for (let i = walletData.length - 1; i >= 0; i--) {
+      for (let i = 0; i < walletData.length; i++) {
         data.push({
           date: new Date(walletData[i].created_at),
           count: walletData[i].balance,
