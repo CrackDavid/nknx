@@ -17,7 +17,7 @@
               :class="['modal-input__icon fe', isError === true ? 'fe-x' : isSuccess ? 'fe-check' : null]"
             ></span>
           </div>
-          <div class="modal-input__alert">{{alertMsg}}</div>
+          <div class="modal-input__alert">{{$t(alertMsg)}}</div>
         </div>
         <div class="modal-input">
           <label class="modal-input__label">{{$t('walletLabel')}}</label>
