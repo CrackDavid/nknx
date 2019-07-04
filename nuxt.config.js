@@ -83,6 +83,17 @@ export default {
         lazy: true,
         langDir: 'lang/'
       }
+    ],
+    [
+      'nuxt-validate',
+      {
+        lang: 'en',
+        nuxti18n: {
+          locale: {
+            en: 'en'
+          }
+        }
+      }
     ]
   ],
   styleResources: {

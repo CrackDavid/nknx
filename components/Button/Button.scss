@@ -12,6 +12,10 @@
   background: $white;
   font-size: $font-size-md;
 
+  &_disabled {
+    cursor: not-allowed !important;
+  }
+
   &_theme {
     &_primary {
       min-height: 48px;

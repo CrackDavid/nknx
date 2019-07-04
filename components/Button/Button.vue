@@ -2,10 +2,10 @@
   <button
     v-if="type=='button'"
     class="button"
-    :class="[theme ? `button_theme_${theme}` : null, full ? `button_full` : null]"
+    :class="[theme ? `button_theme_${theme}` : null, full ? `button_full` : null, disabled === true ? 'button_disabled' : null]"
     @click="onClickButton"
   >
-    <slot/>
+    <slot />
   </button>
   <a
     v-else-if="type==='link'"
@@ -14,7 +14,7 @@
     class="button"
     :class="[theme ? `button_theme_${theme}` : null, full ? `button_full` : null]"
   >
-    <slot/>
+    <slot />
   </a>
   <nuxt-link
     v-else-if="type==='router'"
@@ -22,7 +22,7 @@
     class="button"
     :class="[theme ? `button_theme_${theme}` : null, full ? `button_full` : null]"
   >
-    <slot/>
+    <slot />
   </nuxt-link>
 </template>
 
@@ -37,6 +37,10 @@ export default {
     theme: {
       type: String,
       default: 'primary'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     type: {
       type: String,
@@ -57,7 +61,11 @@ export default {
   mounted: function() {},
   methods: {
     onClickButton(event) {
-      this.$emit('clicked', '')
+      if (this.disabled !== true) {
+        this.$emit('clicked', '')
+      } else {
+        event.preventDefault()
+      }
     }
   }
 }
