@@ -64,44 +64,51 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activeWallet: 'activeWallet/getActiveWallet'
+      activeWallet: 'activeWallet/getActiveWallet',
+      userWallets: 'userWallets/getUserWallets'
     })
   },
+  watch: {
+    userWallets: function(newWallets, oldWallets) {
+      this.fetchWalletsData()
+    }
+  },
   mounted() {
-    this.getWallets(this.current_page)
+    this.fetchWalletsData()
   },
   methods: {
     getWallets(page) {
-      const self = this
       // Checking if page exists
       if (page === null) {
         return false
       }
-      self.loading = true
+      this.loading = true
       // Disabling pagination untill data fetched
-      self.nextPage = null
-      self.prevPage = null
+      this.nextPage = null
+      this.prevPage = null
+
       // Fetcing data
-      this.$axios.$get(`wallets?page=${page}`).then(function(response) {
-        const {
-          data,
-          current_page,
-          prev_page_url,
-          next_page_url,
-          from,
-          to,
-          total
-        } = response.wallets
-        self.sumWalletSnapshots = response.sumWalletSnapshots
-        self.wallets = data
-        self.totalWallets = total
-        self.from = from
-        self.to = to
-        self.currentPage = current_page
-        self.prevPage = prev_page_url != null ? self.currentPage - 1 : null
-        self.nextPage = next_page_url != null ? self.currentPage + 1 : null
-        self.loading = false
-      })
+      this.$store.dispatch('userWallets/updateUserWallets', page)
+    },
+    fetchWalletsData() {
+      const {
+        data,
+        current_page,
+        prev_page_url,
+        next_page_url,
+        from,
+        to,
+        total
+      } = this.userWallets.wallets
+      this.sumWalletSnapshots = this.userWallets.sumWalletSnapshots
+      this.wallets = data
+      this.totalWallets = total
+      this.from = from
+      this.to = to
+      this.currentPage = current_page
+      this.prevPage = prev_page_url != null ? this.currentPage - 1 : null
+      this.nextPage = next_page_url != null ? this.currentPage + 1 : null
+      this.loading = false
     },
     setActiveWallet(wallet) {
       this.$store.dispatch('activeWallet/updateActiveWallet', wallet)

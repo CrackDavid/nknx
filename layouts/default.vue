@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes"
+    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets"
   >
     <Topbar />
     <Headerbar />
@@ -42,7 +42,8 @@ export default {
     dailyTransactions: 'transactions/getDailyTransactions',
     dailyBlocks: 'blocks/getDailyBlocks',
     dailyNodes: 'nodes/getDailyNodes',
-    latestSigchain: 'latestSigchain/getLatestSigchain'
+    latestSigchain: 'latestSigchain/getLatestSigchain',
+    userWallets: 'userWallets/getUserWallets'
   }),
   destroyed() {
     clearInterval(this.intervalPrice)
@@ -56,6 +57,7 @@ export default {
     clearInterval(this.intervalDailyBlocks)
     clearInterval(this.intervalDailyNodes)
     clearInterval(this.intervalLatestSigchain)
+    clearInterval(this.intervalUserWallets)
   },
   mounted: function() {
     this.updatePrice()
@@ -69,6 +71,7 @@ export default {
     this.updateDailyBlocks()
     this.updateDailyNodes()
     this.updateLatestSigchain()
+    this.updateUserWallets()
 
     this.intervalPrice = setInterval(this.updatePrice, 60000)
     this.intervalNetworkStats = setInterval(this.updateNetworkStats, 60000)
@@ -93,6 +96,7 @@ export default {
     this.intervalDailyBlocks = setInterval(this.updateDailyBlocks, 60000)
     this.intervalDailyNodes = setInterval(this.updateDailyNodes, 60000)
     this.intervalLatestSigchain = setInterval(this.updateLatestSigchain, 60000)
+    this.intervalUserWallets = setInterval(this.updateUserWallets, 60000)
   },
   methods: {
     updatePrice() {
@@ -127,6 +131,9 @@ export default {
     },
     updateLatestSigchain() {
       this.$store.dispatch('latestSigchain/updateLatestSigchain')
+    },
+    updateUserWallets() {
+      this.$store.dispatch('userWallets/updateUserWallets', 1)
     }
   }
 }

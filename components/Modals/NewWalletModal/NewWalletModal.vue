@@ -135,6 +135,7 @@ export default {
           } else if (saved.length > 0) {
             self.alertMsg = 'successWalletAlert'
             self.isSuccess = true
+            self.$store.dispatch('userWallets/updateUserWallets', 1)
             setTimeout(self.closeModal, 1000)
           }
           self.isLoading = false
