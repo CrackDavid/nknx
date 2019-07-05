@@ -1,5 +1,5 @@
 <template>
-  <Card col="3" :hover="true">
+  <Card col="3" :hover="true" @click.native="setActiveWallet(wallet)">
     <div class="wallet-card">
       <div class="wallet-card__icon">
         <Wallet />
@@ -7,7 +7,17 @@
       <div class="wallet-card__data">
         <div class="wallet-card__header">
           <div class="wallet-card__title">{{wallet.pivot.label}}</div>
-          <span class="wallet-card__actions fe fe-more-horizontal"></span>
+          <span class="wallet-card__actions fe fe-more-horizontal" @mouseenter="isActions = true"></span>
+          <div
+            :class="['wallet-card__actions-modal', isActions === true ? 'wallet-card__actions-modal_visible' : null]"
+            @mouseleave="isActions = false"
+            @click="openDeleteWalletModal(wallet)"
+          >
+            <div class="wallet-card__actions-item">
+              <span class="wallet-card__actions-icon fe fe-trash-2"></span>
+              <span class="wallet-card__actions-title">{{$t('delete')}}</span>
+            </div>
+          </div>
         </div>
         <div class="wallet-card__value">
           {{Number(wallet.balance).toFixed(2) | commaNumber}}
@@ -39,10 +49,12 @@ export default {
   },
   data: () => {
     return {
-      balanceUSD: 0
+      balanceUSD: 0,
+      isActions: false
     }
   },
   computed: mapGetters({
+    activeWallet: 'activeWallet/getActiveWallet',
     price: 'price/getCurrentPrice'
   }),
   destroyed() {},
@@ -53,6 +65,18 @@ export default {
     fetchUsdBalance() {
       const usdPrice = this.price.prices[0].price
       this.balanceUSD = (this.wallet.balance * usdPrice).toFixed(2)
+    },
+    openDeleteWalletModal(wallet) {
+      this.$store.dispatch('activeWallet/updateActiveWallet', wallet)
+      this.$store.dispatch('modals/updateDeleteWalletModalVisible', true)
+    },
+    setActiveWallet(wallet) {
+      if (this.isActions === false) {
+        this.$store.dispatch('activeWallet/updateActiveWallet', wallet)
+        this.$router.push({ path: `/wallet-tracker/${wallet.address}` })
+      } else {
+        return false
+      }
     }
   }
 }

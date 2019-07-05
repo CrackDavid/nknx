@@ -346,6 +346,14 @@ table {
   &__body {
     margin-top: 32px;
     display: flex;
+
+    &_wrap {
+      flex-flow: row wrap;
+    }
+  }
+
+  &__message {
+    width: 100%;
   }
 
   &__footer {

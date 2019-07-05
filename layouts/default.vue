@@ -9,6 +9,9 @@
     <transition name="fade">
       <NewWalletModal v-if="newWalletModalVisible" />
     </transition>
+    <transition name="fade">
+      <DeleteWalletModal v-if="deleteWalletModalVisible" />
+    </transition>
   </div>
   <Preloader v-else />
 </template>
@@ -20,6 +23,7 @@ import Topbar from '~/components/Topbar/Topbar'
 import Headerbar from '~/components/Headerbar/Headerbar'
 import Preloader from '~/components/Preloader/Preloader'
 import NewWalletModal from '~/components/Modals/NewWalletModal/NewWalletModal'
+import DeleteWalletModal from '~/components/Modals/DeleteWalletModal/DeleteWalletModal'
 
 export default {
   components: {
@@ -27,10 +31,12 @@ export default {
     Topbar,
     Headerbar,
     Preloader,
-    NewWalletModal
+    NewWalletModal,
+    DeleteWalletModal
   },
   computed: mapGetters({
     newWalletModalVisible: 'modals/getNewWalletModalVisible',
+    deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
     sidebarExpanded: 'sidebar/get',
     price: 'price/getCurrentPrice',
     networkStats: 'network/getNetworkStats',

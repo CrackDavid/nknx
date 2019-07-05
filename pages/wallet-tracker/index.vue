@@ -19,12 +19,7 @@
           <div class="divider"></div>
         </div>
         <NewWalletCard @click.native="openNewWalletModal()" />
-        <WalletCard
-          v-for="wallet in wallets"
-          :key="wallet.pivot.wallet_id"
-          :wallet="wallet"
-          @click.native="setActiveWallet(wallet)"
-        />
+        <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
       </Grid>
     </ContentWrapper>
   </div>
@@ -64,7 +59,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activeWallet: 'activeWallet/getActiveWallet',
       userWallets: 'userWallets/getUserWallets'
     })
   },
@@ -110,10 +104,7 @@ export default {
       this.nextPage = next_page_url != null ? this.currentPage + 1 : null
       this.loading = false
     },
-    setActiveWallet(wallet) {
-      this.$store.dispatch('activeWallet/updateActiveWallet', wallet)
-      this.$router.push({ path: `/wallet-tracker/${wallet.address}` })
-    },
+
     openNewWalletModal() {
       this.$store.dispatch('modals/updateNewWalletModalVisible', true)
     }

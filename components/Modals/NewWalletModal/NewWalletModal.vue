@@ -128,12 +128,12 @@ export default {
           const { duplicate, failed, saved } = response.data
           if (duplicate.length > 0) {
             self.isError = true
-            self.alertMsg = 'duplicateWalletAlert'
+            self.alertMsg = 'duplicateNewWalletAlert'
           } else if (failed.length > 0) {
             self.isError = true
-            self.alertMsg = 'failedWalletAlert'
+            self.alertMsg = 'failedNewWalletAlert'
           } else if (saved.length > 0) {
-            self.alertMsg = 'successWalletAlert'
+            self.alertMsg = 'successNewWalletAlert'
             self.isSuccess = true
             self.$store.dispatch('userWallets/updateUserWallets', 1)
             setTimeout(self.closeModal, 1000)
@@ -142,7 +142,7 @@ export default {
         })
         .catch(error => {
           self.isError = true
-          self.alertMsg = 'failedWalletAlert'
+          self.alertMsg = 'failedNewWalletAlert'
           self.isLoading = false
         })
     }
