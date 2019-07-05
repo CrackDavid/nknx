@@ -8,9 +8,14 @@
   outline: none;
   text-decoration: none;
   box-sizing: border-box;
-  display: block;
+  display: flex;
+  align-items: center;
   background: $white;
   font-size: $font-size-md;
+
+  &__icon {
+    margin-right: 10px;
+  }
 
   &_disabled {
     cursor: not-allowed !important;

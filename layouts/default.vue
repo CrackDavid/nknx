@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets"
+    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets && userNodes"
   >
     <Topbar />
     <Headerbar />
@@ -8,9 +8,8 @@
     <nuxt class="content" :class="sidebarExpanded ? 'content_collapsed' : null" />
     <transition name="fade">
       <NewWalletModal v-if="newWalletModalVisible" />
-    </transition>
-    <transition name="fade">
       <DeleteWalletModal v-if="deleteWalletModalVisible" />
+      <NewNodeModal v-if="newNodeModalVisible" />
     </transition>
   </div>
   <Preloader v-else />
@@ -24,6 +23,7 @@ import Headerbar from '~/components/Headerbar/Headerbar'
 import Preloader from '~/components/Preloader/Preloader'
 import NewWalletModal from '~/components/Modals/NewWalletModal/NewWalletModal'
 import DeleteWalletModal from '~/components/Modals/DeleteWalletModal/DeleteWalletModal'
+import NewNodeModal from '~/components/Modals/NewNodeModal/NewNodeModal'
 
 export default {
   components: {
@@ -32,11 +32,13 @@ export default {
     Headerbar,
     Preloader,
     NewWalletModal,
-    DeleteWalletModal
+    DeleteWalletModal,
+    NewNodeModal
   },
   computed: mapGetters({
     newWalletModalVisible: 'modals/getNewWalletModalVisible',
     deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
+    newNodeModalVisible: 'modals/getNewNodeModalVisible',
     sidebarExpanded: 'sidebar/get',
     price: 'price/getCurrentPrice',
     networkStats: 'network/getNetworkStats',
@@ -49,7 +51,8 @@ export default {
     dailyBlocks: 'blocks/getDailyBlocks',
     dailyNodes: 'nodes/getDailyNodes',
     latestSigchain: 'latestSigchain/getLatestSigchain',
-    userWallets: 'userWallets/getUserWallets'
+    userWallets: 'userWallets/getUserWallets',
+    userNodes: 'userNodes/getUserNodes'
   }),
   destroyed() {
     clearInterval(this.intervalPrice)
@@ -64,6 +67,7 @@ export default {
     clearInterval(this.intervalDailyNodes)
     clearInterval(this.intervalLatestSigchain)
     clearInterval(this.intervalUserWallets)
+    clearInterval(this.intervalUserNodes)
   },
   mounted: function() {
     this.updatePrice()
@@ -78,6 +82,7 @@ export default {
     this.updateDailyNodes()
     this.updateLatestSigchain()
     this.updateUserWallets()
+    this.updateUserNodes()
 
     this.intervalPrice = setInterval(this.updatePrice, 60000)
     this.intervalNetworkStats = setInterval(this.updateNetworkStats, 60000)
@@ -103,6 +108,7 @@ export default {
     this.intervalDailyNodes = setInterval(this.updateDailyNodes, 60000)
     this.intervalLatestSigchain = setInterval(this.updateLatestSigchain, 60000)
     this.intervalUserWallets = setInterval(this.updateUserWallets, 60000)
+    this.intervalUserNodes = setInterval(this.updateUserNodes, 60000)
   },
   methods: {
     updatePrice() {
@@ -139,7 +145,25 @@ export default {
       this.$store.dispatch('latestSigchain/updateLatestSigchain')
     },
     updateUserWallets() {
-      this.$store.dispatch('userWallets/updateUserWallets', 1)
+      let currentPage = 1
+      if (this.userWallets !== false) {
+        currentPage = this.userWallets.wallets.current_page
+      }
+      this.$store.dispatch('userWallets/updateUserWallets', currentPage)
+    },
+    updateUserNodes() {
+      let config = {
+        filter: '',
+        sort: '',
+        order: 'desc',
+        search: '',
+        page: 1
+      }
+      if (this.userNodes !== false) {
+        config.page = this.userNodes.nodes.current_page
+      }
+
+      this.$store.dispatch('userNodes/updateUserNodes', config)
     }
   }
 }

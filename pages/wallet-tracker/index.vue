@@ -72,10 +72,6 @@ export default {
   },
   methods: {
     getWallets(page) {
-      // Checking if page exists
-      if (page === null) {
-        return false
-      }
       this.loading = true
       // Disabling pagination untill data fetched
       this.nextPage = null

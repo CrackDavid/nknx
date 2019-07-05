@@ -1,17 +1,19 @@
 <template>
   <div class="page__wallet-tracker">
     <ContentWrapper :centered="false" class="page__wallet-tracker-wrapper">
-      <Grid v-if="wallets.length > 0">
+      <Grid v-if="userWallets !== false">
         <WalletPanel />
         <WalletBalanceHistory />
         <WalletTransactions />
       </Grid>
     </ContentWrapper>
-    <WalletSide :wallets="wallets" />
+    <WalletSide :wallets="userWallets.wallets.data" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import WalletPanel from '~/components/UserWallets/WalletPanel/WalletPanel.vue'
@@ -31,17 +33,12 @@ export default {
   data: () => {
     return { wallets: [] }
   },
-
-  mounted() {
-    this.getWallets()
+  computed: {
+    ...mapGetters({
+      userWallets: 'userWallets/getUserWallets'
+    })
   },
-  methods: {
-    getWallets() {
-      const self = this
-      this.$axios.$get('wallets').then(response => {
-        self.wallets = response.wallets.data
-      })
-    }
-  }
+  mounted() {},
+  methods: {}
 }
 </script>

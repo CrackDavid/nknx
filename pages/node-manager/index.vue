@@ -2,8 +2,16 @@
   <div>
     <div class="page__node-manager">
       <div class="page__node-manager-heading">
-        <h1>{{$t('myNodes')}}</h1>
-        <NodeOnline v-if="totalNodes > 0" :filters="filters" />
+        <div class="page__node-manager-left">
+          <h1>{{$t('myNodes')}}</h1>
+          <NodeOnline v-if="totalNodes > 0" :filters="filters" />
+        </div>
+        <div class="page__node-manager-right">
+          <Button @click.native="openNewNodeModal">
+            <span class="button__icon fe fe-plus"></span>
+            {{$t('addNodes')}}
+          </Button>
+        </div>
       </div>
       <NodeStats :nodes="totalNodes" :total="total" :daily="daily" />
       <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" @getNodes="getNodes" />
@@ -33,6 +41,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import NodeManager from '~/components/UserNodes/NodeManager/NodeManager.vue'
@@ -40,6 +50,7 @@ import NodeStats from '~/components/UserNodes/NodeStats/NodeStats.vue'
 import NodeOnline from '~/components/UserNodes/NodeOnline/NodeOnline.vue'
 import NodeFilter from '~/components/UserNodes/NodeFilter/NodeFilter.vue'
 import NodeSearchBar from '~/components/UserNodes/NodeSearchBar/NodeSearchBar.vue'
+import Button from '~/components/Button/Button.vue'
 
 export default {
   components: {
@@ -49,7 +60,8 @@ export default {
     NodeStats,
     NodeOnline,
     NodeFilter,
-    NodeSearchBar
+    NodeSearchBar,
+    Button
   },
   data: () => {
     return {
@@ -70,78 +82,90 @@ export default {
       activeSearch: ''
     }
   },
+  computed: {
+    ...mapGetters({
+      userNodes: 'userNodes/getUserNodes'
+    })
+  },
+  watch: {
+    userNodes: function(newNodes, oldNodes) {
+      this.fetchNodesData()
+    }
+  },
   mounted() {
-    this.getNodes(
-      this.currentPage,
-      this.activeFilter,
-      this.activeSort,
-      this.activeOrder
-    )
+    this.fetchNodesData()
   },
   methods: {
+    openNewNodeModal() {
+      this.$store.dispatch('modals/updateNewNodeModalVisible', true)
+    },
     getNodes(page, filter, sort, order, search) {
-      const self = this
       // Checking if page and filter exists
+
       if (page === null) {
         return false
       }
 
       if (filter === undefined) {
-        filter = self.activeFilter
+        filter = this.activeFilter
       } else {
-        self.activeFilter = filter
+        this.activeFilter = filter
       }
 
       if (sort === undefined) {
-        sort = self.activeSort
+        sort = this.activeSort
       } else {
-        self.activeSort = sort
+        this.activeSort = sort
       }
 
       if (order === undefined) {
-        order = self.activeOrder
+        order = this.activeOrder
       } else {
-        self.activeOrder = order
+        this.activeOrder = order
       }
 
       if (search === undefined) {
-        search = self.activeSearch
+        search = this.activeSearch
       } else {
-        self.activeSearch = search
+        this.activeSearch = search
       }
 
-      self.loading = true
+      const config = {
+        filter: filter,
+        sort: sort,
+        order: order,
+        search: search,
+        page: page
+      }
+
+      this.loading = true
       // Disabling pagination untill data fetched
-      self.nextPage = null
-      self.prevPage = null
+      this.nextPage = null
+      this.prevPage = null
       // Fetcing data
 
-      this.$axios
-        .$get(
-          `nodes?page=${page}&syncState=${filter}&orderBy=${sort}&order=${order}&search=${search}`
-        )
-        .then(response => {
-          const {
-            current_page,
-            prev_page_url,
-            next_page_url,
-            from,
-            to
-          } = response.nodes
-
-          self.filters = response.statCounts
-          self.nodes = response.nodes.data
-          self.filteredNodes = self.nodes
-          self.total = response.rewardAll
-          self.daily = response.rewardToday
-          self.totalNodes = response.statCounts.ALL
-          self.from = from
-          self.to = to
-          self.currentPage = current_page
-          self.prevPage = prev_page_url != null ? self.currentPage - 1 : null
-          self.nextPage = next_page_url != null ? self.currentPage + 1 : null
-          self.loading = false
-        })
+      this.$store.dispatch('userNodes/updateUserNodes', config)
+    },
+    fetchNodesData() {
+      const {
+        current_page,
+        prev_page_url,
+        next_page_url,
+        from,
+        to,
+        data
+      } = this.userNodes.nodes
+      this.nodes = data
+      this.filters = this.userNodes.statCounts
+      this.total = this.userNodes.rewardAll
+      this.daily = this.userNodes.rewardToday
+      this.totalNodes = this.userNodes.statCounts.ALL
+      this.from = from
+      this.to = to
+      this.currentPage = current_page
+      this.prevPage = prev_page_url != null ? this.currentPage - 1 : null
+      this.nextPage = next_page_url != null ? this.currentPage + 1 : null
+      this.loading = false
     }
   }
 }

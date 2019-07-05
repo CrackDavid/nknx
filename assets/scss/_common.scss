@@ -56,11 +56,17 @@ h3 {
     margin: 0 auto;
     background-color: $white;
 
+    &-left {
+      display: flex;
+      align-items: center;
+    }
+
     &-heading {
       display: flex;
       align-items: center;
       padding-bottom: 40px;
       position: relative;
+      justify-content: space-between;
 
       &:after {
         content: '';
