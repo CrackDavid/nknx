@@ -17,6 +17,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   components: {},
   props: {
@@ -34,6 +36,11 @@ export default {
       active: 'ALL'
     }
   },
+  computed: {
+    ...mapGetters({
+      userConfig: 'userNodes/getUserConfig'
+    })
+  },
   destroyed() {},
   mounted: function() {
     this.markerInitialize()
@@ -45,7 +52,10 @@ export default {
       if (filterItem === 'ALL') {
         filter = ''
       }
-      this.$emit('getNodes', 1, filter)
+      let newConfig = Object.assign({}, this.userConfig)
+      newConfig.filter = filter
+      this.$store.dispatch('userNodes/updateUserConfig', newConfig)
+      this.$store.dispatch('userNodes/updateUserNodes')
     },
     markerInitialize() {
       const marker = document.getElementsByClassName('node-filter__marker')[0]

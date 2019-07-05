@@ -14,27 +14,13 @@
         </div>
       </div>
       <NodeStats :nodes="totalNodes" :total="total" :daily="daily" />
-      <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" @getNodes="getNodes" />
+      <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" />
     </div>
 
     <ContentWrapper>
       <Grid>
-        <NodeSearchBar
-          :prevPage="prevPage"
-          :nextPage="nextPage"
-          :currentPage="currentPage"
-          :activeFilter="activeFilter"
-          :activeSort="activeSort"
-          :activeOrder="activeOrder"
-          @getNodes="getNodes"
-        />
-        <NodeManager
-          v-if="totalNodes > 0"
-          :nodes="nodes"
-          :currentPage="currentPage"
-          :activeFilter="activeFilter"
-          @getNodes="getNodes"
-        />
+        <NodeSearchBar :prevPage="prevPage" :nextPage="nextPage" />
+        <NodeManager v-if="totalNodes > 0" :nodes="nodes" />
       </Grid>
     </ContentWrapper>
   </div>
@@ -73,13 +59,8 @@ export default {
       loading: true,
       nextPage: null,
       prevPage: null,
-      currentPage: 1,
-      activeFilter: '',
       from: 0,
-      to: 0,
-      activeSort: 'node_user.label',
-      activeOrder: 'desc',
-      activeSearch: ''
+      to: 0
     }
   },
   computed: {
@@ -92,59 +73,23 @@ export default {
       this.fetchNodesData()
     }
   },
+  created() {
+    const config = {
+      filter: '',
+      sort: '',
+      order: 'desc',
+      search: '',
+      page: 1
+    }
+    this.$store.dispatch('userNodes/updateUserConfig', config)
+    this.$store.dispatch('userNodes/updateUserNodes')
+  },
   mounted() {
     this.fetchNodesData()
   },
   methods: {
     openNewNodeModal() {
       this.$store.dispatch('modals/updateNewNodeModalVisible', true)
-    },
-    getNodes(page, filter, sort, order, search) {
-      // Checking if page and filter exists
-
-      if (page === null) {
-        return false
-      }
-
-      if (filter === undefined) {
-        filter = this.activeFilter
-      } else {
-        this.activeFilter = filter
-      }
-
-      if (sort === undefined) {
-        sort = this.activeSort
-      } else {
-        this.activeSort = sort
-      }
-
-      if (order === undefined) {
-        order = this.activeOrder
-      } else {
-        this.activeOrder = order
-      }
-
-      if (search === undefined) {
-        search = this.activeSearch
-      } else {
-        this.activeSearch = search
-      }
-
-      const config = {
-        filter: filter,
-        sort: sort,
-        order: order,
-        search: search,
-        page: page
-      }
-
-      this.loading = true
-      // Disabling pagination untill data fetched
-      this.nextPage = null
-      this.prevPage = null
-      // Fetcing data
-
-      this.$store.dispatch('userNodes/updateUserNodes', config)
     },
     fetchNodesData() {
       const {

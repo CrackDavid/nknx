@@ -48,6 +48,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import NodeStatus from '~/components/UserNodes/NodeStatus/NodeStatus.vue'
 import NodeCheckbox from '~/components/UserNodes/NodeCheckbox/NodeCheckbox.vue'
 
@@ -57,14 +59,6 @@ export default {
     nodes: {
       type: Array,
       default: () => []
-    },
-    currentPage: {
-      type: Number,
-      default: 1
-    },
-    activeFilter: {
-      type: String,
-      default: ''
     }
   },
   data: () => {
@@ -84,6 +78,11 @@ export default {
       order: false
     }
   },
+  computed: {
+    ...mapGetters({
+      userConfig: 'userNodes/getUserConfig'
+    })
+  },
   mounted: function() {},
   methods: {
     sortNodes(sort) {
@@ -94,14 +93,13 @@ export default {
       }
       this.active = sort
 
-      const currentSort = this.order === true ? 'asc' : 'desc'
-      this.$emit(
-        'getNodes',
-        this.currentPage,
-        this.activeFilter,
-        sort,
-        currentSort
-      )
+      const currentOrder = this.order === true ? 'asc' : 'desc'
+      let newConfig = Object.assign({}, this.userConfig)
+      newConfig.order = currentOrder
+      newConfig.sort = this.active
+
+      this.$store.dispatch('userNodes/updateUserConfig', newConfig)
+      this.$store.dispatch('userNodes/updateUserNodes')
     },
     selectAll() {
       this.isAll = !this.isAll

@@ -10,8 +10,8 @@
       />
     </div>
     <div class="node-search-bar__pagination">
-      <Pagination :page="prevPage" type="prev" @click.native="$emit('getNodes', prevPage)" />
-      <Pagination :page="nextPage" type="next" @click.native="$emit('getNodes', nextPage)" />
+      <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
+      <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
     </div>
   </div>
 </template>
@@ -21,6 +21,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Pagination from '~/components/Pagination/Pagination'
 import debounce from 'lodash.debounce'
 
@@ -34,22 +36,6 @@ export default {
     nextPage: {
       type: Number,
       default: null
-    },
-    currentPage: {
-      type: Number,
-      default: 1
-    },
-    activeFilter: {
-      type: String,
-      default: ''
-    },
-    activeSort: {
-      type: String,
-      default: 'node_user.label'
-    },
-    activeOrder: {
-      type: String,
-      default: 'desc'
     }
   },
   data: () => {
@@ -57,18 +43,25 @@ export default {
       searchInput: ''
     }
   },
+  computed: {
+    ...mapGetters({
+      userConfig: 'userNodes/getUserConfig'
+    })
+  },
   destroyed() {},
   mounted: function() {},
   methods: {
+    changePage(page) {
+      let newConfig = Object.assign({}, this.userConfig)
+      newConfig.page = page
+      this.$store.dispatch('userNodes/updateUserConfig', newConfig)
+      this.$store.dispatch('userNodes/updateUserNodes')
+    },
     search: debounce(function(searchInput) {
-      this.$emit(
-        'getNodes',
-        this.currentPage,
-        this.activeFilter,
-        this.activeSort,
-        this.activeOrder,
-        searchInput
-      )
+      let newConfig = Object.assign({}, this.userConfig)
+      newConfig.search = searchInput
+      this.$store.dispatch('userNodes/updateUserConfig', newConfig)
+      this.$store.dispatch('userNodes/updateUserNodes')
     }, 1500)
   }
 }

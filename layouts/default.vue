@@ -52,7 +52,8 @@ export default {
     dailyNodes: 'nodes/getDailyNodes',
     latestSigchain: 'latestSigchain/getLatestSigchain',
     userWallets: 'userWallets/getUserWallets',
-    userNodes: 'userNodes/getUserNodes'
+    userNodes: 'userNodes/getUserNodes',
+    userConfig: 'userNodes/getUserConfig'
   }),
   destroyed() {
     clearInterval(this.intervalPrice)
@@ -152,18 +153,7 @@ export default {
       this.$store.dispatch('userWallets/updateUserWallets', currentPage)
     },
     updateUserNodes() {
-      let config = {
-        filter: '',
-        sort: '',
-        order: 'desc',
-        search: '',
-        page: 1
-      }
-      if (this.userNodes !== false) {
-        config.page = this.userNodes.nodes.current_page
-      }
-
-      this.$store.dispatch('userNodes/updateUserNodes', config)
+      this.$store.dispatch('userNodes/updateUserNodes')
     }
   }
 }

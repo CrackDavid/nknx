@@ -137,17 +137,7 @@ export default {
           } else if (saved.length > 0) {
             self.alertMsg = 'successNewNodeAlert'
             self.isSuccess = true
-            let config = {
-              filter: '',
-              sort: '',
-              order: 'desc',
-              search: '',
-              page: 1
-            }
-            if (self.userNodes !== false) {
-              config.page = self.userNodes.nodes.current_page
-            }
-            self.$store.dispatch('userNodes/updateUserNodes', config)
+            self.$store.dispatch('userNodes/updateUserNodes')
             setTimeout(self.closeModal, 1000)
           }
           self.isLoading = false
