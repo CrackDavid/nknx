@@ -14,7 +14,10 @@
           {{change}}%
         </div>
       </div>
-      <div class="sparkline-stats__value">{{dailyValue | commaNumber}}</div>
+      <div class="sparkline-stats__value">
+        {{dailyValue | commaNumber}}
+        <span v-if="symbol.length > 0" class="sparkline-stats__symbol">{{symbol}}</span>
+      </div>
       <div class="sparkline-stats__chart">
         <slot />
       </div>
@@ -45,6 +48,10 @@ export default {
     dailyValue: {
       type: Number,
       default: 0
+    },
+    symbol: {
+      type: String,
+      default: ''
     }
   },
   data: () => {

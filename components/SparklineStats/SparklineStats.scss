@@ -44,4 +44,9 @@
     left: -16px;
     width: calc(100% + 32px);
   }
+
+  &__symbol {
+    font-size: $font-size-md;
+    font-weight: 500;
+  }
 }

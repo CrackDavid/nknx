@@ -1,5 +1,5 @@
 <template>
-  <Card col="3" row="2">
+  <Card col="3" row="3">
     <div class="news">
       <div class="news__header">
         <h3 class="news__heading">{{$t('latestNews')}}</h3>
@@ -22,7 +22,7 @@
           <div class="news-item__content">{{news.content | striphtml | excerpt(20)}}</div>
           <a class="news-item__more" target="_blank" :href="news.link">
             {{$t('readMore')}}
-            <ArrowRight/>
+            <ArrowRight />
           </a>
           <div v-if="index<paginatedData.length-1" class="news-item__divider"></div>
         </div>

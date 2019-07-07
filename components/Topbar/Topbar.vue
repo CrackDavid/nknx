@@ -46,29 +46,8 @@ export default {
     networkStats: 'network/getNetworkStats',
     networkStatus: 'network/getNetworkStatus'
   }),
-  destroyed() {
-    clearInterval(this.intervalPrice)
-    clearInterval(this.intervalNetworkStats)
-    clearInterval(this.intervalNetworkStatus)
-  },
-  mounted: function() {
-    this.updatePrice()
-    this.updateNetworkStats()
-    this.updateNetworkStatus()
-    this.intervalPrice = setInterval(this.updatePrice, 60000)
-    this.intervalNetworkStats = setInterval(this.updateNetworkStats, 60000)
-    this.intervalNetworkStatus = setInterval(this.updateNetworkStatus, 60000)
-  },
-  methods: {
-    updatePrice() {
-      this.$store.dispatch('price/updateCurrentPrice')
-    },
-    updateNetworkStats() {
-      this.$store.dispatch('network/updateNetworkStats')
-    },
-    updateNetworkStatus() {
-      this.$store.dispatch('network/updateNetworkStatus')
-    }
-  }
+  destroyed() {},
+  mounted: function() {},
+  methods: {}
 }
 </script>

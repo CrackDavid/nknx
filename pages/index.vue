@@ -3,11 +3,11 @@
     <ContentWrapper>
       <h1 class="page__title">{{$t('dashboard')}}</h1>
       <Grid>
-        <GeneralStats/>
-        <GeneralStats/>
-        <GeneralStats/>
-        <MediumNews/>
-        <MarketStats/>
+        <GeneralMiningStats />
+        <GeneralNetworkStats />
+        <DailyBalance />
+        <MediumNews />
+        <MarketStats />
       </Grid>
     </ContentWrapper>
   </div>
@@ -15,18 +15,22 @@
 
 <script>
 import Grid from '~/components/Grid/Grid.vue'
-import GeneralStats from '~/components/GeneralStats/GeneralStats.vue'
+import GeneralNetworkStats from '~/components/GeneralStats/GeneralNetworkStats.vue'
+import GeneralMiningStats from '~/components/GeneralStats/GeneralMiningStats.vue'
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import MarketStats from '~/components/MarketStats/MarketStats.vue'
 import MediumNews from '~/components/MediumNews/MediumNews.vue'
+import DailyBalance from '~/components/DailyBalance/DailyBalance.vue'
 
 export default {
   components: {
     Grid,
-    GeneralStats,
+    GeneralNetworkStats,
+    GeneralMiningStats,
     ContentWrapper,
     MarketStats,
-    MediumNews
+    MediumNews,
+    DailyBalance
   }
 }
 </script>

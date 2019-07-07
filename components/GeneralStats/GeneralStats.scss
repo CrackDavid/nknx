@@ -1,5 +1,33 @@
 .general-stats {
-  padding: $padding-max $padding-big;
+  padding: $padding-max $padding-normal;
+
+  &_gradient {
+    background: $primary-gradient;
+
+    .general-stats {
+      &__title {
+        color: $white;
+      }
+
+      &__subtitle {
+        color: $white;
+      }
+
+      &__data {
+        &-icon {
+          color: $white;
+        }
+
+        &-title {
+          color: $white;
+        }
+
+        &-subtitle {
+          color: rgba($white, 0.75);
+        }
+      }
+    }
+  }
 
   &__divider {
     width: 100%;
@@ -26,19 +54,22 @@
   }
 
   &__data {
-    display: flex;
-    align-items: center;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     padding: 0px $padding-small;
+    grid-column-gap: 20%;
 
     &:last-child {
       margin-bottom: 0px;
     }
 
+    &-symbol {
+      font-size: 8px;
+    }
+
     &-item {
       display: flex;
       align-items: center;
-      width: 50%;
       margin-top: $padding-medium;
     }
 
