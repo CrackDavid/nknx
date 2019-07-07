@@ -49,7 +49,7 @@
         </template>
         <template v-else>
           <div class="modal__body modal__body_wrap">
-            <div class="modal__body-title">{{$t('enterMultipleIp')}}</div>
+            <div class="modal__body-title">{{$t('enterMultipleAddresses')}}</div>
             <div
               :class="['modal-input modal-input_full', isError === true || isMultipleInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
             >
