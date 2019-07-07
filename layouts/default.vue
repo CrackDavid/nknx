@@ -5,7 +5,7 @@
     <Topbar />
     <Headerbar />
     <Sidebar />
-    <nuxt class="content" :class="sidebarExpanded ? 'content_collapsed' : null" />
+    <nuxt class="content" :class="[sidebarExpanded ? 'content_collapsed' : null, newWalletModalVisible !== false || deleteWalletModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]" />
     <transition name="fade">
       <NewWalletModal v-if="newWalletModalVisible" />
       <DeleteWalletModal v-if="deleteWalletModalVisible" />

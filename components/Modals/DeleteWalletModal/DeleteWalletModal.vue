@@ -1,5 +1,6 @@
 <template>
   <div class="modal-wrapper">
+    <div class="modal-dialog">
     <div v-on-clickaway="closeModal" class="modal-form">
       <div class="modal__header">
         <div class="modal__heading">{{$t('walletTracker')}}</div>
@@ -31,6 +32,7 @@
           @click.native="deleteWallet(activeWallet.id)"
         >{{$t('confirm')}}</Button>
       </div>
+    </div>
     </div>
   </div>
 </template>

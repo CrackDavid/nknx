@@ -293,17 +293,26 @@ table {
 
 .modal {
   &-wrapper {
+    overflow: hidden;
+    overflow-y: scroll;
     position: fixed;
     min-height: 100vh;
+    height: 100%;
     width: 100%;
     left: 0;
     top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+
     background: rgba(9, 14, 47, 0.24);
     transition: $transition-1;
     z-index: 100;
+  }
+
+  &-dialog {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
   }
 
   &-form {
@@ -311,7 +320,8 @@ table {
     box-shadow: $shadow-2;
     background-color: $white;
     padding: 32px;
-    min-width: 640px;
+    width: 640px;
+    margin: $padding-normal auto;
   }
 
   &__header {
@@ -326,6 +336,42 @@ table {
     font-weight: bold;
     color: $text-grey-light;
     font-size: $font-size-xs;
+  }
+
+  &-list {
+    width: 100%;
+    margin-top: $padding-normal;
+
+    &__item {
+    }
+  }
+
+  &-switch {
+    display: flex;
+    align-items: center;
+
+    &__button {
+      font-weight: bold;
+      color: $text-grey-light;
+      font-size: $font-size-widget;
+      padding-bottom: 4px;
+      border-bottom: 3px solid transparent;
+      transition: $transition-1;
+      cursor: pointer;
+
+      &_active {
+        border-color: $primary;
+        color: $primary;
+      }
+
+      &:hover {
+        color: $primary;
+      }
+
+      &:not(:last-child) {
+        margin-right: $padding-normal;
+      }
+    }
   }
 
   &__close {
@@ -347,11 +393,17 @@ table {
     font-size: $font-size-title;
     font-weight: bold;
     margin-top: 8px;
+    margin-bottom: 32px;
   }
 
   &__body {
-    margin-top: 32px;
     display: flex;
+    margin-top: $padding-normal;
+
+    &-title {
+      margin-bottom: $padding-normal;
+      width: 100%;
+    }
 
     &_wrap {
       flex-flow: row wrap;
@@ -392,6 +444,12 @@ table {
   &-input {
     flex: 1;
 
+    &_full {
+      flex: auto;
+      width: 100%;
+      margin-bottom: $padding-normal;
+    }
+
     &:first-child {
       margin-right: $padding-default;
     }
@@ -399,7 +457,7 @@ table {
     &__label {
       line-height: 18px;
       color: $text-grey-light;
-      font-weight: bold;
+      font-weight: 500;
       font-size: $font-size-sm;
     }
 
@@ -420,12 +478,17 @@ table {
 
     &__control {
       box-sizing: border-box;
-      width: 100%;
+      width: 100% !important;
       border-radius: 4px;
       padding: $padding-default;
       border: $card-border;
       outline: none;
       transition: $transition-1;
+      resize: none;
+
+      &_textarea {
+        min-height: 180px;
+      }
 
       &:focus {
         border-color: $primary;
