@@ -11,16 +11,20 @@
             <span class="button__icon fe fe-plus"></span>
             {{$t('addNodes')}}
           </Button>
+          <Button theme="danger" @click.native="openDeleteAllNodesModal">
+            <span class="button__icon fe fe-trash-2"></span>
+            {{$t('removeAll')}}
+          </Button>
         </div>
       </div>
       <NodeStats :nodes="totalNodes" :total="total" :daily="daily" />
       <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" />
     </div>
 
-    <ContentWrapper>
+    <ContentWrapper v-if="totalNodes > 0">
       <Grid>
         <NodeSearchBar :prevPage="prevPage" :nextPage="nextPage" />
-        <NodeManager v-if="totalNodes > 0" :nodes="nodes" />
+        <NodeManager  :nodes="nodes" />
       </Grid>
     </ContentWrapper>
   </div>
@@ -90,6 +94,9 @@ export default {
   methods: {
     openNewNodeModal() {
       this.$store.dispatch('modals/updateNewNodeModalVisible', true)
+    },
+    openDeleteAllNodesModal() {
+      this.$store.dispatch('modals/updateDeleteAllNodesModalVisible', true)
     },
     fetchNodesData() {
       const {

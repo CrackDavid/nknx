@@ -40,7 +40,6 @@
 
     &_white {
       min-height: 48px;
-      box-sizing: border-box;
       padding: $padding-default $padding-normal;
       color: $text-grey-light;
       background: $white;
@@ -58,6 +57,7 @@
       min-height: 48px;
       color: $white;
       background: $secondary;
+      box-sizing: border-box;
 
       &:hover {
         background: darken($secondary, 10%);
@@ -79,6 +79,21 @@
 
       &:active {
         background: lighten($ghost-white, 10%);
+      }
+    }
+
+    &_danger {
+      color: $white;
+      background: $error;
+      min-height: 48px;
+      box-sizing: border-box;
+
+      &:hover {
+        background: darken($error, 10%);
+      }
+
+      &:active {
+        background: lighten($error, 10%);
       }
     }
 

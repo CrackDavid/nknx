@@ -61,6 +61,12 @@ h3 {
       align-items: center;
     }
 
+    &-right {
+      display: grid;
+      grid-gap: $padding-default;
+      grid-template-columns: repeat(2, max-content);
+    }
+
     &-heading {
       display: flex;
       align-items: center;

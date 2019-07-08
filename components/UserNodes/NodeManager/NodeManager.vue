@@ -1,9 +1,6 @@
 <template>
   <table class="node-manager">
     <thead>
-      <th>
-        <NodeCheckbox @click.native="selectAll()" />
-      </th>
       <th
         v-for="heading in headings"
         :key="heading.title"
@@ -24,11 +21,8 @@
         :key="node.pivot.node_id"
         :class="node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null"
       >
-        <td>
-          <NodeCheckbox v-model="selected" :val="node" />
-        </td>
-        <td>{{node.pivot.label}}</td>
         <td>{{node.addr}}</td>
+        <td>{{node.pivot.label}}</td>
         <td>
           <NodeStatus :status="node.syncState" />
         </td>
@@ -65,10 +59,9 @@
 import { mapGetters } from 'vuex'
 
 import NodeStatus from '~/components/UserNodes/NodeStatus/NodeStatus.vue'
-import NodeCheckbox from '~/components/UserNodes/NodeCheckbox/NodeCheckbox.vue'
 
 export default {
-  components: { NodeStatus, NodeCheckbox },
+  components: { NodeStatus },
   props: {
     nodes: {
       type: Array,
@@ -78,8 +71,8 @@ export default {
   data: () => {
     return {
       headings: [
-        { value: 'node_user.label', title: 'name' },
         { value: 'addr', title: 'ipAddress' },
+        { value: 'node_user.label', title: 'name' },
         { value: '', title: 'status' },
         { value: '', title: 'latestBlock' },
         { value: '', title: 'currentVersion' },
