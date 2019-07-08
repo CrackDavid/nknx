@@ -36,7 +36,21 @@
         <td>{{node.version | nodeVersion}}</td>
         <td>{{node.relayMessageCount}}</td>
         <td>
-          <span class="node-manager__actions fe fe-more-horizontal"></span>
+          <span
+            class="node-manager__actions fe fe-more-horizontal"
+            @mouseenter="isActions = node.id"
+          >
+            <div
+              :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
+              @mouseleave="isActions = false"
+              @click="openDeleteNodeModal(node)"
+            >
+              <div class="node-manager__actions-item">
+                <span class="node-manager__actions-icon fe fe-trash-2"></span>
+                <span class="node-manager__actions-title">{{$t('delete')}}</span>
+              </div>
+            </div>
+          </span>
         </td>
       </tr>
     </tbody>
@@ -75,7 +89,8 @@ export default {
       selected: [],
       isAll: false,
       active: 'node_user.label',
-      order: false
+      order: false,
+      isActions: false
     }
   },
   computed: {
@@ -104,6 +119,10 @@ export default {
     selectAll() {
       this.isAll = !this.isAll
       this.isAll === true ? (this.selected = this.nodes) : (this.selected = [])
+    },
+    openDeleteNodeModal(node) {
+      this.$store.dispatch('activeNode/updateActiveNode', node)
+      this.$store.dispatch('modals/updateDeleteNodeModalVisible', true)
     }
   }
 }

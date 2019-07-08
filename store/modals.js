@@ -1,7 +1,8 @@
 export const state = () => ({
   newWalletModalVisible: false,
   deleteWalletModalVisible: false,
-  newNodeModalVisible: false
+  newNodeModalVisible: false,
+  deleteNodeModalVisible: false
 })
 
 export const mutations = {
@@ -13,6 +14,9 @@ export const mutations = {
   },
   setNewNodeModalVisible(state, obj) {
     state.newNodeModalVisible = obj
+  },
+  setDeleteNodeModalVisible(state, obj) {
+    state.deleteNodeModalVisible = obj
   }
 }
 
@@ -25,6 +29,9 @@ export const getters = {
   },
   getNewNodeModalVisible(state) {
     return state.newNodeModalVisible
+  },
+  getDeleteNodeModalVisible(state) {
+    return state.deleteNodeModalVisible
   }
 }
 
@@ -37,5 +44,8 @@ export const actions = {
   },
   updateNewNodeModalVisible({ commit }, obj) {
     commit('setNewNodeModalVisible', obj)
+  },
+  updateDeleteNodeModalVisible({ commit }, obj) {
+    commit('setDeleteNodeModalVisible', obj)
   }
 }

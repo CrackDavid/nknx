@@ -5,11 +5,15 @@
     <Topbar />
     <Headerbar />
     <Sidebar />
-    <nuxt class="content" :class="[sidebarExpanded ? 'content_collapsed' : null, newWalletModalVisible !== false || deleteWalletModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]" />
+    <nuxt
+      class="content"
+      :class="[sidebarExpanded ? 'content_collapsed' : null, newWalletModalVisible !== false || deleteWalletModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]"
+    />
     <transition name="fade">
       <NewWalletModal v-if="newWalletModalVisible" />
       <DeleteWalletModal v-if="deleteWalletModalVisible" />
       <NewNodeModal v-if="newNodeModalVisible" />
+      <DeleteNodeModal v-if="deleteNodeModalVisible" />
     </transition>
   </div>
   <Preloader v-else />
@@ -24,6 +28,7 @@ import Preloader from '~/components/Preloader/Preloader'
 import NewWalletModal from '~/components/Modals/NewWalletModal/NewWalletModal'
 import DeleteWalletModal from '~/components/Modals/DeleteWalletModal/DeleteWalletModal'
 import NewNodeModal from '~/components/Modals/NewNodeModal/NewNodeModal'
+import DeleteNodeModal from '~/components/Modals/DeleteNodeModal/DeleteNodeModal'
 
 export default {
   components: {
@@ -33,12 +38,14 @@ export default {
     Preloader,
     NewWalletModal,
     DeleteWalletModal,
-    NewNodeModal
+    NewNodeModal,
+    DeleteNodeModal
   },
   computed: mapGetters({
     newWalletModalVisible: 'modals/getNewWalletModalVisible',
     deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
     newNodeModalVisible: 'modals/getNewNodeModalVisible',
+    deleteNodeModalVisible: 'modals/getDeleteNodeModalVisible',
     sidebarExpanded: 'sidebar/get',
     price: 'price/getCurrentPrice',
     networkStats: 'network/getNetworkStats',

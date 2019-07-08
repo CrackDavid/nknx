@@ -6,7 +6,7 @@
       type="checkbox"
       :value="val"
       @change="onChange"
-    >
+    />
     <label class="node-checkbox__label"></label>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
       default: () => {}
     },
     value: {
-      type: Object,
+      type: Array,
       default: () => {}
     }
   },
