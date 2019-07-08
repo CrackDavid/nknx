@@ -6,7 +6,7 @@
           <div class="modal__heading">{{$t('nodeManager')}}</div>
           <span class="modal__close fe fe-x" @click="closeModal"></span>
         </div>
-        <div class="modal__title">{{$t('deleteNode')}}</div>
+        <div class="modal__title">{{$t('deleteAllNodes')}}</div>
         <div class="modal__body modal__body_wrap">
           <div class="modal__message">{{$t('deleteAllNodesConfirm')}}</div>
           <div

@@ -13,7 +13,7 @@
           </Button>
           <Button theme="danger" @click.native="openDeleteAllNodesModal">
             <span class="button__icon fe fe-trash-2"></span>
-            {{$t('removeAll')}}
+            {{$t('removeAllNodes')}}
           </Button>
         </div>
       </div>
@@ -24,7 +24,7 @@
     <ContentWrapper v-if="totalNodes > 0">
       <Grid>
         <NodeSearchBar :prevPage="prevPage" :nextPage="nextPage" />
-        <NodeManager  :nodes="nodes" />
+        <NodeManager :nodes="nodes" />
       </Grid>
     </ContentWrapper>
   </div>
