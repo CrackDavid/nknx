@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x">
+  <div class="overflow-x node-manager__wrapper">
     <table class="node-manager">
       <thead>
         <th
