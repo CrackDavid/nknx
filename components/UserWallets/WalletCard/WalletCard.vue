@@ -1,5 +1,9 @@
 <template>
-  <Card col="3" :hover="true" @click.native="setActiveWallet(wallet)">
+  <Card
+    :col="$mq === 'xl' ? '3' : $mq === 'llg' ? '6' : '12'"
+    :hover="true"
+    @click.native="setActiveWallet(wallet)"
+  >
     <div class="wallet-card">
       <div class="wallet-card__icon">
         <Wallet />

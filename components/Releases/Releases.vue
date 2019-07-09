@@ -1,5 +1,5 @@
 <template>
-  <Card col="4">
+  <Card :col="$mq === 'xl' ? '4' : '12'">
     <div class="releases">
       <div class="releases__header">
         <h3 class="releases__title">{{$t('latestReleases')}}</h3>
@@ -26,7 +26,7 @@
           <div class="releases-item__description">{{item.body | striphtml | excerpt(20)}}</div>
           <a class="releases-item__more" :href="item.html_url" target="_blank">
             {{$t('viewDetails')}}
-            <ArrowRight/>
+            <ArrowRight />
           </a>
         </div>
       </div>

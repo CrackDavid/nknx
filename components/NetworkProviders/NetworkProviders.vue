@@ -1,18 +1,18 @@
 <template>
-  <Card col="3">
+  <Card :col="$mq === 'xl' ? '3' : '12'">
     <div class="network-providers">
       <div class="network-providers__header">
         <h3 class="network-providers__heading">{{$t('nodeProvider')}}</h3>
       </div>
     </div>
-    <NetworkProvidersChart/>
+    <NetworkProvidersChart />
     <div class="network-providers__top">
       <div class="network-providers__top-title">
         <div>{{$t('top3Providers')}}</div>
       </div>
       <div v-for="item in providersTop" :key="item.isp" class="network-providers__top-item">
         <div class="network-providers__top-icon">
-          <img :src="'/icons/'+item.isp + '.svg' || '' " alt>
+          <img :src="'/icons/'+item.isp + '.svg' || '' " alt />
         </div>
         <div class="network-providers__top-stats">
           <div class="network-providers__top-heading">

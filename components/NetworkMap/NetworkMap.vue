@@ -1,10 +1,10 @@
 <template>
-  <Card col="9">
+  <Card :col="$mq === 'xl' ? '9' : '12'">
     <div class="network-map">
       <div class="network-map__header">
         <h3 class="network-map__heading">{{$t('networkMap')}}</h3>
       </div>
-      <NetworkMapChart/>
+      <NetworkMapChart />
     </div>
   </Card>
 </template>

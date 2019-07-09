@@ -1,5 +1,5 @@
 <template>
-  <Card col="9">
+  <Card :col="$mq === 'xl' ? '9' : '12'">
     <div class="market-stats">
       <div class="market-stats__data">
         <div class="market-stats__heading">
@@ -10,14 +10,14 @@
           <div v-for="item in items" :key="item.title" class="market-stats__numbers-item">
             <div class="market-stats__numbers-name">{{$t(item.title)}}</div>
             <div class="market-stats__numbers-value" :class="item.class">
-              <span v-if="item.icon" class="fe market-stats__numbers-icon" :class="item.icon"/>
+              <span v-if="item.icon" class="fe market-stats__numbers-icon" :class="item.icon" />
               {{ item.data }}
             </div>
           </div>
         </div>
       </div>
       <div class="market-stats__chart">
-        <PriceChart/>
+        <PriceChart />
       </div>
     </div>
   </Card>

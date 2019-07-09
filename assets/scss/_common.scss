@@ -18,6 +18,11 @@ a {
   color: inherit;
 }
 
+.overflow-x {
+  overflow-x: auto;
+  grid-column: span 12;
+}
+
 /*========== Typography ==========*/
 
 h1 {

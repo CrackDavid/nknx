@@ -7,6 +7,8 @@
 
   &__country {
     margin-left: 40px;
+    max-width: 50px;
+    overflow: hidden;
   }
 
   &__percentage {

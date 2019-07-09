@@ -1,5 +1,5 @@
 <template>
-  <Card padding="none" col="3">
+  <Card :col="$mq === 'xl' ? '3' : '12'" padding="none">
     <div class="sparkline-stats">
       <div class="sparkline-stats__header">
         <div class="sparkline-stats__title">{{$t(title)}}</div>
@@ -16,7 +16,10 @@
       </div>
       <div class="sparkline-stats__value">
         {{dailyValue | commaNumber}}
-        <span v-if="symbol.length > 0" class="sparkline-stats__symbol">{{symbol}}</span>
+        <span
+          v-if="symbol.length > 0"
+          class="sparkline-stats__symbol"
+        >{{symbol}}</span>
       </div>
       <div class="sparkline-stats__chart">
         <slot />

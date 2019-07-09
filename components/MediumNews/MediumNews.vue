@@ -1,5 +1,5 @@
 <template>
-  <Card col="3" row="3">
+  <Card :col="$mq === 'xl' ? '3' : '12'" row="3">
     <div class="news">
       <div class="news__header">
         <h3 class="news__heading">{{$t('latestNews')}}</h3>

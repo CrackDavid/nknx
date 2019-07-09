@@ -1,62 +1,64 @@
 <template>
-  <table class="node-manager">
-    <thead>
-      <th
-        v-for="heading in headings"
-        :key="heading.title"
-        :class="active === heading.value && heading.value.length > 0 ? 'node-manager__sort_active' : null"
-        @click="heading.value.length > 0 ? sortNodes(heading.value) : null"
-      >
-        <span class="node-manager__sort-title">
-          {{$t(heading.title)}}
-          <span
-            :class="['node-manager__sort-icon fe', order !== true ? 'fe-chevron-down' : 'fe-chevron-up']"
-          ></span>
-        </span>
-      </th>
-    </thead>
-    <tbody>
-      <tr
-        v-for="node in nodes"
-        :key="node.pivot.node_id"
-        :class="node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null"
-      >
-        <td>{{node.addr}}</td>
-        <td>{{node.pivot.label}}</td>
-        <td>
-          <NodeStatus :status="node.syncState" />
-        </td>
-        <td>{{node.height}}</td>
-        <td>{{node.version | nodeVersion}}</td>
-        <td>{{node.relayMessageCount}}</td>
-        <td>
-          <NodeMiningHistoryChart
-            v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE'"
-            :data="node.node_snapshots"
-            :state="node.syncState"
-          />
-          <span v-if="node.syncState === 'OFFLINE'">{{$t('n/a')}}</span>
-        </td>
-        <td>
-          <span
-            class="node-manager__actions fe fe-more-horizontal"
-            @mouseenter="isActions = node.id"
-          >
-            <div
-              :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
-              @mouseleave="isActions = false"
-              @click="openDeleteNodeModal(node)"
-            >
-              <div class="node-manager__actions-item">
-                <span class="node-manager__actions-icon fe fe-trash-2"></span>
-                <span class="node-manager__actions-title">{{$t('delete')}}</span>
-              </div>
-            </div>
+  <div class="overflow-x">
+    <table class="node-manager">
+      <thead>
+        <th
+          v-for="heading in headings"
+          :key="heading.title"
+          :class="active === heading.value && heading.value.length > 0 ? 'node-manager__sort_active' : null"
+          @click="heading.value.length > 0 ? sortNodes(heading.value) : null"
+        >
+          <span class="node-manager__sort-title">
+            {{$t(heading.title)}}
+            <span
+              :class="['node-manager__sort-icon fe', order !== true ? 'fe-chevron-down' : 'fe-chevron-up']"
+            ></span>
           </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </th>
+      </thead>
+      <tbody>
+        <tr
+          v-for="node in nodes"
+          :key="node.pivot.node_id"
+          :class="node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null"
+        >
+          <td>{{node.addr}}</td>
+          <td>{{node.pivot.label}}</td>
+          <td>
+            <NodeStatus :status="node.syncState" />
+          </td>
+          <td>{{node.height}}</td>
+          <td>{{node.version | nodeVersion}}</td>
+          <td>{{node.relayMessageCount}}</td>
+          <td>
+            <NodeMiningHistoryChart
+              v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE'"
+              :data="node.node_snapshots"
+              :state="node.syncState"
+            />
+            <span v-if="node.syncState === 'OFFLINE'">{{$t('n/a')}}</span>
+          </td>
+          <td>
+            <span
+              class="node-manager__actions fe fe-more-horizontal"
+              @mouseenter="isActions = node.id"
+            >
+              <div
+                :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
+                @mouseleave="isActions = false"
+                @click="openDeleteNodeModal(node)"
+              >
+                <div class="node-manager__actions-item">
+                  <span class="node-manager__actions-icon fe fe-trash-2"></span>
+                  <span class="node-manager__actions-title">{{$t('delete')}}</span>
+                </div>
+              </div>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style lang="scss">

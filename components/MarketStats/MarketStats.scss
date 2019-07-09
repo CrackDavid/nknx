@@ -1,6 +1,10 @@
 .market-stats {
   display: flex;
 
+  @include size-lg {
+    flex-flow: row wrap;
+  }
+
   &__chart {
     width: 100%;
   }

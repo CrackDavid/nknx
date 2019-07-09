@@ -1,6 +1,6 @@
 <template>
-  <Card padding="none" col="3">
-    <Blinks/>
+  <Card :col="$mq === 'xl' ? '3' : '12'" padding="none">
+    <Blinks />
     <div
       class="network-status"
       :class="networkSatus === 'PERSIST_FINISHED' ? 'network-status_positive' :  'network-status_negative'"

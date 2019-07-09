@@ -9,7 +9,15 @@
   transition: $transition-1;
   cursor: pointer;
   min-height: 120px;
-  
+
+  @include size-llg {
+    grid-column: span 6;
+  }
+
+  @include size-lg {
+    grid-column: span 12;
+  }
+
   &:hover {
     border-color: $secondary;
 

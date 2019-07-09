@@ -1,0 +1,49 @@
+@mixin size-llg {
+  @media (max-width: $desktop-size-llg) {
+    @content;
+  }
+}
+
+%size-llg {
+  @include size-llg;
+}
+
+@mixin size-lg {
+  @media (max-width: $desktop-size-lg) {
+    @content;
+  }
+}
+
+%size-lg {
+  @include size-lg;
+}
+
+@mixin size-md {
+  @media (max-width: $desktop-size-md) {
+    @content;
+  }
+}
+
+%size-md {
+  @include size-md;
+}
+
+@mixin size-sm {
+  @media (max-width: $desktop-size-sm) {
+    @content;
+  }
+}
+
+%size-sm {
+  @include size-sm;
+}
+
+@mixin size-xs {
+  @media (max-width: $desktop-size-xs) {
+    @content;
+  }
+}
+
+%size-xs {
+  @include size-xs;
+}

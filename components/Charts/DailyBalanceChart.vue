@@ -51,7 +51,7 @@ export default {
     const series = chart.series.push(new am4charts.LineSeries())
     series.dataFields.dateX = 'date'
     series.dataFields.valueY = 'count'
-    series.tooltipText = '{valueY.value}'
+    series.tooltipText = '{valueY.value} NKN'
     series.stroke = gradient1
     series.fill = gradient1
     series.fillOpacity = 0.1

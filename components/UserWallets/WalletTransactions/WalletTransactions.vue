@@ -25,36 +25,38 @@
         </div>
       </div>
     </div>
-    <table class="table">
-      <thead class="table__header">
-        <tr class="table__row">
-          <th class="table__title" style="width: 10%;">{{$t('Block')}}</th>
-          <th class="table__title">{{$t('Hash')}}</th>
-          <th class="table__title">{{$t('type')}}</th>
-          <th class="table__title">{{$t('created')}}</th>
-        </tr>
-      </thead>
-      <tbody class="table__body">
-        <tr v-for="tx in transactions" :key="tx.height" class="table__row">
-          <td class="table__item">
-            <a
-              :href="`https://explorer.nknx.org/blocks/${tx.block_height}`"
-              target="_blank"
-              class="text_link"
-            >{{tx.block_height}}</a>
-          </td>
-          <td class="table__item">
-            <a
-              :href="`https://explorer.nknx.org/transactions/${tx.hash}`"
-              target="_blank"
-              class="text_link"
-            >{{tx.hash}}</a>
-          </td>
-          <td class="table__item">{{tx.txType}}</td>
-          <td class="table__item">{{$moment(tx.created_at).fromNow()}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="overflow-x">
+      <table class="table">
+        <thead class="table__header">
+          <tr class="table__row">
+            <th class="table__title" style="width: 10%;">{{$t('Block')}}</th>
+            <th class="table__title">{{$t('Hash')}}</th>
+            <th class="table__title">{{$t('type')}}</th>
+            <th class="table__title">{{$t('created')}}</th>
+          </tr>
+        </thead>
+        <tbody class="table__body">
+          <tr v-for="tx in transactions" :key="tx.height" class="table__row">
+            <td class="table__item">
+              <a
+                :href="`https://explorer.nknx.org/blocks/${tx.block_height}`"
+                target="_blank"
+                class="text_link"
+              >{{tx.block_height}}</a>
+            </td>
+            <td class="table__item">
+              <a
+                :href="`https://explorer.nknx.org/transactions/${tx.hash}`"
+                target="_blank"
+                class="text_link"
+              >{{tx.hash}}</a>
+            </td>
+            <td class="table__item">{{tx.txType}}</td>
+            <td class="table__item">{{$moment(tx.created_at).fromNow()}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </Card>
 </template>
 

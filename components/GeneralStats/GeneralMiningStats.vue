@@ -1,5 +1,9 @@
 <template>
-  <Card col="3" row="2" padding="none">
+  <Card
+    :col="$mq === 'xl' ? '3' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'"
+    row="2"
+    padding="none"
+  >
     <div class="general-stats general-stats_gradient">
       <div class="general-stats__item">
         <div class="general-stats__title">

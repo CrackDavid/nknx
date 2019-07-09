@@ -1,5 +1,5 @@
 <template>
-  <Card col="8" padding="none">
+  <Card :col="$mq === 'xl' ? '8' : '12'" padding="none">
     <div class="card-header">
       <div>
         <h3 class="card-header__title">
@@ -14,33 +14,35 @@
         <span v-else>{{$t('viewTop')}}</span>
       </div>
     </div>
-    <table class="table">
-      <thead class="table__header">
-        <tr class="table__row">
-          <th class="table__title" style="width: 30%;">{{$t('country')}}</th>
-          <th class="table__title">{{$t('currentNodeCount')}}</th>
-          <th
-            class="table__title table__item text_align_right"
-            style="width: 15%;"
-          >{{$t('network')}} (%)</th>
-        </tr>
-      </thead>
-      <tbody class="table__body">
-        <tr v-for="item in filterCountries" :key="item.country" class="table__row">
-          <td class="table__item">
-            <CountryFlag class="country-list__flag" :country="item.country_code" size="normal"/>
-            <span class="country-list__country">{{item.country_name}}</span>
-          </td>
-          <td class="table__item">
-            <span class="country-list__percentage" :style="{width: item.percent+'%'}"></span>
-            {{item.count}}
-          </td>
-          <td
-            class="table__item text_align_right"
-          >{{item.count}} {{'('+(Number(item.percent)).toFixed(2)+'%)'}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="overflow-x">
+      <table class="table">
+        <thead class="table__header">
+          <tr class="table__row">
+            <th class="table__title" style="width: 30%;">{{$t('country')}}</th>
+            <th class="table__title">{{$t('currentNodeCount')}}</th>
+            <th
+              class="table__title table__item text_align_right"
+              style="width: 15%;"
+            >{{$t('network')}} (%)</th>
+          </tr>
+        </thead>
+        <tbody class="table__body">
+          <tr v-for="item in filterCountries" :key="item.country" class="table__row">
+            <td class="table__item">
+              <CountryFlag class="country-list__flag" :country="item.country_code" size="normal" />
+              <span class="country-list__country text_wrap_none">{{item.country_name}}</span>
+            </td>
+            <td class="table__item">
+              <span class="country-list__percentage" :style="{width: item.percent+'%'}"></span>
+              {{item.count}}
+            </td>
+            <td
+              class="table__item text_align_right"
+            >{{item.count}} {{'('+(Number(item.percent)).toFixed(2)+'%)'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </Card>
 </template>
 
