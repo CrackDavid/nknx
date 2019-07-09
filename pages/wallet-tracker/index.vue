@@ -17,6 +17,14 @@
             </div>
           </div>
           <div class="divider"></div>
+          <Button
+            v-if="wallets.length > 0"
+            theme="danger"
+            @click.native="openDeleteAllWalletsModal"
+          >
+            <span class="button__icon fe fe-trash-2"></span>
+            {{$t('deleteAllWallets')}}
+          </Button>
         </div>
         <NewWalletCard @click.native="openNewWalletModal()" />
         <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
@@ -34,6 +42,7 @@ import WalletCard from '~/components/UserWallets/WalletCard/WalletCard.vue'
 import NewWalletCard from '~/components/UserWallets/NewWalletCard/NewWalletCard.vue'
 import Pagination from '~/components/Pagination/Pagination'
 import WalletOverview from '~/components/UserWallets/WalletOverview/WalletOverview'
+import Button from '~/components/Button/Button.vue'
 
 export default {
   components: {
@@ -42,7 +51,8 @@ export default {
     WalletCard,
     NewWalletCard,
     Pagination,
-    WalletOverview
+    WalletOverview,
+    Button
   },
   data: () => {
     return {
@@ -100,9 +110,11 @@ export default {
       this.nextPage = next_page_url != null ? this.currentPage + 1 : null
       this.loading = false
     },
-
     openNewWalletModal() {
       this.$store.dispatch('modals/updateNewWalletModalVisible', true)
+    },
+    openDeleteAllWalletsModal() {
+      this.$store.dispatch('modals/updateDeleteAllWalletsModalVisible', true)
     }
   }
 }

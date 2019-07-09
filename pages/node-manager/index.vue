@@ -11,9 +11,9 @@
             <span class="button__icon fe fe-plus"></span>
             {{$t('addNodes')}}
           </Button>
-          <Button theme="danger" @click.native="openDeleteAllNodesModal">
+          <Button v-if="totalNodes > 0" theme="danger" @click.native="openDeleteAllNodesModal">
             <span class="button__icon fe fe-trash-2"></span>
-            {{$t('removeAllNodes')}}
+            {{$t('deleteAllNodes')}}
           </Button>
         </div>
       </div>
