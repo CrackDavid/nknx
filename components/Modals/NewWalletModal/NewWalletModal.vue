@@ -79,18 +79,18 @@
             </div>
             <ul class="modal-list">
               <li
-                v-for="(wallet, index) in failedWallets"
-                :key="index"
+                v-for="wallet in failedWallets"
+                :key="wallet"
                 class="modal-list__item"
               >- {{wallet}} {{$t('isNotAWallet')}}</li>
               <li
-                v-for="(wallet, index) in duplicateWallets"
-                :key="index"
+                v-for="wallet in duplicateWallets"
+                :key="wallet"
                 class="modal-list__item"
               >- {{wallet}} {{$t('walletIsDusplicate')}}</li>
               <li
-                v-for="(wallet, index) in successWallets"
-                :key="index"
+                v-for="wallet in successWallets"
+                :key="wallet"
                 class="modal-list__item"
               >- {{wallet}} {{$t('successfullyAdded')}}</li>
             </ul>
@@ -256,9 +256,9 @@ export default {
           } else if (saved.length > 0) {
             self.alertMsg = 'successNewWalletAlert'
             self.isSuccess = true
-            self.$store.dispatch('userWallets/updateUserWallets', 1)
             setTimeout(self.closeModal, 1000)
           }
+          self.$store.dispatch('userWallets/updateUserWallets', 1)
           self.isLoading = false
         })
         .catch(error => {

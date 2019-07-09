@@ -30,6 +30,14 @@
         <td>{{node.version | nodeVersion}}</td>
         <td>{{node.relayMessageCount}}</td>
         <td>
+          <NodeMiningHistoryChart
+            v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE'"
+            :data="node.node_snapshots"
+            :state="node.syncState"
+          />
+          <span v-if="node.syncState === 'OFFLINE'">{{$t('n/a')}}</span>
+        </td>
+        <td>
           <span
             class="node-manager__actions fe fe-more-horizontal"
             @mouseenter="isActions = node.id"
@@ -59,9 +67,10 @@
 import { mapGetters } from 'vuex'
 
 import NodeStatus from '~/components/UserNodes/NodeStatus/NodeStatus.vue'
+import NodeMiningHistoryChart from '~/components/charts/NodeMiningHistoryChart.vue'
 
 export default {
-  components: { NodeStatus },
+  components: { NodeStatus, NodeMiningHistoryChart },
   props: {
     nodes: {
       type: Array,
@@ -77,6 +86,7 @@ export default {
         { value: '', title: 'latestBlock' },
         { value: '', title: 'currentVersion' },
         { value: '', title: 'relayedMessages' },
+        { value: '', title: 'miningHistory' },
         { value: '', title: 'actions' }
       ],
       selected: [],

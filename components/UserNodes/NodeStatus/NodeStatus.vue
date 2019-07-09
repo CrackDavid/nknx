@@ -12,6 +12,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   components: {},
   props: {
@@ -27,7 +29,16 @@ export default {
       icon: ''
     }
   },
-
+  computed: {
+    ...mapGetters({
+      userNodes: 'userNodes/getUserNodes'
+    })
+  },
+  watch: {
+    userNodes: function(newVal, oldVal) {
+      this.getNodeStatus()
+    }
+  },
   mounted: function() {
     this.getNodeStatus()
   },

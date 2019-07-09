@@ -81,20 +81,20 @@
 
             <ul class="modal-list">
               <li
-                v-for="(node, index) in failedNodes"
-                :key="index"
+                v-for="node in failedNodes"
+                :key="node"
                 class="modal-list__item"
               >- {{node}} {{$t('nodeIsOffline')}}</li>
               <li
-                v-for="(node, index) in duplicateNodes"
-                :key="index"
+                v-for="node in duplicateNodes"
+                :key="node"
                 class="modal-list__item"
               >- {{node}} {{$t('nodeIsDuplicate')}}</li>
               <li
-                v-for="(node, index) in successNodes"
-                :key="index"
+                v-for="node in successNodes"
+                :key="node.addr"
                 class="modal-list__item"
-              >- {{node.address}} {{$t('successfullyAdded')}}</li>
+              >- {{node.addr}} {{$t('successfullyAdded')}}</li>
             </ul>
           </div>
         </template>
@@ -259,9 +259,9 @@ export default {
           } else if (saved.length > 0) {
             self.alertMsg = 'successNewNodeAlert'
             self.isSuccess = true
-            self.$store.dispatch('userNodes/updateUserNodes')
             setTimeout(self.closeModal, 1000)
           }
+          self.$store.dispatch('userNodes/updateUserNodes')
           self.isLoading = false
         })
         .catch(error => {

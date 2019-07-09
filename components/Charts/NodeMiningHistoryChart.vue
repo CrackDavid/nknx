@@ -1,0 +1,108 @@
+<template>
+  <div ref="chartdiv" class="price-chart"></div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+import * as am4core from '@amcharts/amcharts4/core'
+import * as am4charts from '@amcharts/amcharts4/charts'
+import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
+
+am4core.useTheme(am4themesAnimated)
+
+export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    },
+    state: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    ...mapGetters({
+      userNodes: 'userNodes/getUserNodes'
+    })
+  },
+  watch: {
+    userNodes: function(newVal, oldVal) {
+      this.drawChart()
+    }
+  },
+  mounted() {
+    this.drawChart()
+  },
+  beforeDestroy() {
+    if (this.chart) {
+      this.chart.dispose()
+    }
+  },
+  methods: {
+    drawChart() {
+      const state = this.state
+      let color = '#F4A271'
+
+      if (state === 'PERSIST_FINISHED') {
+        color = '#2bd289'
+      }
+
+      const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
+      let nodesAverage = this.data
+      const data = []
+      nodesAverage.forEach(node => {
+        data.push({
+          date: new Date(node.created_at),
+          count: node.mined / 100000000
+        })
+      })
+      chart.data = data
+      chart.padding(0, 0, 0, 0)
+
+      const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
+      dateAxis.renderer.grid.template.disabled = true
+      dateAxis.renderer.labels.template.disabled = true
+      dateAxis.startLocation = 0.5
+      dateAxis.endLocation = 0.7
+      dateAxis.cursorTooltipEnabled = false
+
+      const valueAxis = chart.yAxes.push(new am4charts.ValueAxis())
+      valueAxis.min = -1
+      valueAxis.renderer.grid.template.disabled = true
+      valueAxis.renderer.baseGrid.disabled = true
+      valueAxis.renderer.labels.template.disabled = true
+      valueAxis.cursorTooltipEnabled = false
+
+      chart.cursor = new am4charts.XYCursor()
+      chart.cursor.lineY.disabled = true
+      chart.cursor.lineX.disabled = true
+
+      const series = chart.series.push(new am4charts.LineSeries())
+      series.dataFields.dateX = 'date'
+      series.dataFields.valueY = 'count'
+      series.tooltipText = '{valueY.value} NKN'
+      series.tensionX = 0.7
+      series.strokeWidth = 2
+      series.stroke = color
+      series.fill = color
+
+      // render data points as bullets
+      const bullet = series.bullets.push(new am4charts.CircleBullet())
+      bullet.circle.opacity = 0
+      bullet.circle.propertyFields.opacity = 'opacity'
+      bullet.circle.radius = 3
+      this.chart = chart
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+.price-chart {
+  width: 112px;
+  height: 20px;
+}
+</style>

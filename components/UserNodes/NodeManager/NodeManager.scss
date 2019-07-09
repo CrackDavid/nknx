@@ -74,9 +74,9 @@
 
   td {
     padding: $padding-normal;
+    vertical-align: middle;
 
     &:first-child {
-      vertical-align: middle;
     }
 
     &:last-child {
@@ -87,9 +87,9 @@
   th {
     transition: $transition-1;
     cursor: pointer;
+    vertical-align: middle;
 
     &:first-child {
-      vertical-align: middle;
       width: 1%;
     }
 
