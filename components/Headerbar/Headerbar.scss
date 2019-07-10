@@ -32,6 +32,10 @@
 
   &__search-input {
     width: $headerbar-search-width;
+
+    @include size-md {
+      width: auto;
+    }
   }
 
   &__item {
@@ -73,6 +77,7 @@
     }
     cursor: pointer;
   }
+
   &__button {
     background: transparent;
     border: none;

@@ -22,7 +22,7 @@
             <th class="table__title">{{$t('currentNodeCount')}}</th>
             <th
               class="table__title table__item text_align_right"
-              style="width: 15%;"
+              style="width: 20%;"
             >{{$t('network')}} (%)</th>
           </tr>
         </thead>

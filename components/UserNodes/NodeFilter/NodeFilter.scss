@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  overflow: auto;
 
   &__item {
     padding: $padding-normal 35px;

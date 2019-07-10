@@ -8,6 +8,10 @@
   box-sizing: border-box;
   height: 100%;
 
+  @include size-lg {
+    flex-flow: row wrap;
+  }
+
   &__label {
     font-size: $font-size-sm;
     font-weight: $font-weight-semi-bold;
@@ -52,6 +56,10 @@
   &__right {
     display: flex;
     height: 100%;
+
+    @include size-lg {
+      margin-top: $padding-default;
+    }
   }
 
   &__button {

@@ -58,6 +58,11 @@ h3 {
 
   &__node-manager {
     padding: 40px 80px 0px 80px;
+
+    @include size-md {
+      padding: 40px $padding-default 0px $padding-default;
+    }
+
     margin: 0 auto;
     background-color: $white;
 
@@ -70,6 +75,10 @@ h3 {
       display: grid;
       grid-gap: $padding-default;
       grid-template-columns: repeat(2, max-content);
+
+      @include size-md {
+        margin-top: $padding-default;
+      }
     }
 
     &-heading {
@@ -78,6 +87,10 @@ h3 {
       padding-bottom: 40px;
       position: relative;
       justify-content: space-between;
+
+      @include size-md {
+        flex-flow: row wrap;
+      }
 
       &:after {
         content: '';

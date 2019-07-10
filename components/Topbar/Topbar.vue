@@ -1,6 +1,6 @@
 <template>
   <div class="topbar">
-    <div v-if="price.prices" class="topbar__left">
+    <div v-if="price.prices && $mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" class="topbar__left">
       <span class="topbar__block">
         USD/NKN: ${{ price.prices[0].price }}
         <span
