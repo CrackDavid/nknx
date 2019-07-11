@@ -40,19 +40,19 @@ export default {
       if (this.dataSet === '1day') {
         timeUnit = 'hour'
         dayFormat = 'EEE'
-        txAverage = txAverage.reverse().slice(0, 24)
+        txAverage = txAverage.slice(0, 24)
       } else if (this.dataSet === '3days') {
         timeUnit = 'hour'
         dayFormat = 'EEE'
-        txAverage = txAverage.reverse().slice(0, 72)
+        txAverage = txAverage.slice(0, 72)
       } else if (this.dataSet === '1week') {
         timeUnit = 'day'
         dayFormat = 'dd/MM'
-        txAverage = txAverage.reverse().slice(0, 7)
+        txAverage = txAverage.slice(0, 7)
       }
 
       const data = []
-      for (let i = txAverage.length - 1; i >= 0; i--) {
+      for (let i = 0; i <= txAverage.length - 1; i++) {
         data.push({
           date: new Date(txAverage[i][timeUnit]),
           count: txAverage[i].balance

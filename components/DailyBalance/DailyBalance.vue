@@ -1,6 +1,6 @@
 <template>
   <SparklineStats title="totalBalance" :change="change" :dailyValue="valueArr" symbol="NKN">
-    <DailyBalanceChart />
+    <DailyBalanceChart v-if="userWallets.sumWalletSnapshots[0].hour" />
   </SparklineStats>
 </template>
 <script>
@@ -15,27 +15,34 @@ export default {
     DailyBalanceChart
   },
   data: () => {
-    return {
-      change: null,
-      valueArr: []
-    }
+    return {}
   },
-  computed: mapGetters({
-    userWallets: 'userWallets/getUserWallets'
-  }),
-  destroyed() {},
-  mounted: function() {
-    const data = this.userWallets.sumWalletSnapshots
-    const day1 = data[data.length - 1].sum
-    const day2 = data[data.length - 2].sum
+  computed: {
+    ...mapGetters({
+      userWallets: 'userWallets/getUserWallets'
+    }),
+    change: function() {
+      const data = this.userWallets.sumWalletSnapshots
+      let day1 = data[0].balance
+      let day2 = data[1].balance
 
-    if (day1 > 0 && day2 > 0) {
-      this.change = (((day1 - day2) / day1) * 100).toFixed(2)
-    } else {
-      this.change = 0
+      if (data[0].hour) {
+        day1 = data[0].balance
+        day2 = data[24].balance
+      }
+
+      if (day1 > 0 && day2 > 0) {
+        return (((day1 - day2) / day1) * 100).toFixed(2)
+      } else {
+        return 0
+      }
+    },
+    valueArr: function() {
+      return Number(this.userWallets.sumWalletSnapshots[0].balance).toFixed(2)
     }
-    this.valueArr = Number(data[data.length - 1].sum).toFixed(2)
   },
+  destroyed() {},
+  mounted: function() {},
   methods: {}
 }
 </script>

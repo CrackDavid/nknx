@@ -31,6 +31,14 @@ export default {
     MarketStats,
     MediumNews,
     DailyBalance
+  },
+  created() {
+    const config = {
+      page: 1,
+      aggregate: 'hour'
+    }
+    this.$store.dispatch('userWallets/updateUserWalletsConfig', config)
+    this.$store.dispatch('userWallets/updateUserWallets')
   }
 }
 </script>

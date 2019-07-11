@@ -47,6 +47,11 @@ export default {
     DeleteAllNodesModal,
     DeleteAllWalletsModal
   },
+  data: () => {
+    return {
+      updateInterval: 300000
+    }
+  },
   computed: mapGetters({
     newWalletModalVisible: 'modals/getNewWalletModalVisible',
     deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
@@ -100,31 +105,55 @@ export default {
     this.updateUserWallets()
     this.updateUserNodes()
 
-    this.intervalPrice = setInterval(this.updatePrice, 60000)
-    this.intervalNetworkStats = setInterval(this.updateNetworkStats, 60000)
-    this.intervalNetworkStatus = setInterval(this.updateNetworkStatus, 60000)
-    this.intervalNetworkCities = setInterval(this.updateNetworkCities, 60000)
+    this.intervalPrice = setInterval(this.updatePrice, this.updateInterval)
+    this.intervalNetworkStats = setInterval(
+      this.updateNetworkStats,
+      this.updateInterval
+    )
+    this.intervalNetworkStatus = setInterval(
+      this.updateNetworkStatus,
+      this.updateInterval
+    )
+    this.intervalNetworkCities = setInterval(
+      this.updateNetworkCities,
+      this.updateInterval
+    )
     this.intervalNetworkCountries = setInterval(
       this.updateNetworkCountries,
-      60000
+      this.updateInterval
     )
     this.intervalNetworkProviders = setInterval(
       this.updateNetworkProviders,
-      60000
+      this.updateInterval
     )
     this.intervalDailyHistoryPrice = setInterval(
       this.updateDailyHistoryPrice,
-      60000
+      this.updateInterval
     )
     this.intervalDailyTransactions = setInterval(
       this.updateDailyTransactions,
-      60000
+      this.updateInterval
     )
-    this.intervalDailyBlocks = setInterval(this.updateDailyBlocks, 60000)
-    this.intervalDailyNodes = setInterval(this.updateDailyNodes, 60000)
-    this.intervalLatestSigchain = setInterval(this.updateLatestSigchain, 60000)
-    this.intervalUserWallets = setInterval(this.updateUserWallets, 60000)
-    this.intervalUserNodes = setInterval(this.updateUserNodes, 60000)
+    this.intervalDailyBlocks = setInterval(
+      this.updateDailyBlocks,
+      this.updateInterval
+    )
+    this.intervalDailyNodes = setInterval(
+      this.updateDailyNodes,
+      this.updateInterval
+    )
+    this.intervalLatestSigchain = setInterval(
+      this.updateLatestSigchain,
+      this.updateInterval
+    )
+    this.intervalUserWallets = setInterval(
+      this.updateUserWallets,
+      this.updateInterval
+    )
+    this.intervalUserNodes = setInterval(
+      this.updateUserNodes,
+      this.updateInterval
+    )
   },
   methods: {
     updatePrice() {

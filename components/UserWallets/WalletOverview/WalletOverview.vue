@@ -6,7 +6,7 @@
           <div class="wallet-overview__item">
             <div class="wallet-overview__title">{{$t('totalBalance')}}</div>
             <div class="wallet-overview__value">
-              {{Number(sumWalletSnapshots[sumWalletSnapshots.length - 1].balance).toFixed(2) | commaNumber}}
+              {{Number(totalNknValue | commaNumber).toFixed(2)}}
               <span
                 class="wallet-overview__symbol"
               >NKN</span>
@@ -84,6 +84,7 @@ export default {
     return {
       totalUsdValue: 0,
       dailyChange: 0,
+      totalNknValue: 0,
       currentSet: '1day'
     }
   },
@@ -109,9 +110,9 @@ export default {
     },
     calcTotalUsdValue() {
       const sumWalletSnapshots = this.sumWalletSnapshots
-      const latestSnapshot =
-        sumWalletSnapshots[sumWalletSnapshots.length - 1].balance
+      const latestSnapshot = sumWalletSnapshots[0].balance
       const usdPrice = this.price.prices[0].price
+      this.totalNknValue = latestSnapshot
       this.totalUsdValue = Number(latestSnapshot * usdPrice).toFixed(2)
     },
     calcDailyChange() {
