@@ -12,6 +12,10 @@ export default {
     sumWalletSnapshots: {
       type: Array,
       default: () => []
+    },
+    dataSet: {
+      type: String,
+      default: '1day'
     }
   },
 
@@ -32,24 +36,39 @@ export default {
     drawChart() {
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let txAverage = Array.from(this.sumWalletSnapshots)
-      txAverage = txAverage.reverse().slice(0, 23)
+
+      let timeUnit = 'hour'
+      let dayFormat = 'dd/MM'
+      if (this.dataSet === '1day') {
+        timeUnit = 'hour'
+        dayFormat = 'EEE'
+        txAverage = txAverage.reverse().slice(0, 24)
+      } else if (this.dataSet === '3days') {
+        timeUnit = 'hour'
+        dayFormat = 'EEE'
+        txAverage = txAverage.reverse().slice(0, 72)
+      } else if (this.dataSet === '1week') {
+        timeUnit = 'day'
+        dayFormat = 'dd/MM'
+        txAverage = txAverage.reverse().slice(0, 7)
+      }
       const data = []
       for (let i = txAverage.length - 1; i >= 0; i--) {
         data.push({
-          date: new Date(txAverage[i].hour),
-          count: txAverage[i].sum
+          date: new Date(txAverage[i][timeUnit]),
+          count: txAverage[i].balance
         })
       }
       chart.data = data
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
       dateAxis.renderer.grid.template.disabled = true
-      dateAxis.startLocation = 0.1
-      dateAxis.endLocation = 1
+      dateAxis.startLocation = 0.4
+      dateAxis.endLocation = 0.6
       dateAxis.cursorTooltipEnabled = false
-      dateAxis.dateFormats.setKey('day', 'EEE')
-      dateAxis.periodChangeDateFormats.setKey('day', 'EEE')
+      dateAxis.dateFormats.setKey('day', dayFormat)
+      dateAxis.periodChangeDateFormats.setKey('day', dayFormat)
       dateAxis.baseInterval = {
-        timeUnit: 'hour',
+        timeUnit: timeUnit,
         count: 1
       } // hourly
       dateAxis.fontSize = 11

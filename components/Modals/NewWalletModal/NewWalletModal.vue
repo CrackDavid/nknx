@@ -258,7 +258,7 @@ export default {
             self.isSuccess = true
             setTimeout(self.closeModal, 1000)
           }
-          self.$store.dispatch('userWallets/updateUserWallets', 1)
+          self.$store.dispatch('userWallets/updateUserWallets')
           self.isLoading = false
         })
         .catch(error => {

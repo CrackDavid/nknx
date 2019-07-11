@@ -161,11 +161,7 @@ export default {
       this.$store.dispatch('latestSigchain/updateLatestSigchain')
     },
     updateUserWallets() {
-      let currentPage = 1
-      if (this.userWallets !== false) {
-        currentPage = this.userWallets.wallets.current_page
-      }
-      this.$store.dispatch('userWallets/updateUserWallets', currentPage)
+      this.$store.dispatch('userWallets/updateUserWallets')
     },
     updateUserNodes() {
       this.$store.dispatch('userNodes/updateUserNodes')

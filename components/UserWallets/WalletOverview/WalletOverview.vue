@@ -6,8 +6,10 @@
           <div class="wallet-overview__item">
             <div class="wallet-overview__title">{{$t('totalBalance')}}</div>
             <div class="wallet-overview__value">
-              {{Number(sumWalletSnapshots[sumWalletSnapshots.length - 1].sum).toFixed(2) | commaNumber}}
-              <span class="wallet-overview__symbol">NKN</span>
+              {{Number(sumWalletSnapshots[sumWalletSnapshots.length - 1].balance).toFixed(2) | commaNumber}}
+              <span
+                class="wallet-overview__symbol"
+              >NKN</span>
             </div>
           </div>
         </div>
@@ -26,9 +28,27 @@
               :class="['wallet-overview__value', dailyChange > 0 ? 'wallet-overview__value_positive' : 'wallet-overview__value_negative']"
             >${{dailyChange | commaNumber}}</div>
           </div>
+          <Button
+            class="wallet-overview__btn"
+            type="button"
+            :theme="currentSet === '1day' ? 'secondary' : 'default'"
+            @click.native="toggleDataSet('hour', '1day')"
+          >1 {{$t('day')}}</Button>
+          <Button
+            class="wallet-overview__btn"
+            type="button"
+            :theme="currentSet === '3days' ? 'secondary' : 'default'"
+            @click.native="toggleDataSet('hour', '3days')"
+          >3 {{$t('days')}}</Button>
+          <Button
+            class="wallet-overview__btn"
+            type="button"
+            :theme="currentSet === '1week' ? 'secondary' : 'default'"
+            @click.native="toggleDataSet('day', '1week')"
+          >1 {{$t('week')}}</Button>
         </div>
       </div>
-      <WalletOverviewChart :sumWalletSnapshots="sumWalletSnapshots" />
+      <WalletOverviewChart :sumWalletSnapshots="sumWalletSnapshots" :dataSet="currentSet" />
     </div>
   </Card>
 </template>
@@ -42,11 +62,13 @@ import { mapGetters } from 'vuex'
 
 import Card from '~/components/Card/Card.vue'
 import WalletOverviewChart from '~/components/Charts/WalletOverviewChart'
+import Button from '~/components/Button/Button.vue'
 
 export default {
   components: {
     Card,
-    WalletOverviewChart
+    WalletOverviewChart,
+    Button
   },
   props: {
     sumWalletSnapshots: {
@@ -61,11 +83,14 @@ export default {
   data: () => {
     return {
       totalUsdValue: 0,
-      dailyChange: 0
+      dailyChange: 0,
+      currentSet: '1day'
     }
   },
   computed: mapGetters({
-    price: 'price/getCurrentPrice'
+    price: 'price/getCurrentPrice',
+    userWalletsConfig: 'userWallets/getUserWalletsConfig',
+    userWallets: 'userWallets/getUserWallets'
   }),
   destroyed() {},
   mounted: function() {
@@ -75,19 +100,24 @@ export default {
     }
   },
   methods: {
+    toggleDataSet: function(aggregate, currentSet) {
+      this.currentSet = currentSet
+      let newConfig = Object.assign({}, this.userWalletsConfig)
+      newConfig.aggregate = aggregate
+      this.$store.dispatch('userWallets/updateUserWalletsConfig', newConfig)
+      this.$store.dispatch('userWallets/updateUserWallets')
+    },
     calcTotalUsdValue() {
       const sumWalletSnapshots = this.sumWalletSnapshots
       const latestSnapshot =
-        sumWalletSnapshots[sumWalletSnapshots.length - 1].sum
+        sumWalletSnapshots[sumWalletSnapshots.length - 1].balance
       const usdPrice = this.price.prices[0].price
       this.totalUsdValue = Number(latestSnapshot * usdPrice).toFixed(2)
     },
     calcDailyChange() {
       const sumWalletSnapshots = this.sumWalletSnapshots
-      const latestSnapshot =
-        sumWalletSnapshots[sumWalletSnapshots.length - 1].sum
-      const prevDaySnapshot =
-        sumWalletSnapshots[sumWalletSnapshots.length - 24].sum
+      const latestSnapshot = sumWalletSnapshots[0].balance
+      const prevDaySnapshot = sumWalletSnapshots[24].balance
       const usdPrice = this.price.prices[0].price
       const change = latestSnapshot - prevDaySnapshot
       this.dailyChange = Number(change * usdPrice).toFixed(2)

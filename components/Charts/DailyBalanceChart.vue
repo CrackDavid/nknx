@@ -15,7 +15,6 @@ export default {
   computed: mapGetters({
     userWallets: 'userWallets/getUserWallets'
   }),
-
   mounted() {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let nodesAverage = this.userWallets.sumWalletSnapshots

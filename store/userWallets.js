@@ -1,26 +1,38 @@
 export const state = () => ({
-  userWallets: false
+  userWallets: false,
+  userWalletsConfig: {
+    page: 1,
+    aggregate: 'hour'
+  }
 })
 
 export const mutations = {
   setUserWallets(state, userWalletsObj) {
     state.userWallets = userWalletsObj
+  },
+  setUserWalletsConfig(state, userWalletsConfigObj) {
+    state.userWalletsConfig = userWalletsConfigObj
   }
 }
 
 export const getters = {
   getUserWallets(state) {
     return state.userWallets
+  },
+  getUserWalletsConfig(state) {
+    return state.userWalletsConfig
   }
 }
 
 export const actions = {
-  async updateUserWallets({ commit }, page) {
-    // Checking if page exists
-    if (page === null) {
-      return false
-    }
-    const data = await this.$axios.$get(`wallets?page=${page}`)
+  async updateUserWallets({ commit }) {
+    const { page, aggregate } = this.state.userWallets.userWalletsConfig
+    const data = await this.$axios.$get(
+      `wallets?page=${page}&aggregate=${aggregate}`
+    )
     commit('setUserWallets', data)
+  },
+  updateUserWalletsConfig({ commit }, config) {
+    commit('setUserWalletsConfig', config)
   }
 }

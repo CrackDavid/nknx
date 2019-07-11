@@ -16,6 +16,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   components: {},
   props: {
@@ -29,18 +31,33 @@ export default {
       offlineNodes: false
     }
   },
-  destroyed() {},
-  mounted: function() {
-    Object.keys(this.filters).forEach(key => {
-      if (
-        this.filters[key] > 0 &&
-        key !== 'ALL' &&
-        key !== 'PERSIST_FINISHED'
-      ) {
-        this.offlineNodes += this.filters[key]
-      }
+  computed: {
+    ...mapGetters({
+      userNodes: 'userNodes/getUserNodes'
     })
   },
-  methods: {}
+  watch: {
+    userNodes: function(newVal, oldVal) {
+      this.calcOnline()
+    }
+  },
+  mounted: function() {
+    this.calcOnline()
+  },
+  destroyed() {},
+  methods: {
+    calcOnline() {
+      this.offlineNodes = false
+      Object.keys(this.filters).forEach(key => {
+        if (
+          this.filters[key] > 0 &&
+          key !== 'ALL' &&
+          key !== 'PERSIST_FINISHED'
+        ) {
+          this.offlineNodes += this.filters[key]
+        }
+      })
+    }
+  }
 }
 </script>

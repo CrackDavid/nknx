@@ -10,8 +10,8 @@
     <div class="wallet-side__footer">
       <div v-if="wallets.length > 0" class="page-navigation">
         <div class="page-navigation__pagination">
-          <Pagination :page="prevPage" type="prev" @click.native="getWallets(prevPage)" />
-          <Pagination :page="nextPage" type="next" @click.native="getWallets(nextPage)" />
+          <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
+          <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
         </div>
       </div>
     </div>
@@ -43,7 +43,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userWallets: 'userWallets/getUserWallets'
+      userWallets: 'userWallets/getUserWallets',
+      userWalletsConfig: 'userWallets/getUserWalletsConfig'
     })
   },
   watch: {
@@ -52,26 +53,26 @@ export default {
     }
   },
   destroyed() {},
-  mounted: function() {
-    this.getWallets(this.current_page)
+  created() {
+    const config = {
+      page: 1,
+      aggregate: 'hour'
+    }
+    this.$store.dispatch('userWallets/updateUserWalletsConfig', config)
+    this.$store.dispatch('userWallets/updateUserWallets')
   },
-
+  mounted: function() {
+    this.fetchWalletsData()
+  },
   methods: {
+    changePage(page) {
+      let newConfig = Object.assign({}, this.userWalletsConfig)
+      newConfig.page = page
+      this.$store.dispatch('userWallets/updateUserWalletsConfig', newConfig)
+      this.$store.dispatch('userWallets/updateUserWallets')
+    },
     openNewWalletModal() {
       this.$store.dispatch('modals/updateNewWalletModalVisible', true)
-    },
-    getWallets(page) {
-      // Checking if page exists
-      if (page === null) {
-        return false
-      }
-      this.loading = true
-      // Disabling pagination untill data fetched
-      this.nextPage = null
-      this.prevPage = null
-
-      // Fetcing data
-      this.$store.dispatch('userWallets/updateUserWallets', page)
     },
     fetchWalletsData() {
       const {

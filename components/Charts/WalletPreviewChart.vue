@@ -26,7 +26,8 @@ export default {
     }
   },
   computed: mapGetters({
-    activeWallet: 'activeWallet/getActiveWallet'
+    activeWallet: 'activeWallet/getActiveWallet',
+    userWalletsConfig: 'userWallets/getUserWalletsConfig'
   }),
   watch: {
     activeWallet: function(newVal, oldVal) {
@@ -52,12 +53,13 @@ export default {
         this.color1 = '#DD5E89'
         this.color2 = '#F7BB97'
       }
+      const timeUnit = this.userWalletsConfig.aggregate
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let walletData = this.snapshots
       const data = []
       for (let i = 0; i < walletData.length; i++) {
         data.push({
-          date: new Date(walletData[i].created_at),
+          date: new Date(walletData[i][timeUnit]),
           count: walletData[i].balance,
           opacity: 0
         })
@@ -69,8 +71,10 @@ export default {
       dateAxis.renderer.grid.template.disabled = true
       dateAxis.renderer.labels.template.disabled = true
       dateAxis.cursorTooltipEnabled = false
+      dateAxis.dateFormats.setKey('day', 'dd/MM')
+      dateAxis.periodChangeDateFormats.setKey('day', 'dd/MM')
       dateAxis.baseInterval = {
-        timeUnit: 'hour',
+        timeUnit: timeUnit,
         count: 1
       } // hourly
       dateAxis.startLocation = 0.5
