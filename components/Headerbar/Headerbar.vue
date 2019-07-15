@@ -32,6 +32,10 @@
       <Search class="headerbar__search-input" :text="$t('search')" />
     </div>
     <div class="headerbar__right">
+      <button v-if="$auth.loggedIn" @click="createCompanion" class="btn">Create Companion</button>
+      <span
+        v-if="uuid"
+      >Script: wget -O install.sh "https://api2.nknx.org/companions/install/{{uuid}}"; bash install.sh</span>
       <span class="headerbar__item">
         <button class="headerbar__button">
           <span class="fe fe-bell" />
@@ -69,6 +73,11 @@ export default {
     AvatarDropdown,
     Search
   },
+  data: () => {
+    return {
+      uuid: ''
+    }
+  },
   computed: mapGetters({
     sidebarExpanded: 'sidebar/get'
   }),
@@ -79,6 +88,17 @@ export default {
       const burger = document.getElementsByClassName('headerbar__toggle')[0]
       const toggleClass = 'arrow'
       burger.classList.toggle(toggleClass)
+    },
+    createCompanion() {
+      var self = this
+      this.$axios
+        .$post('companions', {
+          architecture: 'linux-amd64',
+          benificiaryAddr: 'NKNK1pcajWCEutpz4oiVDqWZKhjCnREwYrFi'
+        })
+        .then(response => {
+          self.uuid = response.data.uuid
+        })
     }
   }
 }
