@@ -1,18 +1,18 @@
 <template>
-  <div ref="chartdiv" class="price-chart"/>
+  <div ref="chartdiv" class="price-chart" />
 </template>
 
 <script>
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
-import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 import { mapGetters } from 'vuex'
-am4core.useTheme(am4themesAnimated)
 export default {
   computed: mapGetters({
     dailyHistoryPrice: 'price/getDailyHistoryPrice'
   }),
   mounted() {
+    am4core.options.queue = true
+    am4core.options.onlyShowOnViewport = true
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     chart.paddingRight = 20
     let nknUsd = this.dailyHistoryPrice.USD
@@ -81,6 +81,8 @@ export default {
     series2.tensionX = 0.8
     series2.strokeWidth = 2
     chart.cursor = new am4charts.XYCursor()
+    chart.cursor.behavior = 'disabled'
+
     chart.legend = new am4charts.Legend()
     chart.legend.fill = gradient1
     chart.legend.data[0].fill = gradient1
@@ -94,6 +96,12 @@ export default {
     chart.legend.position = 'top'
     chart.legend.contentAlign = 'right'
     chart.paddingTop = 0
+    chart.seriesContainer.draggable = false
+    chart.seriesContainer.resizable = false
+    chart.maxZoomLevel = 1
+    chart.seriesContainer.events.disableType('doublehit')
+    chart.chartContainer.background.events.disableType('doublehit')
+
     const marker = chart.legend.markers.template.children.getIndex(0)
     marker.cornerRadius(12, 12, 12, 12)
     this.chart = chart

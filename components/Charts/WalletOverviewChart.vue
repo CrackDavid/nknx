@@ -5,8 +5,6 @@
 <script>
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
-import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
-am4core.useTheme(am4themesAnimated)
 export default {
   props: {
     sumWalletSnapshots: {
@@ -34,6 +32,8 @@ export default {
   },
   methods: {
     drawChart() {
+      am4core.options.queue = true
+      am4core.options.onlyShowOnViewport = true
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let txAverage = Array.from(this.sumWalletSnapshots)
 
@@ -60,6 +60,12 @@ export default {
         })
       }
       chart.data = data
+      chart.seriesContainer.draggable = false
+      chart.seriesContainer.resizable = false
+      chart.maxZoomLevel = 1
+      chart.seriesContainer.events.disableType('doublehit')
+      chart.chartContainer.background.events.disableType('doublehit')
+
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
       dateAxis.renderer.grid.template.disabled = true
       dateAxis.startLocation = 0.4
@@ -102,6 +108,8 @@ export default {
       chart.cursor = new am4charts.XYCursor()
       chart.cursor.lineY.disabled = true
       chart.cursor.lineX.disabled = true
+      chart.cursor.behavior = 'disabled'
+
       var bullet = series.bullets.push(new am4charts.CircleBullet())
       bullet.stroke = am4core.color('#5769DF')
       bullet.stroke.alpha = 0.5

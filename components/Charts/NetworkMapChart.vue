@@ -1,14 +1,13 @@
 <template>
-  <div ref="chartdiv" class="network-map__chart"/>
+  <div ref="chartdiv" class="network-map__chart" />
 </template>
 
 <script>
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4maps from '@amcharts/amcharts4/maps'
 import am4geodataWorldLow from '@amcharts/amcharts4-geodata/worldLow'
-import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
+
 import { mapGetters } from 'vuex'
-am4core.useTheme(am4themesAnimated)
 export default {
   components: {},
   data: () => {
@@ -24,6 +23,10 @@ export default {
     clearInterval(this.intervaldrawLine)
   },
   mounted: function() {
+    am4core.options.queue = true
+    am4core.options.onlyShowOnViewport = true
+    am4core.options.queue = true
+    am4core.options.onlyShowOnViewport = true
     this.intervalTx = setInterval(this.getLatestTx, 60000)
     const chartData = []
     const countriesData = []
@@ -49,6 +52,12 @@ export default {
     chart.zoomControl = new am4maps.ZoomControl()
     // Set projection
     chart.projection = new am4maps.projections.Miller()
+    chart.seriesContainer.draggable = false
+    chart.seriesContainer.resizable = false
+    chart.maxZoomLevel = 1
+    chart.seriesContainer.events.disableType('doublehit')
+    chart.chartContainer.background.events.disableType('doublehit')
+
     // Create map polygon series
     var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries())
     // Exclude Antartica

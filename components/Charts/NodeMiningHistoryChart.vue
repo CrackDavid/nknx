@@ -7,9 +7,6 @@ import { mapGetters } from 'vuex'
 
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
-import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
-
-am4core.useTheme(am4themesAnimated)
 
 export default {
   props: {
@@ -42,6 +39,8 @@ export default {
   },
   methods: {
     drawChart() {
+      am4core.options.queue = true
+      am4core.options.onlyShowOnViewport = true
       const state = this.state
       let color = '#F4A271'
 
@@ -78,6 +77,13 @@ export default {
       chart.cursor = new am4charts.XYCursor()
       chart.cursor.lineY.disabled = true
       chart.cursor.lineX.disabled = true
+      chart.cursor.behavior = 'disabled'
+
+      chart.seriesContainer.draggable = false
+      chart.seriesContainer.resizable = false
+      chart.maxZoomLevel = 1
+      chart.seriesContainer.events.disableType('doublehit')
+      chart.chartContainer.background.events.disableType('doublehit')
 
       const series = chart.series.push(new am4charts.LineSeries())
       series.dataFields.dateX = 'date'

@@ -3,14 +3,14 @@
     <ContentWrapper>
       <h1 class="page__title">{{$t('network')}}</h1>
       <Grid>
-        <DailyNodes/>
-        <DailyTransactions/>
-        <DailyBlocks/>
-        <NetworkStatus/>
-        <NetworkMap/>
-        <NetworkProviders/>
-        <CountryList/>
-        <Releases/>
+        <DailyNodes />
+        <DailyTransactions />
+        <DailyBlocks />
+        <NetworkStatus />
+        <NetworkMap />
+        <NetworkProviders />
+        <CountryList />
+        <Releases />
       </Grid>
     </ContentWrapper>
   </div>

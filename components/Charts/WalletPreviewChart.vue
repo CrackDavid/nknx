@@ -5,9 +5,7 @@
 <script>
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
-import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 import { mapGetters } from 'vuex'
-am4core.useTheme(am4themesAnimated)
 export default {
   props: {
     address: {
@@ -46,6 +44,8 @@ export default {
   },
   methods: {
     drawChart() {
+      am4core.options.queue = true
+      am4core.options.onlyShowOnViewport = true
       if (this.address === this.activeWallet.address) {
         this.color1 = '#61E786'
         this.color2 = '#2CCB96'
@@ -67,6 +67,11 @@ export default {
 
       data[0].opacity = 1
       chart.data = data
+      chart.seriesContainer.draggable = false
+      chart.seriesContainer.resizable = false
+      chart.maxZoomLevel = 1
+      chart.seriesContainer.events.disableType('doublehit')
+
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
       dateAxis.renderer.grid.template.disabled = true
       dateAxis.renderer.labels.template.disabled = true
@@ -106,6 +111,8 @@ export default {
       chart.cursor = new am4charts.XYCursor()
       chart.cursor.lineY.disabled = true
       chart.cursor.lineX.disabled = true
+      chart.cursor.behavior = 'disabled'
+
       this.chart = chart
     }
   }

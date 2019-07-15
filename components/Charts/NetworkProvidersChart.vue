@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartdiv" class="network-providers__chart"/>
+  <div ref="chartdiv" class="network-providers__chart" />
 </template>
 
 <script>
@@ -7,9 +7,7 @@ import { mapGetters } from 'vuex'
 
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
-import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 
-am4core.useTheme(am4themesAnimated)
 export default {
   components: {},
   data: () => {
@@ -20,9 +18,16 @@ export default {
   }),
   destroyed() {},
   mounted: function() {
+    am4core.options.queue = true
+    am4core.options.onlyShowOnViewport = true
     const chart = am4core.create(this.$refs.chartdiv, am4charts.PieChart)
     // Add data
     chart.data = this.networkProviders.slice(0, 8)
+    chart.seriesContainer.draggable = false
+    chart.seriesContainer.resizable = false
+    chart.maxZoomLevel = 1
+    chart.seriesContainer.events.disableType('doublehit')
+    chart.chartContainer.background.events.disableType('doublehit')
 
     // Add and configure Series
     var pieSeries = chart.series.push(new am4charts.PieSeries())

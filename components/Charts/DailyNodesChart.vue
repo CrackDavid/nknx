@@ -7,9 +7,6 @@ import { mapGetters } from 'vuex'
 
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
-import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
-
-am4core.useTheme(am4themesAnimated)
 
 export default {
   computed: mapGetters({
@@ -17,6 +14,8 @@ export default {
   }),
 
   mounted() {
+    am4core.options.queue = true
+    am4core.options.onlyShowOnViewport = true
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let nodesAverage = this.dailyNodes
     const data = []
@@ -56,6 +55,13 @@ export default {
     chart.cursor = new am4charts.XYCursor()
     chart.cursor.lineY.disabled = true
     chart.cursor.lineX.disabled = true
+    chart.cursor.behavior = 'disabled'
+
+    chart.seriesContainer.draggable = false
+    chart.seriesContainer.resizable = false
+    chart.maxZoomLevel = 1
+    chart.seriesContainer.events.disableType('doublehit')
+    chart.chartContainer.background.events.disableType('doublehit')
     this.chart = chart
   },
   beforeDestroy() {
