@@ -37,7 +37,7 @@
               :state="node.syncState"
             />
             <span
-              v-if="node.syncState === 'OFFLINE' && node.node_snapshots.length === 0"
+              v-if="node.syncState === 'OFFLINE' || node.node_snapshots.length === 0"
             >{{$t('n/a')}}</span>
           </td>
           <td>

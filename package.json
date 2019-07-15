@@ -29,6 +29,7 @@
     "nuxt-mq": "^2.0.0",
     "nuxt-svg-loader": "^1.0.1",
     "nuxt-validate": "^1.0.1",
+    "qrcode.vue": "^1.6.2",
     "vue-clickaway": "^2.2.2",
     "vue-content-loader": "^0.2.1",
     "vue-country-flag": "^1.1.1"

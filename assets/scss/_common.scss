@@ -371,6 +371,11 @@ table {
     }
   }
 
+  &__qr {
+    margin: 0 auto;
+    padding-bottom: $padding-default;
+  }
+
   &-switch {
     display: flex;
     align-items: center;

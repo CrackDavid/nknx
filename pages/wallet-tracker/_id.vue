@@ -1,7 +1,7 @@
 <template>
   <div class="page__wallet-tracker">
     <ContentWrapper :centered="false" class="page__wallet-tracker-wrapper">
-      <Grid v-if="userWallets !== false">
+      <Grid v-if="activeWallet !== false">
         <WalletPanel />
         <WalletBalanceHistory />
         <WalletTransactions />
@@ -35,7 +35,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userWallets: 'userWallets/getUserWallets'
+      userWallets: 'userWallets/getUserWallets',
+      activeWallet: 'activeWallet/getActiveWallet'
     })
   },
   mounted() {},

@@ -16,6 +16,7 @@
       <DeleteNodeModal v-if="deleteNodeModalVisible" />
       <DeleteAllNodesModal v-if="deleteAllNodesModalVisible" />
       <DeleteAllWalletsModal v-if="deleteAllWalletsModalVisible" />
+      <ReceiveWalletModal v-if="receiveWalletModalVisible" />
     </transition>
   </div>
   <Preloader v-else />
@@ -33,6 +34,7 @@ import NewNodeModal from '~/components/Modals/NewNodeModal/NewNodeModal'
 import DeleteNodeModal from '~/components/Modals/DeleteNodeModal/DeleteNodeModal'
 import DeleteAllNodesModal from '~/components/Modals/DeleteAllNodesModal/DeleteAllNodesModal'
 import DeleteAllWalletsModal from '~/components/Modals/DeleteAllWalletsModal/DeleteAllWalletsModal'
+import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWalletModal'
 
 export default {
   components: {
@@ -45,7 +47,8 @@ export default {
     NewNodeModal,
     DeleteNodeModal,
     DeleteAllNodesModal,
-    DeleteAllWalletsModal
+    DeleteAllWalletsModal,
+    ReceiveWalletModal
   },
   data: () => {
     return {
@@ -59,6 +62,7 @@ export default {
     deleteNodeModalVisible: 'modals/getDeleteNodeModalVisible',
     deleteAllNodesModalVisible: 'modals/getDeleteAllNodesModalVisible',
     deleteAllWalletsModalVisible: 'modals/getDeleteAllWalletsModalVisible',
+    receiveWalletModalVisible: 'modals/getReceiveWalletModalVisible',
     sidebarExpanded: 'sidebar/get',
     price: 'price/getCurrentPrice',
     networkStats: 'network/getNetworkStats',
