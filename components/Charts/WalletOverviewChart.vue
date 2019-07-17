@@ -13,7 +13,7 @@ export default {
     },
     dataSet: {
       type: String,
-      default: '1day'
+      default: '1week'
     }
   },
 

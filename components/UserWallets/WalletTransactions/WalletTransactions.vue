@@ -29,8 +29,8 @@
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
-            <th class="table__title" style="width: 10%;">{{$t('Block')}}</th>
-            <th class="table__title">{{$t('Hash')}}</th>
+            <th class="table__title" style="width: 10%;">{{$t('block')}}</th>
+            <th class="table__title">{{$t('hash')}}</th>
             <th class="table__title">{{$t('type')}}</th>
             <th class="table__title">{{$t('created')}}</th>
           </tr>

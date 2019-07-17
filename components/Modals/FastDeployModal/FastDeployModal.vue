@@ -53,14 +53,14 @@
                     label="linux-amd64"
                     :value="activeArchitecture"
                     @change="changeArchitecture"
-                  >linux-amd64</Radio>
+                  >{{$t('AMD64')}}</Radio>
                   <Radio
                     class="modal-radio__item"
                     name="options"
                     label="linux-armv6l"
                     :value="activeArchitecture"
                     @change="changeArchitecture"
-                  >linux-armv6l</Radio>
+                  >{{$t('ARM6L')}}</Radio>
                 </div>
               </div>
               <div class="modal-input__alert">{{$t(alertMsg)}}</div>
@@ -84,9 +84,13 @@
                 <tbody>
                   <Fragment v-for="(deploy, index) in deployments" :key="deploy.uuid">
                     <tr>
-                      <td class="fast-deploy__toggle" @click="toggleActiveDeploy(deploy.uuid)">
+                      <td
+                        class="fast-deploy__toggle"
+                        @click="deploy.deployments.length > 0 ? toggleActiveDeploy(deploy.uuid) : false"
+                      >
                         {{index + 1}}
                         <span
+                          v-if="deploy.deployments.length > 0"
                           :class="['fe fast-deploy__toggle-icon', activeDeploy === deploy.uuid ? 'fe-chevron-up' : 'fe-chevron-down']"
                         ></span>
                       </td>

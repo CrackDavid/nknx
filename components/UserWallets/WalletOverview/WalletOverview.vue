@@ -22,12 +22,6 @@
             <div class="wallet-overview__title">{{$t('totalValue')}}</div>
             <div class="wallet-overview__value">${{totalUsdValue | commaNumber}}</div>
           </div>
-          <div class="wallet-overview__item">
-            <div class="wallet-overview__title">{{$t('change24h')}}</div>
-            <div
-              :class="['wallet-overview__value', dailyChange > 0 ? 'wallet-overview__value_positive' : 'wallet-overview__value_negative']"
-            >${{dailyChange | commaNumber}}</div>
-          </div>
           <Button
             class="wallet-overview__btn"
             type="button"
@@ -85,7 +79,7 @@ export default {
       totalUsdValue: 0,
       dailyChange: 0,
       totalNknValue: 0,
-      currentSet: '1day'
+      currentSet: '1week'
     }
   },
   computed: mapGetters({
@@ -96,9 +90,6 @@ export default {
   destroyed() {},
   mounted: function() {
     this.calcTotalUsdValue()
-    if (this.sumWalletSnapshots.length > 24) {
-      this.calcDailyChange()
-    }
   },
   methods: {
     toggleDataSet: function(aggregate, currentSet) {
@@ -114,14 +105,6 @@ export default {
       const usdPrice = this.price.prices[0].price
       this.totalNknValue = latestSnapshot
       this.totalUsdValue = Number(latestSnapshot * usdPrice).toFixed(2)
-    },
-    calcDailyChange() {
-      const sumWalletSnapshots = this.sumWalletSnapshots
-      const latestSnapshot = sumWalletSnapshots[0].balance
-      const prevDaySnapshot = sumWalletSnapshots[24].balance
-      const usdPrice = this.price.prices[0].price
-      const change = latestSnapshot - prevDaySnapshot
-      this.dailyChange = Number(change * usdPrice).toFixed(2)
     }
   }
 }

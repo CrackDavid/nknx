@@ -29,15 +29,8 @@
           </svg>
         </div>
       </span>
-      <Search class="headerbar__search-input" :text="$t('search')" />
     </div>
     <div class="headerbar__right">
-      <span class="headerbar__item">
-        <button class="headerbar__button">
-          <span class="fe fe-bell" />
-        </button>
-      </span>
-
       <span
         v-if="!$auth.loggedIn"
         class="headerbar__item"
@@ -45,11 +38,6 @@
       >{{$t('login')}}</span>
       <!-- v-if="$auth.loggedIn" -->
       <AvatarDropdown v-if="$auth.loggedIn" class="headerbar__item"></AvatarDropdown>
-      <span class="headerbar__item">
-        <button class="headerbar__button">
-          <span class="fe fe-moon" />
-        </button>
-      </span>
     </div>
   </div>
 </template>
@@ -62,12 +50,10 @@
 import { mapGetters } from 'vuex'
 
 import AvatarDropdown from '~/components/User/AvatarDropdown/AvatarDropdown.vue'
-import Search from '~/components/Search/Search.vue'
 
 export default {
   components: {
-    AvatarDropdown,
-    Search
+    AvatarDropdown
   },
   data: () => {
     return {

@@ -89,13 +89,13 @@ export default {
         { value: '', title: 'status' },
         { value: '', title: 'latestBlock' },
         { value: '', title: 'currentVersion' },
-        { value: '', title: 'relayedMessages' },
+        { value: 'relayedMessages', title: 'relayedMessages' },
         { value: '', title: 'miningHistory' },
         { value: '', title: 'actions' }
       ],
       selected: [],
       isAll: false,
-      active: 'node_user.label',
+      active: 'relayedMessages',
       order: false,
       isActions: false
     }

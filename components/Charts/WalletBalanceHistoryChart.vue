@@ -10,7 +10,7 @@ export default {
   props: {
     dataSet: {
       type: String,
-      default: '1day'
+      default: '1week'
     }
   },
   computed: mapGetters({

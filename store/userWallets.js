@@ -2,7 +2,7 @@ export const state = () => ({
   userWallets: false,
   userWalletsConfig: {
     page: 1,
-    aggregate: 'hour'
+    aggregate: 'day'
   }
 })
 

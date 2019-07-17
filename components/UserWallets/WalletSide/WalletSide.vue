@@ -56,7 +56,7 @@ export default {
   created() {
     const config = {
       page: 1,
-      aggregate: 'hour'
+      aggregate: 'day'
     }
     this.$store.dispatch('userWallets/updateUserWalletsConfig', config)
     this.$store.dispatch('userWallets/updateUserWallets')

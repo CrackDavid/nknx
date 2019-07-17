@@ -48,7 +48,7 @@ export default {
   },
   data: () => {
     return {
-      currentSet: '1day'
+      currentSet: '1week'
     }
   },
   computed: {

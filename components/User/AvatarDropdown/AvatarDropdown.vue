@@ -6,7 +6,7 @@
       href="#"
       @click.prevent="showDropDown=!showDropDown"
     >
-      <!-- <img :src="$auth.user.picture" class="avatar-dropdown__avatar" alt="avatar"> -->
+      <img src="~assets/icons/avatar.png" class="avatar-dropdown__avatar" alt="avatar" />
       <i
         :class="{ 'fe-chevron-up': showDropDown, 'fe-chevron-down': !showDropDown }"
         class="fe"
