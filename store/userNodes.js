@@ -2,8 +2,8 @@ export const state = () => ({
   userNodes: false,
   userConfig: {
     filter: '',
-    sort: '',
-    order: 'desc',
+    sort: 'relayMessageCount',
+    order: '',
     search: '',
     page: 1
   }

@@ -84,7 +84,7 @@ export default {
   created() {
     const config = {
       filter: '',
-      sort: '',
+      sort: 'relayMessageCount',
       order: 'desc',
       search: '',
       page: 1
