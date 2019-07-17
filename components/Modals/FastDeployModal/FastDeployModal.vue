@@ -23,7 +23,7 @@
             <div
               :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
             >
-              <label class="modal-input__label">{{$t('walletAddress')}}</label>
+              <label class="modal-input__label">{{$t('benificiaryAddr')}}</label>
               <div class="modal-input__wrapper">
                 <input
                   v-model="address"
