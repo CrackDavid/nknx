@@ -97,6 +97,21 @@
       }
     }
 
+    &_success {
+      color: $white;
+      background: $success;
+      min-height: 48px;
+      box-sizing: border-box;
+
+      &:hover {
+        background: darken($success, 10%);
+      }
+
+      &:active {
+        background: lighten($success, 10%);
+      }
+    }
+
     &_gradient {
       min-height: 48px;
       color: $white;

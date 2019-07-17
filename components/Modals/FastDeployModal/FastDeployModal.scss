@@ -1,0 +1,76 @@
+.fast-deploy {
+  &__form {
+    width: 820px;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: $transition-1;
+
+    &-icon {
+      padding-left: $padding-micro;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__copy {
+    margin-right: $padding-micro;
+    transition: $transition-1;
+    color: $primary;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      color: $secondary;
+    }
+
+    &:active {
+      color: darken($primary, 10%);
+    }
+  }
+
+  &__script {
+    background: $base;
+    font-style: italic;
+  }
+
+  &__node {
+    &_visible {
+      display: table-row;
+    }
+
+    display: none;
+    border: none !important;
+
+    &-info {
+      display: flex;
+
+      div {
+        &:not(:last-child) {
+          margin-right: $padding-micro;
+          min-width: 130px;
+          border-right: 2px solid;
+          border-color: $error;
+          padding-right: $padding-micro;
+        }
+      }
+
+      &_success {
+        div {
+          &:not(:last-child) {
+            border-color: $success;
+          }
+        }
+      }
+    }
+
+    td {
+      padding-left: $padding-big;
+    }
+  }
+}

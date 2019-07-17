@@ -5,7 +5,8 @@ export const state = () => ({
   deleteNodeModalVisible: false,
   deleteAllNodesModalVisible: false,
   deleteAllWalletsModalVisible: false,
-  receiveWalletModalVisible: false
+  receiveWalletModalVisible: false,
+  fastDeployModalVisible: false
 })
 
 export const mutations = {
@@ -29,6 +30,9 @@ export const mutations = {
   },
   setReceiveWalletModalVisible(state, obj) {
     state.receiveWalletModalVisible = obj
+  },
+  setFastDeployModalVisible(state, obj) {
+    state.fastDeployModalVisible = obj
   }
 }
 
@@ -53,6 +57,9 @@ export const getters = {
   },
   getReceiveWalletModalVisible(state) {
     return state.receiveWalletModalVisible
+  },
+  getFastDeployModalVisible(state) {
+    return state.fastDeployModalVisible
   }
 }
 
@@ -77,5 +84,8 @@ export const actions = {
   },
   updateReceiveWalletModalVisible({ commit }, obj) {
     commit('setReceiveWalletModalVisible', obj)
+  },
+  updateFastDeployModalVisible({ commit }, obj) {
+    commit('setFastDeployModalVisible', obj)
   }
 }

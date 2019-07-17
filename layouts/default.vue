@@ -7,7 +7,7 @@
     <Sidebar />
     <nuxt
       class="content"
-      :class="[sidebarExpanded ? 'content_collapsed' : null, newWalletModalVisible !== false || deleteWalletModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]"
+      :class="[sidebarExpanded ? 'content_collapsed' : null, deleteNodeModalVisible !== false || deleteAllNodesModalVisible !== false || deleteAllWalletsModalVisible !== false || receiveWalletModalVisible !== false || fastDeployModalVisible !== false || newWalletModalVisible !== false || deleteWalletModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]"
     />
     <transition name="fade">
       <NewWalletModal v-if="newWalletModalVisible" />
@@ -17,6 +17,7 @@
       <DeleteAllNodesModal v-if="deleteAllNodesModalVisible" />
       <DeleteAllWalletsModal v-if="deleteAllWalletsModalVisible" />
       <ReceiveWalletModal v-if="receiveWalletModalVisible" />
+      <FastDeployModal v-if="fastDeployModalVisible" />
     </transition>
   </div>
   <Preloader v-else />
@@ -35,6 +36,7 @@ import DeleteNodeModal from '~/components/Modals/DeleteNodeModal/DeleteNodeModal
 import DeleteAllNodesModal from '~/components/Modals/DeleteAllNodesModal/DeleteAllNodesModal'
 import DeleteAllWalletsModal from '~/components/Modals/DeleteAllWalletsModal/DeleteAllWalletsModal'
 import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWalletModal'
+import FastDeployModal from '~/components/Modals/FastDeployModal/FastDeployModal'
 
 export default {
   components: {
@@ -48,7 +50,8 @@ export default {
     DeleteNodeModal,
     DeleteAllNodesModal,
     DeleteAllWalletsModal,
-    ReceiveWalletModal
+    ReceiveWalletModal,
+    FastDeployModal
   },
   data: () => {
     return {
@@ -59,6 +62,7 @@ export default {
     newWalletModalVisible: 'modals/getNewWalletModalVisible',
     deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
     newNodeModalVisible: 'modals/getNewNodeModalVisible',
+    fastDeployModalVisible: 'modals/getFastDeployModalVisible',
     deleteNodeModalVisible: 'modals/getDeleteNodeModalVisible',
     deleteAllNodesModalVisible: 'modals/getDeleteAllNodesModalVisible',
     deleteAllWalletsModalVisible: 'modals/getDeleteAllWalletsModalVisible',

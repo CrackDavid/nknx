@@ -7,6 +7,10 @@
           <NodeOnline v-if="totalNodes > 0" :filters="filters" />
         </div>
         <div class="page__node-manager-right">
+          <Button theme="success" @click.native="openFastDeployModal">
+            <span class="button__icon fe fe-upload-cloud"></span>
+            {{$t('fastDeploy')}}
+          </Button>
           <Button @click.native="openNewNodeModal">
             <span class="button__icon fe fe-plus"></span>
             {{$t('addNodes')}}
@@ -97,6 +101,9 @@ export default {
     },
     openDeleteAllNodesModal() {
       this.$store.dispatch('modals/updateDeleteAllNodesModalVisible', true)
+    },
+    openFastDeployModal() {
+      this.$store.dispatch('modals/updateFastDeployModalVisible', true)
     },
     fetchNodesData() {
       const {
