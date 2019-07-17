@@ -259,57 +259,6 @@ export default {
           self.alertMsg = 'failedSnippetAlert'
           self.isLoading = false
         })
-    },
-    addNode() {
-      const self = this
-      const label = this.label
-      let ip = this.ip
-
-      if (this.currentView === 'multiple') {
-        ip = ip.replace(/\s/g, '')
-        const ipRegExp = /((?=.*[^]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/gim
-        let ipArray = []
-        ipArray = ip.match(ipRegExp)
-        if (ipArray.length > 10) {
-          self.isError = true
-          self.alertMsg = 'allowedOnly10Nodes'
-          return false
-        } else {
-          ip = ipArray.join()
-        }
-      }
-
-      this.isLoading = true
-      this.$axios
-        .$post('nodes', {
-          label: label,
-          ip: ip
-        })
-        .then(response => {
-          const { duplicate, failed, saved } = response.data
-          self.duplicateNodes = duplicate
-          self.failedNodes = failed
-          self.successNodes = saved
-
-          if (duplicate.length > 0) {
-            self.isError = true
-            self.alertMsg = 'duplicateNewNodeAlert'
-          } else if (failed.length > 0) {
-            self.isError = true
-            self.alertMsg = 'failedNewNodeAlert'
-          } else if (saved.length > 0) {
-            self.alertMsg = 'successNewNodeAlert'
-            self.isSuccess = true
-            setTimeout(self.closeModal, 1000)
-          }
-          self.$store.dispatch('userNodes/updateUserNodes')
-          self.isLoading = false
-        })
-        .catch(error => {
-          self.isError = true
-          self.alertMsg = 'failedNewNodeAlert'
-          self.isLoading = false
-        })
     }
   }
 }
