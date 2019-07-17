@@ -51,7 +51,9 @@
                 class="text_link"
               >{{tx.hash}}</a>
             </td>
-            <td class="table__item">{{tx.txType}}</td>
+            <td class="table__item">
+              <TransactionTypeTitle :type="tx.txType" />
+            </td>
             <td class="table__item">{{$moment(tx.created_at).fromNow()}}</td>
           </tr>
         </tbody>
@@ -69,11 +71,13 @@ import { mapGetters } from 'vuex'
 
 import Card from '~/components/Card/Card.vue'
 import Pagination from '~/components/Pagination/Pagination'
+import TransactionTypeTitle from '~/components/TransactionTypeTitle/TransactionTypeTitle'
 
 export default {
   components: {
     Card,
-    Pagination
+    Pagination,
+    TransactionTypeTitle
   },
   data: () => {
     return {
