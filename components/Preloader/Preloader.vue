@@ -1,6 +1,6 @@
 <template>
   <div class="preloader">
-    <Logo class="preloader__item"/>
+    <Logo class="preloader__item" />
     <div>
       <div class="preloader__text">{{$t('loading')}}...</div>
     </div>

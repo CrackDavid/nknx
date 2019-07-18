@@ -45,6 +45,7 @@ import WalletOverview from '~/components/UserWallets/WalletOverview/WalletOvervi
 import Button from '~/components/Button/Button.vue'
 
 export default {
+  middleware: 'isAuth',
   components: {
     ContentWrapper,
     Grid,

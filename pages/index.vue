@@ -23,6 +23,7 @@ import MediumNews from '~/components/MediumNews/MediumNews.vue'
 import DailyBalance from '~/components/DailyBalance/DailyBalance.vue'
 
 export default {
+  middleware: 'isAuth',
   components: {
     Grid,
     GeneralNetworkStats,

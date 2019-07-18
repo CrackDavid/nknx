@@ -47,6 +47,7 @@ import NodeSearchBar from '~/components/UserNodes/NodeSearchBar/NodeSearchBar.vu
 import Button from '~/components/Button/Button.vue'
 
 export default {
+  middleware: 'isAuth',
   components: {
     ContentWrapper,
     Grid,

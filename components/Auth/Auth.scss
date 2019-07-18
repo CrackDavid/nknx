@@ -1,0 +1,96 @@
+.auth {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  height: 100vh;
+
+  &__left {
+    grid-column: span 7;
+    background: $dark-gradient;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    position: relative;
+  }
+
+  &__right {
+    padding: $padding-max;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    grid-column: span 5;
+  }
+
+  &__img {
+    position: absolute;
+    opacity: 0.25;
+  }
+
+  &__title {
+    font-size: 48px;
+  }
+
+  &__message {
+  }
+
+  &__description-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: $padding-default;
+  }
+
+  &__logo {
+    height: 40px;
+    width: 40px;
+    margin-right: $padding-default;
+
+    path {
+      fill: $darker;
+    }
+  }
+
+  &__greeting {
+    font-size: 94px;
+    color: $white;
+    z-index: 1;
+    position: relative;
+  }
+
+  &__socials {
+    display: flex;
+    margin-top: 30px;
+  }
+
+  &__social {
+    padding: $padding-micro;
+    border-radius: $card-border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $darker;
+    transition: $transition-1;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      background-color: lighten($darker, 10%);
+    }
+
+    &:active {
+      background-color: darken($darker, 10%);
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+
+      path {
+        fill: $white;
+      }
+    }
+  }
+}

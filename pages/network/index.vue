@@ -29,6 +29,7 @@ import CountryList from '~/components/CountryList/CountryList.vue'
 import NetworkProviders from '~/components/NetworkProviders/NetworkProviders.vue'
 
 export default {
+  middleware: 'isAuth',
   components: {
     ContentWrapper,
     Grid,
