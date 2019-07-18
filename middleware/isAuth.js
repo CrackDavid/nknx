@@ -4,7 +4,7 @@ export default async function({ store, redirect }) {
     await store.$auth.fetchUser()
   } else {
     if (store.$auth.$state.user.email_verified_at === null) {
-      redirect(403, '/auth')
+      redirect('https://api2.nknx.org/email/verify')
     }
   }
 }
