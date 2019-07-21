@@ -342,7 +342,7 @@ table {
 }
 
 .divider {
-  width: 100%;
+  flex: 1;
   height: 1px;
   background-color: $platinum;
   margin-right: $padding-normal;
