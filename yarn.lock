@@ -9929,10 +9929,10 @@ vue-i18n-extensions@^0.2.1:
   resolved "https://registry.yarnpkg.com/vue-i18n-extensions/-/vue-i18n-extensions-0.2.1.tgz#86ebea45a1f9c9594cd124f264e107aea193d7dd"
   integrity sha512-xBrItI7bEwBnG7eAlnyUARP41JYYn2+ABMR8q1Yh5FM9hHCbs4XPZwG+4+FPeIZ6b5gYk4YUP//m+fWiuU9z9A==
 
-vue-i18n-extract@^0.4.14:
-  version "0.4.14"
-  resolved "https://registry.yarnpkg.com/vue-i18n-extract/-/vue-i18n-extract-0.4.14.tgz#ed48137944b562fec67bca41a9dcaaee93909738"
-  integrity sha512-gfbhyOU+zo8/dg1kHudBGHTJx9cvS7bsO2G/3mvSjzb3jCIu/HSbBT/EFaJMbo3y82zODq9+ehZZyVj5UH2qNA==
+vue-i18n-extract@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-i18n-extract/-/vue-i18n-extract-1.0.1.tgz#6c183133b904f8362f2001d5b20cf1937fc4b21f"
+  integrity sha512-H0ql/wBSkLdrDmMPqdX6iuvl1vW66j9RZ3Ujb6jiPCeVpam43sdP1y1bc14K+/81/lnKlC0vTENOkNb0b6vL7g==
   dependencies:
     cli-table3 "^0.5.1"
     dot-object "^1.7.1"
