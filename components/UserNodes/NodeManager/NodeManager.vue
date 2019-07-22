@@ -71,7 +71,7 @@
 import { mapGetters } from 'vuex'
 
 import NodeStatus from '~/components/UserNodes/NodeStatus/NodeStatus.vue'
-import NodeMiningHistoryChart from '~/components/charts/NodeMiningHistoryChart.vue'
+import NodeMiningHistoryChart from '~/components/Charts/NodeMiningHistoryChart.vue'
 
 export default {
   components: { NodeStatus, NodeMiningHistoryChart },

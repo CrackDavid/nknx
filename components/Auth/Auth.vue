@@ -33,7 +33,7 @@
 </style>
 
 <script>
-import Welcome from '~/assets/icons/Welcome.svg'
+import Welcome from '~/assets/icons/welcome.svg'
 import Logo from '~/assets/icons/logo.svg'
 import Twitter from '@/assets/icons/Twitter.svg'
 import Telegram from '@/assets/icons/Telegram.svg'

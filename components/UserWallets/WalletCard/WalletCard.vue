@@ -41,7 +41,7 @@
 import { mapGetters } from 'vuex'
 
 import Card from '~/components/Card/Card.vue'
-import Wallet from '~/assets/icons/Wallet.svg'
+import Wallet from '~/assets/icons/wallet.svg'
 
 export default {
   components: { Card, Wallet },

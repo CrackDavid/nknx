@@ -12,7 +12,7 @@
 </style>
 
 <script>
-import Plus from '~/assets/icons/Plus.svg'
+import Plus from '~/assets/icons/plus.svg'
 
 export default {
   components: { Plus },

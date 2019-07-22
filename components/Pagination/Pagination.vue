@@ -16,7 +16,7 @@
 </style>
 
 <script>
-import Arrow from '@/assets/icons/Arrow.svg'
+import Arrow from '@/assets/icons/arrow.svg'
 
 export default {
   components: { Arrow },
