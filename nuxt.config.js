@@ -130,7 +130,8 @@ export default {
       'laravel.passport': {
         url: 'https://auth.nknx.org',
         client_id: 1,
-        client_secret: 'G65UPboPyICBYjBUfBqbYovKgLxXbXxqb6UdPbj0',
+        //client_secret: 'G65UPboPyICBYjBUfBqbYovKgLxXbXxqb6UdPbj0', //for local use
+        client_secret: 'ZU8x5QZ4hhvM5bLvSL1ZsDJQIg5Z9vmdvQYoQx0d',
         userinfo_endpoint: 'https://auth.nknx.org/oauth/me'
       }
     }
