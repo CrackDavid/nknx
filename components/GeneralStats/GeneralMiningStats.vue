@@ -55,9 +55,9 @@ export default {
           title: 'activeNodes',
           data: null
         },
-        minedToday: {
+        mined24: {
           icon: 'fe-bar-chart-2',
-          title: 'minedToday',
+          title: 'mined24',
           data: null
         },
         minedTotal: {
@@ -84,12 +84,11 @@ export default {
   methods: {
     updateMiningStats() {
       this.items.activeNodes.data = this.userNodes.statCounts.PERSIST_FINISHED
-      this.items.minedToday.data =
-        '~' + Number(this.userNodes.rewardToday).toFixed(0)
+      this.items.mined24.data = '~' + Number(this.userNodes.reward24).toFixed(0)
       this.items.minedTotal.data =
         '~' + Number(this.userNodes.rewardAll).toFixed(0)
       this.items.minedAverage.data = Number(
-        this.userNodes.rewardToday / this.userNodes.statCounts.ALL
+        this.userNodes.reward24 / this.userNodes.statCounts.ALL
       ).toFixed(3)
     }
   }

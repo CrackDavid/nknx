@@ -13,7 +13,7 @@
       <div class="node-stats__item">
         <div class="node-stats__icon node-stats__icon_color_green fe fe-codepen"></div>
         <div class="node-stats__data">
-          <div class="node-stats__title">{{$t('rewardToday')}}</div>
+          <div class="node-stats__title">{{$t('reward24')}}</div>
           <div class="node-stats__value">
             {{Number(daily).toFixed(2) | commaNumber}}
             <span class="node-stats__currency">NKN</span>
