@@ -2,13 +2,13 @@
   <div class="topbar">
     <div v-if="price.prices && $mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" class="topbar__left">
       <span class="topbar__block">
-        USD/NKN: ${{ price.prices[0].price }}
+        NKN/USD: ${{ price.prices[0].price }}
         <span
           :class="{'topbar__block_negative': price.prices[0].percent_change_24h<0, 'topbar__block_positive': price.prices[0].percent_change_24h>0}"
         >({{ price.prices[0].percent_change_24h.toFixed(2) }}%)</span>
       </span>
       <span class="topbar__block">
-        ETH/NKN: {{ price.prices[1].price }}
+        NKN/ETH: {{ price.prices[1].price }}
         <span
           :class="{'topbar__block_negative': price.prices[1].percent_change_24h<0, 'topbar__block_positive': price.prices[1].percent_change_24h>0}"
         >({{ price.prices[1].percent_change_24h.toFixed(2) }}%)</span>
