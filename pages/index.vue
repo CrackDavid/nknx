@@ -7,6 +7,7 @@
         <GeneralNetworkStats />
         <DailyBalance />
         <MediumNews />
+        <DailyMined />
         <MarketStats />
       </Grid>
     </ContentWrapper>
@@ -21,6 +22,7 @@ import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import MarketStats from '~/components/MarketStats/MarketStats.vue'
 import MediumNews from '~/components/MediumNews/MediumNews.vue'
 import DailyBalance from '~/components/DailyBalance/DailyBalance.vue'
+import DailyMined from '~/components/DailyMined/DailyMined.vue'
 
 export default {
   middleware: 'isAuth',
@@ -31,7 +33,8 @@ export default {
     ContentWrapper,
     MarketStats,
     MediumNews,
-    DailyBalance
+    DailyBalance,
+    DailyMined
   },
   created() {
     const config = {

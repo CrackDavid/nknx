@@ -68,7 +68,7 @@ export default {
       dateAxis.cursorTooltipEnabled = false
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis())
-      valueAxis.min = -1
+      valueAxis.min = 0
       valueAxis.renderer.grid.template.disabled = true
       valueAxis.renderer.baseGrid.disabled = true
       valueAxis.renderer.labels.template.disabled = true
@@ -94,11 +94,6 @@ export default {
       series.stroke = color
       series.fill = color
 
-      // render data points as bullets
-      const bullet = series.bullets.push(new am4charts.CircleBullet())
-      bullet.circle.opacity = 0
-      bullet.circle.propertyFields.opacity = 'opacity'
-      bullet.circle.radius = 3
       this.chart = chart
     }
   }
