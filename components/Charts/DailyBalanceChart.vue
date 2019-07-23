@@ -27,9 +27,9 @@ export default {
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let nodesAverage = this.userWallets.sumWalletSnapshots
       const data = []
-      for (let i = 0; i < nodesAverage.length - 1; i++) {
+      for (let i = 0; i < 7; i++) {
         data.push({
-          date: new Date(nodesAverage[i].hour),
+          date: new Date(nodesAverage[i].day),
           count: nodesAverage[i].balance
         })
       }
@@ -40,12 +40,12 @@ export default {
       dateAxis.startLocation = 0.5
       dateAxis.endLocation = 0.5
       dateAxis.cursorTooltipEnabled = false
-      dateAxis.dateFormats.setKey('day', 'EEE')
-      dateAxis.periodChangeDateFormats.setKey('day', 'EEE')
+      dateAxis.dateFormats.setKey('day', 'dd/MM')
+      dateAxis.periodChangeDateFormats.setKey('day', 'dd/MM')
       dateAxis.baseInterval = {
-        timeUnit: 'hour',
+        timeUnit: 'day',
         count: 1
-      } // hourly
+      } // daily
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis())
       valueAxis.min = 0
       valueAxis.renderer.grid.template.disabled = true

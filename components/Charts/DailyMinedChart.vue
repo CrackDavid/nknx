@@ -16,12 +16,12 @@ export default {
     am4core.options.queue = true
     am4core.options.onlyShowOnViewport = true
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
-    let txAverage = this.userNodes.sumNodeSnapshots
+    let nodesAverage = this.userNodes.sumNodeSnapshots
     const data = []
-    for (let i = txAverage.length - 2; i >= txAverage.length - 8; i--) {
+    for (let i = 0; i < 7; i++) {
       data.push({
-        date: new Date(txAverage[i].day),
-        count: txAverage[i].mined
+        date: new Date(nodesAverage[i].day),
+        count: nodesAverage[i].mined
       })
     }
 
@@ -46,7 +46,7 @@ export default {
     const series = chart.series.push(new am4charts.LineSeries())
     series.dataFields.dateX = 'date'
     series.dataFields.valueY = 'count'
-    series.tooltipText = '{valueY.value}'
+    series.tooltipText = '{valueY.value} NKN'
     series.stroke = gradient1
     series.fill = gradient1
     series.fillOpacity = 0.1

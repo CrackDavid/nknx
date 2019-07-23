@@ -15,9 +15,7 @@ export default {
     DailyMinedChart
   },
   data: () => {
-    return {
-      change: null
-    }
+    return {}
   },
   computed: {
     ...mapGetters({
@@ -25,20 +23,21 @@ export default {
     }),
     valueArr: function() {
       return Number(this.userNodes.rewardAll).toFixed(2)
+    },
+    change: function() {
+      const data = this.userNodes.sumNodeSnapshots
+      const day1 = data[0].mined
+      const day2 = data[1].mined
+
+      if (day1 > 0 && day2 > 0) {
+        return (((day1 - day2) / day1) * 100).toFixed(2)
+      } else {
+        return (day1 * 100).toFixed(2)
+      }
     }
   },
   destroyed() {},
-  mounted: function() {
-    const data = this.userNodes.sumNodeSnapshots
-    const day1 = data[data.length - 2].mined
-    const day2 = data[data.length - 3].mined
-
-    if (day1 > 0 && day2 > 0) {
-      this.change = (((day1 - day2) / day1) * 100).toFixed(2)
-    } else {
-      this.change = 0
-    }
-  },
+  mounted: function() {},
   methods: {}
 }
 </script>

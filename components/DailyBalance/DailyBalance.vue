@@ -1,6 +1,6 @@
 <template>
   <SparklineStats title="totalBalance" :change="change" :dailyValue="valueArr" symbol="NKN">
-    <DailyBalanceChart v-if="userWallets.sumWalletSnapshots[0].hour" />
+    <DailyBalanceChart v-if="userWallets.sumWalletSnapshots[0].day" />
   </SparklineStats>
 </template>
 <script>
