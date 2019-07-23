@@ -118,7 +118,7 @@ export default {
       this.nodes = data
       this.filters = this.userNodes.statCounts
       this.total = this.userNodes.rewardAll
-      this.daily = this.userNodes.rewardToday
+      this.daily = this.userNodes.reward24
       this.totalNodes = this.userNodes.statCounts.ALL
       this.from = from
       this.to = to
