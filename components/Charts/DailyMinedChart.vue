@@ -12,7 +12,6 @@ export default {
   computed: mapGetters({
     userNodes: 'userNodes/getUserNodes'
   }),
-
   mounted() {
     am4core.options.queue = true
     am4core.options.onlyShowOnViewport = true

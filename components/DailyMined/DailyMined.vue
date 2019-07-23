@@ -1,5 +1,5 @@
 <template>
-  <SparklineStats title="totalMined" :change="change" :dailyValue="valueArr | avg">
+  <SparklineStats title="totalMined" :change="change" :dailyValue="valueArr" symbol="NKN">
     <DailyMinedChart />
   </SparklineStats>
 </template>
@@ -16,13 +16,17 @@ export default {
   },
   data: () => {
     return {
-      change: null,
-      valueArr: []
+      change: null
     }
   },
-  computed: mapGetters({
-    userNodes: 'userNodes/getUserNodes'
-  }),
+  computed: {
+    ...mapGetters({
+      userNodes: 'userNodes/getUserNodes'
+    }),
+    valueArr: function() {
+      return Number(this.userNodes.rewardAll).toFixed(2)
+    }
+  },
   destroyed() {},
   mounted: function() {
     const data = this.userNodes.sumNodeSnapshots
@@ -34,9 +38,6 @@ export default {
     } else {
       this.change = 0
     }
-    this.valueArr = data
-      .slice(data.length - 8, data.length - 1)
-      .map(x => x.mined)
   },
   methods: {}
 }
