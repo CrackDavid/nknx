@@ -1,0 +1,59 @@
+.checkbox {
+  position: relative;
+  height: 18px;
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: $padding-micro;
+  }
+
+  &__control {
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: absolute;
+
+    &:checked + label {
+      background-color: $success;
+      border-color: $success;
+
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__label {
+    background-color: $white;
+    border: $card-border;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    transition: $transition-1;
+
+    &:after {
+      border: 2px solid $white;
+      border-top: none;
+      border-right: none;
+      content: '';
+      height: 4px;
+      left: 3px;
+      opacity: 0;
+      position: absolute;
+      top: 4px;
+      transform: rotate(-45deg);
+      width: 8px;
+    }
+  }
+
+  &__text {
+    margin-left: calc(16px + #{$padding-micro});
+  }
+}

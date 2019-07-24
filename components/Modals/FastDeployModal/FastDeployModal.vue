@@ -14,14 +14,14 @@
           >{{$t('createSnippet')}}</div>
           <div
             :class="['modal-switch__button', currentView === 'deployments' ? 'modal-switch__button_active' : null]"
-            @click="switchView('deployments')"
+            @click="switchView('deployments'), getDeployments()"
           >{{$t('myDeployments')}}</div>
         </div>
         <template v-if="currentView === 'snippets'">
           <div class="modal__body modal__body_wrap">
             <div class="modal__body-title">{{$t('createSnippetDescription')}}</div>
             <div
-              :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
+              :class="['modal-input modal-input_full', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
             >
               <label class="modal-input__label">{{$t('beneficiaryAddr')}}</label>
               <div class="modal-input__wrapper">
@@ -38,11 +38,11 @@
                   :class="['modal-input__icon fe', isError === true || isInvalid === true ? 'fe-x' : isSuccess ? 'fe-check' : null]"
                 ></span>
               </div>
-              <div class="modal-input__alert">{{ errors.first('nknaddress') }}</div>
+              <div class="modal-input__alert">{{ errors.first('nknaddress') }} {{$t(alertMsg)}}</div>
             </div>
 
             <div
-              :class="['modal-input modal-input_full', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
+              :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
             >
               <label class="modal-input__label">{{$t('systemArchitecture')}}</label>
               <div class="modal-input__wrapper">
@@ -63,7 +63,22 @@
                   >{{$t('ARM6L')}}</Radio>
                 </div>
               </div>
-              <div class="modal-input__alert">{{$t(alertMsg)}}</div>
+            </div>
+
+            <div
+              :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
+            >
+              <label class="modal-input__label">{{$t('deploymentOptions')}}</label>
+              <div class="modal-input__wrapper">
+                <div class="modal-radio__group">
+                  <Checkbox
+                    class="modal-radio__item"
+                    name="downloadChain"
+                    :value="downloadChain"
+                    @change="changeDownloadChain"
+                  >{{$t('downloadChain')}}</Checkbox>
+                </div>
+              </div>
             </div>
           </div>
         </template>
@@ -78,6 +93,7 @@
                     <th>#</th>
                     <th style="min-width: 100px;">{{$t('architecture')}}</th>
                     <th>{{$t('beneficiaryAddr')}}</th>
+                    <th>{{$t('downloadChain')}}</th>
                     <th style="min-width: 1000px;">{{$t('script')}}</th>
                   </tr>
                 </thead>
@@ -96,6 +112,11 @@
                       </td>
                       <td>{{deploy.architecture}}</td>
                       <td>{{deploy.benificiaryAddr}}</td>
+                      <td>
+                        <span
+                          :class="['fe fast-deploy__chain-icon', deploy.downloadChain === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
+                        ></span>
+                      </td>
                       <td>
                         <i
                           v-clipboard:copy="`wget -O install.sh 'https://api2.nknx.org/deployment/install/${deploy.uuid}'; sudo bash install.sh`"
@@ -160,9 +181,10 @@ import { Fragment } from 'vue-fragment'
 import { mixin as clickaway } from 'vue-clickaway'
 import Button from '~/components/Button/Button.vue'
 import Radio from '~/components/Controls/Radio/Radio.vue'
+import Checkbox from '~/components/Controls/Checkbox/Checkbox.vue'
 
 export default {
-  components: { Button, Fragment, Radio },
+  components: { Button, Fragment, Radio, Checkbox },
   mixins: [clickaway],
   data: () => {
     return {
@@ -178,7 +200,8 @@ export default {
       successNodes: [],
       deployments: [],
       activeDeploy: false,
-      activeArchitecture: 'linux-amd64'
+      activeArchitecture: 'linux-amd64',
+      downloadChain: true
     }
   },
   computed: {
@@ -218,6 +241,9 @@ export default {
     changeArchitecture: function(newValue) {
       this.activeArchitecture = newValue
     },
+    changeDownloadChain() {
+      this.downloadChain = !this.downloadChain
+    },
     getDeployments() {
       const self = this
       this.$axios.$get('deployment-entry', {}).then(response => {
@@ -243,14 +269,15 @@ export default {
     },
     createSnippet() {
       const self = this
-      const activeArchitecture = this.activeArchitecture
-      const address = this.address
+      const { activeArchitecture, address, downloadChain } = this
+
       this.isLoading = true
 
       this.$axios
         .$post('deployment-entry', {
           architecture: activeArchitecture,
-          benificiaryAddr: address
+          benificiaryAddr: address,
+          downloadChain: downloadChain
         })
         .then(response => {
           self.isSuccess = true

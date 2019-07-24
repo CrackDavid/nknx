@@ -18,6 +18,19 @@
     }
   }
 
+  &__chain-icon {
+    justify-content: center;
+    display: flex;
+
+    &_positive {
+      color: $success;
+    }
+
+    &_negative {
+      color: $error;
+    }
+  }
+
   &__copy {
     margin-right: $padding-micro;
     transition: $transition-1;
