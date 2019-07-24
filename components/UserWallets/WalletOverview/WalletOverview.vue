@@ -6,7 +6,7 @@
           <div class="wallet-overview__item">
             <div class="wallet-overview__title">{{$t('totalBalance')}}</div>
             <div class="wallet-overview__value">
-              {{Number(totalNknValue | commaNumber).toFixed(2)}}
+              {{Number(totalNknValue).toFixed(2) | commaNumber}}
               <span
                 class="wallet-overview__symbol"
               >NKN</span>
