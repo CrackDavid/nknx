@@ -93,7 +93,7 @@
                     <th>#</th>
                     <th style="min-width: 100px;">{{$t('architecture')}}</th>
                     <th>{{$t('beneficiaryAddr')}}</th>
-                    <th>{{$t('downloadChain')}}</th>
+                    <th>{{$t('downloadChainTable')}}</th>
                     <th style="min-width: 1000px;">{{$t('script')}}</th>
                   </tr>
                 </thead>
