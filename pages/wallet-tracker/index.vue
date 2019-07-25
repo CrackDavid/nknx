@@ -27,7 +27,12 @@
           </Button>
         </div>
         <NewWalletCard @click.native="openNewWalletModal()" />
-        <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
+        <template v-if="!loading">
+          <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
+        </template>
+        <template v-else>
+          <WalletCardLoader v-for="(walletLoader, index) in walletLoaders" :key="index" />
+        </template>
       </Grid>
     </ContentWrapper>
   </div>
@@ -43,6 +48,7 @@ import NewWalletCard from '~/components/UserWallets/NewWalletCard/NewWalletCard.
 import Pagination from '~/components/Pagination/Pagination'
 import WalletOverview from '~/components/UserWallets/WalletOverview/WalletOverview'
 import Button from '~/components/Button/Button.vue'
+import WalletCardLoader from '~/components/Loaders/WalletCardLoader/WalletCardLoader.vue'
 
 export default {
   middleware: 'isAuth',
@@ -53,7 +59,8 @@ export default {
     NewWalletCard,
     Pagination,
     WalletOverview,
-    Button
+    Button,
+    WalletCardLoader
   },
   data: () => {
     return {
@@ -65,7 +72,8 @@ export default {
       from: 0,
       to: 0,
       sumWalletSnapshots: [],
-      loading: false
+      loading: false,
+      walletLoaders: 3
     }
   },
   computed: {
@@ -94,6 +102,9 @@ export default {
     changePage(page) {
       let newConfig = Object.assign({}, this.userWalletsConfig)
       newConfig.page = page
+      this.loading = true
+      this.nextPage = null
+      this.prevPage = null
       this.$store.dispatch('userWallets/updateUserWalletsConfig', newConfig)
       this.$store.dispatch('userWallets/updateUserWallets')
     },
