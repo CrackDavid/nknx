@@ -3,7 +3,8 @@ export const state = () => ({
   networkStatus: false,
   networkCities: false,
   networkCountries: false,
-  networkProviders: false
+  networkProviders: false,
+  networkReleases: false
 })
 
 export const mutations = {
@@ -21,6 +22,9 @@ export const mutations = {
   },
   setNetworkProviders(state, providersObj) {
     state.networkProviders = providersObj
+  },
+  setNetworkReleases(state, releasesObj) {
+    state.networkReleases = releasesObj
   }
 }
 
@@ -39,6 +43,9 @@ export const getters = {
   },
   getNetworkProviders(state) {
     return state.networkProviders
+  },
+  getNetworkReleases(state) {
+    return state.networkReleases
   }
 }
 
@@ -64,5 +71,15 @@ export const actions = {
   async updateNetworkProviders({ commit }) {
     const data = await this.$axios.$get('https://api2.nknx.org/network/isps')
     commit('setNetworkProviders', data)
+  },
+  async updateNetworkReleases({ commit }) {
+    let data = await fetch('https://api.github.com/repos/nknorg/nkn/releases')
+    data = await data.json()
+    data = data.slice(0, 3)
+    data.forEach(item => {
+      item.body = item.body.replace(/\n/gi, '')
+      item.body = item.body.replace(/\*/g, '')
+    })
+    commit('setNetworkReleases', data)
   }
 }

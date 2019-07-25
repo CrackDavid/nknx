@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets && userNodes"
+    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets && userNodes && networkReleases"
   >
     <Topbar />
     <Headerbar />
@@ -74,6 +74,7 @@ export default {
     networkCities: 'network/getNetworkCities',
     networkCountries: 'network/getNetworkCountries',
     networkProviders: 'network/getNetworkProviders',
+    networkReleases: 'network/getNetworkReleases',
     dailyHistoryPrice: 'price/getDailyHistoryPrice',
     dailyTransactions: 'transactions/getDailyTransactions',
     dailyBlocks: 'blocks/getDailyBlocks',
@@ -90,6 +91,7 @@ export default {
     clearInterval(this.intervalNetworkCities)
     clearInterval(this.intervalNetworkCountries)
     clearInterval(this.intervalNetworkProviders)
+    clearInterval(this.intervalNetworkReleases)
     clearInterval(this.intervalDailyHistoryPrice)
     clearInterval(this.intervalDailyTransactions)
     clearInterval(this.intervalDailyBlocks)
@@ -105,6 +107,7 @@ export default {
     this.updateNetworkCities()
     this.updateNetworkCountries()
     this.updateNetworkProviders()
+    this.updateNetworkReleases()
     this.updateDailyHistoryPrice()
     this.updateDailyTransactions()
     this.updateDailyBlocks()
@@ -132,6 +135,10 @@ export default {
     )
     this.intervalNetworkProviders = setInterval(
       this.updateNetworkProviders,
+      this.updateInterval
+    )
+    this.intervalNetworkReleases = setInterval(
+      this.updateNetworkReleases,
       this.updateInterval
     )
     this.intervalDailyHistoryPrice = setInterval(
@@ -181,6 +188,9 @@ export default {
     },
     updateNetworkProviders() {
       this.$store.dispatch('network/updateNetworkProviders')
+    },
+    updateNetworkReleases() {
+      this.$store.dispatch('network/updateNetworkReleases')
     },
     updateDailyHistoryPrice() {
       this.$store.dispatch('price/updateDailyHistoryPrice')

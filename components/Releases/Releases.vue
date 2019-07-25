@@ -13,7 +13,7 @@
         <div
           class="releases-item__tag"
           :class="{'releases-item__tag_active':item.active}"
-        >{{item.tag_name}}</div>
+        >{{item.tag_name | nodeVersion}}</div>
         <div class="releases-item__body">
           <div class="releases-item__header">
             <div class="releases-item__subtitle">{{$t('networkRelease')}}</div>
@@ -39,6 +39,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Card from '~/components/Card/Card.vue'
 import ArrowRight from '~/assets/icons/arrow-right.svg'
 export default {
@@ -51,25 +53,13 @@ export default {
       releases: []
     }
   },
+  computed: mapGetters({
+    networkReleases: 'network/getNetworkReleases'
+  }),
   mounted: function() {
-    const self = this
-    this.fetchGuthubReleases('nknorg', 'nkn').then(function(data) {
-      data.forEach(function(item) {
-        item.tag_name = item.tag_name.slice(0, 6)
-        item.body = item.body.replace(/\n/gi, '')
-        item.body = item.body.replace(/\*/g, '')
-      })
-      self.releases = data.slice(0, 3)
-      self.releases[0].active = true
-    })
+    this.releases = this.networkReleases
+    this.releases[0].active = true
   },
-  methods: {
-    async fetchGuthubReleases(profile, repo) {
-      const res = await fetch(
-        'https://api.github.com/repos/' + profile + '/' + repo + '/releases'
-      )
-      return res.json()
-    }
-  }
+  methods: {}
 }
 </script>

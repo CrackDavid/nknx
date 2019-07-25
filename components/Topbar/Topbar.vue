@@ -27,7 +27,7 @@
       </span>
       <span v-if="networkStatus" class="topbar__block">
         <span class="fe fe-git-branch topbar__icon" />
-        {{ networkStatus.version | nodeVersion }}
+        {{ networkVersion | nodeVersion }}
       </span>
     </div>
   </div>
@@ -41,13 +41,21 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  data: () => {
+    return {
+      networkVersion: ''
+    }
+  },
   computed: mapGetters({
     price: 'price/getCurrentPrice',
     networkStats: 'network/getNetworkStats',
-    networkStatus: 'network/getNetworkStatus'
+    networkStatus: 'network/getNetworkStatus',
+    networkReleases: 'network/getNetworkReleases'
   }),
   destroyed() {},
-  mounted: function() {},
+  mounted: function() {
+    this.networkVersion = this.networkReleases[0].tag_name
+  },
   methods: {}
 }
 </script>

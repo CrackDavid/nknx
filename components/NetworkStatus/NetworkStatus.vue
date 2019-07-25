@@ -33,11 +33,12 @@ export default {
     }
   },
   computed: mapGetters({
-    networkStatus: 'network/getNetworkStatus'
+    networkStatus: 'network/getNetworkStatus',
+    networkReleases: 'network/getNetworkReleases'
   }),
   mounted: function() {
     this.networkSatus = this.networkStatus.syncState
-    this.networkVersion = this.networkStatus.version
+    this.networkVersion = this.networkReleases[0].tag_name
   }
 }
 </script>
