@@ -73,7 +73,7 @@ export default {
       to: 0,
       sumWalletSnapshots: [],
       loading: false,
-      walletLoaders: 3
+      walletLoaders: 7
     }
   },
   computed: {
