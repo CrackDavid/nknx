@@ -50,6 +50,7 @@ export default {
 
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let nodesAverage = this.data
+      nodesAverage = nodesAverage.slice(0, 7)
       const data = []
       nodesAverage.forEach(node => {
         data.push({
@@ -57,6 +58,7 @@ export default {
           count: node.mined / 100000000
         })
       })
+
       chart.data = data
       chart.padding(0, 0, 0, 0)
 
@@ -68,7 +70,6 @@ export default {
       dateAxis.cursorTooltipEnabled = false
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis())
-      valueAxis.min = 0
       valueAxis.renderer.grid.template.disabled = true
       valueAxis.renderer.baseGrid.disabled = true
       valueAxis.renderer.labels.template.disabled = true
@@ -89,7 +90,7 @@ export default {
       series.dataFields.dateX = 'date'
       series.dataFields.valueY = 'count'
       series.tooltipText = '{valueY.value} NKN'
-      series.tensionX = 0.7
+      series.tensionX = 0.8
       series.strokeWidth = 2
       series.stroke = color
       series.fill = color

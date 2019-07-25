@@ -3,7 +3,8 @@
     :speed="2"
     primaryColor="#f3f3f3"
     secondaryColor="#ecebeb"
-    :style="['width: 397px; height: 138px;', $mq === 'xl' ? 'grid-column: span 3' : 'grid-column: span 6']"
+    style="width: 397px; height: 138px;"
+    :style="$mq === 'xl' ? 'grid-column: span 3' : 'grid-column: span 6'"
   >
     <rect x="110" y="28" rx="4" ry="4" width="117" height="6.4" />
     <rect x="110" y="44" rx="3" ry="3" width="85" height="6.4" />
