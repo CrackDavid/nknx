@@ -402,6 +402,13 @@ table {
     margin-top: $padding-normal;
 
     &__item {
+      &_error {
+        color: $error;
+      }
+
+      &_success {
+        color: $success;
+      }
     }
   }
 

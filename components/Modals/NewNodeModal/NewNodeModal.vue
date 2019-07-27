@@ -83,17 +83,17 @@
               <li
                 v-for="node in failedNodes"
                 :key="node"
-                class="modal-list__item"
+                class="modal-list__item modal-list__item_error"
               >- {{node}} {{$t('nodeIsOffline')}}</li>
               <li
                 v-for="node in duplicateNodes"
                 :key="node"
-                class="modal-list__item"
+                class="modal-list__item modal-list__item_error"
               >- {{node}} {{$t('nodeIsDuplicate')}}</li>
               <li
                 v-for="node in successNodes"
                 :key="node.addr"
-                class="modal-list__item"
+                class="modal-list__item modal-list__item_success"
               >- {{node.addr}} {{$t('successfullyAdded')}}</li>
             </ul>
           </div>
@@ -212,6 +212,7 @@ export default {
     },
     closeModal() {
       this.$store.dispatch('modals/updateNewNodeModalVisible', false)
+      this.$store.dispatch('userNodes/updateUserNodes')
     },
     switchView(val) {
       this.currentView = val
@@ -219,26 +220,10 @@ export default {
       this.label = ''
       this.clearData()
     },
-    addNode() {
+    addNodeRequest(label, ip) {
       const self = this
-      const label = this.label
-      let ip = this.ip
-
-      if (this.currentView === 'multiple') {
-        ip = ip.replace(/\s/g, '')
-        const ipRegExp = /((?=.*[^]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/gim
-        let ipArray = []
-        ipArray = ip.match(ipRegExp)
-        if (ipArray.length > 10) {
-          self.isError = true
-          self.alertMsg = 'allowedOnly10Nodes'
-          return false
-        } else {
-          ip = ipArray.join()
-        }
-      }
-
       this.isLoading = true
+
       this.$axios
         .$post('nodes', {
           label: label,
@@ -246,9 +231,9 @@ export default {
         })
         .then(response => {
           const { duplicate, failed, saved } = response.data
-          self.duplicateNodes = duplicate
-          self.failedNodes = failed
-          self.successNodes = saved
+          self.duplicateNodes = self.duplicateNodes.concat(duplicate)
+          self.failedNodes = self.failedNodes.concat(failed)
+          self.successNodes = self.successNodes.concat(saved)
 
           if (duplicate.length > 0) {
             self.isError = true
@@ -259,9 +244,7 @@ export default {
           } else if (saved.length > 0) {
             self.alertMsg = 'successNewNodeAlert'
             self.isSuccess = true
-            setTimeout(self.closeModal, 1000)
           }
-          self.$store.dispatch('userNodes/updateUserNodes')
           self.isLoading = false
         })
         .catch(error => {
@@ -269,6 +252,40 @@ export default {
           self.alertMsg = 'failedNewNodeAlert'
           self.isLoading = false
         })
+    },
+    generateChunk(array, chunkSize) {
+      return [].concat.apply(
+        [],
+        array.map((elem, i) => {
+          return i % chunkSize ? [] : [array.slice(i, i + chunkSize)]
+        })
+      )
+    },
+    addNode() {
+      this.clearData()
+      const label = this.label
+      let ip = this.ip
+      if (this.currentView === 'multiple') {
+        const maxNodes = 10
+        const ipRegExp = /((?=.*[^]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/gim
+        const delay = 500 // 0.5s
+        let ipArray = []
+        ip = ip.replace(/\s/g, '')
+        ipArray = ip.match(ipRegExp)
+
+        // generating chunk with batches
+        const chunk = this.generateChunk(ipArray, maxNodes)
+
+        // post nodes with delay
+        chunk.forEach((ipBatch, index) => {
+          const ips = ipBatch.join()
+          setTimeout(() => {
+            this.addNodeRequest(label, ips)
+          }, index * delay)
+        })
+      } else {
+        this.addNodeRequest(label, ip)
+      }
     }
   }
 }
