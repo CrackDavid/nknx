@@ -17,7 +17,11 @@
         </th>
       </thead>
       <template v-if="userConfig.loading">
-        <TableRowLoader v-for="(num, index) in loaderCount" :key="index" :count="headings.length" />
+        <tr v-for="headingLoader in headings" :key="headingLoader">
+          <td :colspan="headings.length">
+            <TableRowLoader />
+          </td>
+        </tr>
       </template>
 
       <template v-else>
