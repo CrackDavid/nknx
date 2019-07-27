@@ -5,7 +5,10 @@ export const state = () => ({
     sort: 'relayMessageCount',
     order: '',
     search: '',
-    page: 1
+    page: 1,
+    prevPage: null,
+    nextPage: null,
+    lading: false
   }
 })
 

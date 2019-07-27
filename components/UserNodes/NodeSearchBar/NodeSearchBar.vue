@@ -10,8 +10,16 @@
       />
     </div>
     <div class="node-search-bar__pagination">
-      <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
-      <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
+      <Pagination
+        :page="userConfig.prevPage"
+        type="prev"
+        @click.native="changePage(userConfig.prevPage)"
+      />
+      <Pagination
+        :page="userConfig.nextPage"
+        type="next"
+        @click.native="changePage(userConfig.nextPage)"
+      />
     </div>
   </div>
 </template>
@@ -28,16 +36,7 @@ import debounce from 'lodash.debounce'
 
 export default {
   components: { Pagination },
-  props: {
-    prevPage: {
-      type: Number,
-      default: null
-    },
-    nextPage: {
-      type: Number,
-      default: null
-    }
-  },
+  props: {},
   data: () => {
     return {
       searchInput: ''
@@ -54,12 +53,18 @@ export default {
     changePage(page) {
       let newConfig = Object.assign({}, this.userConfig)
       newConfig.page = page
+      newConfig.prevPage = null
+      newConfig.nextPage = null
+      newConfig.loading = true
       this.$store.dispatch('userNodes/updateUserConfig', newConfig)
       this.$store.dispatch('userNodes/updateUserNodes')
     },
     search: debounce(function(searchInput) {
       let newConfig = Object.assign({}, this.userConfig)
       newConfig.search = searchInput
+      newConfig.prevPage = null
+      newConfig.nextPage = null
+      newConfig.loading = true
       this.$store.dispatch('userNodes/updateUserConfig', newConfig)
       this.$store.dispatch('userNodes/updateUserNodes')
     }, 1500)

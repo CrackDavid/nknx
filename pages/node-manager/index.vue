@@ -27,7 +27,7 @@
 
     <ContentWrapper v-if="totalNodes > 0">
       <Grid>
-        <NodeSearchBar :prevPage="prevPage" :nextPage="nextPage" />
+        <NodeSearchBar />
         <NodeManager :nodes="nodes" />
       </Grid>
     </ContentWrapper>
@@ -74,7 +74,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userNodes: 'userNodes/getUserNodes'
+      userNodes: 'userNodes/getUserNodes',
+      userConfig: 'userNodes/getUserConfig'
     })
   },
   watch: {
@@ -122,10 +123,13 @@ export default {
       this.totalNodes = this.userNodes.statCounts.ALL
       this.from = from
       this.to = to
-      this.currentPage = current_page
-      this.prevPage = prev_page_url != null ? this.currentPage - 1 : null
-      this.nextPage = next_page_url != null ? this.currentPage + 1 : null
-      this.loading = false
+
+      let newConfig = Object.assign({}, this.userConfig)
+      newConfig.page = current_page
+      newConfig.prevPage = prev_page_url != null ? current_page - 1 : null
+      newConfig.nextPage = next_page_url != null ? current_page + 1 : null
+      newConfig.loading = false
+      this.$store.dispatch('userNodes/updateUserConfig', newConfig)
     }
   }
 }

@@ -16,49 +16,55 @@
           </span>
         </th>
       </thead>
-      <tbody>
-        <tr
-          v-for="node in nodes"
-          :key="node.pivot.node_id"
-          :class="node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null"
-        >
-          <td>{{node.addr}}</td>
-          <td>{{node.pivot.label}}</td>
-          <td>
-            <NodeStatus :status="node.syncState" />
-          </td>
-          <td>{{node.height}}</td>
-          <td>{{node.version | nodeVersion}}</td>
-          <td>{{node.relayMessageCount}}</td>
-          <td>
-            <NodeMiningHistoryChart
-              v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE'"
-              :data="node.node_snapshots"
-              :state="node.syncState"
-            />
-            <span
-              v-if="node.syncState === 'OFFLINE' || node.node_snapshots.length === 0"
-            >{{$t('n/a')}}</span>
-          </td>
-          <td>
-            <span
-              class="node-manager__actions fe fe-more-horizontal"
-              @mouseenter="isActions = node.id"
-            >
-              <div
-                :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
-                @mouseleave="isActions = false"
-                @click="openDeleteNodeModal(node)"
+      <template v-if="userConfig.loading">
+        <TableRowLoader v-for="(num, index) in loaderCount" :key="index" :count="headings.length" />
+      </template>
+
+      <template v-else>
+        <tbody>
+          <tr
+            v-for="node in nodes"
+            :key="node.pivot.node_id"
+            :class="node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null"
+          >
+            <td>{{node.addr}}</td>
+            <td>{{node.pivot.label}}</td>
+            <td>
+              <NodeStatus :status="node.syncState" />
+            </td>
+            <td>{{node.height}}</td>
+            <td>{{node.version | nodeVersion}}</td>
+            <td>{{node.relayMessageCount}}</td>
+            <td>
+              <NodeMiningHistoryChart
+                v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE'"
+                :data="node.node_snapshots"
+                :state="node.syncState"
+              />
+              <span
+                v-if="node.syncState === 'OFFLINE' || node.node_snapshots.length === 0"
+              >{{$t('n/a')}}</span>
+            </td>
+            <td>
+              <span
+                class="node-manager__actions fe fe-more-horizontal"
+                @mouseenter="isActions = node.id"
               >
-                <div class="node-manager__actions-item">
-                  <span class="node-manager__actions-icon fe fe-trash-2"></span>
-                  <span class="node-manager__actions-title">{{$t('delete')}}</span>
+                <div
+                  :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
+                  @mouseleave="isActions = false"
+                  @click="openDeleteNodeModal(node)"
+                >
+                  <div class="node-manager__actions-item">
+                    <span class="node-manager__actions-icon fe fe-trash-2"></span>
+                    <span class="node-manager__actions-title">{{$t('delete')}}</span>
+                  </div>
                 </div>
-              </div>
-            </span>
-          </td>
-        </tr>
-      </tbody>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </template>
     </table>
   </div>
 </template>
@@ -72,9 +78,10 @@ import { mapGetters } from 'vuex'
 
 import NodeStatus from '~/components/UserNodes/NodeStatus/NodeStatus.vue'
 import NodeMiningHistoryChart from '~/components/Charts/NodeMiningHistoryChart.vue'
+import TableRowLoader from '~/components/Loaders/TableRowLoader/TableRowLoader.vue'
 
 export default {
-  components: { NodeStatus, NodeMiningHistoryChart },
+  components: { NodeStatus, NodeMiningHistoryChart, TableRowLoader },
   props: {
     nodes: {
       type: Array,
@@ -97,7 +104,8 @@ export default {
       isAll: false,
       active: 'relayMessageCount',
       order: false,
-      isActions: false
+      isActions: false,
+      loaderCount: 10
     }
   },
   computed: {

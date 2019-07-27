@@ -55,6 +55,9 @@ export default {
       let newConfig = Object.assign({}, this.userConfig)
       newConfig.filter = filter
       newConfig.page = 1
+      newConfig.prevPage = null
+      newConfig.nextPage = null
+      newConfig.loading = true
       this.$store.dispatch('userNodes/updateUserConfig', newConfig)
       this.$store.dispatch('userNodes/updateUserNodes')
     },
