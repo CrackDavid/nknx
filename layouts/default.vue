@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets && userNodes && networkReleases"
+    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets && userNodes && networkReleases && userNodesStats"
   >
     <Topbar />
     <Headerbar />
@@ -82,6 +82,7 @@ export default {
     latestSigchain: 'latestSigchain/getLatestSigchain',
     userWallets: 'userWallets/getUserWallets',
     userNodes: 'userNodes/getUserNodes',
+    userNodesStats: 'userNodes/getUserNodesStats',
     userConfig: 'userNodes/getUserConfig'
   }),
   destroyed() {
@@ -99,6 +100,7 @@ export default {
     clearInterval(this.intervalLatestSigchain)
     clearInterval(this.intervalUserWallets)
     clearInterval(this.intervalUserNodes)
+    clearInterval(this.intervalUserNodesStats)
   },
   mounted: function() {
     this.updatePrice()
@@ -115,6 +117,7 @@ export default {
     this.updateLatestSigchain()
     this.updateUserWallets()
     this.updateUserNodes()
+    this.updateUserNodesStats()
 
     this.intervalPrice = setInterval(this.updatePrice, this.updateInterval)
     this.intervalNetworkStats = setInterval(
@@ -165,10 +168,14 @@ export default {
       this.updateUserWallets,
       this.updateInterval
     )
-    this.intervalUserNodes = setInterval(
+    ;(this.intervalUserNodes = setInterval(
       this.updateUserNodes,
       this.updateInterval
-    )
+    )),
+      (this.intervalUserNodesStats = setInterval(
+        this.updateUserNodesStats,
+        this.updateInterval
+      ))
   },
   methods: {
     updatePrice() {
@@ -212,6 +219,9 @@ export default {
     },
     updateUserNodes() {
       this.$store.dispatch('userNodes/updateUserNodes')
+    },
+    updateUserNodesStats() {
+      this.$store.dispatch('userNodes/updateUserNodesStats')
     }
   }
 }

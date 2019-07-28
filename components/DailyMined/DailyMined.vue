@@ -19,13 +19,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userNodes: 'userNodes/getUserNodes'
+      userNodesStats: 'userNodes/getUserNodesStats'
     }),
     valueArr: function() {
-      return Number(this.userNodes.rewardAll).toFixed(2)
+      return Number(this.userNodesStats.rewardAll).toFixed(2)
     },
     change: function() {
-      const data = this.userNodes.sumNodeSnapshots
+      const data = this.userNodesStats.sumNodeSnapshots
       const day1 = data[0].mined
       const day2 = data[1].mined
 

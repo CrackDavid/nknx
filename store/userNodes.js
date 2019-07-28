@@ -1,5 +1,6 @@
 export const state = () => ({
   userNodes: false,
+  userNodesStats: false,
   userConfig: {
     filter: '',
     sort: 'relayMessageCount',
@@ -18,6 +19,9 @@ export const mutations = {
   },
   setUserConfig(state, userConfigObj) {
     state.userConfig = userConfigObj
+  },
+  setUserNodesStats(state, userNodesStatsObj) {
+    state.userNodesStats = userNodesStatsObj
   }
 }
 
@@ -27,6 +31,9 @@ export const getters = {
   },
   getUserConfig(state) {
     return state.userConfig
+  },
+  getUserNodesStats(state) {
+    return state.userNodesStats
   }
 }
 
@@ -46,5 +53,9 @@ export const actions = {
   },
   updateUserConfig({ commit }, config) {
     commit('setUserConfig', config)
+  },
+  async updateUserNodesStats({ commit }) {
+    const data = await this.$axios.$get(`/nodes/summary?aggregate=day`)
+    commit('setUserNodesStats', data)
   }
 }

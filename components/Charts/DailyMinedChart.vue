@@ -10,13 +10,13 @@ import * as am4charts from '@amcharts/amcharts4/charts'
 
 export default {
   computed: mapGetters({
-    userNodes: 'userNodes/getUserNodes'
+    userNodesStats: 'userNodes/getUserNodesStats'
   }),
   mounted() {
     am4core.options.queue = true
     am4core.options.onlyShowOnViewport = true
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
-    let nodesAverage = this.userNodes.sumNodeSnapshots
+    let nodesAverage = this.userNodesStats.sumNodeSnapshots
     const data = []
     for (let i = 0; i < 7; i++) {
       data.push({

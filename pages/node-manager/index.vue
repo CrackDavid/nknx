@@ -75,6 +75,7 @@ export default {
   computed: {
     ...mapGetters({
       userNodes: 'userNodes/getUserNodes',
+      userNodesStats: 'userNodes/getUserNodesStats',
       userConfig: 'userNodes/getUserConfig'
     })
   },
@@ -118,8 +119,8 @@ export default {
       } = this.userNodes.nodes
       this.nodes = data
       this.filters = this.userNodes.statCounts
-      this.total = this.userNodes.rewardAll
-      this.daily = this.userNodes.reward24
+      this.total = this.userNodesStats.rewardAll
+      this.daily = this.userNodesStats.reward24
       this.totalNodes = this.userNodes.statCounts.ALL
       this.from = from
       this.to = to

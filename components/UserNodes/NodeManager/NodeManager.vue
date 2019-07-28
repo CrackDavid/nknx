@@ -131,6 +131,9 @@ export default {
       let newConfig = Object.assign({}, this.userConfig)
       newConfig.order = currentOrder
       newConfig.sort = this.active
+      newConfig.prevPage = null
+      newConfig.nextPage = null
+      newConfig.loading = true
 
       this.$store.dispatch('userNodes/updateUserConfig', newConfig)
       this.$store.dispatch('userNodes/updateUserNodes')

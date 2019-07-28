@@ -75,6 +75,7 @@ export default {
   },
   computed: mapGetters({
     userNodes: 'userNodes/getUserNodes',
+    userNodesStats: 'userNodes/getUserNodesStats',
     networkStats: 'network/getNetworkStats'
   }),
   destroyed() {},
@@ -84,11 +85,12 @@ export default {
   methods: {
     updateMiningStats() {
       this.items.activeNodes.data = this.userNodes.statCounts.PERSIST_FINISHED
-      this.items.reward24.data = '~' + Number(this.userNodes.reward24).toFixed(0)
+      this.items.reward24.data =
+        '~' + Number(this.userNodesStats.reward24).toFixed(0)
       this.items.minedTotal.data =
-        '~' + Number(this.userNodes.rewardAll).toFixed(0)
+        '~' + Number(this.userNodesStats.rewardAll).toFixed(0)
       this.items.minedAverage.data = Number(
-        this.userNodes.reward24 / this.userNodes.statCounts.ALL
+        this.userNodesStats.reward24 / this.userNodes.statCounts.ALL
       ).toFixed(3)
     }
   }
