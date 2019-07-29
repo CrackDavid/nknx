@@ -78,7 +78,6 @@
   td {
     padding: $padding-normal;
     vertical-align: middle;
-    min-width: 100px;
 
     &:first-child {
     }
@@ -92,6 +91,7 @@
     transition: $transition-1;
     cursor: pointer;
     vertical-align: middle;
+    min-width: 120px;
 
     &:first-child {
       width: 8%;

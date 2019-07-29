@@ -38,6 +38,7 @@
             </td>
             <td>{{node.height}}</td>
             <td>{{node.version | nodeVersion}}</td>
+            <td>{{node.blocksMined}}</td>
             <td>{{node.relayMessageCount}}</td>
             <td>
               <NodeMiningHistoryChart
@@ -100,6 +101,7 @@ export default {
         { value: '', title: 'status' },
         { value: '', title: 'latestBlock' },
         { value: '', title: 'currentVersion' },
+        { value: 'blocksMined', title: 'blocksMined' },
         { value: 'relayMessageCount', title: 'relayedMessages' },
         { value: '', title: 'miningHistory' },
         { value: '', title: 'actions' }
