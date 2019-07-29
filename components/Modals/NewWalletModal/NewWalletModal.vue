@@ -113,7 +113,7 @@
             :theme="isValidated === true ? 'primary' : 'white'"
             :disabled="isValidated === true ? false : true"
             @click.native="isValidated === true ? addWallet() : false"
-          >{{$t('confirm')}}</Button>
+          >{{$t('addWallet')}}</Button>
           <Button
             v-if="currentView === 'multiple'"
             class="modal__footer-button"
@@ -121,7 +121,7 @@
             :theme="isMultipleValidated === true ? 'primary' : 'white'"
             :disabled="isMultipleValidated === true ? false : true"
             @click.native="isMultipleValidated === true ? addWallet() : false"
-          >{{$t('confirm')}}</Button>
+          >{{$t('addWallets')}}</Button>
         </div>
       </div>
     </div>

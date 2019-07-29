@@ -13,10 +13,6 @@
   }
 
   &__actions {
-    &:hover {
-      color: $primary;
-    }
-
     font-size: 24px;
     cursor: pointer;
     color: $text-grey-light;
@@ -28,11 +24,11 @@
       opacity: 0;
       position: absolute;
       right: -16px;
-      top: -14px;
+      top: -22px;
       border-radius: 4px;
       background-color: $white;
       box-shadow: $shadow-2;
-      padding: $padding-small;
+      padding: $padding-micro;
       visibility: hidden;
       cursor: pointer;
 
@@ -47,11 +43,11 @@
       align-items: center;
 
       &:hover {
-        color: $secondary;
+        color: $primary;
       }
 
       &:active {
-        color: $primary;
+        color: $secondary;
       }
 
       &:not(:last-child) {
@@ -66,12 +62,9 @@
     }
 
     &-icon {
+      font-size: $font-size-sm;
       margin-right: 10px;
       color: $text-grey-light;
-    }
-
-    &:hover {
-      color: $primary;
     }
   }
 

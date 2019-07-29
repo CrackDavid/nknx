@@ -58,9 +58,12 @@
                 <div
                   :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
                   @mouseleave="isActions = false"
-                  @click="openDeleteNodeModal(node)"
                 >
-                  <div class="node-manager__actions-item">
+                  <div class="node-manager__actions-item" @click="openEditNodeModal(node)">
+                    <span class="node-manager__actions-icon fe fe-edit-2"></span>
+                    <span class="node-manager__actions-title">{{$t('editNode')}}</span>
+                  </div>
+                  <div class="node-manager__actions-item" @click="openDeleteNodeModal(node)">
                     <span class="node-manager__actions-icon fe fe-trash-2"></span>
                     <span class="node-manager__actions-title">{{$t('delete')}}</span>
                   </div>
@@ -147,6 +150,10 @@ export default {
     openDeleteNodeModal(node) {
       this.$store.dispatch('activeNode/updateActiveNode', node)
       this.$store.dispatch('modals/updateDeleteNodeModalVisible', true)
+    },
+    openEditNodeModal(node) {
+      this.$store.dispatch('activeNode/updateActiveNode', node)
+      this.$store.dispatch('modals/updateEditNodeModalVisible', true)
     }
   }
 }

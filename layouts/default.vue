@@ -18,6 +18,7 @@
       <DeleteAllWalletsModal v-if="deleteAllWalletsModalVisible" />
       <ReceiveWalletModal v-if="receiveWalletModalVisible" />
       <FastDeployModal v-if="fastDeployModalVisible" />
+      <EditNodeModal v-if="editNodeModalVisible" />
     </transition>
   </div>
   <Preloader v-else />
@@ -33,6 +34,7 @@ import NewWalletModal from '~/components/Modals/NewWalletModal/NewWalletModal'
 import DeleteWalletModal from '~/components/Modals/DeleteWalletModal/DeleteWalletModal'
 import NewNodeModal from '~/components/Modals/NewNodeModal/NewNodeModal'
 import DeleteNodeModal from '~/components/Modals/DeleteNodeModal/DeleteNodeModal'
+import EditNodeModal from '~/components/Modals/EditNodeModal/EditNodeModal'
 import DeleteAllNodesModal from '~/components/Modals/DeleteAllNodesModal/DeleteAllNodesModal'
 import DeleteAllWalletsModal from '~/components/Modals/DeleteAllWalletsModal/DeleteAllWalletsModal'
 import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWalletModal'
@@ -51,7 +53,8 @@ export default {
     DeleteAllNodesModal,
     DeleteAllWalletsModal,
     ReceiveWalletModal,
-    FastDeployModal
+    FastDeployModal,
+    EditNodeModal
   },
   data: () => {
     return {
@@ -64,6 +67,7 @@ export default {
     newNodeModalVisible: 'modals/getNewNodeModalVisible',
     fastDeployModalVisible: 'modals/getFastDeployModalVisible',
     deleteNodeModalVisible: 'modals/getDeleteNodeModalVisible',
+    editNodeModalVisible: 'modals/getEditNodeModalVisible',
     deleteAllNodesModalVisible: 'modals/getDeleteAllNodesModalVisible',
     deleteAllWalletsModalVisible: 'modals/getDeleteAllWalletsModalVisible',
     receiveWalletModalVisible: 'modals/getReceiveWalletModalVisible',
