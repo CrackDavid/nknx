@@ -123,7 +123,7 @@
               :theme="isValidated === true ? 'primary' : 'white'"
               :disabled="isValidated === true ? false : true"
               @click.native="isValidated === true ? addNode() : false"
-            >{{$t('confirm')}}</Button>
+            >{{$t('addNode')}}</Button>
             <Button
               v-if="currentView === 'multiple'"
               class="modal__footer-button"
@@ -131,7 +131,7 @@
               :theme="isMultipleValidated === true ? 'primary' : 'white'"
               :disabled="isMultipleValidated === true ? false : true"
               @click.native="isMultipleValidated === true ? addNode() : false"
-            >{{$t('confirm')}}</Button>
+            >{{$t('addNodes')}}</Button>
           </div>
         </div>
         <div v-if="isLoading" class="modal__loading-overlay">
