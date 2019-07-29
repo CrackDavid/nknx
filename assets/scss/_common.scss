@@ -381,6 +381,26 @@ table {
     padding: 32px;
     width: 640px;
     margin: $padding-normal auto;
+    position: relative;
+
+    &_blured {
+      filter: blur(5px);
+    }
+  }
+
+  &__loading-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+
+    &-text {
+    }
   }
 
   &__header {
@@ -505,6 +525,11 @@ table {
       color: $primary;
       animation: Spin 2.5s infinite;
       opacity: 0;
+
+      &_static {
+        position: relative;
+        margin-bottom: $padding-micro;
+      }
 
       &_visible {
         opacity: 1;
