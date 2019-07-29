@@ -54,7 +54,7 @@
             <td class="table__item">
               <TransactionTypeTitle :type="tx.txType" />
             </td>
-            <td class="table__item">{{$moment(tx.created_at).fromNow()}}</td>
+            <td class="table__item">{{$moment(tx.created_at+"Z").fromNow()}}</td>
           </tr>
         </tbody>
       </table>
