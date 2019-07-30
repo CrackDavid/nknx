@@ -25,7 +25,7 @@
       </template>
 
       <template v-else>
-        <tbody>
+        <tbody v-on-clickaway="closeActionsModal">
           <tr
             v-for="node in nodes"
             :key="node.pivot.node_id"
@@ -53,11 +53,10 @@
             <td>
               <span
                 class="node-manager__actions fe fe-more-horizontal"
-                @mouseenter="isActions = node.id"
+                @click="isActions = node.id"
               >
                 <div
                   :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
-                  @mouseleave="isActions = false"
                 >
                   <div class="node-manager__actions-item" @click="openEditNodeModal(node)">
                     <span class="node-manager__actions-icon fe fe-edit-2"></span>
@@ -83,6 +82,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { mixin as clickaway } from 'vue-clickaway'
 
 import NodeStatus from '~/components/UserNodes/NodeStatus/NodeStatus.vue'
 import NodeMiningHistoryChart from '~/components/Charts/NodeMiningHistoryChart.vue'
@@ -90,6 +90,7 @@ import TableRowLoader from '~/components/Loaders/TableRowLoader/TableRowLoader.v
 
 export default {
   components: { NodeStatus, NodeMiningHistoryChart, TableRowLoader },
+  mixins: [clickaway],
   props: {
     nodes: {
       type: Array,
@@ -124,6 +125,9 @@ export default {
   },
   mounted: function() {},
   methods: {
+    closeActionsModal() {
+      this.isActions = false
+    },
     sortNodes(sort) {
       if (this.active === sort) {
         this.order = !this.order

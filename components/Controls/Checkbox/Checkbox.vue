@@ -22,8 +22,8 @@
 export default {
   props: {
     value: {
-      type: String,
-      default: ''
+      type: Boolean,
+      default: false
     },
     name: {
       type: String,

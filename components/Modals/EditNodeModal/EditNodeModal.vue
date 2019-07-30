@@ -9,11 +9,11 @@
         <div class="modal__title">{{$t('editNode')}} {{activeNode.addr}}</div>
         <div class="modal__body modal__body_wrap">
           <div
-            :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
+            :class="['modal-input', isError === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
           >
             <label class="modal-input__label">{{$t('walletLabel')}}</label>
             <div class="modal-input__wrapper">
-              <input v-model="label" class="modal-input__control" type="text" @focus="clearData" />
+              <input v-model="label" class="modal-input__control" type="text" />
             </div>
             <div class="modal-input__alert">{{$t(alertMsg)}}</div>
           </div>

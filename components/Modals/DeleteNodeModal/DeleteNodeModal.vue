@@ -13,7 +13,7 @@
             {{activeNode.addr}}?
           </div>
           <div
-            :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
+            :class="['modal-input', isError === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
           >
             <div class="modal-input__alert">{{$t(alertMsg)}}</div>
           </div>
