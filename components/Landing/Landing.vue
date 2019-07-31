@@ -3,7 +3,10 @@
     <header class="landing__header">
       <nav class="landing__nav">
         <Logo class="landing__nav-logo" />
-        <nuxt-link class="landing__nav-btn" to="/dashboard">Log In</nuxt-link>
+        <nuxt-link class="landing__nav-btn" to="/dashboard">
+          <template v-if="$auth.$state.loggedIn === true">Go to dashboard</template>
+          <template v-else>Log In</template>
+        </nuxt-link>
       </nav>
     </header>
     <main class="landing__content">
