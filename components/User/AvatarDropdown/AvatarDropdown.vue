@@ -47,12 +47,7 @@ export default {
   mounted: function() {},
   methods: {
     logout: function() {
-      var self = this
-      this.$axios
-        .$post(`https://auth.nknx.org/oauth/me/logout`)
-        .then(response => {
-          self.$auth.logout()
-        })
+      this.$auth.logout()
     },
     closeDropdown: function() {
       this.showDropDown = false
