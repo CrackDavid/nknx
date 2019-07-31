@@ -20,7 +20,7 @@
             <a href="#" class="avatar-dropdown__dd-link">Account</a>
           </li>
           <li>
-            <a href="#" class="avatar-dropdown__dd-link" @click="$auth.logout()">Logout</a>
+            <a href="#" class="avatar-dropdown__dd-link" @click="logout">Logout</a>
           </li>
         </ul>
       </div>
@@ -46,6 +46,14 @@ export default {
   destroyed() {},
   mounted: function() {},
   methods: {
+    logout: function() {
+      var self = this
+      this.$axios
+        .$post(`https://auth.nknx.org/oauth/me/logout`)
+        .then(response => {
+          self.$auth.logout()
+        })
+    },
     closeDropdown: function() {
       this.showDropDown = false
     }
