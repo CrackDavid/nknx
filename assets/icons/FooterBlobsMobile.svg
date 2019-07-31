@@ -1,0 +1,22 @@
+<svg width="375" height="425" viewBox="0 0 375 425" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect opacity="0.15" x="34.3921" y="15" width="12" height="12" rx="4" transform="rotate(60 34.3921 15)" fill="#1791F2"/>
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="375" height="425">
+<rect width="375" height="425" fill="url(#paint0_linear)"/>
+</mask>
+<g mask="url(#mask0)">
+<ellipse opacity="0.15" cx="370" cy="1.98209" rx="82" ry="81.2477" fill="#9C95DC"/>
+</g>
+<rect opacity="0.15" x="338.392" y="323" width="12" height="12" rx="4" transform="rotate(60 338.392 323)" fill="#1791F2"/>
+<rect opacity="0.15" x="144.392" y="238" width="12" height="12" rx="4" transform="rotate(60 144.392 238)" fill="#1791F2"/>
+<rect opacity="0.15" x="200.392" y="93" width="12" height="12" rx="4" transform="rotate(60 200.392 93)" fill="#1791F2"/>
+<rect opacity="0.15" x="68.3921" y="109" width="12" height="12" rx="4" transform="rotate(60 68.3921 109)" fill="#1791F2"/>
+<rect opacity="0.15" x="190.392" y="372" width="12" height="12" rx="4" transform="rotate(60 190.392 372)" fill="#1791F2"/>
+<rect opacity="0.15" x="344.392" y="166" width="12" height="12" rx="4" transform="rotate(60 344.392 166)" fill="#1791F2"/>
+<path opacity="0.15" fill-rule="evenodd" clip-rule="evenodd" d="M0 345.187C1.09434 345.617 2.36706 345.562 3.46437 344.929L6.92848 342.929C8.84165 341.824 9.49715 339.378 8.39258 337.465L6.39258 334.001C5.28801 332.087 2.84165 331.432 0.928477 332.537L0 333.073V345.187Z" fill="#1791F2"/>
+<defs>
+<linearGradient id="paint0_linear" x1="375" y1="419.151" x2="22.9806" y2="5.22115" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0B163C"/>
+<stop offset="1" stop-color="#303159"/>
+</linearGradient>
+</defs>
+</svg>

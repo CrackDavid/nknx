@@ -18,6 +18,13 @@ a {
   color: inherit;
 }
 
+.img {
+  &_responsive {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 .overflow-x {
   overflow-x: auto;
   grid-column: span 12;
@@ -211,6 +218,12 @@ h3 {
 /*========== Text ==========*/
 
 .text {
+  &_color {
+    &_grey {
+      color: #888;
+    }
+  }
+
   &_align {
     &_right {
       text-align: right !important;
@@ -218,6 +231,10 @@ h3 {
 
     &_left {
       text-align: left !important;
+    }
+
+    &_center {
+      text-align: center !important;
     }
   }
 

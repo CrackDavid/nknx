@@ -1,0 +1,176 @@
+.footer {
+  background: $white;
+  padding: $padding-micro;
+  position: relative;
+  overflow: hidden;
+
+  &__overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  @include min-size-md {
+    padding: 0 $padding-default;
+  }
+
+  &__wrapper {
+    @include min-size-md {
+      max-width: $desktop-size-lg;
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+  }
+
+  &__description {
+    display: none;
+
+    @include min-size-md {
+      display: block;
+      grid-column: span 2;
+
+      &-title {
+        display: flex;
+        align-items: center;
+        font-size: $h2-font-size;
+        font-weight: bold;
+        margin-bottom: $padding-default;
+      }
+
+      &-logo {
+        height: 40px;
+        width: 40px;
+        margin-right: $padding-normal;
+
+        path {
+          fill: $darker;
+        }
+      }
+
+      &-text {
+        opacity: 0.8;
+        margin-bottom: 30px;
+        max-width: 464px;
+      }
+
+      &-socials {
+        display: flex;
+        position: relative;
+        z-index: 10;
+      }
+
+      &-social {
+        padding: $padding-micro;
+        border-radius: $card-border-radius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $darker;
+        transition: $transition-1;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        path {
+          fill: $white;
+        }
+
+        &:not(:last-child) {
+          margin-right: 8px;
+        }
+
+        &:hover {
+          background-color: lighten($darker, 20%);
+        }
+      }
+    }
+  }
+
+  &__nav {
+    display: grid;
+    grid-gap: $padding-default;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: $padding-medium;
+
+    @include min-size-md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    &-item {
+      @include min-size-md {
+        margin-top: $padding-default;
+      }
+    }
+
+    &-title {
+      font-size: $font-size-md;
+      font-weight: bold;
+      padding-bottom: $padding-micro;
+      border-bottom: $card-border;
+      margin-bottom: $padding-micro;
+
+      @include min-size-md {
+        border: none;
+        padding-bottom: 0;
+        margin-bottom: 20px;
+        font-size: $font-size-base;
+      }
+    }
+
+    &-link {
+      display: block;
+      text-decoration: none;
+      opacity: 0.75;
+      font-size: $font-size-xs;
+      transition: $transition-1;
+
+      @include min-size-md {
+        font-size: $font-size-base;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    padding-top: $padding-normal;
+    border-top: $card-border;
+    margin-top: $padding-medium;
+    justify-content: space-between;
+    flex-flow: row wrap;
+
+    @include min-size-md {
+      padding-top: 0;
+      margin-top: 76px;
+      border: none;
+    }
+
+    &-item {
+      opacity: 0.75;
+      font-size: $font-size-xs;
+      width: 100%;
+
+      &:first-child {
+        margin-bottom: $padding-default;
+      }
+
+      @include min-size-md {
+        width: auto;
+
+        &:first-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

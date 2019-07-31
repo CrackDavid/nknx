@@ -35,6 +35,7 @@ export default {
    */
   css: [
     '~/assets/css/reset.css',
+    '~/assets/css/grid.css',
     '~/assets/css/feather.css',
     '@/assets/scss/main.scss'
   ],

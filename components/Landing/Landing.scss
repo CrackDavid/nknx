@@ -1,0 +1,247 @@
+.landing {
+  &__header {
+    height: 65px;
+    padding: 0 $padding-medium;
+    background: $white;
+    box-shadow: 0 2px 4px rgba(3, 27, 78, 0.1);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  &__content {
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    &-logo {
+      path {
+        fill: $darker;
+      }
+    }
+
+    &-btn {
+      border: 1px solid $darker;
+      background: $white;
+      transition: $transition-1;
+      color: $darker;
+      font-weight: $font-weight-bold;
+      border-radius: $card-border-radius;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding: 0 $padding-default;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        color: $success;
+        border-color: $success;
+      }
+    }
+  }
+
+  &__intro {
+    padding-top: 160px;
+    background-image: url(../../static/cover.jpg);
+    background-position: bottom center;
+
+    &-title {
+      font-size: 2.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+      margin-bottom: $padding-normal;
+      text-align: center;
+      line-height: 1em;
+    }
+
+    &-text {
+      padding: 0 5%;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    &-img {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      margin-top: $padding-medium;
+      display: block;
+    }
+  }
+
+  &__stats {
+    padding: $padding-big 0;
+    background-color: $white;
+
+    &-item {
+      text-align: center;
+
+      @media screen and (max-width: 770px) {
+        margin-bottom: $padding-medium;
+      }
+    }
+
+    &-icon {
+      font-size: 50px;
+    }
+
+    &-value {
+      font-size: 2.35rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin: 8px 0;
+    }
+
+    &-descr {
+    }
+  }
+
+  &__features {
+    background: $white;
+    padding: 100px 0;
+    position: relative;
+
+    @media screen and (max-width: 770px) {
+      padding: $padding-medium 0;
+    }
+
+    &_border {
+      &:before {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 50%;
+        background: #ebebeb;
+        margin: 0 auto;
+        position: absolute;
+        top: 0;
+        left: 25%;
+      }
+    }
+
+    &_white {
+      color: $white;
+      background: url(../../static/blue-textured.jpg) no-repeat fixed center
+        center;
+      background-size: cover;
+
+      .landing__features-subtitle {
+        color: $white;
+      }
+    }
+
+    &-subtitle {
+      color: $primary;
+      margin-bottom: $padding-normal;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: $font-size-xs;
+    }
+
+    &-title {
+      font-size: 2.625rem;
+      margin-bottom: $padding-normal;
+      line-height: 1em;
+      font-weight: $font-weight-bold;
+    }
+
+    &-text {
+    }
+
+    &-img {
+      &_left {
+        @media screen and (max-width: 770px) {
+          margin-bottom: $padding-medium;
+        }
+      }
+
+      &_right {
+        @media screen and (max-width: 770px) {
+          margin-top: $padding-medium;
+        }
+      }
+    }
+
+    &-heading {
+      font-size: $font-size-lg;
+      margin: $padding-default 0;
+    }
+
+    &-list {
+      position: relative;
+      left: 18px;
+    }
+
+    &-li {
+      list-style-type: circle;
+
+      &:not(:last-child) {
+        margin-bottom: $padding-default;
+      }
+    }
+  }
+
+  &__promo {
+    padding: 100px 0;
+    background: $white;
+
+    @media screen and (max-width: 770px) {
+      padding: $padding-medium 0;
+    }
+
+    &-item {
+      display: flex;
+      margin-top: $padding-medium;
+    }
+
+    &-icon {
+      height: 70px;
+      margin-right: $padding-normal;
+      margin-top: $padding-normal;
+    }
+  }
+
+  &__mining {
+    padding: 50px 0;
+    color: $white;
+    background: url(../../static/blue-textured.jpg) no-repeat fixed center
+      center;
+    background-size: cover;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      @media screen and (max-width: 770px) {
+        margin-top: $padding-default;
+        justify-content: flex-start;
+      }
+    }
+
+    &-btn {
+      background-color: $white;
+      transition: $transition-1;
+      font-size: $font-size-md;
+      padding: $padding-default $padding-medium;
+      border-radius: $card-border-radius;
+      color: $primary;
+      display: inline-block;
+
+      &:hover {
+        color: $white;
+        background: $success;
+      }
+    }
+  }
+}
