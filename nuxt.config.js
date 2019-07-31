@@ -138,7 +138,7 @@ export default {
       }
     },
     redirect: {
-      home: '/dashboard',
+      home: '/dashboard'
     }
   },
   /*

@@ -35,29 +35,37 @@
             <div class="col-md-3">
               <div class="landing__stats-item">
                 <span class="landing__stats-icon fe fe-users"></span>
-                <div class="landing__stats-value">{{10000 | commaNumber}}</div>
-                <div class="landing__stats-descr">Total Downloads</div>
+                <div class="landing__stats-value">
+                  <countTo :startVal="0" :endVal="users" :duration="4000"></countTo>
+                </div>
+                <div class="landing__stats-descr">Registered Users</div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="landing__stats-item">
-                <span class="landing__stats-icon fe fe-activity"></span>
-                <div class="landing__stats-value">{{10000 | commaNumber}}</div>
-                <div class="landing__stats-descr">Total Downloads</div>
+                <span class="landing__stats-icon fe fe-credit-card"></span>
+                <div class="landing__stats-value">
+                  <countTo :startVal="0" :endVal="wallets" :duration="4000"></countTo>
+                </div>
+                <div class="landing__stats-descr">Registered Wallets</div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="landing__stats-item">
-                <span class="landing__stats-icon fe fe-globe"></span>
-                <div class="landing__stats-value">{{10000 | commaNumber}}</div>
-                <div class="landing__stats-descr">Total Downloads</div>
+                <span class="landing__stats-icon fe fe-layers"></span>
+                <div class="landing__stats-value">
+                  <countTo :startVal="0" :endVal="nodes" :duration="4000"></countTo>
+                </div>
+                <div class="landing__stats-descr">Registered Nodes</div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="landing__stats-item">
-                <span class="landing__stats-icon fe fe-heart"></span>
-                <div class="landing__stats-value">{{10000 | commaNumber}}</div>
-                <div class="landing__stats-descr">Total Downloads</div>
+                <span class="landing__stats-icon fe fe-percent"></span>
+                <div class="landing__stats-value">
+                  <countTo :startVal="0" :endVal="percent_watched" :duration="4000" :decimals="2"></countTo>
+                </div>
+                <div class="landing__stats-descr">Nodes Watching</div>
               </div>
             </div>
           </div>
@@ -215,13 +223,33 @@
 <script>
 import Logo from '~/assets/icons/logo.svg'
 import Footer from '~/components/Footer/Footer.vue'
+import countTo from 'vue-count-to'
 
 export default {
-  components: { Logo, Footer },
+  components: { Logo, Footer, countTo },
   data: () => {
-    return {}
+    return {
+      users: 0,
+      wallets: 0,
+      nodes: 0,
+      percent_watched: 0
+    }
   },
-  mounted: function() {},
-  methods: {}
+  mounted: function() {
+    this.getStats()
+  },
+  methods: {
+    getStats() {
+      const self = this
+
+      this.$axios.get('statistics/nknx').then(response => {
+        const { users, wallets, nodes, percent_watched } = response.data
+        self.users = users
+        self.wallets = wallets
+        self.nodes = nodes
+        self.percent_watched = percent_watched
+      })
+    }
+  }
 }
 </script>
