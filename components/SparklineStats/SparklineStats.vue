@@ -45,12 +45,12 @@ export default {
       default: ''
     },
     change: {
-      type: Number,
-      default: 0
+      type: String,
+      default: '0'
     },
     dailyValue: {
-      type: Number,
-      default: 0
+      type: String,
+      default: '0'
     },
     symbol: {
       type: String,

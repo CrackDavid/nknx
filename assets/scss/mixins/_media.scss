@@ -8,6 +8,16 @@
   @include size-llg;
 }
 
+@mixin min-size-llg {
+  @media (min-width: $desktop-size-llg) {
+    @content;
+  }
+}
+
+%min-size-llg {
+  @include min-size-llg;
+}
+
 @mixin size-lg {
   @media (max-width: $desktop-size-lg) {
     @content;
@@ -26,6 +36,16 @@
 
 %size-md {
   @include size-md;
+}
+
+@mixin min-size-md {
+  @media (min-width: $desktop-size-md) {
+    @content;
+  }
+}
+
+%min-size-md {
+  @include min-size-md;
 }
 
 @mixin size-sm {

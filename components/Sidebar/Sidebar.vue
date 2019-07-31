@@ -27,7 +27,7 @@ export default {
     return {
       routes: [
         {
-          path: '/',
+          path: '/dashboard',
           icon: 'fe-grid',
           title: 'dashboard'
         },
