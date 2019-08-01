@@ -184,8 +184,16 @@
       }
 
       &_right {
+        position: relative;
+        height: 500px;
+        max-width: unset;
+        left: 75px;
+
         @media screen and (max-width: 770px) {
           margin-top: $padding-medium;
+          max-width: 100%;
+          height: unset;
+          left: 0;
         }
       }
     }
