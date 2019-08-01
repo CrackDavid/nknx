@@ -91,15 +91,18 @@
               >You are actively involved in the NKN Network and got problems keeping an eye of your nodes' profitability and performance? Then NKNx is exactly the right tool for you!</p>
               <h3 class="landing__features-heading">Some of our core Features:</h3>
               <ul class="landing__features-list">
-                <li
-                  class="landing__features-li"
-                >See your node-performance in one convenient dashboard, view historical data and profitability metrics based on real blockchain data.</li>
-                <li
-                  class="landing__features-li"
-                >Instantly find bad performing nodes and get automatically notified when one goes offline.</li>
-                <li
-                  class="landing__features-li"
-                >Monitor multiple wallets at once and watch your wallet balance increase over time.</li>
+                <li class="landing__features-li">
+                  <b>All nodes at a glance</b> - view, order and filter them as you like! Our neat status filter allows you to inspect instantly nodes that are not working as intended.
+                </li>
+                <li class="landing__features-li">
+                  <b>Batch adding</b> - Got multiple nodes to monitor? Simply add them with our bulk node inserter! Node IP could be just pasted from your clipboard or added through a separate file.
+                </li>
+                <li class="landing__features-li">
+                  <b>Historical data</b> - Wonder how your nodes perform the last week or month? We got you covered. Our historical data helps you find nodes that didnt perform well in the past,
+                </li>
+                <li class="landing__features-li">
+                  <b>No more wallet confusion</b> - Our multi wallet tracker helps you cleaning up your balances. Watch your overall balance or investigate all wallets on their own. All directly with NKNx.
+                </li>
               </ul>
             </div>
             <div class="col-md-6">
