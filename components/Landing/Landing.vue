@@ -119,7 +119,7 @@
             <div class="col-md-6">
               <img
                 class="landing__features-img landing__features-img_left img_responsive"
-                src="../../static/feature-1.png"
+                src="../../static/feature-2.png"
                 alt
               />
             </div>
