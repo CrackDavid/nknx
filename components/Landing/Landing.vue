@@ -14,12 +14,13 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <h1
-                class="landing__intro-title"
-              >The best landing page to bring new customers to your business</h1>
+              <h1 class="landing__intro-title">
+                Welcome to a New Kind of Mining...
+                <br />Welcome to NKNx!
+              </h1>
               <p
                 class="landing__intro-text"
-              >Feugiat primis ligula risus auctor augue egestas and mauris viverra tortor in iaculis magna undo ipsum mauris in placerat feugiat ligula risus auctor</p>
+              >NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.</p>
               <img
                 class="landing__intro-img img_responsive"
                 src="../../static/dashboard.png"
@@ -65,7 +66,7 @@
                 <div class="landing__stats-value">
                   <countTo :startVal="0" :endVal="percent_watched" :duration="4000" :decimals="2"></countTo>
                 </div>
-                <div class="landing__stats-descr">Nodes Watching</div>
+                <div class="landing__stats-descr">of all Nodes</div>
               </div>
             </div>
           </div>
@@ -75,22 +76,22 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <div class="landing__features-subtitle">Beauty of nkn</div>
-              <h2 class="landing__features-title">We are making design better for everyoney</h2>
+              <div class="landing__features-subtitle">Manage your nodes and wallets at one place</div>
+              <h2 class="landing__features-title">Node and wallet tracker</h2>
               <p
                 class="landing__features-text"
-              >An enim nullam tempor sapien gravida donec pretium ipsum porta justo integer at odio velna vitae auctor integer congue magna purus pretium ligula rutrum luctus ultrice aliquam a augue suscipit</p>
-              <h3 class="landing__features-heading">Features Never Stop</h3>
+              >You are actively involved in the NKN Network and got problems keeping an eye of your nodes' profitability and performance? Then NKNx is exactly the right tool for you!</p>
+              <h3 class="landing__features-heading">Some of our core Features:</h3>
               <ul class="landing__features-list">
                 <li
                   class="landing__features-li"
-                >Fringilla risus nec luctus mauris orci auctor purus euismod pretium purus pretium ligula rutrum tempor sapien</li>
+                >See your node-performance in one convenient dashboard, view historical data and profitability metrics based on real blockchain data.</li>
                 <li
                   class="landing__features-li"
-                >Fringilla risus nec luctus mauris orci auctor purus euismod pretium purus pretium ligula rutrum tempor sapien</li>
+                >Instantly find bad performing nodes and get automatically notified when one goes offline.</li>
                 <li
                   class="landing__features-li"
-                >Fringilla risus nec luctus mauris orci auctor purus euismod pretium purus pretium ligula rutrum tempor sapien</li>
+                >Monitor multiple wallets at once and watch your wallet balance increase over time.</li>
               </ul>
             </div>
             <div class="col-md-6">
@@ -115,22 +116,22 @@
               />
             </div>
             <div class="col-md-6">
-              <div class="landing__features-subtitle">Beauty of nkn</div>
-              <h2 class="landing__features-title">We are making design better for everyoney</h2>
+              <div class="landing__features-subtitle">Easily create new nodes</div>
+              <h2 class="landing__features-title">Explore Fast Deploy!</h2>
               <p
                 class="landing__features-text"
-              >An enim nullam tempor sapien gravida donec pretium ipsum porta justo integer at odio velna vitae auctor integer congue magna purus pretium ligula rutrum luctus ultrice aliquam a augue suscipit</p>
-              <h3 class="landing__features-heading">Features Never Stop</h3>
+              >With our new NKNx Fast Deploy creating a node is easier than before! We automatically create an installation script for your linux machine and installs a fully functional node for you.</p>
+              <h3 class="landing__features-heading">What you can expect</h3>
               <ul class="landing__features-list">
                 <li
                   class="landing__features-li"
-                >Fringilla risus nec luctus mauris orci auctor purus euismod pretium purus pretium ligula rutrum tempor sapien</li>
+                >"Grab a coffee" installation of a full NKN Node based on your configuration (BenificiaryAddr, pre-chain download, etc)</li>
                 <li
                   class="landing__features-li"
-                >Fringilla risus nec luctus mauris orci auctor purus euismod pretium purus pretium ligula rutrum tempor sapien</li>
+                >One script for all your nodes - passwords get regenerated on every script call and nodes will get automatically added to NKNx after installation.</li>
                 <li
                   class="landing__features-li"
-                >Fringilla risus nec luctus mauris orci auctor purus euismod pretium purus pretium ligula rutrum tempor sapien</li>
+                >Works on all Unix-based systems with AMD or ARM-architecture - raspberry pi included</li>
               </ul>
             </div>
           </div>
@@ -141,12 +142,10 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <h2
-                class="landing__features-title text_align_center"
-              >We are making design better for everyoney</h2>
+              <h2 class="landing__features-title text_align_center">NKNx is more than just an app...</h2>
               <p
                 class="landing__intro-text text_color_grey"
-              >Aliquam a augue suscipit, luctus neque purus ipsum neque dolor primis libero at tempus, blandit posuere ligula varius congue cursus porta feugiat</p>
+              >...it's a whole ecosystem! We're working closely with the NKN team, community and other projects to provide you the things you really need.</p>
             </div>
           </div>
           <div class="row">
@@ -154,10 +153,10 @@
               <div class="landing__promo-item">
                 <img class="landing__promo-icon" src="../../static/concept.png" />
                 <div class="landing__promo-content">
-                  <h3 class="landing__features-heading">Concept & Idea</h3>
+                  <h3 class="landing__features-heading">Community driven</h3>
                   <p
                     class="landing__promo-text text_color_grey"
-                  >Maecenas laoreet augue egestas laoreet augue egestas, congue gestas volutpat posuere cubilia congue ipsum mauris lectus laoreet gestas neque volutpat and gestas posuere congue ipsum</p>
+                  >The heart of every blockchain project is its community. Therefore we regularly listen to user needs and develop NKNx based on community suggestions and feature requests from you!</p>
                 </div>
               </div>
             </div>
@@ -165,10 +164,10 @@
               <div class="landing__promo-item">
                 <img class="landing__promo-icon" src="../../static/research.png" />
                 <div class="landing__promo-content">
-                  <h3 class="landing__features-heading">Concept & Idea</h3>
+                  <h3 class="landing__features-heading">Actively developed</h3>
                   <p
                     class="landing__promo-text text_color_grey"
-                  >Maecenas laoreet augue egestas laoreet augue egestas, congue gestas volutpat posuere cubilia congue ipsum mauris lectus laoreet gestas neque volutpat and gestas posuere congue ipsum</p>
+                  >With a team of currently 3 voluntary working members NKNx is regularly updated. As every NKN project NKNx is also open source, so you can actively contribute in development.</p>
                 </div>
               </div>
             </div>
@@ -176,10 +175,10 @@
               <div class="landing__promo-item">
                 <img class="landing__promo-icon" src="../../static/experience.png" />
                 <div class="landing__promo-content">
-                  <h3 class="landing__features-heading">Concept & Idea</h3>
+                  <h3 class="landing__features-heading">Down-to-earth</h3>
                   <p
                     class="landing__promo-text text_color_grey"
-                  >Maecenas laoreet augue egestas laoreet augue egestas, congue gestas volutpat posuere cubilia congue ipsum mauris lectus laoreet gestas neque volutpat and gestas posuere congue ipsum</p>
+                  >We believe that a strong community needs strong community projects - That's why NKNx will always be free to use. Our regular costs are compensated through donations and NKN itself.</p>
                 </div>
               </div>
             </div>
@@ -187,10 +186,10 @@
               <div class="landing__promo-item">
                 <img class="landing__promo-icon" src="../../static/web.png" />
                 <div class="landing__promo-content">
-                  <h3 class="landing__features-heading">Concept & Idea</h3>
+                  <h3 class="landing__features-heading">Designed for you</h3>
                   <p
                     class="landing__promo-text text_color_grey"
-                  >Maecenas laoreet augue egestas laoreet augue egestas, congue gestas volutpat posuere cubilia congue ipsum mauris lectus laoreet gestas neque volutpat and gestas posuere congue ipsum</p>
+                  >Ugly interfaces are so 1990! NKNx was made with the goal to give you the best user interface and a state-of-the-art experience. Also we love glowing eyes when working with our app :)</p>
                 </div>
               </div>
             </div>
@@ -202,7 +201,13 @@
           <div class="row">
             <div class="col-md-8">
               <h2 class="landing__features-title">Want to join?</h2>
-              <p>NKN is a New Kind of Network, a Cellular Automata powered, decentralized data relay network built on Blockchain & incentivized by a native token.</p>
+              <p>
+                Joining NKNx is easy and completely free. Just create an account, add your nodes and you're ready to roll! Any questions? Don't hesitate contacting us through eMail (
+                <a
+                  href="mailto:hello@nknx.org"
+                >hello@nknx.org</a>) or meet us at the
+                <a href="https://discord.gg/fvK2Egm">official NKN Discord server</a>.
+              </p>
             </div>
             <div class="col-md-4">
               <div class="landing__mining-item">

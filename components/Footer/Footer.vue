@@ -66,7 +66,7 @@ export default {
     return {
       navigation: [
         {
-          title: 'company',
+          title: 'nkn',
           links: [
             {
               title: 'about',
@@ -83,15 +83,15 @@ export default {
           ]
         },
         {
-          title: 'community',
+          title: 'nknxEcosystem',
           links: [
             {
               title: 'nknxNodeManager',
               url: 'https://www.nknx.org'
             },
             {
-              title: 'nknWallet',
-              url: 'https://nknwallet.io'
+              title: 'nknxExplorer',
+              url: 'https://explorer.nknx.org'
             }
           ]
         }
