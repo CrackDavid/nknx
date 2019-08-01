@@ -1,6 +1,7 @@
 .landing {
-
-  b{font-weight: 700;}
+  b {
+    font-weight: 700;
+  }
 
   &__header {
     height: 65px;
@@ -188,9 +189,9 @@
 
       &_right {
         position: relative;
-        height: 500px;
+        height: 540px;
         max-width: unset;
-        left: 75px;
+        left: 90px;
 
         @media screen and (max-width: 770px) {
           margin-top: $padding-medium;
