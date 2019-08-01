@@ -3,10 +3,18 @@
     <header class="landing__header">
       <nav class="landing__nav">
         <Logo class="landing__nav-logo" />
-        <nuxt-link class="landing__nav-btn" to="/dashboard">
-          <template v-if="$auth.$state.loggedIn === true">Go to dashboard</template>
-          <template v-else>Log In</template>
-        </nuxt-link>
+        <div class="landing__nav-menu">
+          <a
+            v-if="$auth.$state.loggedIn !== true"
+            class="landing__nav-link"
+            href="https://auth.nknx.org/register"
+            target="_blank"
+          >Sign up</a>
+          <nuxt-link class="landing__nav-btn" to="/dashboard">
+            <template v-if="$auth.$state.loggedIn === true">Go to dashboard</template>
+            <template v-else>Log In</template>
+          </nuxt-link>
+        </div>
       </nav>
     </header>
     <main class="landing__content">
@@ -96,7 +104,7 @@
             </div>
             <div class="col-md-6">
               <img
-                class="landing__features-img_right img_responsive"
+                class="landing__features-img landing__features-img_right img_responsive"
                 src="../../static/feature-1.png"
                 alt
               />
@@ -110,7 +118,7 @@
           <div class="row">
             <div class="col-md-6">
               <img
-                class="landing__features-img_left img_responsive"
+                class="landing__features-img landing__features-img_left img_responsive"
                 src="../../static/feature-1.png"
                 alt
               />
@@ -202,11 +210,17 @@
             <div class="col-md-8">
               <h2 class="landing__features-title">Want to join?</h2>
               <p>
-                Joining NKNx is easy and completely free. Just create an account, add your nodes and you're ready to roll! Any questions? Don't hesitate contacting us through eMail (
+                Joining NKNx is easy and completely free. Just create an account, add your nodes and you're ready to roll! Any questions? Don't hesitate contacting us through eMail
                 <a
+                  class="landing__mining-link"
                   href="mailto:hello@nknx.org"
-                >hello@nknx.org</a>) or meet us at the
-                <a href="https://discord.gg/fvK2Egm">official NKN Discord server</a>.
+                  target="_blank"
+                >hello@nknx.org</a> or meet us at the
+                <a
+                  class="landing__mining-link"
+                  href="https://discord.gg/fvK2Egm"
+                  target="_blank"
+                >official NKN Discord server</a>.
               </p>
             </div>
             <div class="col-md-4">

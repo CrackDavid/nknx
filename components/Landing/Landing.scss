@@ -26,6 +26,20 @@
       }
     }
 
+    &-menu {
+      display: flex;
+      align-items: center;
+    }
+
+    &-link {
+      margin-right: $padding-default;
+      transition: $transition-1;
+
+      &:hover {
+        color: $success;
+      }
+    }
+
     &-btn {
       border: 1px solid $darker;
       background: $white;
@@ -74,6 +88,8 @@
       margin: 0 auto;
       margin-top: $padding-medium;
       display: block;
+      border-radius: $card-border-radius;
+      box-shadow: $shadow-2;
     }
   }
 
@@ -158,6 +174,9 @@
     }
 
     &-img {
+      border-radius: $card-border-radius;
+      box-shadow: $shadow-2;
+
       &_left {
         @media screen and (max-width: 770px) {
           margin-bottom: $padding-medium;
@@ -216,6 +235,15 @@
     background: url(../../static/blue-textured.jpg) no-repeat fixed center
       center;
     background-size: cover;
+
+    &-link {
+      transition: $transition-1;
+      text-decoration: underline;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
 
     &-item {
       display: flex;
