@@ -47,7 +47,9 @@ export default {
   mounted: function() {},
   methods: {
     logout: function() {
-      this.$auth.logout()
+      this.$auth.logout().then(function() {
+        window.location.href = 'https://auth.nknx.org/logout'
+      })
     },
     closeDropdown: function() {
       this.showDropDown = false
