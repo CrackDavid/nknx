@@ -15,7 +15,7 @@
         <div class="node-stats__data">
           <div class="node-stats__title">{{$t('reward24')}}</div>
           <div class="node-stats__value">
-            {{Number(daily).toFixed(2) | commaNumber}}
+            {{Number(reward24).toFixed(2) | commaNumber}}
             <span class="node-stats__currency">NKN</span>
           </div>
           <div class="node-stats__tooltip"></div>
@@ -67,6 +67,10 @@ export default {
       default: 0
     },
     daily: {
+      type: Number,
+      default: 0
+    },
+    reward24: {
       type: Number,
       default: 0
     },

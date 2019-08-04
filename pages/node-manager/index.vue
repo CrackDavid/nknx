@@ -21,7 +21,7 @@
           </Button>
         </div>
       </div>
-      <NodeStats :nodes="totalNodes" :total="total" :daily="daily" />
+      <NodeStats :nodes="totalNodes" :total="total" :daily="daily" :reward24="reward24" />
       <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" />
     </div>
 
@@ -65,6 +65,7 @@ export default {
       totalNodes: 0,
       total: 0,
       daily: 0,
+      reward24: 0,
       loading: true,
       nextPage: null,
       prevPage: null,
@@ -120,7 +121,8 @@ export default {
       this.nodes = data
       this.filters = this.userNodes.statCounts
       this.total = this.userNodesStats.rewardAll
-      this.daily = this.userNodesStats.reward24
+      this.reward24 = this.userNodesStats.reward24
+      this.daily = Number(this.userNodes.sumNodeSnapshots[0].mined)
       this.totalNodes = this.userNodes.statCounts.ALL
       this.from = from
       this.to = to
