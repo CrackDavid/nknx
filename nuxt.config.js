@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   mode: 'spa',
   /*
@@ -51,6 +53,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/pwa',
+    '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
     'nuxt-svg-loader',
     'nuxt-clipboard2',
@@ -130,10 +133,10 @@ export default {
     strategies: {
       'laravel.passport': {
         url: 'https://auth.nknx.org',
-        //client_id: 1, //for local use
-        //client_secret: 'G65UPboPyICBYjBUfBqbYovKgLxXbXxqb6UdPbj0', //for local use
-        client_id: 2,
-        client_secret: 'ZU8x5QZ4hhvM5bLvSL1ZsDJQIg5Z9vmdvQYoQx0d',
+        client_id: process.env.CLIENT_ID || 2,
+        client_secret:
+          process.env.CLIENT_SECRET ||
+          'ZU8x5QZ4hhvM5bLvSL1ZsDJQIg5Z9vmdvQYoQx0d',
         userinfo_endpoint: 'https://auth.nknx.org/oauth/me'
       }
     },

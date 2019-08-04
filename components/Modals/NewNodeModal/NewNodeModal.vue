@@ -27,7 +27,8 @@
                 <div class="modal-input__wrapper">
                   <input
                     v-model="ip"
-                    v-validate="'ip'"
+                    v-validate="'ip_or_fqdn'"
+                    data-vv-delay="1"
                     data-vv-as="nodeIp"
                     name="nodeIp"
                     class="modal-input__control"
@@ -64,8 +65,9 @@
                 <div class="modal-input__wrapper">
                   <textarea
                     v-model="ip"
-                    v-validate="{ required: true, regex: /((?=.*[^\.]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/igm }"
+                    v-validate="'multiple_domain_and_ip'"
                     data-vv-as="nodesIp"
+                    data-vv-delay="1"
                     name="nodesIp"
                     class="modal-input__control modal-input__control_textarea"
                     type="text"
@@ -92,18 +94,18 @@
 
               <ul class="modal-list">
                 <li
-                  v-for="node in failedNodes"
-                  :key="node"
+                  v-for="(node, index) in failedNodes"
+                  :key="index"
                   class="modal-list__item modal-list__item_error"
                 >- {{node}} {{$t('nodeIsOffline')}}</li>
                 <li
-                  v-for="node in duplicateNodes"
-                  :key="node"
+                  v-for="(node, index) in duplicateNodes"
+                  :key="index"
                   class="modal-list__item modal-list__item_error"
                 >- {{node}} {{$t('nodeIsDuplicate')}}</li>
                 <li
-                  v-for="node in successNodes"
-                  :key="node.addr"
+                  v-for="(node, index) in successNodes"
+                  :key="index"
                   class="modal-list__item modal-list__item_success"
                 >- {{node.addr}} {{$t('successfullyAdded')}}</li>
               </ul>
@@ -153,6 +155,20 @@
 import { mapGetters } from 'vuex'
 import { mixin as clickaway } from 'vue-clickaway'
 import Button from '~/components/Button/Button.vue'
+import { Validator } from 'vee-validate'
+
+Validator.extend('multiple_domain_and_ip', {
+  getMessage: field => `The field must be a valid ip address or FQDN.`,
+  validate: value => {
+    value = value.replace(/\s/g, '')
+    const ipRegExp = /((?=.*[^]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/gim
+    const urlRegExp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?)/gim
+    const isIp = ipRegExp.test(value)
+    const isUrl = urlRegExp.test(value)
+    const result = isIp === true || isUrl === true ? true : false
+    return result
+  }
+})
 
 export default {
   components: { Button },
@@ -269,13 +285,28 @@ export default {
       if (this.currentView === 'multiple') {
         const maxNodes = 10
         const ipRegExp = /((?=.*[^]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/gim
+        const urlRegExp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?)/gim
         let ipArray = []
+        let urlArray = []
         let promises = []
+        let urlIpArray = []
+
         ip = ip.replace(/\s/g, '')
         ipArray = ip.match(ipRegExp)
+        urlArray = ip.match(urlRegExp)
+
+        //ips + urls
+        if (ipArray != null && urlArray != null) {
+          ipArray = ipArray.concat(urlArray)
+          urlIpArray = ipArray
+        } else if (ipArray != null && urlArray === null) {
+          urlIpArray = ipArray
+        } else {
+          urlIpArray = urlArray
+        }
 
         // generating chunk with batches
-        const chunk = this.generateChunk(ipArray, maxNodes)
+        const chunk = this.generateChunk(urlIpArray, maxNodes)
 
         // post nodes with delay
         chunk.forEach((ipBatch, index) => {
@@ -290,6 +321,7 @@ export default {
         Promise.all(promises).then(result => {
           result.forEach(response => {
             this.generateResponse(response.data)
+            console.log(response)
           })
         })
       } else {
