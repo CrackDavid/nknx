@@ -26,7 +26,7 @@ export default {
       { name: 'og:url', content: 'https://beta.nknx.org' },
       { name: 'og:image', content: 'https://beta.nknx.org/thumbnail.jpg' },
       // Twitter Card
-      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@nknX_org' },
       { name: 'twitter:title', content: "NKNx" },
       { name: 'twitter:description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
