@@ -6,22 +6,53 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s - NKNx',
     meta: [
       { charset: 'utf-8' },
+      {
+        name: 'content-type',
+        content:
+          'text/html'
+      },
       {
         name: 'viewport',
         content:
           'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
       },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+      { hid: 'description', name: 'description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
+      { name: 'og:title', content: "NKNx" },
+      { name: 'og:description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:url', content: 'https://beta.nknx.org' },
+      { name: 'og:image', content: 'https://beta.nknx.org/thumbnail.jpg' },
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:site', content: '@nknX_org' },
+      { name: 'twitter:title', content: "NKNx" },
+      { name: 'twitter:description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
+      { name: 'twitter:image', content: 'https://beta.nknx.org/thumbnail.jpg' },
+      { name: 'twitter:image:alt', content: 'NKNx Logo' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png'
+      },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
       {
         rel: 'stylesheet',
         href: 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'

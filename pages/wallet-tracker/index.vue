@@ -51,6 +51,11 @@ import Button from '~/components/Button/Button.vue'
 import WalletCardLoader from '~/components/Loaders/WalletCardLoader/WalletCardLoader.vue'
 
 export default {
+  head() {
+    return {
+      title: this.$t('walletTracker')
+    }
+  },
   middleware: 'isAuth',
   components: {
     ContentWrapper,

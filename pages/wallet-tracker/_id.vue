@@ -22,6 +22,11 @@ import WalletBalanceHistory from '~/components/UserWallets/WalletBalanceHistory/
 import WalletTransactions from '~/components/UserWallets/WalletTransactions/WalletTransactions.vue'
 
 export default {
+  head() {
+    return {
+      title: this.$t('myWallet')
+    }
+  },
   middleware: 'isAuth',
   components: {
     ContentWrapper,
