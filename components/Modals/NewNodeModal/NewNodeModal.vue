@@ -162,7 +162,7 @@ Validator.extend('multiple_domain_and_ip', {
   validate: value => {
     value = value.replace(/\s/g, '')
     const ipRegExp = /((?=.*[^]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/gim
-    const urlRegExp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?)/gim
+    const urlRegExp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?)[^,]+/gim
     const isIp = ipRegExp.test(value)
     const isUrl = urlRegExp.test(value)
     const result = isIp === true || isUrl === true ? true : false
@@ -285,7 +285,7 @@ export default {
       if (this.currentView === 'multiple') {
         const maxNodes = 10
         const ipRegExp = /((?=.*[^]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.?){4})/gim
-        const urlRegExp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?)/gim
+        const urlRegExp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?)[^,]+/gim
         let ipArray = []
         let urlArray = []
         let promises = []
