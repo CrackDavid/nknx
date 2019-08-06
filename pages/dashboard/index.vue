@@ -25,6 +25,11 @@ import DailyBalance from '~/components/DailyBalance/DailyBalance.vue'
 import DailyMined from '~/components/DailyMined/DailyMined.vue'
 
 export default {
+  head() {
+    return {
+      title: this.$t('dashboard')
+    }
+  },
   middleware: 'isAuth',
   components: {
     Grid,

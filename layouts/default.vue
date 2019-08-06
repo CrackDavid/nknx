@@ -41,6 +41,11 @@ import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWa
 import FastDeployModal from '~/components/Modals/FastDeployModal/FastDeployModal'
 
 export default {
+  head() {
+    return {
+      title: this.$t('loading')
+    }
+  },
   components: {
     Sidebar,
     Topbar,

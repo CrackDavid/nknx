@@ -47,6 +47,11 @@ import NodeSearchBar from '~/components/UserNodes/NodeSearchBar/NodeSearchBar.vu
 import Button from '~/components/Button/Button.vue'
 
 export default {
+  head() {
+    return {
+      title: this.$t('nodeManager')
+    }
+  },
   middleware: 'isAuth',
   components: {
     ContentWrapper,
