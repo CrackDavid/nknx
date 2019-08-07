@@ -7,7 +7,7 @@
     <span
       v-else
       class="node-online__title"
-    >{{offlineNodes}} {{$t('of')}} {{$t('nodes')}} {{filters.ALL}} {{$t('areNotMining')}}</span>
+    >{{offlineNodes}} {{$t('of')}} {{filters.ALL}} {{$t('areNotMining')}}</span>
   </div>
 </template>
 
