@@ -26,7 +26,7 @@
               <div class="modal-input__wrapper">
                 <input
                   v-model="address"
-                  v-validate="{ required: true, regex: /^((^NKN([A-Za-z0-9]){33}){1})$/s }"
+                  v-validate="{ required: true, regex: /^((^NKN([A-Za-z0-9]){33}){1})$/ }"
                   class="modal-input__control"
                   type="text"
                   name="nknaddress"
