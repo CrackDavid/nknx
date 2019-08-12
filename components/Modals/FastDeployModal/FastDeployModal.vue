@@ -119,12 +119,12 @@
                       </td>
                       <td>
                         <i
-                          v-clipboard:copy="`wget -O install.sh 'https://api2.nknx.org/deployment/install/${deploy.uuid}'; sudo bash install.sh`"
+                          v-clipboard:copy="`wget -O install.sh 'https://api.nknx.org/deployment/install/${deploy.uuid}'; sudo bash install.sh`"
                           class="fas fa-copy fast-deploy__copy"
                         ></i>
                         <i
                           class="fast-deploy__script"
-                        >wget -O install.sh "https://api2.nknx.org/deployment/install/{{deploy.uuid}}"; sudo bash install.sh</i>
+                        >wget -O install.sh "https://api.nknx.org/deployment/install/{{deploy.uuid}}"; sudo bash install.sh</i>
                       </td>
                     </tr>
                     <tr

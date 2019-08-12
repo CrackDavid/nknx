@@ -51,25 +51,25 @@ export const getters = {
 
 export const actions = {
   async updateNetworkStats({ commit }) {
-    const data = await this.$axios.$get('https://api2.nknx.org/network/stats')
+    const data = await this.$axios.$get('https://api.nknx.org/network/stats')
     commit('setNetworkStats', data)
   },
   async updateNetworkStatus({ commit }) {
-    const data = await this.$axios.$get('https://api2.nknx.org/network/status')
+    const data = await this.$axios.$get('https://api.nknx.org/network/status')
     commit('setNetworkStatus', data)
   },
   async updateNetworkCities({ commit }) {
-    const data = await this.$axios.$get('https://api2.nknx.org/network/cities')
+    const data = await this.$axios.$get('https://api.nknx.org/network/cities')
     commit('setNetworkCities', data)
   },
   async updateNetworkCountries({ commit }) {
     const data = await this.$axios.$get(
-      'https://api2.nknx.org/network/countries'
+      'https://api.nknx.org/network/countries'
     )
     commit('setNetworkCountries', data)
   },
   async updateNetworkProviders({ commit }) {
-    const data = await this.$axios.$get('https://api2.nknx.org/network/isps')
+    const data = await this.$axios.$get('https://api.nknx.org/network/isps')
     commit('setNetworkProviders', data)
   },
   async updateNetworkReleases({ commit }) {
