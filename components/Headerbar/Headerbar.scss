@@ -33,6 +33,10 @@
   &__left {
     display: flex;
     align-items: center;
+
+    @include size-md {
+      width: 60px;
+    }
   }
 
   &__right {

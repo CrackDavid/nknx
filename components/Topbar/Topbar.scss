@@ -64,4 +64,30 @@
     height: 1em;
     margin-right: 8px;
   }
+
+  &-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $white;
+    background-color: $secondary;
+    font-size: $font-size-xs;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    padding: 8px $padding-default;
+
+    &__left {
+      display: flex;
+      align-items: center;
+    }
+
+    &__toggle {
+      font-size: $font-size-md;
+      width: 65px;
+      text-align: right;
+      cursor: pointer;
+    }
+  }
 }

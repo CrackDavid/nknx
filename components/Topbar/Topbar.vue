@@ -1,6 +1,6 @@
 <template>
-  <div class="topbar">
-    <div v-if="price.prices && $mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" class="topbar__left">
+  <div v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" class="topbar">
+    <div v-if="price.prices" class="topbar__left">
       <span class="topbar__block">
         NKN/USD: ${{ price.prices[0].price }}
         <span
@@ -30,6 +30,15 @@
         {{ networkVersion | nodeVersion }}
       </span>
     </div>
+  </div>
+  <div v-else class="topbar-mobile">
+    <div class="topbar-mobile__left">
+      <span class="fe fe-activity topbar__icon" />
+      <span class="fe fe-layers topbar__icon" />
+      <span class="fe fe-git-branch topbar__icon" />
+    </div>
+    <div class="topbar-mobile__title">{{$t('networkStats')}}</div>
+    <span class="topbar-mobile__toggle fe fe-chevron-down"></span>
   </div>
 </template>
 

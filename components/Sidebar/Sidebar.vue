@@ -6,7 +6,7 @@
       :to="route.path"
       :exact="route.path=='/' ? true : false"
       class="sidebar__item"
-      @click.native="markerInitialize(), $mq === 'xs' || $mq === 'sm' ? toggleSidebar() : false"
+      @click.native="markerInitialize(), $mq === 'xs' || $mq === 'sm' || $mq === 'md' ? toggleSidebar() : false"
       @mouseleave.native="markerInitialize"
     >
       <span class="fe sidebar__icon" :class="route.icon" />
