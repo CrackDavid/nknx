@@ -22,9 +22,17 @@
   &__total {
     .wallet-overview__item {
       text-align: left;
+
+      @include size-md {
+        width: 100%;
+      }
     }
     .wallet-overview__value {
       font-size: 38px;
+
+      @include size-md {
+        font-size: $font-size-title;
+      }
     }
 
     @include size-md {
@@ -38,28 +46,44 @@
 
     &:not(:last-child) {
       margin-right: $padding-big;
+
+      @include size-md {
+        margin-right: 0;
+      }
     }
 
     @include size-md {
-      width: 100%;
+      width: 50%;
       text-align: left;
-      margin-top: $padding-default;
     }
   }
 
   &__symbol {
     font-weight: 500;
     font-size: 14px;
+
+    @include size-md {
+      font-size: $font-size-xs;
+    }
   }
 
   &__title {
     font-size: $font-size-sm;
     color: $text-grey-light;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+
+    @include size-md {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semi-bold;
+    }
   }
 
   &__value {
     font-size: $font-size-title;
+
+    @include size-md {
+      font-size: $font-size-title;
+    }
 
     &_positive {
       color: $success;
@@ -75,11 +99,24 @@
 
     @include size-md {
       flex-flow: row wrap;
+      width: 100%;
+      justify-content: space-between;
     }
   }
 
   &__chart {
     margin-top: $padding-medium;
     height: 275px;
+  }
+
+  &__controls {
+    display: flex;
+
+    @include size-md {
+      margin-top: $padding-normal;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      width: 100%;
+    }
   }
 }

@@ -22,24 +22,26 @@
             <div class="wallet-overview__title">{{$t('totalValue')}}</div>
             <div class="wallet-overview__value">${{totalUsdValue | commaNumber}}</div>
           </div>
-          <Button
-            class="wallet-overview__btn"
-            type="button"
-            :theme="currentSet === '1day' ? 'secondary' : 'default'"
-            @click.native="toggleDataSet('hour', '1day')"
-          >1 {{$t('day')}}</Button>
-          <Button
-            class="wallet-overview__btn"
-            type="button"
-            :theme="currentSet === '3days' ? 'secondary' : 'default'"
-            @click.native="toggleDataSet('hour', '3days')"
-          >3 {{$t('days')}}</Button>
-          <Button
-            class="wallet-overview__btn"
-            type="button"
-            :theme="currentSet === '1week' ? 'secondary' : 'default'"
-            @click.native="toggleDataSet('day', '1week')"
-          >1 {{$t('week')}}</Button>
+          <div class="wallet-overview__controls">
+            <Button
+              class="wallet-overview__btn"
+              type="button"
+              :theme="currentSet === '1day' ? 'secondary' : 'default'"
+              @click.native="toggleDataSet('hour', '1day')"
+            >1 {{$t('day')}}</Button>
+            <Button
+              class="wallet-overview__btn"
+              type="button"
+              :theme="currentSet === '3days' ? 'secondary' : 'default'"
+              @click.native="toggleDataSet('hour', '3days')"
+            >3 {{$t('days')}}</Button>
+            <Button
+              class="wallet-overview__btn"
+              type="button"
+              :theme="currentSet === '1week' ? 'secondary' : 'default'"
+              @click.native="toggleDataSet('day', '1week')"
+            >1 {{$t('week')}}</Button>
+          </div>
         </div>
       </div>
       <WalletOverviewChart :sumWalletSnapshots="sumWalletSnapshots" :dataSet="currentSet" />
