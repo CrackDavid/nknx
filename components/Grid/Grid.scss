@@ -2,4 +2,8 @@
   display: grid;
   grid-gap: $grid-gap;
   grid-template-columns: $grid-template-columns;
+
+  @include size-md {
+    grid-gap: $padding-default;
+  }
 }

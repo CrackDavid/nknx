@@ -9,18 +9,24 @@
         <div class="general-stats__title">{{ networkStats.totalNodes }}</div>
         <div class="general-stats__subtitle">{{$t('currentNetworkNodes')}}</div>
       </div>
-      <div class="general-stats__divider" />
-      <div class="general-stats__item">
-        <div class="general-stats__data">
-          <div v-for="item in items" :key="item.title" class="general-stats__data-item">
-            <span class="fe general-stats__data-icon" :class="item.icon" />
-            <div class="general-stats__data-description">
-              <div class="general-stats__data-title">{{ item.data }}</div>
-              <div class="general-stats__data-subtitle">{{$t(item.title)}}</div>
+      <template v-if="open === true">
+        <div class="general-stats__divider" />
+        <div class="general-stats__item">
+          <div class="general-stats__data">
+            <div v-for="item in items" :key="item.title" class="general-stats__data-item">
+              <span class="fe general-stats__data-icon" :class="item.icon" />
+              <div class="general-stats__data-description">
+                <div class="general-stats__data-title">{{ item.data }}</div>
+                <div class="general-stats__data-subtitle">{{$t(item.title)}}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </template>
+      <div
+        :class="['general-stats__toggle', open !== true ? 'fe fe-chevron-down' : 'fe fe-chevron-up']"
+        @click="toggle"
+      ></div>
     </div>
   </Card>
 </template>
@@ -39,6 +45,7 @@ export default {
   },
   data: () => {
     return {
+      open: false,
       items: {
         countries: {
           icon: 'fe-globe',
@@ -71,6 +78,9 @@ export default {
     this.updateNetworkStats()
   },
   methods: {
+    toggle() {
+      this.open = !this.open
+    },
     updateNetworkStats() {
       this.items.countries.data = this.networkStats.totalCountries
       this.items.providers.data = this.networkStats.totalProviders

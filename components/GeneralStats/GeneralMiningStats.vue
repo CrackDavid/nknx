@@ -31,6 +31,13 @@
           </div>
         </div>
       </div>
+      <Button
+        class="general-stats__btn modal__footer-button"
+        type="router"
+        theme="success"
+        :full="true"
+        url="node-manager"
+      >{{$t('viewMyNodes')}}</Button>
     </div>
   </Card>
 </template>
@@ -41,11 +48,13 @@
 
 <script>
 import Card from '~/components/Card/Card.vue'
+import Button from '~/components/Button/Button.vue'
 
 import { mapGetters } from 'vuex'
 export default {
   components: {
-    Card
+    Card,
+    Button
   },
   data: () => {
     return {

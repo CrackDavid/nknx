@@ -1,6 +1,27 @@
 .general-stats {
   padding: $padding-max $padding-normal;
 
+  @include size-md {
+    padding: $padding-default;
+  }
+
+  &__btn {
+    display: none;
+
+    @include size-md {
+      display: flex;
+      margin-top: 32px;
+    }
+  }
+
+  &__toggle {
+    font-size: 24px;
+    margin-top: $padding-default;
+    color: $text-grey-light;
+    text-align: center;
+    cursor: pointer;
+  }
+
   &_gradient {
     background: $primary-gradient;
 
@@ -43,6 +64,11 @@
     margin-bottom: $padding-default;
     font-weight: $font-weight-light;
     width: 100%;
+
+    @include size-md {
+      padding-top: 32px;
+      font-size: 48px;
+    }
   }
 
   &__subtitle {
@@ -59,6 +85,11 @@
     padding: 0px $padding-small;
     grid-column-gap: 20%;
 
+    @include size-md {
+      padding: 0;
+      grid-column-gap: 0%;
+    }
+
     &:last-child {
       margin-bottom: 0px;
     }
@@ -71,12 +102,21 @@
       display: flex;
       align-items: center;
       margin-top: $padding-medium;
+
+      @include size-md {
+        margin-top: $padding-normal;
+        justify-content: center;
+      }
     }
 
     &-icon {
       color: $text-grey-light;
       margin-right: $padding-small;
       font-size: 24px;
+
+      @include size-md {
+        font-size: 18px;
+      }
     }
 
     &-title {
