@@ -3,7 +3,7 @@
 
   @include size-md {
     flex-flow: row wrap;
-    padding: $padding-default;
+    padding: $padding-normal $padding-default;
   }
 
   &_centered {

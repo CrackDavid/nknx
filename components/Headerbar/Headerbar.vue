@@ -30,6 +30,7 @@
         </div>
       </span>
     </div>
+    <h3 class="headerbar__title">{{$t(pageTitle)}}</h3>
     <div class="headerbar__right">
       <span
         v-if="!$auth.loggedIn"
@@ -61,7 +62,8 @@ export default {
     }
   },
   computed: mapGetters({
-    sidebarExpanded: 'sidebar/get'
+    sidebarExpanded: 'sidebar/get',
+    pageTitle: 'pageTitle/getPageTitle'
   }),
 
   methods: {

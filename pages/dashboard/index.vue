@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentWrapper>
-      <h1 class="page__title">{{$t('dashboard')}}</h1>
+      <h1 class="page__title">{{$t(pageTitle)}}</h1>
       <Grid>
         <GeneralMiningStats />
         <GeneralNetworkStats />
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Grid from '~/components/Grid/Grid.vue'
 import GeneralNetworkStats from '~/components/GeneralStats/GeneralNetworkStats.vue'
 import GeneralMiningStats from '~/components/GeneralStats/GeneralMiningStats.vue'
@@ -41,6 +43,11 @@ export default {
     DailyBalance,
     DailyMined
   },
+  computed: {
+    ...mapGetters({
+      pageTitle: 'pageTitle/getPageTitle'
+    })
+  },
   created() {
     const config = {
       page: 1,
@@ -48,6 +55,7 @@ export default {
     }
     this.$store.dispatch('userWallets/updateUserWalletsConfig', config)
     this.$store.dispatch('userWallets/updateUserWallets')
+    this.$store.dispatch('pageTitle/updatePageTitle', 'dashboard')
   }
 }
 </script>

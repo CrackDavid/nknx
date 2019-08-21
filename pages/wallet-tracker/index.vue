@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentWrapper>
-      <h1 class="page__title">{{$t('walletTracker')}}</h1>
+      <h1 class="page__title">{{$t(pageTitle)}}</h1>
       <Grid>
         <WalletOverview
           v-if="sumWalletSnapshots.length > 0"
@@ -84,7 +84,8 @@ export default {
   computed: {
     ...mapGetters({
       userWallets: 'userWallets/getUserWallets',
-      userWalletsConfig: 'userWallets/getUserWalletsConfig'
+      userWalletsConfig: 'userWallets/getUserWalletsConfig',
+      pageTitle: 'pageTitle/getPageTitle'
     })
   },
   watch: {
@@ -99,6 +100,7 @@ export default {
     }
     this.$store.dispatch('userWallets/updateUserWalletsConfig', config)
     this.$store.dispatch('userWallets/updateUserWallets')
+    this.$store.dispatch('pageTitle/updatePageTitle', 'walletTracker')
   },
   mounted() {
     this.fetchWalletsData()

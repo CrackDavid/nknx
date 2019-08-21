@@ -95,6 +95,10 @@ h3 {
 
   &__title {
     margin-bottom: $padding-normal;
+
+    @include size-md {
+      display: none;
+    }
   }
 
   &__node-manager {

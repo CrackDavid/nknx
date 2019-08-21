@@ -3,7 +3,7 @@
     <div class="page__node-manager">
       <div class="page__node-manager-heading">
         <div class="page__node-manager-left">
-          <h1>{{$t('myNodes')}}</h1>
+          <h1>{{$t(pageTitle)}}</h1>
           <NodeOnline v-if="totalNodes > 0" :filters="filters" />
         </div>
         <div class="page__node-manager-right">
@@ -82,7 +82,8 @@ export default {
     ...mapGetters({
       userNodes: 'userNodes/getUserNodes',
       userNodesStats: 'userNodes/getUserNodesStats',
-      userConfig: 'userNodes/getUserConfig'
+      userConfig: 'userNodes/getUserConfig',
+      pageTitle: 'pageTitle/getPageTitle'
     })
   },
   watch: {
@@ -100,6 +101,7 @@ export default {
     }
     this.$store.dispatch('userNodes/updateUserConfig', config)
     this.$store.dispatch('userNodes/updateUserNodes')
+    this.$store.dispatch('pageTitle/updatePageTitle', 'myNodes')
   },
   mounted() {
     this.fetchNodesData()

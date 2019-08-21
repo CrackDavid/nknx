@@ -6,7 +6,7 @@
       :to="route.path"
       :exact="route.path=='/' ? true : false"
       class="sidebar__item"
-      @click.native="markerInitialize"
+      @click.native="markerInitialize(), $mq === 'xs' || $mq === 'sm' ? toggleSidebar() : false"
       @mouseleave.native="markerInitialize"
     >
       <span class="fe sidebar__icon" :class="route.icon" />
@@ -57,6 +57,12 @@ export default {
     this.markerMove() // comment it if wanna turn off mouseover animation
   },
   methods: {
+    toggleSidebar() {
+      this.$store.dispatch('sidebar/toggleSidebar')
+      const burger = document.getElementsByClassName('headerbar__toggle')[0]
+      const toggleClass = 'arrow'
+      burger.classList.toggle(toggleClass)
+    },
     markerInitialize() {
       const marker = document.getElementsByClassName('sidebar__marker')[0]
       const currentActiveElement = document.getElementsByClassName(

@@ -15,10 +15,19 @@
   padding-left: calc(#{$nav-width-collapsed} + #{$padding-normal});
   transition: $transition-1;
   z-index: 10;
+  align-items: center;
 
   @include size-md {
     padding: $padding-small $padding-default;
     padding-left: $padding-default;
+  }
+
+  &__title {
+    display: none;
+
+    @include size-md {
+      display: block;
+    }
   }
 
   &__left {

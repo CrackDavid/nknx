@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentWrapper>
-      <h1 class="page__title">{{$t('network')}}</h1>
+      <h1 class="page__title">{{$t(pageTitle)}}</h1>
       <Grid>
         <DailyNodes />
         <DailyTransactions />
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import NetworkStatus from '~/components/NetworkStatus/NetworkStatus.vue'
@@ -46,6 +48,14 @@ export default {
     Releases,
     CountryList,
     NetworkProviders
+  },
+  computed: {
+    ...mapGetters({
+      pageTitle: 'pageTitle/getPageTitle'
+    })
+  },
+  created() {
+    this.$store.dispatch('pageTitle/updatePageTitle', 'network')
   }
 }
 </script>
