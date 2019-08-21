@@ -186,11 +186,19 @@ h3 {
   justify-content: space-between;
   align-items: center;
 
+  @include size-md {
+    padding: $padding-default;
+  }
+
   &__counter {
     margin-left: $padding-medium;
     color: $primary;
     font-size: $font-size-md;
     font-weight: $font-weight-semi-bold;
+
+    @include size-md {
+      display: none;
+    }
   }
 
   &__right {
@@ -212,6 +220,10 @@ h3 {
     cursor: pointer;
     transition: $transition-1;
     text-decoration: none;
+
+    @include size-md {
+      display: none;
+    }
 
     &:hover {
       color: $secondary;
@@ -293,6 +305,10 @@ table {
   width: 100%;
   background: $white;
 
+  @include size-md {
+    font-size: 13px;
+  }
+
   &__header,
   thead {
     background: $table-header-bg;
@@ -313,12 +329,20 @@ table {
     font-weight: $font-weight-semi-bold;
     padding: $table-header-padding;
     text-align: left;
+
+    @include size-md {
+      padding: $padding-micro $padding-default;
+    }
   }
 
   &__item,
   td {
     padding: $table-item-padding;
     position: relative;
+
+    @include size-md {
+      padding: $padding-default;
+    }
 
     &_link {
       transition: $transition-1;

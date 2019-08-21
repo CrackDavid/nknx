@@ -6,7 +6,6 @@
   }
 
   &__country {
-    margin-left: 40px;
     max-width: 50px;
     overflow: hidden;
   }
@@ -17,5 +16,33 @@
     background-color: $secondary;
     border-radius: 100px;
     margin-right: 14px;
+
+    @include size-md {
+      display: block;
+      height: 4px;
+      margin-top: $padding-default;
+    }
+  }
+
+  &__stats {
+    display: none;
+    padding: 0 $padding-default;
+    margin-top: 8px;
+    margin-bottom: $padding-normal;
+
+    @include size-md {
+      display: block;
+    }
+
+    &-title {
+      color: $text-grey-light;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semi-bold;
+      margin-bottom: 8px;
+    }
+
+    &-value {
+      font-size: $font-size-title;
+    }
   }
 }
