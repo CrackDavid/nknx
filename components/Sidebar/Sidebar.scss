@@ -13,6 +13,15 @@
   position: fixed;
   z-index: 20;
 
+  @include size-md {
+    width: $nav-width-expanded;
+    transform: translateX(-100%);
+    top: calc(#{$headerbar-height} + #{$topbar-height} + 1px);
+    border-right: 0;
+    justify-content: flex-start;
+    padding-top: $padding-medium;
+  }
+
   &_expanded {
     width: $nav-width-expanded;
 
@@ -20,6 +29,10 @@
       opacity: 1;
       margin-left: calc(#{$padding-normal} + #{$nav-icon-size});
       transform: translateX(0px);
+    }
+
+    @include size-md {
+      transform: translateX(0);
     }
   }
 

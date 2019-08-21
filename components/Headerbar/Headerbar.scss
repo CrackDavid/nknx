@@ -16,6 +16,11 @@
   transition: $transition-1;
   z-index: 10;
 
+  @include size-md {
+    padding: $padding-small $padding-default;
+    padding-left: $padding-default;
+  }
+
   &__left {
     display: flex;
     align-items: center;
@@ -28,6 +33,10 @@
 
   &_collapsed {
     padding-left: calc(#{$nav-width-expanded} + #{$padding-normal});
+
+    @include size-md {
+      padding-left: $padding-default;
+    }
   }
 
   &__search-input {

@@ -5,10 +5,28 @@
 
   &_collapsed {
     padding-left: $nav-width-expanded;
+    @include size-md {
+      padding-left: $nav-width-collapsed;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(9, 14, 47, 0.24);
+      }
+    }
   }
 
   &_overflow {
     height: calc(100vh - #{$topbar-height} - #{$headerbar-height});
     overflow: hidden;
+
+    &_mobile {
+      overflow-y: hidden;
+      position: absolute;
+    }
   }
 }
