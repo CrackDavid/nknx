@@ -9,7 +9,22 @@
         <div class="general-stats__title">{{ networkStats.totalNodes }}</div>
         <div class="general-stats__subtitle">{{$t('currentNetworkNodes')}}</div>
       </div>
-      <template v-if="open === true">
+      <template v-if="open === true && $mq !== 'lg' && $mq !=='llg' && $mq !=='xl'">
+        <div class="general-stats__divider" />
+        <div class="general-stats__item">
+          <div class="general-stats__data">
+            <div v-for="item in items" :key="item.title" class="general-stats__data-item">
+              <span class="fe general-stats__data-icon" :class="item.icon" />
+              <div class="general-stats__data-description">
+                <div class="general-stats__data-title">{{ item.data }}</div>
+                <div class="general-stats__data-subtitle">{{$t(item.title)}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template v-if="$mq !== 'xs' && $mq !=='sm' && $mq !=='md'">
         <div class="general-stats__divider" />
         <div class="general-stats__item">
           <div class="general-stats__data">
@@ -24,6 +39,7 @@
         </div>
       </template>
       <div
+        v-if="$mq === 'xs' || $mq ==='sm' || $mq ==='md'"
         :class="['general-stats__toggle', open !== true ? 'fe fe-chevron-down' : 'fe fe-chevron-up']"
         @click="toggle"
       ></div>

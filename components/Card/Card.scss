@@ -85,6 +85,10 @@
   &_padding {
     &_normal {
       padding: $padding-normal;
+
+      @include size-md {
+        padding: $padding-default;
+      }
     }
 
     &_none {

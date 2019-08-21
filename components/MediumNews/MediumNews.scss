@@ -3,6 +3,10 @@
   overflow: hidden;
   position: relative;
 
+  @include size-md {
+    height: auto;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -18,6 +22,11 @@
     bottom: 0;
     width: 100%;
     position: absolute;
+
+    @include size-md {
+      position: relative;
+      padding-top: 0;
+    }
   }
 
   &__pages {
@@ -56,6 +65,12 @@
       margin-bottom: 16px;
       font-size: $font-size-md;
       font-weight: $font-weight-bold;
+
+      @include size-md {
+        font-size: $font-size-base;
+        line-height: 19px;
+        font-weight: $font-weight-semi-bold;
+      }
     }
 
     &__content {
@@ -64,6 +79,10 @@
       color: $text-grey-light;
       margin-bottom: 12px;
       min-height: 48px;
+
+      @include size-md {
+        min-height: auto;
+      }
     }
 
     &__more {
@@ -72,8 +91,13 @@
       display: flex;
       align-items: center;
 
+      @include size-md {
+        font-size: 13px;
+        line-height: 16px;
+      }
+
       svg {
-        left: 12px;
+        left: 8px;
         position: relative;
         transition: $transition-1;
       }
@@ -98,13 +122,25 @@
 .fade-out-in-enter-active,
 .fade-out-in-leave-active {
   transition: transform 0.2s;
+
+  @include size-md {
+    transition: transform 0s;
+  }
 }
 
 .fade-out-in-enter-active {
   transition-delay: 0.2s;
+
+  @include size-md {
+    transition-delay: 0s;
+  }
 }
 
 .fade-out-in-enter,
 .fade-out-in-leave-to {
   transform: translateX(150%);
+
+  @include size-md {
+    transform: translateX(0%);
+  }
 }

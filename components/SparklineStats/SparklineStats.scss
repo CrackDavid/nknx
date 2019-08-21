@@ -3,6 +3,10 @@
   padding-bottom: $sparkline-chart-height;
 
   @include size-md {
+    padding: $padding-default;
+  }
+
+  @include size-md {
     padding-bottom: 100px;
   }
 

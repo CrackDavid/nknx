@@ -8,12 +8,12 @@
         </div>
       </div>
 
-      <div v-if="mediumNews.length < 1">
+      <div v-if="loading">
         <NewsLoader v-for="i in itemsOnPage" :key="i"></NewsLoader>
       </div>
 
-      <transition-group v-if="mediumNews.length > 1" tag="div" name="fade-out-in">
-        <div v-for="(news, index) in paginatedData" :key="news.title" class="news__item">
+      <transition-group v-if="!loading" tag="div" name="fade-out-in">
+        <div v-for="(news) in paginatedData" :key="news.title" class="news__item">
           <div class="news-item__header">
             <div class="news-item__date">{{$moment(news.pubDate).format('DD/MM/YYYY')}}</div>
             <div class="news-item__authour">{{$t('by')}} {{news.author}}</div>
@@ -24,7 +24,7 @@
             {{$t('readMore')}}
             <ArrowRight />
           </a>
-          <div v-if="index<paginatedData.length-1" class="news-item__divider"></div>
+          <div class="news-item__divider"></div>
         </div>
       </transition-group>
 
@@ -72,7 +72,8 @@ export default {
       itemsOnPage: 3,
       currentItems: 3,
       currentNumber: 3,
-      mediumNews: []
+      mediumNews: [],
+      loading: true
     }
   },
   computed: {
@@ -91,6 +92,7 @@ export default {
     const self = this
     this.fetchFromMedium('nknetwork').then(function(data) {
       self.mediumNews = data.items
+      self.loading = false
     })
   },
   methods: {
