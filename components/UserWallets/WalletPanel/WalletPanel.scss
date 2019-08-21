@@ -8,6 +8,10 @@
   box-sizing: border-box;
   height: 100%;
 
+  @include size-md {
+    padding: $padding-default;
+  }
+
   @include size-lg {
     flex-flow: row wrap;
   }
@@ -17,17 +21,30 @@
     font-weight: $font-weight-semi-bold;
     opacity: 0.75;
     line-height: normal;
+
+    @include size-md {
+      font-size: $font-size-xs;
+    }
   }
 
   &__value {
     font-size: 38px;
     margin: 4px 0px;
     line-height: normal;
+
+    @include size-md {
+      margin: 8px 0 $padding-default 0;
+      font-size: $font-size-title;
+    }
   }
 
   &__currency {
     font-size: 14px;
     font-weight: $font-weight-semi-bold;
+
+    @include size-md {
+      font-size: $font-size-xs;
+    }
   }
 
   &__address {
@@ -35,8 +52,12 @@
     line-height: normal;
     cursor: pointer;
 
+    @include size-md {
+      font-size: 10px;
+    }
+
     i {
-      margin-left: 10px;
+      margin-left: 6px;
       transition: $transition-1;
     }
 
@@ -59,6 +80,14 @@
 
     @include size-lg {
       margin-top: $padding-default;
+    }
+
+    @include size-md {
+      margin-top: $padding-normal;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: $padding-default;
+      width: 100%;
     }
   }
 
@@ -86,10 +115,21 @@
 
     &:not(:last-child) {
       margin-right: $padding-default;
+
+      @include size-md {
+        margin-right: 0;
+      }
     }
 
     &_more {
       width: $walletpanel-btn-more-width;
+    }
+
+    @include size-md {
+      padding: $padding-default;
+      width: 100%;
+      flex-flow: row wrap;
+      font-size: 13px;
     }
   }
 
@@ -98,8 +138,15 @@
     line-height: normal;
     margin-bottom: 10px;
 
+    @include size-md {
+      font-size: 18px;
+      margin-bottom: 0;
+      margin-right: 8px;
+    }
+
     &_more {
       margin-bottom: 0;
+      margin-right: 0;
     }
   }
 }

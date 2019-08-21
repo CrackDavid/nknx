@@ -7,7 +7,7 @@
         <WalletTransactions />
       </Grid>
     </ContentWrapper>
-    <WalletSide :wallets="userWallets.wallets.data" />
+    <WalletSide v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" :wallets="userWallets.wallets.data" />
   </div>
 </template>
 

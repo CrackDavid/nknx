@@ -160,6 +160,10 @@ h3 {
 
     &-wrapper {
       grid-column: span 9;
+
+      @include size-md {
+        grid-column: span 12;
+      }
     }
 
     &-scroll {
