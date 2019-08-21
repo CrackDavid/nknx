@@ -8,30 +8,71 @@
           :totalWallets="totalWallets"
           :sumWalletSnapshots="sumWalletSnapshots"
         />
-        <div class="page__wallet-tracker-heading">
-          <h3 class="page__wallet-tracker-title">{{$t('myWallets')}} ({{totalWallets}})</h3>
-          <div v-if="wallets.length > 0" class="page-navigation page__wallet-tracker-navigation">
-            <div class="page-navigation__pagination">
-              <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
-              <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
+        <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
+          <div class="page__wallet-tracker-heading">
+            <h3 class="page__wallet-tracker-title">{{$t('myWallets')}} ({{totalWallets}})</h3>
+            <div v-if="wallets.length > 0" class="page-navigation page__wallet-tracker-navigation">
+              <div class="page-navigation__pagination">
+                <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
+                <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
+              </div>
             </div>
+            <div class="divider"></div>
+            <Button
+              v-if="wallets.length > 0"
+              theme="danger"
+              @click.native="openDeleteAllWalletsModal"
+            >
+              <span class="button__icon fe fe-trash-2"></span>
+              {{$t('deleteAllWallets')}}
+            </Button>
           </div>
-          <div class="divider"></div>
-          <Button
-            v-if="wallets.length > 0"
-            theme="danger"
-            @click.native="openDeleteAllWalletsModal"
-          >
-            <span class="button__icon fe fe-trash-2"></span>
-            {{$t('deleteAllWallets')}}
-          </Button>
-        </div>
-        <NewWalletCard @click.native="openNewWalletModal()" />
-        <template v-if="!loading">
-          <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
         </template>
         <template v-else>
-          <WalletCardLoader v-for="(walletLoader, index) in walletLoaders" :key="index" />
+          <div class="page__wallet-tracker-heading">
+            <h3 class="page__wallet-tracker-title">{{$t('myWallets')}} ({{totalWallets}})</h3>
+            <Button
+              v-if="wallets.length > 0"
+              theme="danger"
+              @click.native="openDeleteAllWalletsModal"
+            >
+              <span class="button__icon fe fe-trash-2"></span>
+              {{$t('deleteAll')}}
+            </Button>
+          </div>
+        </template>
+        <NewWalletCard @click.native="openNewWalletModal()" />
+        <template v-if="$mq === 'md' || $mq === 'sm' || $mq === 'xs'">
+          <div class="page__wallet-tracker-heading">
+            <div class="divider"></div>
+            <div v-if="wallets.length > 0" class="page-navigation page__wallet-tracker-navigation">
+              <div class="page-navigation__pagination">
+                <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
+                <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
+              </div>
+            </div>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
+          <template v-if="!loading">
+            <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
+          </template>
+          <template v-else>
+            <WalletCardLoader v-for="(walletLoader, index) in walletLoaders" :key="index" />
+          </template>
+        </template>
+
+        <template v-else>
+          <div class="page__wallet-tracker-scroll">
+            <template v-if="!loading">
+              <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
+            </template>
+            <template v-else>
+              <WalletCardLoader />
+            </template>
+          </div>
         </template>
       </Grid>
     </ContentWrapper>

@@ -1,6 +1,13 @@
 .wallet-card {
   display: flex;
 
+  &__wrapper {
+    @include size-md {
+      min-width: 260px;
+      margin-right: $padding-default;
+    }
+  }
+
   &__icon {
     height: 64px;
     width: 64px;
@@ -10,6 +17,16 @@
     border-radius: 100%;
     background: $primary-ghost;
     margin-right: $padding-default;
+
+    @include size-md {
+      height: 40px;
+      width: 40px;
+
+      svg {
+        height: 14px;
+        width: 14px;
+      }
+    }
   }
 
   &__data {
@@ -27,12 +44,21 @@
     font-size: $font-size-sm;
     color: $text-grey-light;
     min-height: $font-size-sm;
+
+    @include size-md {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semi-bold;
+    }
   }
 
   &__value {
     margin-top: 6px;
     margin-bottom: $padding-micro;
     font-size: $h1-font-size;
+
+    @include size-md {
+      margin: 8px 0;
+    }
   }
 
   &__symbol {
@@ -43,6 +69,11 @@
     font-size: $font-size-sm;
     color: $text-grey-light;
     font-weight: 500;
+
+    @include size-md {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-normal;
+    }
   }
 
   &__actions {

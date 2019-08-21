@@ -162,10 +162,22 @@ h3 {
       grid-column: span 9;
     }
 
+    &-scroll {
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: auto;
+      grid-column: span 12;
+    }
+
     &-heading {
       display: flex;
       grid-column: span 12;
       align-items: center;
+
+      @include size-md {
+        justify-content: space-between;
+      }
     }
 
     &-title {
@@ -412,6 +424,10 @@ table {
   height: 1px;
   background-color: $platinum;
   margin-right: $padding-normal;
+
+  @include size-md {
+    margin-right: 0;
+  }
 }
 
 /*========== Modals ==========*/

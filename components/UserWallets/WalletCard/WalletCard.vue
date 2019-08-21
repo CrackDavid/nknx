@@ -1,5 +1,6 @@
 <template>
   <Card
+    class="wallet-card__wrapper"
     :col="$mq === 'xl' ? '3' : $mq === 'llg' ? '6' : '12'"
     :hover="true"
     @click.native="setActiveWallet(wallet)"

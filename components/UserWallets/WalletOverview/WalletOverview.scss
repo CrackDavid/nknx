@@ -82,7 +82,7 @@
     font-size: $font-size-title;
 
     @include size-md {
-      font-size: $font-size-title;
+      font-size: $font-size-sm;
     }
 
     &_positive {

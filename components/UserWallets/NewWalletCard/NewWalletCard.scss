@@ -10,6 +10,10 @@
   cursor: pointer;
   min-height: 120px;
 
+  @include size-md {
+    min-height: 96px;
+  }
+
   @include size-llg {
     grid-column: span 6;
   }
@@ -61,6 +65,11 @@
     justify-content: center;
     cursor: pointer;
     outline: none;
+
+    @include size-md {
+      height: 40px;
+      width: 40px;
+    }
   }
 
   &__title {
@@ -68,9 +77,19 @@
     font-size: 21px;
     line-height: 27px;
     transition: $transition-1;
+
+    @include size-md {
+      font-size: $font-size-base;
+      line-height: 20px;
+    }
   }
 
   &__icon {
+    @include size-md {
+      height: 20px;
+      width: 20px;
+    }
+
     path {
       transition: $transition-1;
     }
