@@ -219,6 +219,27 @@ h3 {
   }
 }
 
+.card-footer {
+  padding-top: $padding-default;
+  text-align: center;
+  color: $primary;
+  transition: $transition-1;
+  box-sizing: border-box;
+  display: none;
+  border-top: $card-border;
+  width: calc(100% + 32px);
+  position: relative;
+  left: -16px;
+
+  @include size-md {
+    display: block;
+  }
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
 /*========== Text ==========*/
 
 .text {

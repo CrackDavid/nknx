@@ -22,7 +22,7 @@
               <span>{{$moment(item.created_at).format('DD/MM/YYYY')}}</span>
             </div>
           </div>
-          <div class="releases-item__title">{{item.name}}</div>
+          <div class="releases-item__title text_wrap_none">{{item.name}}</div>
           <div class="releases-item__description">{{item.body | striphtml | excerpt(20)}}</div>
           <a class="releases-item__more" :href="item.html_url" target="_blank">
             {{$t('viewDetails')}}
@@ -30,6 +30,9 @@
           </a>
         </div>
       </div>
+    </div>
+    <div class="card-footer">
+      <a target="_blank" href="https://github.com/nknorg/nkn/releases">{{$t('viewAll')}}</a>
     </div>
   </Card>
 </template>

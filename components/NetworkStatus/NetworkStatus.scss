@@ -4,6 +4,10 @@
   border-radius: $card-border-radius;
   color: $white;
 
+  @include size-md {
+    padding: 32px 0px;
+  }
+
   &_positive {
     background: $success-gradient;
   }
@@ -14,11 +18,20 @@
 
   &__version {
     opacity: 0.85;
+
+    @include size-md {
+      font-size: $font-size-xs;
+    }
   }
 
   &__status {
     margin-top: 16px;
     margin-bottom: 24px;
     font-size: $font-size-llg;
+
+    @include size-md {
+      margin: $padding-micro;
+      font-size: $font-size-title;
+    }
   }
 }

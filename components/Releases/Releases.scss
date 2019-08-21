@@ -4,6 +4,10 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 32px;
+
+    @include size-md {
+      padding-bottom: $padding-normal;
+    }
   }
 
   &__link {
@@ -15,6 +19,10 @@
     &:hover {
       color: $secondary;
     }
+
+    @include size-md {
+      display: none;
+    }
   }
 }
 
@@ -23,8 +31,16 @@
   display: flex;
   position: relative;
 
+  @include size-md {
+    padding-bottom: $padding-normal;
+  }
+
   &:last-child {
     padding-bottom: 0;
+
+    @include size-md {
+      padding-bottom: $padding-normal;
+    }
   }
 
   &:after {
@@ -36,6 +52,10 @@
     bottom: 0px;
     position: absolute;
     left: 27px;
+
+    @include size-md {
+      left: 21px;
+    }
   }
 
   &__tag {
@@ -52,10 +72,21 @@
     z-index: 1;
     position: relative;
 
+    @include size-md {
+      height: 40px;
+      width: 40px;
+      margin-right: $padding-default;
+      font-size: 11px;
+    }
+
     &_active {
       background: $primary;
       font-weight: $font-weight-semi-bold;
       color: $white;
+
+      @include size-md {
+        font-weight: normal;
+      }
     }
   }
 
@@ -69,6 +100,10 @@
     align-items: center;
     font-size: 13px;
     color: $text-grey-light;
+
+    @include size-md {
+      font-size: $font-size-xs;
+    }
   }
 
   &__title {
@@ -76,11 +111,17 @@
     margin-bottom: 16px;
     font-size: $font-size-md;
     font-weight: $font-weight-bold;
+
+    @include size-md {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semi-bold;
+    }
   }
 
   &__date {
     display: flex;
     align-items: center;
+
     span:first-child {
       margin-right: 8px;
     }
@@ -100,8 +141,12 @@
     align-items: center;
     font-size: 14px;
 
+    @include size-md {
+      font-size: $font-size-xs;
+    }
+
     svg {
-      left: 12px;
+      left: 8px;
       position: relative;
       transition: $transition-1;
     }
