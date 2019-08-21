@@ -7,12 +7,47 @@
 
   &__chart {
     width: 100%;
+
+    @include size-md {
+      margin-top: $padding-default;
+    }
+  }
+
+  &__toggle {
+    display: none;
+
+    @include size-md {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &-divider {
+        height: 1px;
+        width: 100%;
+        background-color: $platinum;
+      }
+
+      &-btn {
+        color: $quick-silver;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        padding: 8px;
+        cursor: pointer;
+      }
+    }
   }
 
   &__heading {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
+
+    @include size-md {
+      justify-content: space-between;
+    }
   }
 
   &__rank {
@@ -24,13 +59,35 @@
     color: $white;
   }
 
+  &__data {
+    @include size-md {
+      width: 100%;
+    }
+  }
+
   &__numbers {
     display: flex;
     flex-flow: row wrap;
 
+    @include size-md {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+    }
+
     &-item {
       width: 50%;
       margin-top: $padding-normal;
+
+      @include size-md {
+        width: 100%;
+
+        &:nth-child(even) {
+          align-items: flex-end;
+          display: flex;
+          flex-flow: column wrap;
+        }
+      }
     }
 
     &-value {

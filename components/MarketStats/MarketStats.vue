@@ -6,15 +6,53 @@
           <h3 class="market-stats__title">NKN {{$t('marketStatistic')}}</h3>
           <div class="market-stats__rank">{{$t('rank')}} {{ cmcRank }}</div>
         </div>
-        <div class="market-stats__numbers">
-          <div v-for="item in items" :key="item.title" class="market-stats__numbers-item">
-            <div class="market-stats__numbers-name">{{$t(item.title)}}</div>
-            <div class="market-stats__numbers-value" :class="item.class">
-              <span v-if="item.icon" class="fe market-stats__numbers-icon" :class="item.icon" />
-              {{ item.data }}
+        <template v-if="$mq !== 'xs' && $mq !=='sm' && $mq !=='md'">
+          <div class="market-stats__numbers">
+            <div v-for="item in items" :key="item.title" class="market-stats__numbers-item">
+              <div class="market-stats__numbers-name">{{$t(item.title)}}</div>
+              <div class="market-stats__numbers-value" :class="item.class">
+                <span v-if="item.icon" class="fe market-stats__numbers-icon" :class="item.icon" />
+                {{ item.data }}
+              </div>
             </div>
           </div>
-        </div>
+        </template>
+        <template v-else>
+          <template v-if="!full">
+            <div v-if="previewItems.length > 0" class="market-stats__numbers">
+              <div
+                v-for="item in previewItems"
+                :key="item.title"
+                class="market-stats__numbers-item"
+              >
+                <div class="market-stats__numbers-name">{{$t(item.title)}}</div>
+                <div class="market-stats__numbers-value" :class="item.class">
+                  <span v-if="item.icon" class="fe market-stats__numbers-icon" :class="item.icon" />
+                  {{ item.data }}
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <div class="market-stats__numbers">
+              <div v-for="item in items" :key="item.title" class="market-stats__numbers-item">
+                <div class="market-stats__numbers-name">{{$t(item.title)}}</div>
+                <div class="market-stats__numbers-value" :class="item.class">
+                  <span v-if="item.icon" class="fe market-stats__numbers-icon" :class="item.icon" />
+                  {{ item.data }}
+                </div>
+              </div>
+            </div>
+          </template>
+          <div class="market-stats__toggle">
+            <div class="market-stats__toggle-divider"></div>
+            <div
+              :class="['market-stats__toggle-btn', full === true ? 'fe fe-chevron-up' : 'fe fe-chevron-down']"
+              @click="toggle"
+            ></div>
+            <div class="market-stats__toggle-divider"></div>
+          </div>
+        </template>
       </div>
       <div class="market-stats__chart">
         <PriceChart />
@@ -41,6 +79,8 @@ export default {
   data: () => {
     return {
       cmcRank: 0,
+      previewItems: [],
+      full: false,
       items: {
         price: {
           title: 'price',
@@ -93,8 +133,13 @@ export default {
       '$' + this.numberWithCommas(this.price.prices[0].volume_24h)
     this.items.nknUsd.data = this.price.prices[0].price.toFixed(7)
     this.items.nknEth.data = this.price.prices[1].price.toFixed(7)
+
+    this.previewItems.push(this.items.price, this.items.change24h)
   },
   methods: {
+    toggle() {
+      this.full = !this.full
+    },
     numberWithCommas(x) {
       x = x.toFixed(0)
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
