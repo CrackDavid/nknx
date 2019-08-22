@@ -1,6 +1,12 @@
 <template>
   <div class="page__wallet-tracker">
     <ContentWrapper :centered="false" class="page__wallet-tracker-wrapper">
+      <div v-if="$mq === 'md' || $mq === 'sm' || $mq === 'xs'">
+        <nuxt-link to="/wallet-tracker" class="mobile-back">
+          <Arrow class="mobile-back__icon" />
+          {{$t('backToOverview')}}
+        </nuxt-link>
+      </div>
       <Grid v-if="activeWallet !== false">
         <WalletPanel />
         <WalletBalanceHistory />
@@ -25,6 +31,7 @@ import WalletSide from '~/components/UserWallets/WalletSide/WalletSide.vue'
 import WalletBalanceHistory from '~/components/UserWallets/WalletBalanceHistory/WalletBalanceHistory.vue'
 import WalletTransactions from '~/components/UserWallets/WalletTransactions/WalletTransactions.vue'
 import MobileWalletTransactions from '~/components/UserWallets/MobileWalletTransactions/MobileWalletTransactions.vue'
+import Arrow from '@/assets/icons/arrow.svg'
 
 export default {
   head() {
@@ -40,7 +47,8 @@ export default {
     WalletSide,
     WalletBalanceHistory,
     WalletTransactions,
-    MobileWalletTransactions
+    MobileWalletTransactions,
+    Arrow
   },
   data: () => {
     return { wallets: [] }

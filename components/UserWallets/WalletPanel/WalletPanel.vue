@@ -28,6 +28,7 @@
         </div>-->
         <div class="wallet-panel__button wallet-panel__button_more">
           <span class="fe fe-more-vertical wallet-panel__icon wallet-panel__icon_more" />
+          <span v-if="$mq === 'md' || $mq === 'sm' || $mq === 'xs'">{{$t('more')}}</span>
         </div>
       </div>
     </div>

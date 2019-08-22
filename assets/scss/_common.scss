@@ -458,6 +458,32 @@ table {
   }
 }
 
+/*========== Mobile ==========*/
+.mobile {
+  &-back {
+    display: flex;
+    align-items: center;
+    color: $text-grey-light;
+    font-weight: $font-weight-semi-bold;
+    cursor: pointer;
+    transition: $transition-1;
+    margin-bottom: 36px;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &__icon {
+      margin-right: 8px;
+      transform: rotateY(180deg);
+
+      path {
+        fill: $text-grey-light;
+      }
+    }
+  }
+}
+
 /*========== Modals ==========*/
 
 .modal {
