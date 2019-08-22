@@ -6,20 +6,35 @@
           <h1>{{$t(pageTitle)}}</h1>
           <NodeOnline v-if="totalNodes > 0" :filters="filters" />
         </div>
-        <div class="page__node-manager-right">
-          <Button theme="success" @click.native="openFastDeployModal">
-            <span class="button__icon fe fe-upload-cloud"></span>
-            {{$t('fastDeploy')}}
-          </Button>
-          <Button @click.native="openNewNodeModal">
-            <span class="button__icon fe fe-plus"></span>
-            {{$t('addNodes')}}
-          </Button>
-          <Button v-if="totalNodes > 0" theme="danger" @click.native="openDeleteAllNodesModal">
-            <span class="button__icon fe fe-trash-2"></span>
-            {{$t('deleteAllNodes')}}
-          </Button>
-        </div>
+
+        <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
+          <div class="page__node-manager-right">
+            <Button theme="success" @click.native="openFastDeployModal">
+              <span class="button__icon fe fe-upload-cloud"></span>
+              {{$t('fastDeploy')}}
+            </Button>
+            <Button @click.native="openNewNodeModal">
+              <span class="button__icon fe fe-plus"></span>
+              {{$t('addNodes')}}
+            </Button>
+            <Button v-if="totalNodes > 0" theme="danger" @click.native="openDeleteAllNodesModal">
+              <span class="button__icon fe fe-trash-2"></span>
+              {{$t('deleteAllNodes')}}
+            </Button>
+          </div>
+        </template>
+
+        <template v-else>
+          <div class="page__node-manager-mobile-controls">
+            <Button class="page__node-manager-btn" theme="default">
+              <span style="margin-right: 0;" class="button__icon fe fe-more-horizontal"></span>
+            </Button>
+            <Button class="page__node-manager-btn" @click.native="openNewNodeModal">
+              <span class="button__icon fe fe-plus"></span>
+              {{$t('addNodes')}}
+            </Button>
+          </div>
+        </template>
       </div>
       <NodeStats :nodes="totalNodes" :total="total" :daily="daily" :reward24="reward24" />
       <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" />

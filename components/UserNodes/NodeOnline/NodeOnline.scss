@@ -1,4 +1,8 @@
 .node-online {
+  @include size-md {
+    display: inline-flex;
+  }
+
   &__title {
     color: $text-grey-light;
     font-size: $font-size-sm;

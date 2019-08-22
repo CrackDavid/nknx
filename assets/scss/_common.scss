@@ -128,6 +128,26 @@ h3 {
       }
     }
 
+    &-mobile {
+      &-controls {
+        @include size-md {
+          display: flex;
+        }
+      }
+    }
+
+    &-btn {
+      @include size-md {
+        font-size: $font-size-xs !important;
+        padding: $padding-micro $padding-default !important;
+        min-height: 36px !important;
+
+        &:first-child {
+          margin-right: 8px;
+        }
+      }
+    }
+
     &-right {
       display: grid;
       grid-gap: $padding-default;
