@@ -10,6 +10,37 @@
 
   &__search {
     width: 50%;
+    display: flex;
+    align-items: center;
+
+    @include size-md {
+      width: 100%;
+    }
+  }
+
+  &__mobile {
+    grid-column: span 12;
+
+    &-pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: $padding-normal;
+    }
+
+    &-descr {
+      color: $text-grey-light;
+      font-style: italic;
+      font-size: 14px;
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  &__icon {
+    color: $text-grey-light;
+    font-size: 20px;
+    margin-right: $padding-normal;
   }
 
   &__control {

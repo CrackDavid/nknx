@@ -1,6 +1,7 @@
 <template>
-  <div class="node-search-bar">
+  <div v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" class="node-search-bar">
     <div class="node-search-bar__search">
+      <span class="node-search-bar__icon fe fe-search"></span>
       <input
         v-model.trim="searchInput"
         class="node-search-bar__control"
@@ -15,6 +16,36 @@
         type="prev"
         @click.native="changePage(userConfig.prevPage)"
       />
+      <Pagination
+        :page="userConfig.nextPage"
+        type="next"
+        @click.native="changePage(userConfig.nextPage)"
+      />
+    </div>
+  </div>
+  <div v-else class="node-search-bar__mobile">
+    <div class="node-search-bar">
+      <div class="node-search-bar__search">
+        <span class="node-search-bar__icon fe fe-search"></span>
+        <input
+          v-model.trim="searchInput"
+          class="node-search-bar__control"
+          type="text"
+          :placeholder="$t('searchAllNodes')"
+          @input="search(searchInput)"
+        />
+      </div>
+    </div>
+
+    <div class="node-search-bar__mobile-pagination">
+      <Pagination
+        :page="userConfig.prevPage"
+        type="prev"
+        @click.native="changePage(userConfig.prevPage)"
+      />
+      <span
+        class="node-search-bar__mobile-descr"
+      >{{$t('showing')}} {{userNodes.nodes.from}} {{$t('to')}} {{userNodes.nodes.to}} {{$t('of')}} {{userNodes.nodes.total}}</span>
       <Pagination
         :page="userConfig.nextPage"
         type="next"
@@ -44,7 +75,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userConfig: 'userNodes/getUserConfig'
+      userConfig: 'userNodes/getUserConfig',
+      userNodes: 'userNodes/getUserNodes'
     })
   },
   destroyed() {},
