@@ -2,6 +2,10 @@
   display: flex;
   align-items: center;
 
+  @include size-md {
+    font-size: $font-size-xs;
+  }
+
   &_state {
     &_syncing {
       color: $orange;
@@ -22,5 +26,9 @@
 
   &__icon {
     padding-right: $padding-small;
+
+    @include size-md {
+      padding-right: 8px;
+    }
   }
 }

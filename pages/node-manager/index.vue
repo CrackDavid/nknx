@@ -43,7 +43,15 @@
     <ContentWrapper v-if="totalNodes > 0">
       <Grid>
         <NodeSearchBar />
-        <NodeManager :nodes="nodes" />
+        <NodeManager v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" :nodes="nodes" />
+        <template v-else>
+          <template v-if="!userConfig.loading">
+            <NodeCardMobile v-for="node in nodes" :key="node.addr" :node="node" />
+          </template>
+          <template v-else>
+            <WalletCardLoader v-for="(loader, index) in loaders" :key="index" />
+          </template>
+        </template>
       </Grid>
     </ContentWrapper>
   </div>
@@ -55,11 +63,13 @@ import { mapGetters } from 'vuex'
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import NodeManager from '~/components/UserNodes/NodeManager/NodeManager.vue'
+import NodeCardMobile from '~/components/UserNodes/NodeCardMobile/NodeCardMobile.vue'
 import NodeStats from '~/components/UserNodes/NodeStats/NodeStats.vue'
 import NodeOnline from '~/components/UserNodes/NodeOnline/NodeOnline.vue'
 import NodeFilter from '~/components/UserNodes/NodeFilter/NodeFilter.vue'
 import NodeSearchBar from '~/components/UserNodes/NodeSearchBar/NodeSearchBar.vue'
 import Button from '~/components/Button/Button.vue'
+import WalletCardLoader from '~/components/Loaders/WalletCardLoader/WalletCardLoader.vue'
 
 export default {
   head() {
@@ -76,7 +86,9 @@ export default {
     NodeOnline,
     NodeFilter,
     NodeSearchBar,
-    Button
+    Button,
+    NodeCardMobile,
+    WalletCardLoader
   },
   data: () => {
     return {
@@ -90,7 +102,8 @@ export default {
       nextPage: null,
       prevPage: null,
       from: 0,
-      to: 0
+      to: 0,
+      loaders: 10
     }
   },
   computed: {

@@ -1,7 +1,7 @@
 <template>
   <div
     style="width: 397px; height: 138px;"
-    :style="$mq === 'xl' ? 'grid-column: span 3' : 'grid-column: span 6'"
+    :style="$mq === 'xl' ? 'grid-column: span 3' : 'grid-column: span 12; width: 289px; height: 138px;'"
   >
     <ContentLoader :speed="2" primaryColor="#f3f3f3" secondaryColor="#ecebeb">
       <rect x="110" y="28" rx="4" ry="4" width="117" height="6.4" />
