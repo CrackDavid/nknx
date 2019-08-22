@@ -17,7 +17,7 @@
         </th>
       </thead>
       <template v-if="userConfig.loading">
-        <tr v-for="headingLoader in headings" :key="headingLoader">
+        <tr v-for="(headingLoader, index) in headings" :key="index">
           <td :colspan="headings.length">
             <TableRowLoader />
           </td>
