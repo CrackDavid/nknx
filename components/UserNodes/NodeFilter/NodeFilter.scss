@@ -12,9 +12,21 @@
     cursor: pointer;
     transition: $transition-1;
     text-align: center;
+    white-space: nowrap;
+
+    @include size-md {
+      padding: 20px $padding-default;
+      font-size: 14px;
+      line-height: 17px;
+      display: block;
+    }
 
     &_active {
       color: $darker;
+
+      @include size-md {
+        font-weight: $font-weight-bold;
+      }
     }
 
     &:hover {
