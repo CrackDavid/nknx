@@ -5,6 +5,10 @@
     align-items: center;
     justify-content: space-between;
     padding-bottom: $padding-normal;
+
+    @include size-md {
+      flex-flow: row wrap;
+    }
   }
 
   &__chart {
@@ -16,6 +20,13 @@
 
   &__controls {
     display: flex;
+
+    @include size-md {
+      margin-top: $padding-normal;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      width: 100%;
+    }
   }
 
   &__btn {

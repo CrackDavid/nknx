@@ -4,10 +4,14 @@
       <Grid v-if="activeWallet !== false">
         <WalletPanel />
         <WalletBalanceHistory />
-        <WalletTransactions />
+        <WalletTransactions v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" />
+        <MobileWalletTransactions v-else />
       </Grid>
     </ContentWrapper>
-    <WalletSide v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" :wallets="userWallets.wallets.data" />
+    <WalletSide
+      v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'"
+      :wallets="userWallets.wallets.data"
+    />
   </div>
 </template>
 
@@ -20,6 +24,7 @@ import WalletPanel from '~/components/UserWallets/WalletPanel/WalletPanel.vue'
 import WalletSide from '~/components/UserWallets/WalletSide/WalletSide.vue'
 import WalletBalanceHistory from '~/components/UserWallets/WalletBalanceHistory/WalletBalanceHistory.vue'
 import WalletTransactions from '~/components/UserWallets/WalletTransactions/WalletTransactions.vue'
+import MobileWalletTransactions from '~/components/UserWallets/MobileWalletTransactions/MobileWalletTransactions.vue'
 
 export default {
   head() {
@@ -34,7 +39,8 @@ export default {
     WalletPanel,
     WalletSide,
     WalletBalanceHistory,
-    WalletTransactions
+    WalletTransactions,
+    MobileWalletTransactions
   },
   data: () => {
     return { wallets: [] }
@@ -42,8 +48,12 @@ export default {
   computed: {
     ...mapGetters({
       userWallets: 'userWallets/getUserWallets',
-      activeWallet: 'activeWallet/getActiveWallet'
+      activeWallet: 'activeWallet/getActiveWallet',
+      pageTitle: 'pageTitle/getPageTitle'
     })
+  },
+  created() {
+    this.$store.dispatch('pageTitle/updatePageTitle', 'walletDetails')
   },
   mounted() {},
   methods: {}

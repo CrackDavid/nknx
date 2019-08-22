@@ -53,6 +53,10 @@
     cursor: pointer;
 
     @include size-md {
+      font-size: $font-size-xs;
+    }
+
+    @media (max-width: 400px) {
       font-size: 10px;
     }
 

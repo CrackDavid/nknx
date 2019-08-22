@@ -1,0 +1,20 @@
+.mobile-wallet-tx {
+  &__item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    padding: $padding-default;
+    grid-column-gap: $padding-normal;
+    grid-row-gap: 8px;
+    border-top: $card-border;
+  }
+
+  &__title {
+    font-size: 13px;
+    color: $text-grey-light;
+    font-weight: $font-weight-semi-bold;
+  }
+
+  &__value {
+    font-size: 13px;
+  }
+}

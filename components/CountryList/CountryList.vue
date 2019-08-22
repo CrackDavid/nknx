@@ -14,9 +14,9 @@
         <span v-else>{{$t('viewTop')}}</span>
       </div>
     </div>
-    <div class="country-list__stats">
-      <div class="country-list__stats-title">{{$t('totalCountries')}}</div>
-      <div class="country-list__stats-value">{{countries.length}}</div>
+    <div class="card__stats">
+      <div class="card__stats-title">{{$t('totalCountries')}}</div>
+      <div class="card__stats-value">{{countries.length}}</div>
     </div>
     <div v-if="$mq !== 'xs' && $mq !== 'sm' && $mq !== 'md'" class="overflow-x">
       <table class="table">
