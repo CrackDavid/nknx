@@ -46,6 +46,11 @@ a {
   width: 4px;
   height: 6px;
   transition: $transition-1;
+
+  @include size-md {
+    width: 0px;
+    height: 0px;
+  }
 }
 
 ::-webkit-scrollbar-thumb {
@@ -105,7 +110,7 @@ h3 {
     padding: 40px 80px 0px 80px;
 
     @include size-md {
-      padding: 40px $padding-default 0px $padding-default;
+      padding: $padding-normal $padding-default;
     }
 
     margin: 0 auto;
@@ -114,6 +119,12 @@ h3 {
     &-left {
       display: flex;
       align-items: center;
+
+      h1 {
+        @include size-md {
+          font-size: $font-size-base;
+        }
+      }
     }
 
     &-right {
@@ -122,7 +133,7 @@ h3 {
       grid-template-columns: repeat(3, max-content);
 
       @include size-md {
-        margin-top: $padding-default;
+        display: none;
       }
     }
 
@@ -135,6 +146,7 @@ h3 {
 
       @include size-md {
         flex-flow: row wrap;
+        padding-bottom: $padding-normal;
       }
 
       &:after {

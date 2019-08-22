@@ -3,11 +3,13 @@
     <span
       :class="['node-online__status', offlineNodes === false ? 'node-online__status_positive' : 'node-online__status_negative']"
     ></span>
-    <span v-if="offlineNodes === false" class="node-online__title">{{$t('allNodesAreMining')}}</span>
-    <span
-      v-else
-      class="node-online__title"
-    >{{offlineNodes}} {{$t('of')}} {{filters.ALL}} {{$t('areNotMining')}}</span>
+    <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
+      <span v-if="offlineNodes === false" class="node-online__title">{{$t('allNodesAreMining')}}</span>
+      <span
+        v-else
+        class="node-online__title"
+      >{{offlineNodes}} {{$t('of')}} {{filters.ALL}} {{$t('areNotMining')}}</span>
+    </template>
   </div>
 </template>
 
