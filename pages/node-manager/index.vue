@@ -26,8 +26,20 @@
 
         <template v-else>
           <div class="page__node-manager-mobile-controls">
-            <Button class="page__node-manager-btn" theme="default">
+            <Button class="page__node-manager-btn" theme="default" @click.native="isActions = true">
               <span style="margin-right: 0;" class="button__icon fe fe-more-horizontal"></span>
+              <div
+                :class="['node-manager__actions-modal node-manager__actions-modal_more', isActions === true ? 'node-manager__actions-modal_visible' : null]"
+              >
+                <div class="node-manager__actions-item" @click="openFastDeployModal">
+                  <span class="node-manager__actions-icon fe fe-upload-cloud"></span>
+                  <span class="node-manager__actions-title">{{$t('fastDeploy')}}</span>
+                </div>
+                <div class="node-manager__actions-item" @click="openDeleteAllNodesModal">
+                  <span class="node-manager__actions-icon fe fe-trash-2"></span>
+                  <span class="node-manager__actions-title">{{$t('deleteAllNodes')}}</span>
+                </div>
+              </div>
             </Button>
             <Button class="page__node-manager-btn" @click.native="openNewNodeModal">
               <span class="button__icon fe fe-plus"></span>
@@ -94,6 +106,7 @@ export default {
     return {
       nodes: [],
       filters: {},
+      isActions: false,
       totalNodes: 0,
       total: 0,
       daily: 0,
