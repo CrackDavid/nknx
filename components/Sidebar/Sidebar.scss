@@ -36,6 +36,10 @@
     }
   }
 
+  &_topbar {
+    top: calc(#{$headerbar-height} + 143px + 1px);
+  }
+
   &__marker {
     height: $nav-item-height;
     width: 4px;

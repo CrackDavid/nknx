@@ -69,6 +69,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-flow: row wrap;
     color: $white;
     background-color: $secondary;
     font-size: $font-size-xs;
@@ -81,6 +82,11 @@
     &__left {
       display: flex;
       align-items: center;
+      transition: $transition-1;
+
+      &_hidden {
+        color: transparent;
+      }
     }
 
     &__toggle {
@@ -88,6 +94,24 @@
       width: 65px;
       text-align: right;
       cursor: pointer;
+    }
+
+    &__list {
+      width: 100%;
+      max-height: 0px;
+      transition: $transition-1;
+      color: transparent;
+
+      &_open {
+        margin-top: $padding-default;
+        color: inherit;
+        max-height: unset;
+      }
+
+      &-item {
+        font-size: $font-size-xs;
+        margin-bottom: $padding-default;
+      }
     }
   }
 }

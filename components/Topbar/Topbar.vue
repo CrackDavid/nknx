@@ -31,14 +31,32 @@
       </span>
     </div>
   </div>
-  <div v-else class="topbar-mobile">
-    <div class="topbar-mobile__left">
+  <div v-else class="topbar-mobile" @click="toggleTopbar">
+    <div
+      :class="['topbar-mobile__left', topbarExpanded === true ? 'topbar-mobile__left_hidden' : '']"
+    >
       <span class="fe fe-activity topbar__icon" />
       <span class="fe fe-layers topbar__icon" />
       <span class="fe fe-git-branch topbar__icon" />
     </div>
     <div class="topbar-mobile__title">{{$t('networkStats')}}</div>
-    <span class="topbar-mobile__toggle fe fe-chevron-down"></span>
+    <span
+      :class="['topbar-mobile__toggle', topbarExpanded === true ?  'fe fe-chevron-down' : 'fe fe-chevron-up']"
+    ></span>
+    <ul :class="['topbar-mobile__list', topbarExpanded === true ? 'topbar-mobile__list_open' : '']">
+      <li class="topbar-mobile__list-item">
+        <span class="fe fe-activity topbar__icon" />
+        {{ networkStatus.syncState }}
+      </li>
+      <li class="topbar-mobile__list-item">
+        <span class="fe fe-layers topbar__icon" />
+        {{ networkStats.totalNodes | commaNumber}} {{$t('totalNodes')}}
+      </li>
+      <li class="topbar-mobile__list-item">
+        <span class="fe fe-git-branch topbar__icon" />
+        {{ networkVersion | nodeVersion }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -57,6 +75,7 @@ export default {
   },
   computed: mapGetters({
     price: 'price/getCurrentPrice',
+    topbarExpanded: 'topbar/getTopbar',
     networkStats: 'network/getNetworkStats',
     networkStatus: 'network/getNetworkStatus',
     networkReleases: 'network/getNetworkReleases'
@@ -65,6 +84,10 @@ export default {
   mounted: function() {
     this.networkVersion = this.networkReleases[0].tag_name
   },
-  methods: {}
+  methods: {
+    toggleTopbar() {
+      this.$store.dispatch('topbar/toggleTopbar')
+    }
+  }
 }
 </script>

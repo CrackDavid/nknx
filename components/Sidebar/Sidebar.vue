@@ -1,5 +1,8 @@
 <template>
-  <aside class="sidebar" :class="{'sidebar_expanded': sidebarExpanded}">
+  <aside
+    class="sidebar"
+    :class="[{'sidebar_expanded': sidebarExpanded}, topbarExpanded ? 'sidebar_topbar' : null]"
+  >
     <nuxt-link
       v-for="route in routes"
       :key="route.path"
@@ -50,7 +53,8 @@ export default {
     }
   },
   computed: mapGetters({
-    sidebarExpanded: 'sidebar/get'
+    sidebarExpanded: 'sidebar/get',
+    topbarExpanded: 'topbar/getTopbar'
   }),
   mounted: function() {
     this.markerInitialize()

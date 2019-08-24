@@ -7,6 +7,10 @@
     padding-left: 0;
   }
 
+  &_topbar {
+    padding-top: calc(143px + #{$headerbar-height});
+  }
+
   &_collapsed {
     padding-left: $nav-width-expanded;
 

@@ -44,6 +44,10 @@
     align-items: center;
   }
 
+  &_topbar {
+    top: 143px;
+  }
+
   &_collapsed {
     padding-left: calc(#{$nav-width-expanded} + #{$padding-normal});
 

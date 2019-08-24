@@ -1,5 +1,8 @@
 <template>
-  <div class="headerbar" :class="sidebarExpanded ? 'headerbar_collapsed' : null">
+  <div
+    class="headerbar"
+    :class="[sidebarExpanded ? 'headerbar_collapsed' : null, topbarExpanded ? 'headerbar_topbar' : null]"
+  >
     <div class="headerbar__left">
       <span class="headerbar__item">
         <div class="headerbar__toggle" @click="toggleSidebar">
@@ -63,6 +66,7 @@ export default {
   },
   computed: mapGetters({
     sidebarExpanded: 'sidebar/get',
+    topbarExpanded: 'topbar/getTopbar',
     pageTitle: 'pageTitle/getPageTitle'
   }),
 
