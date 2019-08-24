@@ -41,7 +41,7 @@
     </div>
     <div class="topbar-mobile__title">{{$t('networkStats')}}</div>
     <span
-      :class="['topbar-mobile__toggle', topbarExpanded === true ?  'fe fe-chevron-down' : 'fe fe-chevron-up']"
+      :class="['topbar-mobile__toggle', topbarExpanded !== true ?  'fe fe-chevron-down' : 'fe fe-chevron-up']"
     ></span>
     <ul :class="['topbar-mobile__list', topbarExpanded === true ? 'topbar-mobile__list_open' : '']">
       <li class="topbar-mobile__list-item">
