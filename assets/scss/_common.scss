@@ -726,6 +726,10 @@ table {
     align-items: center;
     position: relative;
 
+    @include size-md {
+      margin-top: $padding-normal;
+    }
+
     &-button {
       &:not(:last-child) {
         margin-right: $padding-default;
@@ -805,6 +809,9 @@ table {
     }
 
     &__control {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
       box-sizing: border-box;
       width: 100% !important;
       border-radius: 4px;
