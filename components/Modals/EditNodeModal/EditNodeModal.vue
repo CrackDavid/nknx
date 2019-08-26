@@ -11,7 +11,7 @@
           <div
             :class="['modal-input', isError === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
           >
-            <label class="modal-input__label">{{$t('walletLabel')}}</label>
+            <label class="modal-input__label">{{$t('nodeLabel')}}</label>
             <div class="modal-input__wrapper">
               <input v-model="label" class="modal-input__control" type="text" />
             </div>

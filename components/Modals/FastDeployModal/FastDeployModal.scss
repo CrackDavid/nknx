@@ -1,6 +1,10 @@
 .fast-deploy {
   &__form {
     width: 820px;
+
+    @include size-md {
+      width: 100%;
+    }
   }
 
   &__toggle {

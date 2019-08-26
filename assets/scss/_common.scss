@@ -541,6 +541,10 @@ table {
     min-height: 100vh;
     justify-content: center;
     align-items: center;
+
+    @include size-md {
+      align-items: flex-end;
+    }
   }
 
   &-form {
@@ -551,6 +555,13 @@ table {
     width: 640px;
     margin: $padding-normal auto;
     position: relative;
+
+    @include size-md {
+      width: 100%;
+      margin: 0;
+      border-radius: $padding-normal $padding-normal 0 0;
+      padding: $padding-normal $padding-default;
+    }
 
     &_blured {
       filter: blur(5px);
@@ -567,6 +578,10 @@ table {
     flex-flow: column wrap;
     height: 100%;
     width: 100%;
+
+    @include size-md {
+      padding: $padding-normal $padding-default;
+    }
 
     &-text {
     }
@@ -591,6 +606,10 @@ table {
     margin-top: $padding-normal;
 
     &__item {
+      @include size-md {
+        word-break: break-all;
+      }
+
       &_error {
         color: $error;
       }
@@ -618,6 +637,10 @@ table {
       border-bottom: 3px solid transparent;
       transition: $transition-1;
       cursor: pointer;
+
+      @include size-md {
+        font-size: $font-size-base;
+      }
 
       &_active {
         border-color: $primary;
@@ -654,11 +677,25 @@ table {
     font-weight: bold;
     margin-top: 8px;
     margin-bottom: 32px;
+
+    @include size-md {
+      margin-bottom: $padding-normal;
+    }
   }
 
   &__body {
     display: flex;
     margin-top: $padding-normal;
+
+    .overflow-x {
+      @include size-md {
+        max-width: 100%;
+      }
+    }
+
+    @include size-md {
+      flex-direction: column;
+    }
 
     &-title {
       margin-bottom: $padding-normal;
@@ -667,11 +704,19 @@ table {
 
     &_wrap {
       flex-flow: row wrap;
+
+      @include size-md {
+        flex-flow: column wrap;
+      }
     }
   }
 
   &__message {
     width: 100%;
+
+    @include size-md {
+      word-break: break-word;
+    }
   }
 
   &__footer {
@@ -708,9 +753,15 @@ table {
 
   &-radio {
     &__group {
+      @include size-md {
+        margin: $padding-default 0;
+      }
     }
 
     &__item {
+      @include size-md {
+        height: unset;
+      }
     }
   }
 
@@ -725,6 +776,10 @@ table {
 
     &:first-child {
       margin-right: $padding-default;
+
+      @include size-md {
+        margin-right: 0;
+      }
     }
 
     &__label {
