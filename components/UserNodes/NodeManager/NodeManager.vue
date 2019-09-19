@@ -152,10 +152,12 @@ export default {
       this.isAll === true ? (this.selected = this.nodes) : (this.selected = [])
     },
     openDeleteNodeModal(node) {
+      setTimeout(this.closeActionsModal, 1)
       this.$store.dispatch('activeNode/updateActiveNode', node)
       this.$store.dispatch('modals/updateDeleteNodeModalVisible', true)
     },
     openEditNodeModal(node) {
+      setTimeout(this.closeActionsModal, 1)
       this.$store.dispatch('activeNode/updateActiveNode', node)
       this.$store.dispatch('modals/updateEditNodeModalVisible', true)
     }

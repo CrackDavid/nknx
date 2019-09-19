@@ -91,10 +91,12 @@ export default {
     openDeleteNodeModal(node) {
       this.$store.dispatch('activeNode/updateActiveNode', node)
       this.$store.dispatch('modals/updateDeleteNodeModalVisible', true)
+      setTimeout(this.closeActionsModal, 1)
     },
     openEditNodeModal(node) {
       this.$store.dispatch('activeNode/updateActiveNode', node)
       this.$store.dispatch('modals/updateEditNodeModalVisible', true)
+      setTimeout(this.closeActionsModal, 1)
     }
   }
 }
