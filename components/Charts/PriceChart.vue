@@ -22,7 +22,7 @@ export default {
     const nknPrice = []
     for (let i = nknEth.length - 1; i >= 0; i--) {
       nknPrice.push({
-        date: new Date(nknEth[i].date),
+        date: this.$moment(nknEth[i].date).toDate(),
         eth: nknEth[i].price,
         usd: nknUsd[i].price
       })

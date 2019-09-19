@@ -59,7 +59,7 @@ export default {
       const data = []
       for (let i = 0; i < walletData.length; i++) {
         data.push({
-          date: new Date(walletData[i][timeUnit]),
+          date: this.$moment(walletData[i][timeUnit]).toDate(),
           count: walletData[i].balance,
           opacity: 0
         })

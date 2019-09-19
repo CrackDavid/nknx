@@ -36,7 +36,7 @@ export default {
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let txAverage = Array.from(this.activeWallet.wallet_snapshots)
       let timeUnit = 'hour'
-      let dayFormat = 'dd/MM'
+      let dayFormat = ''
       if (this.dataSet === '1day') {
         timeUnit = 'hour'
         dayFormat = 'EEE'
@@ -54,7 +54,7 @@ export default {
       const data = []
       for (let i = 0; i <= txAverage.length - 1; i++) {
         data.push({
-          date: new Date(txAverage[i][timeUnit]),
+          date: this.$moment(txAverage[i][timeUnit]).toDate(),
           count: txAverage[i].balance
         })
       }

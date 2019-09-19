@@ -55,7 +55,7 @@ export default {
       const data = []
       for (let i = txAverage.length - 1; i >= 0; i--) {
         data.push({
-          date: new Date(txAverage[i][timeUnit]),
+          date: this.$moment(txAverage[i][timeUnit]).toDate(),
           count: txAverage[i].balance
         })
       }

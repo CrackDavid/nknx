@@ -29,7 +29,7 @@ export default {
       const data = []
       for (let i = 0; i < 7; i++) {
         data.push({
-          date: new Date(nodesAverage[i].day),
+          date: this.$moment(nodesAverage[i].day).toDate(),
           count: nodesAverage[i].balance
         })
       }

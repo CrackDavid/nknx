@@ -21,7 +21,7 @@ export default {
     const data = []
     for (let i = txAverage.length - 2; i >= txAverage.length - 8; i--) {
       data.push({
-        date: new Date(txAverage[i].date),
+        date: this.$moment(txAverage[i].date).toDate(),
         count: txAverage[i].count
       })
     }

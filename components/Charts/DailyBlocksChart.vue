@@ -33,7 +33,7 @@ export default {
         i--
       ) {
         data.push({
-          date: new Date(blocksAverage[i].date),
+          date: this.$moment(blocksAverage[i].date).toDate(),
           count: blocksAverage[i].count
         })
       }

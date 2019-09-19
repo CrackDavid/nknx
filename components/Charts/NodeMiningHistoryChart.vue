@@ -54,7 +54,7 @@ export default {
       const data = []
       nodesAverage.forEach(node => {
         data.push({
-          date: new Date(node.created_at),
+          date: this.$moment(node.created_at).toDate(),
           count: node.mined / 100000000
         })
       })

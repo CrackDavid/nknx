@@ -21,7 +21,7 @@ export default {
     const data = []
     for (let i = nodesAverage.length - 2; i >= nodesAverage.length - 8; i--) {
       data.push({
-        date: new Date(nodesAverage[i].date),
+        date: this.$moment(nodesAverage[i].date).toDate(),
         count: nodesAverage[i].avg_cnodecount
       })
     }
