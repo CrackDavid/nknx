@@ -56,5 +56,9 @@
 
   &__text {
     margin-left: calc(16px + #{$padding-micro});
+
+    @include size-md {
+      font-size: 13px;
+    }
   }
 }

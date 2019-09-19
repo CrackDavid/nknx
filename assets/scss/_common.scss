@@ -535,7 +535,7 @@ table {
     z-index: 100;
 
     @include size-md {
-      position: absolute;
+      position: fixed;
       bottom: 0;
     }
   }
@@ -684,6 +684,7 @@ table {
 
     @include size-md {
       margin-bottom: $padding-normal;
+      word-break: break-all;
     }
   }
 
