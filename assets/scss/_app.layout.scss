@@ -33,6 +33,11 @@
     height: calc(100vh - #{$topbar-height} - #{$headerbar-height});
     overflow: hidden;
 
+    @include size-md {
+      height: unset;
+      overflow: auto;
+    }
+
     &_mobile {
       overflow-y: hidden;
       position: absolute;

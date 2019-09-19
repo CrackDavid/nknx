@@ -7,7 +7,7 @@
     <Sidebar />
     <nuxt
       class="content"
-      :class="[topbarExpanded ? 'content_topbar' : null, sidebarExpanded ? 'content_collapsed content_overflow_mobile' : null, deleteNodeModalVisible !== false || deleteAllNodesModalVisible !== false || deleteAllWalletsModalVisible !== false || receiveWalletModalVisible !== false || fastDeployModalVisible !== false || newWalletModalVisible !== false || deleteWalletModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]"
+      :class="[topbarExpanded ? 'content_topbar' : null, sidebarExpanded ? 'content_collapsed content_overflow_mobile' : null, deleteNodeModalVisible !== false || deleteAllNodesModalVisible !== false || deleteAllWalletsModalVisible !== false || receiveWalletModalVisible !== false || fastDeployModalVisible !== false || newWalletModalVisible !== false || deleteWalletModalVisible !== false || editNodeModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]"
     />
     <transition name="fade">
       <NewWalletModal v-if="newWalletModalVisible" />
