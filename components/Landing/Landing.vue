@@ -266,9 +266,9 @@ export default {
 
       this.$axios.get('statistics/nknx').then(response => {
         const { users, wallets, nodes, percent_watched } = response.data
-        self.users = users
-        self.wallets = wallets
-        self.nodes = nodes
+        self.users = Number(users)
+        self.wallets = Number(wallets)
+        self.nodes = Number(nodes)
         self.percent_watched = percent_watched
       })
     }
