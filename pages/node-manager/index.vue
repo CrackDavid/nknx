@@ -26,7 +26,12 @@
 
         <template v-else>
           <div class="page__node-manager-mobile-controls">
-            <Button class="page__node-manager-btn" theme="default" @click.native="isActions = true">
+            <Button
+              v-on-clickaway="closeActions"
+              class="page__node-manager-btn"
+              theme="default"
+              @click.native="isActions = true"
+            >
               <span style="margin-right: 0;" class="button__icon fe fe-more-horizontal"></span>
               <div
                 :class="['node-manager__actions-modal node-manager__actions-modal_more', isActions === true ? 'node-manager__actions-modal_visible' : null]"
@@ -71,6 +76,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { mixin as clickaway } from 'vue-clickaway'
 
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
@@ -102,6 +108,7 @@ export default {
     NodeCardMobile,
     WalletCardLoader
   },
+  mixins: [clickaway],
   data: () => {
     return {
       nodes: [],
@@ -148,14 +155,19 @@ export default {
     this.fetchNodesData()
   },
   methods: {
+    closeActions() {
+      this.isActions = false
+    },
     openNewNodeModal() {
       this.$store.dispatch('modals/updateNewNodeModalVisible', true)
     },
     openDeleteAllNodesModal() {
       this.$store.dispatch('modals/updateDeleteAllNodesModalVisible', true)
+      this.closeActions()
     },
     openFastDeployModal() {
       this.$store.dispatch('modals/updateFastDeployModalVisible', true)
+      this.closeActions()
     },
     fetchNodesData() {
       const {

@@ -12,7 +12,11 @@
       <div class="wallet-card__data">
         <div class="wallet-card__header">
           <div class="wallet-card__title">{{wallet.pivot.label}}</div>
-          <span class="wallet-card__actions fe fe-more-horizontal" @mouseenter="isActions = true"></span>
+          <span
+            v-on-clickaway="closeActionsModal"
+            class="wallet-card__actions fe fe-more-horizontal"
+            @mouseenter="isActions = true"
+          ></span>
           <div
             :class="['wallet-card__actions-modal', isActions === true ? 'wallet-card__actions-modal_visible' : null]"
             @mouseleave="isActions = false"
@@ -40,12 +44,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { mixin as clickaway } from 'vue-clickaway'
 
 import Card from '~/components/Card/Card.vue'
 import Wallet from '~/assets/icons/wallet.svg'
 
 export default {
   components: { Card, Wallet },
+  mixins: [clickaway],
   props: {
     wallet: {
       type: Object,
@@ -67,6 +73,9 @@ export default {
     this.fetchUsdBalance()
   },
   methods: {
+    closeActionsModal() {
+      this.isActions = false
+    },
     fetchUsdBalance() {
       const usdPrice = this.price.prices[0].price
       this.balanceUSD = (this.wallet.balance * usdPrice).toFixed(2)
@@ -74,6 +83,7 @@ export default {
     openDeleteWalletModal(wallet) {
       this.$store.dispatch('activeWallet/updateActiveWallet', wallet)
       this.$store.dispatch('modals/updateDeleteWalletModalVisible', true)
+      this.closeActionsModal()
     },
     setActiveWallet(wallet) {
       if (this.isActions === false) {

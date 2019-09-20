@@ -3,7 +3,11 @@
     <div class="node-card-mobile">
       <div class="node-card-mobile__header">
         <div class="node-card-mobile__label">{{node.pivot.label}}</div>
-        <span class="node-manager__actions fe fe-more-horizontal" @click="isActions = node.id">
+        <span
+          v-on-clickaway="closeActionsModal"
+          class="node-manager__actions fe fe-more-horizontal"
+          @click="isActions = node.id"
+        >
           <div
             :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
           >
