@@ -12,7 +12,7 @@
       </div>
       <div v-for="item in providersTop" :key="item.isp" class="network-providers__top-item">
         <div class="network-providers__top-icon">
-          <img :src="'/icons/'+item.isp + '.svg' || '' " alt />
+          <img :src="'/isp/'+item.isp + '.png' || '' " />
         </div>
         <div class="network-providers__top-stats">
           <div class="network-providers__top-heading">
