@@ -2,6 +2,7 @@
   padding-top: calc(#{$topbar-height} + #{$headerbar-height});
   padding-left: $nav-width-collapsed;
   transition: $transition-1;
+  width: 100%;
 
   @include size-md {
     padding-left: 0;
