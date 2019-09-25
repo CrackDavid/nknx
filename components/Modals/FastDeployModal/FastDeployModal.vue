@@ -77,6 +77,12 @@
                     :value="downloadChain"
                     @change="changeDownloadChain"
                   >{{$t('downloadChain')}}</Checkbox>
+                  <Checkbox
+                    class="modal-radio__item"
+                    name="enableWebUI"
+                    :value="enableWebUI"
+                    @change="changeEnableWebUI"
+                  >{{$t('enableWebUI')}}</Checkbox>
                 </div>
               </div>
             </div>
@@ -94,6 +100,7 @@
                     <th style="min-width: 100px;">{{$t('architecture')}}</th>
                     <th>{{$t('beneficiaryAddr')}}</th>
                     <th>{{$t('downloadChainTable')}}</th>
+                    <th>{{$t('enableWebUITable')}}</th>
                     <th style="min-width: 1000px;">{{$t('script')}}</th>
                   </tr>
                 </thead>
@@ -115,6 +122,11 @@
                       <td>
                         <span
                           :class="['fe fast-deploy__chain-icon', deploy.downloadChain === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
+                        ></span>
+                      </td>
+                      <td>
+                        <span
+                          :class="['fe fast-deploy__chain-icon', deploy.enableWebUI === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
                         ></span>
                       </td>
                       <td>
@@ -201,7 +213,8 @@ export default {
       deployments: [],
       activeDeploy: false,
       activeArchitecture: 'linux-amd64',
-      downloadChain: true
+      downloadChain: true,
+      enableWebUI: false
     }
   },
   computed: {
@@ -244,6 +257,9 @@ export default {
     changeDownloadChain() {
       this.downloadChain = !this.downloadChain
     },
+    changeEnableWebUI() {
+      this.enableWebUI = !this.enableWebUI
+    },
     getDeployments() {
       const self = this
       this.$axios.$get('deployment-entry', {}).then(response => {
@@ -269,7 +285,7 @@ export default {
     },
     createSnippet() {
       const self = this
-      const { activeArchitecture, address, downloadChain } = this
+      const { activeArchitecture, address, downloadChain, enableWebUI } = this
 
       this.isLoading = true
 
@@ -277,7 +293,8 @@ export default {
         .$post('deployment-entry', {
           architecture: activeArchitecture,
           benificiaryAddr: address,
-          downloadChain: downloadChain
+          downloadChain: downloadChain,
+          enableWebUI: enableWebUI
         })
         .then(response => {
           self.isSuccess = true
