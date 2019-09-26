@@ -17,7 +17,7 @@ export const getters = {
 export const actions = {
   async updateDailyTransactions({ commit }) {
     const data = await this.$axios.$get(
-      'https://api.nknx.org/statistics/daily/transactions'
+      'statistics/daily/transactions'
     )
     commit('setDailyTransactions', data)
   }

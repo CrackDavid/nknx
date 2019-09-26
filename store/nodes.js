@@ -17,7 +17,7 @@ export const getters = {
 export const actions = {
   async updateDailyNodes({ commit }) {
     const data = await this.$axios.$get(
-      'https://api.nknx.org/statistics/daily/nodes'
+      'statistics/daily/nodes'
     )
     commit('setDailyNodes', data)
   }
