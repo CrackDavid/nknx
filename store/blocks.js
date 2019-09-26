@@ -17,7 +17,7 @@ export const getters = {
 export const actions = {
   async updateDailyBlocks({ commit }) {
     const data = await this.$axios.$get(
-      'daily/blocks'
+      'statistics/daily/blocks'
     )
     commit('setDailyBlocks', data)
   }
