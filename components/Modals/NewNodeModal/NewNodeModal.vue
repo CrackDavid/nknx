@@ -19,7 +19,7 @@
             >{{$t('multiple')}}</div>
           </div>
           <template v-if="currentView === 'single'">
-            <div class="modal__body">
+            <div class="modal__body modal__body_wrap">
               <div
                 :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
               >
@@ -53,6 +53,23 @@
                   />
                 </div>
               </div>
+              <ul class="modal-list">
+                <li
+                  v-for="(node, index) in failedNodes"
+                  :key="index"
+                  class="modal-list__item modal-list__item_error"
+                >- {{node}} {{$t('nodeIsOffline')}}</li>
+                <li
+                  v-for="(node, index) in duplicateNodes"
+                  :key="index"
+                  class="modal-list__item modal-list__item_error"
+                >- {{node}} {{$t('nodeIsDuplicate')}}</li>
+                <li
+                  v-for="(node, index) in successNodes"
+                  :key="index"
+                  class="modal-list__item modal-list__item_success"
+                >- {{node.addr}} {{$t('successfullyAdded')}}</li>
+              </ul>
             </div>
           </template>
           <template v-else>
@@ -321,7 +338,6 @@ export default {
         Promise.all(promises).then(result => {
           result.forEach(response => {
             this.generateResponse(response.data)
-            console.log(response)
           })
         })
       } else {
