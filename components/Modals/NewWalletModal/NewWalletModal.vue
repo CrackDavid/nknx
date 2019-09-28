@@ -18,7 +18,7 @@
           >{{$t('multiple')}}</div>
         </div>
         <template v-if="currentView === 'single'">
-          <div class="modal__body">
+          <div class="modal__body modal__body_wrap">
             <div
               :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
             >
@@ -45,6 +45,23 @@
                 <input v-model="label" class="modal-input__control" type="text" @focus="clearData" />
               </div>
             </div>
+            <ul class="modal-list">
+              <li
+                v-for="wallet in failedWallets"
+                :key="wallet"
+                class="modal-list__item"
+              >- {{wallet}} {{$t('isNotAWallet')}}</li>
+              <li
+                v-for="wallet in duplicateWallets"
+                :key="wallet"
+                class="modal-list__item"
+              >- {{wallet}} {{$t('walletIsDusplicate')}}</li>
+              <li
+                v-for="wallet in successWallets"
+                :key="wallet"
+                class="modal-list__item"
+              >- {{wallet}} {{$t('successfullyAdded')}}</li>
+            </ul>
           </div>
         </template>
         <template v-else>
