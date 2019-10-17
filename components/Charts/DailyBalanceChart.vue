@@ -25,14 +25,14 @@ export default {
       am4core.options.queue = true
       am4core.options.onlyShowOnViewport = true
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
-      let nodesAverage = this.userWallets.sumWalletSnapshots
+      let nodesAverage = this.userWallets.sumWalletSnapshots.slice(0, 7)
       const data = []
-      for (let i = 0; i < 7; i++) {
+      nodesAverage.forEach(node => {
         data.push({
-          date: this.$moment(nodesAverage[i].day).toDate(),
-          count: nodesAverage[i].balance
+          date: this.$moment(node.day).toDate(),
+          count: node.balance
         })
-      }
+      })
       chart.data = data
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
       dateAxis.renderer.grid.template.disabled = true
