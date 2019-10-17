@@ -83,6 +83,12 @@
                     :value="enableWebUI"
                     @change="changeEnableWebUI"
                   >{{$t('enableWebUI')}}</Checkbox>
+                  <Checkbox
+                    class="modal-radio__item"
+                    name="disableUFW"
+                    :value="disableUFW"
+                    @change="changeDisableUFW"
+                  >{{$t('disableUFW')}}</Checkbox>
                 </div>
               </div>
             </div>
@@ -101,6 +107,7 @@
                     <th>{{$t('beneficiaryAddr')}}</th>
                     <th>{{$t('downloadChainTable')}}</th>
                     <th>{{$t('enableWebUITable')}}</th>
+                    <th>{{$t('disableUFWTable')}}</th>
                     <th style="min-width: 1000px;">{{$t('script')}}</th>
                   </tr>
                 </thead>
@@ -127,6 +134,11 @@
                       <td>
                         <span
                           :class="['fe fast-deploy__chain-icon', deploy.enableWebUI === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
+                        ></span>
+                      </td>
+                      <td>
+                        <span
+                          :class="['fe fast-deploy__chain-icon', deploy.disableUFW === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
                         ></span>
                       </td>
                       <td>
@@ -214,7 +226,8 @@ export default {
       activeDeploy: false,
       activeArchitecture: 'linux-amd64',
       downloadChain: true,
-      enableWebUI: false
+      enableWebUI: false,
+      disableUFW: false
     }
   },
   computed: {
@@ -260,6 +273,9 @@ export default {
     changeEnableWebUI() {
       this.enableWebUI = !this.enableWebUI
     },
+    changeDisableUFW() {
+      this.disableUFW = !this.disableUFW
+    },
     getDeployments() {
       const self = this
       this.$axios.$get('deployment-entry', {}).then(response => {
@@ -285,7 +301,13 @@ export default {
     },
     createSnippet() {
       const self = this
-      const { activeArchitecture, address, downloadChain, enableWebUI } = this
+      const {
+        activeArchitecture,
+        address,
+        downloadChain,
+        enableWebUI,
+        disableUFW
+      } = this
 
       this.isLoading = true
 
@@ -294,7 +316,8 @@ export default {
           architecture: activeArchitecture,
           benificiaryAddr: address,
           downloadChain: downloadChain,
-          enableWebUI: enableWebUI
+          enableWebUI: enableWebUI,
+          disableUFW: disableUFW
         })
         .then(response => {
           self.isSuccess = true

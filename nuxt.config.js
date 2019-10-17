@@ -158,7 +158,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'https://api.nknx.org/'
+    baseURL: 'https://api.nknx.nkn.org/'
   },
   auth: {
     strategies: {
