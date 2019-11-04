@@ -92,7 +92,11 @@ export default {
             {
               title: 'nknxExplorer',
               url: 'https://explorer.nknx.org'
-            }
+            },
+            {
+              title: 'nknxVault',
+              url: 'https://vault.nknx.org'
+            },
           ]
         }
       ],
