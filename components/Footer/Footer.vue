@@ -33,6 +33,7 @@
       </div>
       <div class="footer__bottom">
         <div class="footer__bottom-item">© NKNx 2019. {{$t('allRightsReserved')}}.</div>
+        <div class="footer__bottom-item">{{$t('donate')}}: NKNXXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg</div>
         <div class="footer__bottom-item">
           Coded with
           <span class="fe fe-heart"></span> by Christian Busch, Sam Price & Andrew Tawking

@@ -36,18 +36,18 @@
             <td>
               <NodeStatus :status="node.syncState" />
             </td>
-            <td>{{node.height}}</td>
-            <td>{{node.version | nodeVersion}}</td>
-            <td>{{node.blocksMined}}</td>
-            <td>{{node.relayMessageCount}}</td>
+            <td><span v-if="node.version !== null">{{node.height}}</span><span v-else>{{$t('n/a')}}</span></td>
+            <td><span v-if="node.version !== null">{{node.version | nodeVersion}}</span> <span v-else>{{$t('n/a')}}</span></td>
+            <td><span v-if="node.version !== null">{{node.blocksMined}}</span>  <span v-else>{{$t('n/a')}}</span></td>
+            <td><span v-if="node.version !== null">{{node.relayMessageCount}}</span>  <span v-else>{{$t('n/a')}}</span></td>
             <td>
               <NodeMiningHistoryChart
-                v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE'"
+                v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE' && node.syncState !== 'GENERATE_ID'"
                 :data="node.node_snapshots"
                 :state="node.syncState"
               />
               <span
-                v-if="node.syncState === 'OFFLINE' || node.node_snapshots.length === 0"
+                v-if="node.syncState === 'OFFLINE' || node.syncState === 'GENERATE_ID' || node.node_snapshots.length === 0"
               >{{$t('n/a')}}</span>
             </td>
             <td>

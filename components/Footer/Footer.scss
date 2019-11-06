@@ -160,14 +160,14 @@
       font-size: $font-size-xs;
       width: 100%;
 
-      &:first-child {
+      &:not(:last-child) {
         margin-bottom: $padding-default;
       }
 
       @include min-size-md {
         width: auto;
 
-        &:first-child {
+        &:not(:last-child) {
           margin-bottom: 0;
         }
       }
