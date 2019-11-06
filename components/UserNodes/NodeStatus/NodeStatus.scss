@@ -22,10 +22,16 @@
     &_offline {
       color: $quick-silver;
     }
+
+    &_generatingId {
+      color: $yellow;
+    }
   }
 
   &__icon {
     padding-right: $padding-small;
+    top: 2px;
+    position: relative;
 
     @include size-md {
       padding-right: 8px;

@@ -30,11 +30,11 @@
         <NodeStatus :status="node.syncState" />
         <div class="node-card-mobile__stats">
           <span class="node-card-mobile__icon fe fe-git-branch"></span>
-          {{node.version | nodeVersion}}
+          <span v-if="node.version !== null">{{node.version | nodeVersion}}</span> <span v-else>{{$t('n/a')}}</span>
         </div>
         <div class="node-card-mobile__stats">
           <span class="node-card-mobile__icon fe fe-box"></span>
-          {{node.height}}
+          <span v-if="node.version !== null">{{node.height}}</span><span v-else>{{$t('n/a')}}</span>
         </div>
       </div>
     </div>

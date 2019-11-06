@@ -52,6 +52,11 @@ export default {
           this.className = 'offline'
           this.icon = 'cloud-off'
           break
+        case 'GENERATE_ID':
+          this.name = 'generatingId'
+          this.className = 'generatingId'
+          this.icon = 'radio'
+          break
         case 'WAIT_FOR_SYNCING':
           this.name = 'syncing'
           this.className = 'syncing'
