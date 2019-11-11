@@ -23,14 +23,14 @@ export default {
       { name: 'og:title', content: "NKNx" },
       { name: 'og:description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
       { name: 'og:type', content: 'website' },
-      { name: 'og:url', content: 'https://beta.nknx.org' },
-      { name: 'og:image', content: 'https://beta.nknx.org/thumbnail.jpg' },
+      { name: 'og:url', content: 'https://nknx.org' },
+      { name: 'og:image', content: 'https://nknx.org/thumbnail.jpg' },
       // Twitter Card
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@nknX_org' },
       { name: 'twitter:title', content: "NKNx" },
       { name: 'twitter:description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
-      { name: 'twitter:image', content: 'https://beta.nknx.org/thumbnail.jpg' },
+      { name: 'twitter:image', content: 'https://nknx.org/thumbnail.jpg' },
       { name: 'twitter:image:alt', content: 'NKNx Logo' }
     ],
     link: [
