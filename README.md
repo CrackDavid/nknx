@@ -2,7 +2,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/00558c860d8c4482b3a586ccfaab1e7a)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CrackDavid/nknx&amp;utm_campaign=Badge_Grade)
 
 ## About
-This is the frontend of NKNx. It is used to communicate with the [NKNx API](https://github.com/crackDavid/nknx-api) and is also taking care of user authentication.
+This is the frontend of [NKNx](https://nknx.org). It is used to communicate with the [NKNx API](https://github.com/crackDavid/nknx-api) and is also taking care of user authentication.
 
 ## Prerequisites
 Before you fork and run this repo on your own you need to first contact us to get your personal ``CLIENT_SECRET`` and ``CLIENT_ID``. Sadly our API got bruteforced recently so take this as a little "security feature". 
