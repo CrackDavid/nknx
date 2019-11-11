@@ -164,10 +164,9 @@ export default {
     strategies: {
       'laravel.passport': {
         url: 'https://auth.nknx.org',
-        client_id: process.env.CLIENT_ID || 2,
+        client_id: process.env.CLIENT_ID,
         client_secret:
-          process.env.CLIENT_SECRET ||
-          'ZU8x5QZ4hhvM5bLvSL1ZsDJQIg5Z9vmdvQYoQx0d',
+          process.env.CLIENT_SECRET,
         userinfo_endpoint: 'https://auth.nknx.org/oauth/me'
       }
     },
