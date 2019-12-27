@@ -98,6 +98,10 @@ export default {
               title: 'nknxVault',
               url: 'https://vault.nknx.org'
             },
+            {
+              title: 'nknxVanity',
+              url: 'https://vanity.nknx.org'
+            }
           ]
         }
       ],
