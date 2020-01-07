@@ -48,6 +48,11 @@ export default {
           path: '/node-manager',
           icon: 'fe-layers',
           title: 'nodeManager'
+        },
+        {
+          path: '/account-settings',
+          icon: 'fe-settings',
+          title: 'accountSettings'
         }
       ]
     }

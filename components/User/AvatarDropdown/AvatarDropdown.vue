@@ -17,7 +17,7 @@
       <div v-if="showDropDown">
         <ul class="avatar-dropdown__menu">
           <li>
-            <a href="#" class="avatar-dropdown__dd-link">Account</a>
+            <a href="#" class="avatar-dropdown__dd-link" @click="openSettings">Account</a>
           </li>
           <li>
             <a href="#" class="avatar-dropdown__dd-link" @click="logout">Logout</a>
@@ -44,15 +44,18 @@ export default {
   },
   computed: {},
   destroyed() {},
-  mounted: function() {},
+  mounted() {},
   methods: {
-    logout: function() {
+    logout() {
       this.$auth.logout().then(function() {
         window.location.href = 'https://auth.nknx.org/logout'
       })
     },
-    closeDropdown: function() {
+    closeDropdown() {
       this.showDropDown = false
+    },
+    openSettings(){
+      this.$router.push({ path: `/account-settings` })
     }
   }
 }
