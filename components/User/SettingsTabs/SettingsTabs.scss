@@ -9,7 +9,8 @@
 
   &__item {
     padding: $padding-normal 35px;
-    font-size: $font-size-md;
+    padding-top: $padding-micro;
+    font-size: $font-size-widget;
     line-height: 21px;
     color: $text-grey-light;
     cursor: pointer;

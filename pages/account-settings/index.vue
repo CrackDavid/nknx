@@ -1,10 +1,12 @@
 <template>
   <div>
     <ContentWrapper>
-      <h1 class="page__title">{{$t(pageTitle)}}</h1>
-      <SettingsTabs :tabs="tabs" @onTabChange="onTabChange"/>
-      <Grid>
-
+      <h1 class="page__title">{{ $t(pageTitle) }}</h1>
+      <SettingsTabs :tabs="tabs" @onTabChange="onTabChange" />
+      <Grid class="page__account-settings">
+        <template v-if="activeTab === 'myAccount'">
+          <ProfileData />
+        </template>
       </Grid>
     </ContentWrapper>
   </div>
@@ -16,7 +18,7 @@ import { mapGetters } from 'vuex'
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import SettingsTabs from '~/components/User/SettingsTabs/SettingsTabs.vue'
-
+import ProfileData from '~/components/User/ProfileData/ProfileData.vue'
 
 export default {
   head() {
@@ -28,7 +30,8 @@ export default {
   components: {
     ContentWrapper,
     Grid,
-    SettingsTabs
+    SettingsTabs,
+    ProfileData
   },
   data: () => {
     return {
@@ -44,8 +47,8 @@ export default {
   created() {
     this.$store.dispatch('pageTitle/updatePageTitle', 'accountSettings')
   },
-  methods:{
-    onTabChange(tab){
+  methods: {
+    onTabChange(tab) {
       this.activeTab = tab
     }
   }

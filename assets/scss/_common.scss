@@ -106,6 +106,10 @@ h3 {
     }
   }
 
+  &__account-settings{
+    margin-top: 50px;
+  }
+
   &__node-manager {
     padding: 40px 80px 0px 80px;
 
@@ -234,6 +238,23 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
+  &_border{
+    padding: 0;
+    padding-bottom: calc(#{$padding-normal} + 1px);
+
+    &:after{
+      content: "";
+      position: absolute;
+      display: block;
+      height: 1px;
+      width: calc(100% + 24px * 2);
+      background: $platinum;
+      bottom: 0;
+      left: -24px;
+    }
+  }
 
   @include size-md {
     padding: $padding-default;
@@ -731,6 +752,10 @@ table {
     align-items: center;
     position: relative;
 
+    &_no-margin{
+      margin: 0;
+    }
+
     @include size-md {
       margin-top: $padding-normal;
     }
@@ -777,6 +802,14 @@ table {
   &-input {
     flex: 1;
 
+    &_flex{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-right: 0 !important;
+    }
+
     &_full {
       flex: auto;
       width: 100%;
@@ -796,12 +829,21 @@ table {
       color: $text-grey-light;
       font-weight: 500;
       font-size: $font-size-sm;
+
+      &_flex{
+        min-width: 150px;
+      }
     }
 
     &__wrapper {
       margin-top: 8px;
       box-sizing: border-box;
       position: relative;
+
+      &_flex{
+        flex: 1;
+        margin-left: $padding-default;
+      }
     }
 
     &__alert {
@@ -832,6 +874,12 @@ table {
 
       &:focus {
         border-color: $primary;
+      }
+
+      &_readonly{
+        background: rgba(238, 238, 238, 0.7) !important;
+        border-color: $platinum !important;
+        color: $quick-silver;
       }
     }
 
