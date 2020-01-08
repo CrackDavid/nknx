@@ -6,6 +6,7 @@
       <Grid class="page__account-settings">
         <template v-if="activeTab === 'myAccount'">
           <ProfileData />
+          <UserPassword/>
         </template>
       </Grid>
     </ContentWrapper>
@@ -19,6 +20,7 @@ import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import SettingsTabs from '~/components/User/SettingsTabs/SettingsTabs.vue'
 import ProfileData from '~/components/User/ProfileData/ProfileData.vue'
+import UserPassword from '~/components/User/UserPassword/UserPassword.vue'
 
 export default {
   head() {
@@ -31,7 +33,8 @@ export default {
     ContentWrapper,
     Grid,
     SettingsTabs,
-    ProfileData
+    ProfileData,
+    UserPassword
   },
   data: () => {
     return {

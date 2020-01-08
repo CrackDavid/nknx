@@ -1,0 +1,62 @@
+.snackbar {
+  position: fixed;
+  bottom: 0;
+  box-shadow: $shadow-2;
+  width: 500px;
+  left: calc(50% - (500px / 2));
+  z-index: 10000;
+  border-top-left-radius: $card-border-radius;
+  border-top-right-radius: $card-border-radius;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $padding-default;
+  box-sizing: border-box;
+  transition: $transition-1;
+  transform: translateY(200px);
+  box-shadow: $shadow-2;
+
+  &_color {
+    &_error {
+      background-color: $error;
+    }
+
+    &_success {
+      background-color: $success;
+    }
+
+    &_alert {
+      background-color: $yellow;
+    }
+  }
+
+  &_visible {
+    transform: translateY(0px);
+  }
+
+  &__button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    outline: none;
+  }
+
+  &__close {
+    color: $white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: $transition-1;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+
+  &__text {
+    color: $white;
+  }
+}

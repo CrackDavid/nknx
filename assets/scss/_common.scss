@@ -106,7 +106,7 @@ h3 {
     }
   }
 
-  &__account-settings{
+  &__account-settings {
     margin-top: 50px;
   }
 
@@ -240,12 +240,12 @@ h3 {
   align-items: center;
   position: relative;
 
-  &_border{
+  &_border {
     padding: 0;
     padding-bottom: calc(#{$padding-normal} + 1px);
 
-    &:after{
-      content: "";
+    &:after {
+      content: '';
       position: absolute;
       display: block;
       height: 1px;
@@ -752,7 +752,7 @@ table {
     align-items: center;
     position: relative;
 
-    &_no-margin{
+    &_no-margin {
       margin: 0;
     }
 
@@ -801,13 +801,31 @@ table {
 
   &-input {
     flex: 1;
+    position: relative;
 
-    &_flex{
+    &_flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
       margin-right: 0 !important;
+    }
+
+    &__action {
+      position: absolute;
+      right: $padding-default;
+      top: 18px;
+      cursor: pointer;
+      transition: $transition-1;
+      background: $white;
+
+      &:hover {
+        color: $primary;
+      }
+
+      &:active {
+        color: $secondary;
+      }
     }
 
     &_full {
@@ -830,7 +848,7 @@ table {
       font-weight: 500;
       font-size: $font-size-sm;
 
-      &_flex{
+      &_flex {
         min-width: 150px;
       }
     }
@@ -840,7 +858,7 @@ table {
       box-sizing: border-box;
       position: relative;
 
-      &_flex{
+      &_flex {
         flex: 1;
         margin-left: $padding-default;
       }
@@ -876,7 +894,7 @@ table {
         border-color: $primary;
       }
 
-      &_readonly{
+      &_readonly {
         background: rgba(238, 238, 238, 0.7) !important;
         border-color: $platinum !important;
         color: $quick-silver;

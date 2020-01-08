@@ -1,5 +1,5 @@
 <template>
-  <Card col="5">
+  <Card col="4">
     <div class="card-header card-header_border">
       <h3 class="card-header__title">
         {{ $t('yourProfileData') }}
@@ -11,11 +11,7 @@
           $t('userName')
         }}</label>
         <div class="modal-input__wrapper_flex">
-          <input
-            v-model="name"
-            class="modal-input__control"
-            type="text"
-          />
+          <input v-model="name" class="modal-input__control" type="text" />
         </div>
       </div>
       <div class="modal-input modal-input_flex modal-input_full">
@@ -33,11 +29,19 @@
       </div>
     </div>
     <div class="modal__footer modal__footer_no-margin">
+      <span
+        :class="[
+          'modal__footer-loader fe fe-loader',
+          loading === true ? 'modal__footer-loader_visible' : null
+        ]"
+      ></span>
+
       <Button
         class="modal__footer-button"
         type="button"
-        theme="primary"
-        @click.native="saveData"
+        :theme="isValid ? 'primary' : 'white'"
+        :disabled="!isValid"
+        @click.native="isValid ? saveData() : false"
         >{{ $t('save') }}</Button
       >
     </div>
@@ -60,7 +64,17 @@ export default {
   data: () => {
     return {
       name: '',
-      email: ''
+      email: '',
+      loading: false
+    }
+  },
+  computed: {
+    isValid() {
+      if (this.name.length > 0 && this.loading === false) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   mounted() {
@@ -69,16 +83,32 @@ export default {
   methods: {
     getProfileData() {
       this.$axios.get('user').then(response => {
-        const {name, email} = response.data
+        const { name, email } = response.data
         this.name = name
         this.email = email
       })
     },
-    saveData(){
+    saveData() {
       const newName = this.name
-      this.$axios.put('user', {name: newName}).then(response => {
-        console.log(response)
-      })
+      this.loading = true
+      this.$axios
+        .put('user', { name: newName })
+        .then(response => {
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: 'profileDataChangeSuccess',
+            color: 'success',
+            timeout: true
+          })
+          this.loading = false
+        })
+        .catch(error => {
+          this.loading = false
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: error.response.data.msg,
+            color: 'error',
+            timeout: true
+          })
+        })
     }
   }
 }

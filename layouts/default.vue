@@ -1,13 +1,43 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets && userNodes && networkReleases && userNodesStats"
+    v-if="
+      price &&
+        networkStats &&
+        networkStatus &&
+        dailyHistoryPrice &&
+        dailyTransactions &&
+        dailyBlocks &&
+        latestSigchain &&
+        networkCities &&
+        networkCountries &&
+        networkProviders &&
+        dailyNodes &&
+        userWallets &&
+        userNodes &&
+        networkReleases &&
+        userNodesStats
+    "
   >
     <Topbar />
     <Headerbar />
     <Sidebar />
     <nuxt
       class="content"
-      :class="[topbarExpanded ? 'content_topbar' : null, sidebarExpanded ? 'content_collapsed content_overflow_mobile' : null, deleteNodeModalVisible !== false || deleteAllNodesModalVisible !== false || deleteAllWalletsModalVisible !== false || receiveWalletModalVisible !== false || fastDeployModalVisible !== false || newWalletModalVisible !== false || deleteWalletModalVisible !== false || editNodeModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]"
+      :class="[
+        topbarExpanded ? 'content_topbar' : null,
+        sidebarExpanded ? 'content_collapsed content_overflow_mobile' : null,
+        deleteNodeModalVisible !== false ||
+        deleteAllNodesModalVisible !== false ||
+        deleteAllWalletsModalVisible !== false ||
+        receiveWalletModalVisible !== false ||
+        fastDeployModalVisible !== false ||
+        newWalletModalVisible !== false ||
+        deleteWalletModalVisible !== false ||
+        editNodeModalVisible !== false ||
+        newNodeModalVisible !== false
+          ? 'content_overflow'
+          : null
+      ]"
     />
     <transition name="fade">
       <NewWalletModal v-if="newWalletModalVisible" />
@@ -20,6 +50,8 @@
       <FastDeployModal v-if="fastDeployModalVisible" />
       <EditNodeModal v-if="editNodeModalVisible" />
     </transition>
+
+    <Snackbar />
   </div>
   <Preloader v-else />
 </template>
@@ -39,6 +71,7 @@ import DeleteAllNodesModal from '~/components/Modals/DeleteAllNodesModal/DeleteA
 import DeleteAllWalletsModal from '~/components/Modals/DeleteAllWalletsModal/DeleteAllWalletsModal'
 import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWalletModal'
 import FastDeployModal from '~/components/Modals/FastDeployModal/FastDeployModal'
+import Snackbar from '~/components/Snackbar/Snackbar.vue'
 
 export default {
   head() {
@@ -59,7 +92,8 @@ export default {
     DeleteAllWalletsModal,
     ReceiveWalletModal,
     FastDeployModal,
-    EditNodeModal
+    EditNodeModal,
+    Snackbar
   },
   data: () => {
     return {
