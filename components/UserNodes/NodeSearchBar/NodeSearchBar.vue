@@ -62,8 +62,8 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import Pagination from '~/components/Pagination/Pagination'
 import debounce from 'lodash.debounce'
+import Pagination from '~/components/Pagination/Pagination'
 
 export default {
   components: { Pagination },

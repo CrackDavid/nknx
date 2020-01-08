@@ -171,8 +171,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mixin as clickaway } from 'vue-clickaway'
-import Button from '~/components/Button/Button.vue'
 import { Validator } from 'vee-validate'
+import Button from '~/components/Button/Button.vue'
 
 Validator.extend('multiple_domain_and_ip', {
   getMessage: field => `The field must be a valid ip address or FQDN.`,

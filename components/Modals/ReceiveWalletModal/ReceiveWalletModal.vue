@@ -31,8 +31,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mixin as clickaway } from 'vue-clickaway'
-import Button from '~/components/Button/Button.vue'
 import vueQr from 'qrcode.vue'
+import Button from '~/components/Button/Button.vue'
 
 export default {
   components: { Button, vueQr },

@@ -243,9 +243,9 @@
 </style>
 
 <script>
+import countTo from 'vue-count-to'
 import Logo from '~/assets/icons/logo.svg'
 import Footer from '~/components/Footer/Footer.vue'
-import countTo from 'vue-count-to'
 
 export default {
   components: { Logo, Footer, countTo },
