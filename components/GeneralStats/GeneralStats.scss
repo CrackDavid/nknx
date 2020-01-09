@@ -1,5 +1,6 @@
 .general-stats {
   padding: $padding-max $padding-normal;
+  height: 100%;
 
   @include size-md {
     padding: $padding-default;
