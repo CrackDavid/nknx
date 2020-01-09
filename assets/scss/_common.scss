@@ -355,6 +355,10 @@ h3 {
     }
   }
 
+  &_uppercase {
+    text-transform: uppercase;
+  }
+
   &_align {
     &_right {
       text-align: right !important;

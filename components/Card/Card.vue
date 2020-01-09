@@ -1,7 +1,14 @@
 <template>
   <div
     class="card"
-    :class="[col ? `card_col_${col}` : null, row ? `card_row_${row}` : null, padding ? `card_padding_${padding}` : null, hover ? 'card_hover' : null]"
+    :class="[
+      col ? `card_col_${col}` : null,
+      colStart ? `card_col-start_${colStart}` : null,
+      colEnd ? `card_col-end_${colEnd}` : null,
+      row ? `card_row_${row}` : null,
+      padding ? `card_padding_${padding}` : null,
+      hover ? 'card_hover' : null
+    ]"
   >
     <slot />
   </div>
@@ -18,6 +25,14 @@ export default {
     col: {
       type: String,
       default: '12'
+    },
+    colStart: {
+      type: String,
+      default: 'auto'
+    },
+    colEnd: {
+      type: String,
+      default: 'auto'
     },
     row: {
       type: String,

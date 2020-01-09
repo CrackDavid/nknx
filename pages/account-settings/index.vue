@@ -3,10 +3,12 @@
     <ContentWrapper>
       <h1 class="page__title">{{ $t(pageTitle) }}</h1>
       <SettingsTabs :tabs="tabs" @onTabChange="onTabChange" />
-      <Grid class="page__account-settings">
+      <Grid class="page__account-settings" :customHeight="true">
         <template v-if="activeTab === 'myAccount'">
           <ProfileData />
-          <UserPassword/>
+          <UserPassword />
+          <UserAvatar />
+          <DeleteAccount />
         </template>
       </Grid>
     </ContentWrapper>
@@ -21,6 +23,8 @@ import Grid from '~/components/Grid/Grid.vue'
 import SettingsTabs from '~/components/User/SettingsTabs/SettingsTabs.vue'
 import ProfileData from '~/components/User/ProfileData/ProfileData.vue'
 import UserPassword from '~/components/User/UserPassword/UserPassword.vue'
+import UserAvatar from '~/components/User/UserAvatar/UserAvatar.vue'
+import DeleteAccount from '~/components/User/DeleteAccount/DeleteAccount.vue'
 
 export default {
   head() {
@@ -34,7 +38,9 @@ export default {
     Grid,
     SettingsTabs,
     ProfileData,
-    UserPassword
+    UserPassword,
+    UserAvatar,
+    DeleteAccount
   },
   data: () => {
     return {

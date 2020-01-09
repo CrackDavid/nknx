@@ -1,0 +1,31 @@
+.user-avatar {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  margin: $padding-normal 0;
+
+  &__image {
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    background-color: $quick-silver;
+    margin-bottom: $padding-medium;
+  }
+
+  &__upload {
+    margin-bottom: $padding-default;
+  }
+
+  &__remove {
+    cursor: pointer;
+    transition: $transition-1;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:active {
+      color: $secondary;
+    }
+  }
+}

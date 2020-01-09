@@ -1,6 +1,6 @@
 <template>
-  <div class="grid">
-    <slot/>
+  <div :class="['grid', customHeight ? 'grid_custom-height' : null]">
+    <slot />
   </div>
 </template>
 
@@ -11,7 +11,12 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    customHeight: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => {
     return {}
   },
