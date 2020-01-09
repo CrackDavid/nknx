@@ -45,7 +45,10 @@ export default {
   data: () => {
     return {
       tabs: ['myAccount', 'vpsKeys', 'notifications'],
-      activeTab: 'myAccount'
+      activeTab: 'myAccount',
+      name: '',
+      email: '',
+      avatar: ''
     }
   },
   computed: {

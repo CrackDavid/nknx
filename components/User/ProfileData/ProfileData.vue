@@ -53,6 +53,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Card from '~/components/Card/Card.vue'
 import Button from '~/components/Button/Button.vue'
 
@@ -61,9 +63,10 @@ export default {
     Card,
     Button
   },
-  data: () => {
+  data: function() {
     return {
       name: '',
+      currentName: '',
       email: '',
       loading: false
     }
@@ -75,19 +78,21 @@ export default {
       } else {
         return false
       }
+    },
+    ...mapGetters({
+      userData: 'userData/getUserData'
+    })
+  },
+  watch: {
+    userData() {
+      this.name = this.userData.name
     }
   },
   mounted() {
-    this.getProfileData()
+    this.name = this.userData.name
+    this.email = this.userData.email
   },
   methods: {
-    getProfileData() {
-      this.$axios.get('user').then(response => {
-        const { name, email } = response.data
-        this.name = name
-        this.email = email
-      })
-    },
     saveData() {
       const newName = this.name
       this.loading = true
@@ -99,6 +104,8 @@ export default {
             color: 'success',
             timeout: true
           })
+          this.$store.dispatch('userData/updateUserData')
+
           this.loading = false
         })
         .catch(error => {

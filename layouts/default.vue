@@ -15,7 +15,8 @@
         userWallets &&
         userNodes &&
         networkReleases &&
-        userNodesStats
+        userNodesStats &&
+        userData
     "
   >
     <Topbar />
@@ -132,7 +133,8 @@ export default {
     userWallets: 'userWallets/getUserWallets',
     userNodes: 'userNodes/getUserNodes',
     userNodesStats: 'userNodes/getUserNodesStats',
-    userConfig: 'userNodes/getUserConfig'
+    userConfig: 'userNodes/getUserConfig',
+    userData: 'userData/getUserData'
   }),
   destroyed() {
     clearInterval(this.intervalPrice)
@@ -167,6 +169,7 @@ export default {
     this.updateUserWallets()
     this.updateUserNodes()
     this.updateUserNodesStats()
+    this.updateUserData()
 
     this.intervalPrice = setInterval(this.updatePrice, this.updateInterval)
     this.intervalNetworkStats = setInterval(
@@ -271,6 +274,9 @@ export default {
     },
     updateUserNodesStats() {
       this.$store.dispatch('userNodes/updateUserNodesStats')
+    },
+    updateUserData() {
+      this.$store.dispatch('userData/updateUserData')
     }
   }
 }

@@ -8,12 +8,25 @@
     height: 180px;
     width: 180px;
     border-radius: 100%;
-    background-color: $quick-silver;
+    background-color: $platinum;
     margin-bottom: $padding-medium;
   }
 
   &__upload {
     margin-bottom: $padding-default;
+    position: relative;
+  }
+
+  &__controller {
+    position: absolute;
+    display: none;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    cursor: pointer;
   }
 
   &__remove {

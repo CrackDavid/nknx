@@ -4,11 +4,18 @@
       v-on-clickaway="closeDropdown"
       class="avatar-dropdown__link"
       href="#"
-      @click.prevent="showDropDown=!showDropDown"
+      @click.prevent="showDropDown = !showDropDown"
     >
-      <img src="~assets/icons/avatar.png" class="avatar-dropdown__avatar" alt="avatar" />
+      <img
+        :src="`https://api.nknx.org/storage/avatars/${userData.avatar}`"
+        class="avatar-dropdown__avatar"
+        alt="avatar"
+      />
       <i
-        :class="{ 'fe-chevron-up': showDropDown, 'fe-chevron-down': !showDropDown }"
+        :class="{
+          'fe-chevron-up': showDropDown,
+          'fe-chevron-down': !showDropDown
+        }"
         class="fe"
         aria-hidden="true"
       ></i>
@@ -17,10 +24,14 @@
       <div v-if="showDropDown">
         <ul class="avatar-dropdown__menu">
           <li>
-            <a href="#" class="avatar-dropdown__dd-link" @click="openSettings">Account</a>
+            <a href="#" class="avatar-dropdown__dd-link" @click="openSettings"
+              >Account</a
+            >
           </li>
           <li>
-            <a href="#" class="avatar-dropdown__dd-link" @click="logout">Logout</a>
+            <a href="#" class="avatar-dropdown__dd-link" @click="logout"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>
@@ -33,6 +44,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
@@ -42,7 +55,11 @@ export default {
       showDropDown: false
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters({
+      userData: 'userData/getUserData'
+    })
+  },
   destroyed() {},
   mounted() {},
   methods: {
@@ -54,7 +71,7 @@ export default {
     closeDropdown() {
       this.showDropDown = false
     },
-    openSettings(){
+    openSettings() {
       this.$router.push({ path: `/account-settings` })
     }
   }
