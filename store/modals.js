@@ -7,7 +7,8 @@ export const state = () => ({
   deleteAllNodesModalVisible: false,
   deleteAllWalletsModalVisible: false,
   receiveWalletModalVisible: false,
-  fastDeployModalVisible: false
+  fastDeployModalVisible: false,
+  deleteAccountModalVisible: false
 })
 
 export const mutations = {
@@ -37,6 +38,9 @@ export const mutations = {
   },
   setFastDeployModalVisible(state, obj) {
     state.fastDeployModalVisible = obj
+  },
+  setDeleteAccountModalVisible(state, obj) {
+    state.deleteAccountModalVisible = obj
   }
 }
 
@@ -67,6 +71,9 @@ export const getters = {
   },
   getFastDeployModalVisible(state) {
     return state.fastDeployModalVisible
+  },
+  getDeleteAccountModalVisible(state) {
+    return state.deleteAccountModalVisible
   }
 }
 
@@ -97,5 +104,8 @@ export const actions = {
   },
   updateFastDeployModalVisible({ commit }, obj) {
     commit('setFastDeployModalVisible', obj)
+  },
+  updateDeleteAccountModalVisible({ commit }, obj) {
+    commit('setDeleteAccountModalVisible', obj)
   }
 }

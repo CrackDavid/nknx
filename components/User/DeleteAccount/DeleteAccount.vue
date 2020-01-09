@@ -39,7 +39,9 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    deleteAccount() {}
+    deleteAccount() {
+      this.$store.dispatch('modals/updateDeleteAccountModalVisible', true)
+    }
   }
 }
 </script>

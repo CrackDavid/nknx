@@ -34,6 +34,7 @@
         newWalletModalVisible !== false ||
         deleteWalletModalVisible !== false ||
         editNodeModalVisible !== false ||
+        deleteAccountModalVisible !== false ||
         newNodeModalVisible !== false
           ? 'content_overflow'
           : null
@@ -49,6 +50,7 @@
       <ReceiveWalletModal v-if="receiveWalletModalVisible" />
       <FastDeployModal v-if="fastDeployModalVisible" />
       <EditNodeModal v-if="editNodeModalVisible" />
+      <DeleteAccountModal v-if="deleteAccountModalVisible" />
     </transition>
 
     <Snackbar />
@@ -69,6 +71,7 @@ import DeleteNodeModal from '~/components/Modals/DeleteNodeModal/DeleteNodeModal
 import EditNodeModal from '~/components/Modals/EditNodeModal/EditNodeModal'
 import DeleteAllNodesModal from '~/components/Modals/DeleteAllNodesModal/DeleteAllNodesModal'
 import DeleteAllWalletsModal from '~/components/Modals/DeleteAllWalletsModal/DeleteAllWalletsModal'
+import DeleteAccountModal from '~/components/Modals/DeleteAccountModal/DeleteAccountModal'
 import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWalletModal'
 import FastDeployModal from '~/components/Modals/FastDeployModal/FastDeployModal'
 import Snackbar from '~/components/Snackbar/Snackbar.vue'
@@ -93,6 +96,7 @@ export default {
     ReceiveWalletModal,
     FastDeployModal,
     EditNodeModal,
+    DeleteAccountModal,
     Snackbar
   },
   data: () => {
@@ -110,6 +114,7 @@ export default {
     deleteAllNodesModalVisible: 'modals/getDeleteAllNodesModalVisible',
     deleteAllWalletsModalVisible: 'modals/getDeleteAllWalletsModalVisible',
     receiveWalletModalVisible: 'modals/getReceiveWalletModalVisible',
+    deleteAccountModalVisible: 'modals/getDeleteAccountModalVisible',
     sidebarExpanded: 'sidebar/get',
     topbarExpanded: 'topbar/getTopbar',
     price: 'price/getCurrentPrice',
