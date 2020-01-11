@@ -81,7 +81,7 @@
         type="button"
         :theme="!isDisabled ? 'primary' : 'white'"
         :disabled="isDisabled"
-        @click.native="!loading ? saveData() : false"
+        @click.native="!isDisabled ? saveData() : false"
         >{{ $t('add') }}</Button
       >
     </div>
@@ -187,7 +187,7 @@ export default {
 
       this.loading = true
       this.$axios
-        .post('vps_keys', payload)
+        .post('vps-keys', payload)
         .then(response => {
           this.$store.dispatch('snackbar/updateSnack', {
             snack: 'vpsKeyAddSuccess',
