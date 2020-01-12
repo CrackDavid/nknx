@@ -34,7 +34,7 @@
             </th>
           </tr>
         </thead>
-        <tbody class="table__body">
+        <tbody v-on-clickaway="closeActionsModal" class="table__body">
           <tr v-for="vps in vpses" :key="vps.id" class="table__row">
             <td class="table__item">
               {{ vps.profile_name }}
@@ -43,27 +43,10 @@
               {{ vps.provider }}
             </td>
             <td class="table__item">
-              <span
-                :class="[
-                  'table__item-action',
-                  vps.tokenVisible ? 'fe fe-eye-off' : 'fe fe-eye'
-                ]"
-                @click="vps.tokenVisible = !vps.tokenVisible"
-              />
-              <span v-if="vps.tokenVisible"> {{ vps.api_token }} </span>
-              <span v-else>{{ hideString(vps.api_token) }}</span>
+              <PrivateText :text="vps.api_token" />
             </td>
             <td class="table__item">
-              <span
-                v-if="vps.api_secret !== null"
-                :class="[
-                  'table__item-action',
-                  vps.secretVisible ? 'fe fe-eye-off' : 'fe fe-eye'
-                ]"
-                @click="vps.secretVisible = !vps.secretVisible"
-              />
-              <span v-if="vps.secretVisible"> {{ vps.api_secret }} </span>
-              <span v-else>{{ $t(hideString(vps.api_secret)) }}</span>
+              <PrivateText :text="vps.api_secret" />
             </td>
             <td class="table__item text_align_center">
               <span
@@ -115,14 +98,20 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Card from '~/components/Card/Card.vue'
 import Pagination from '~/components/Pagination/Pagination'
+import PrivateText from '~/components/PrivateText/PrivateText'
+import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   components: {
     Card,
-    Pagination
+    Pagination,
+    PrivateText
   },
+  mixins: [clickaway],
   data: () => {
     return {
       nextPage: null,
@@ -135,47 +124,49 @@ export default {
       isActions: false
     }
   },
+  computed: {
+    ...mapGetters({
+      userProviders: 'userProviders/getUserProviders'
+    })
+  },
+  watch: {
+    userProviders() {
+      this.parseVpsData(this.userProviders)
+    }
+  },
   mounted() {
     this.getVps(this.current_page)
   },
   methods: {
-    hideString(x) {
-      if (x !== null) {
-        const template = '*'.repeat(x.length)
-        return x.replace(x, template)
-      } else {
-        return 'n/a'
-      }
-    },
     closeActionsModal() {
       this.isActions = false
     },
     openDeleteNodeModal(vps) {
       setTimeout(this.closeActionsModal, 1)
-
-      this.$store.dispatch('activeVps/updateActiveVps', vps)
-      this.$store.dispatch('modals/updateDeleteVpsModalVisible', true)
-
-      // this.$axios
-      //   .$delete(`vps-keys/${id}`)
-      //   .then(response => {
-      //     this.$store.dispatch('snackbar/updateSnack', {
-      //       snack: 'vpsProviderDeleteSuccess',
-      //       color: 'success',
-      //       timeout: true
-      //     })
-      //   })
-      //   .catch(error => {
-      //     this.loading = false
-      //     this.$store.dispatch('snackbar/updateSnack', {
-      //       snack: error.response.data.msg,
-      //       color: 'error',
-      //       timeout: true
-      //     })
-      //   })
+      this.$store.dispatch('activeProvider/updateActiveProvider', vps)
+      this.$store.dispatch('modals/updateDeleteProviderModalVisible', true)
     },
     openEditNodeModal(vps) {
       setTimeout(this.closeActionsModal, 1)
+      this.$store.dispatch('activeProvider/updateActiveProvider', vps)
+      this.$store.dispatch('modals/updateEditProviderModalVisible', true)
+    },
+    parseVpsData(response) {
+      const {
+        data,
+        current_page,
+        prev_page_url,
+        next_page_url,
+        from,
+        to
+      } = response
+      this.vpses = data
+      this.from = from
+      this.to = to
+      this.currentPage = current_page
+      this.prevPage = prev_page_url != null ? this.currentPage - 1 : null
+      this.nextPage = next_page_url != null ? this.currentPage + 1 : null
+      this.loading = false
     },
     getVps(page) {
       const self = this
@@ -187,28 +178,7 @@ export default {
       // Disabling pagination untill data fetched
       self.nextPage = null
       self.prevPage = null
-      // Fetcing data
-      this.$axios.$get(`vps-keys/?page=${page}`).then(response => {
-        const {
-          data,
-          current_page,
-          prev_page_url,
-          next_page_url,
-          from,
-          to
-        } = response
-        data.forEach(vps => {
-          vps.tokenVisible = false
-          vps.secretVisible = false
-        })
-        self.vpses = data
-        self.from = from
-        self.to = to
-        self.currentPage = current_page
-        self.prevPage = prev_page_url != null ? self.currentPage - 1 : null
-        self.nextPage = next_page_url != null ? self.currentPage + 1 : null
-        self.loading = false
-      })
+      this.$store.dispatch('userProviders/updateUserProviders', page)
     }
   }
 }

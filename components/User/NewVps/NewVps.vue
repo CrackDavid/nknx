@@ -195,6 +195,7 @@ export default {
             timeout: true
           })
           this.loading = false
+          this.$store.dispatch('userProviders/updateUserProviders', 1)
           this.clearData()
         })
         .catch(error => {
