@@ -12,6 +12,7 @@
         </template>
         <template v-else-if="activeTab === 'vpsKeys'">
           <NewVps />
+          <ActiveProviders />
         </template>
       </Grid>
     </ContentWrapper>
@@ -29,6 +30,7 @@ import UserPassword from '~/components/User/UserPassword/UserPassword.vue'
 import UserAvatar from '~/components/User/UserAvatar/UserAvatar.vue'
 import DeleteAccount from '~/components/User/DeleteAccount/DeleteAccount.vue'
 import NewVps from '~/components/User/NewVps/NewVps.vue'
+import ActiveProviders from '~/components/User/ActiveProviders/ActiveProviders.vue'
 
 export default {
   head() {
@@ -45,7 +47,8 @@ export default {
     UserPassword,
     UserAvatar,
     DeleteAccount,
-    NewVps
+    NewVps,
+    ActiveProviders
   },
   data: () => {
     return {

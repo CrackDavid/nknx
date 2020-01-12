@@ -95,6 +95,11 @@ h3 {
   &-navigation {
     &__pagination {
       display: flex;
+
+      &_card {
+        position: absolute;
+        right: 24px;
+      }
     }
   }
 
@@ -469,6 +474,22 @@ table {
 
     &_negative {
       color: $error;
+    }
+  }
+
+  &__item-action {
+    position: relative;
+    cursor: pointer;
+    transition: $transition-1;
+    background: $white;
+    margin-right: $padding-micro;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:active {
+      color: $secondary;
     }
   }
 }

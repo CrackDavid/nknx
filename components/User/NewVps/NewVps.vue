@@ -1,5 +1,5 @@
 <template>
-  <Card col="5">
+  <Card col="4">
     <div class="card-header card-header_border">
       <h3 class="card-header__title">
         {{ $t('newVpsKey') }}
@@ -158,7 +158,7 @@ export default {
       this.provider = 'DigitalOcean'
       this.apiSecret = ''
       this.apiToken = ''
-      this.name = ''
+      this.name = 'Personal'
     },
     updateProvider(provider) {
       this.provider = provider
