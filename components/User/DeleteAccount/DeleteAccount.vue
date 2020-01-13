@@ -1,5 +1,5 @@
 <template>
-  <Card colStart="10" colEnd="13">
+  <Card :colStart="$mq === 'xl' ? '10' : $mq === 'llg' ? '7' : $mq === 'lg' ? '7' : '0'" colEnd="13" >
     <div class="card-header card-header_border">
       <h3 class="card-header__title text_uppercase">
         {{ $t('dangerArea') }}

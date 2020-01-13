@@ -4,6 +4,10 @@
   flex-flow: column wrap;
   margin: $padding-normal 0;
 
+  @include size-sm {
+    margin: $padding-default 0;
+  }
+
   &__image {
     height: 180px;
     width: 180px;

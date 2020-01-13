@@ -113,6 +113,10 @@ h3 {
 
   &__account-settings {
     margin-top: 50px;
+
+    @include size-sm {
+      margin-top: 16px;
+    }
   }
 
   &__node-manager {
@@ -258,6 +262,11 @@ h3 {
       background: $platinum;
       bottom: 0;
       left: -24px;
+    }
+
+    @include size-llg {
+      padding: 0 !important;
+      padding-bottom: 16px !important;
     }
   }
 
@@ -838,12 +847,16 @@ table {
       justify-content: space-between;
       width: 100%;
       margin-right: 0 !important;
+
+      @include size-llg {
+        flex-flow: row wrap;
+      }
     }
 
     &__action {
       position: absolute;
       right: $padding-default;
-      top: 18px;
+      top: 17px;
       cursor: pointer;
       transition: $transition-1;
       background: $white;
@@ -878,7 +891,11 @@ table {
       font-size: $font-size-sm;
 
       &_flex {
-        min-width: 150px;
+        min-width: 132px;
+
+        @include size-llg {
+          min-width: auto;
+        }
       }
     }
 
@@ -890,6 +907,14 @@ table {
       &_flex {
         flex: 1;
         margin-left: $padding-default;
+        position: relative;
+
+        @include size-llg {
+          flex: none;
+          width: 100%;
+          margin-left: 0;
+          margin-top: $padding-xs;
+        }
       }
     }
 

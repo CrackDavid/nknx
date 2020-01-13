@@ -16,6 +16,11 @@
   transform: translateY(200px);
   box-shadow: $shadow-2;
 
+  @include size-sm {
+    left: 0;
+    width: 100%;
+  }
+
   &_color {
     &_error {
       background-color: $error;
