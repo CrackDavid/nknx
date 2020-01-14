@@ -12,7 +12,10 @@
         </template>
         <template v-else-if="activeTab === 'vpsKeys'">
           <NewVps />
-          <ActiveProviders />
+          <ActiveProviders
+            v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'"
+          />
+          <MobileActiveProviders v-else />
         </template>
       </Grid>
     </ContentWrapper>
@@ -31,6 +34,7 @@ import UserAvatar from '~/components/User/UserAvatar/UserAvatar.vue'
 import DeleteAccount from '~/components/User/DeleteAccount/DeleteAccount.vue'
 import NewVps from '~/components/User/NewVps/NewVps.vue'
 import ActiveProviders from '~/components/User/ActiveProviders/ActiveProviders.vue'
+import MobileActiveProviders from '~/components/User/MobileActiveProviders/MobileActiveProviders.vue'
 
 export default {
   head() {
@@ -48,7 +52,8 @@ export default {
     UserAvatar,
     DeleteAccount,
     NewVps,
-    ActiveProviders
+    ActiveProviders,
+    MobileActiveProviders
   },
   data: () => {
     return {

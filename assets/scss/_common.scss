@@ -28,6 +28,7 @@ a {
 .overflow-x {
   overflow-x: auto;
   grid-column: span 12;
+  overflow-y: hidden;
 }
 
 .scroll {
@@ -485,22 +486,6 @@ table {
       color: $error;
     }
   }
-
-  &__item-action {
-    position: relative;
-    cursor: pointer;
-    transition: $transition-1;
-    background: $white;
-    margin-right: $padding-micro;
-
-    &:hover {
-      color: $primary;
-    }
-
-    &:active {
-      color: $secondary;
-    }
-  }
 }
 
 .switcher {
@@ -796,6 +781,10 @@ table {
 
     @include size-md {
       margin-top: $padding-normal;
+    }
+
+    @include size-sm {
+      margin-top: $padding-default;
     }
 
     &-button {

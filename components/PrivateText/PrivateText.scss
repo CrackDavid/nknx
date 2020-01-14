@@ -1,0 +1,28 @@
+.private-text {
+  display: flex;
+  align-items: center;
+
+  &__reveal {
+    color: $primary;
+  }
+
+  &__eye {
+    position: relative;
+    cursor: pointer;
+    transition: $transition-1;
+    background: $white;
+    margin-right: $padding-micro;
+
+    @include size-sm {
+      margin-right: $padding-xs;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:active {
+      color: $secondary;
+    }
+  }
+}

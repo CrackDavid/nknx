@@ -1,5 +1,9 @@
 <template>
-  <Card col="4">
+  <Card
+    :col="
+      $mq === 'xl' ? '4' : $mq === 'llg' ? '12' : $mq === 'lg' ? '12' : '12'
+    "
+  >
     <div class="card-header card-header_border">
       <h3 class="card-header__title">
         {{ $t('newVpsKey') }}

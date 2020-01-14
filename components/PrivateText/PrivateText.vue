@@ -1,12 +1,26 @@
 <template>
-  <span>
-    <span
-      v-if="text !== null"
-      :class="['table__item-action', isVisible ? 'fe fe-eye-off' : 'fe fe-eye']"
-      @click="isVisible = !isVisible"
-    />
-    <span v-if="isVisible"> {{ text }} </span>
-    <span v-else>{{ hideString(text) }}</span>
+  <span class="private-text">
+    <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
+      <span
+        v-if="text !== null"
+        :class="[
+          'private-text__eye',
+          isVisible ? 'fe fe-eye-off' : 'fe fe-eye'
+        ]"
+        @click="isVisible = !isVisible"
+      />
+      <span v-if="isVisible"> {{ text }} </span>
+      <span v-else>{{ hideString(text) }}</span>
+    </template>
+    <template v-else>
+      <span
+        v-if="!isVisible"
+        class="private-text__reveal"
+        @click="isVisible = !isVisible"
+        >{{ $t('clickToReveal') }}</span
+      >
+      <span v-else>{{ text }}</span>
+    </template>
   </span>
 </template>
 

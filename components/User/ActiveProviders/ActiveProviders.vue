@@ -1,8 +1,16 @@
 <template>
-  <Card col="8" padding="none">
+  <Card
+    :col="
+      $mq === 'xl' ? '8' : $mq === 'llg' ? '12' : $mq === 'lg' ? '12' : '12'
+    "
+    padding="none"
+  >
     <div class="card-header">
       <h3 class="card-header__title">
         {{ $t('activeProviders') }}
+        <span class="card-header__counter"
+          >{{ total }} {{ $t('inTotal') }}</span
+        >
       </h3>
       <div class="card-header__right">
         <div
@@ -21,33 +29,23 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="overflow-x">
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
+            <th class="table__title" style="width: 1%;">
+              {{ $t('actions') }}
+            </th>
             <th class="table__title" style="width: 10%;">{{ $t('name') }}</th>
             <th class="table__title">{{ $t('provider') }}</th>
             <th class="table__title">{{ $t('key') }}</th>
-            <th class="table__title">{{ $t('secretOnlyAws') }}</th>
-            <th class="table__title" style="width: 10%;">
-              {{ $t('actions') }}
+            <th class="table__title" style="min-width: 200px;">
+              {{ $t('secretOnlyAws') }}
             </th>
           </tr>
         </thead>
         <tbody v-on-clickaway="closeActionsModal" class="table__body">
           <tr v-for="vps in vpses" :key="vps.id" class="table__row">
-            <td class="table__item">
-              {{ vps.profile_name }}
-            </td>
-            <td class="table__item">
-              {{ vps.provider }}
-            </td>
-            <td class="table__item">
-              <PrivateText :text="vps.api_token" />
-            </td>
-            <td class="table__item">
-              <PrivateText :text="vps.api_secret" />
-            </td>
             <td class="table__item text_align_center">
               <span
                 class="node-manager__actions fe fe-more-horizontal"
@@ -86,6 +84,18 @@
                 </div>
               </span>
             </td>
+            <td class="table__item">
+              {{ vps.profile_name }}
+            </td>
+            <td class="table__item">
+              {{ vps.provider }}
+            </td>
+            <td class="table__item">
+              <PrivateText :text="vps.api_token" />
+            </td>
+            <td class="table__item">
+              <PrivateText :text="vps.api_secret" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -121,6 +131,7 @@ export default {
       to: 0,
       loading: false,
       vpses: [],
+      total: 0,
       isActions: false
     }
   },
@@ -158,11 +169,13 @@ export default {
         prev_page_url,
         next_page_url,
         from,
+        total,
         to
       } = response
       this.vpses = data
       this.from = from
       this.to = to
+      this.total = total
       this.currentPage = current_page
       this.prevPage = prev_page_url != null ? this.currentPage - 1 : null
       this.nextPage = next_page_url != null ? this.currentPage + 1 : null
