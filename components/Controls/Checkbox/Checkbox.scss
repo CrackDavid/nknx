@@ -37,6 +37,7 @@
     width: 16px;
     height: 16px;
     transition: $transition-1;
+    border-radius: 4px;
 
     &:after {
       border: 2px solid $white;

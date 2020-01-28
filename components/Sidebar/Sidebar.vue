@@ -1,21 +1,35 @@
 <template>
   <aside
     class="sidebar"
-    :class="[{'sidebar_expanded': sidebarExpanded}, topbarExpanded ? 'sidebar_topbar' : null]"
+    :class="[
+      { sidebar_expanded: sidebarExpanded },
+      topbarExpanded ? 'sidebar_topbar' : null
+    ]"
   >
     <nuxt-link
       v-for="route in routes"
       :key="route.path"
       :to="route.path"
-      :exact="route.path=='/' ? true : false"
+      :exact="route.path == '/' ? true : false"
       class="sidebar__item"
-      @click.native="markerInitialize(), $mq === 'xs' || $mq === 'sm' || $mq === 'md' ? toggleSidebar() : false"
+      :class="
+        route.path === '/account-settings' ? 'sidebar__item_hidden' : null
+      "
+      @click.native="
+        markerInitialize(),
+          $mq === 'xs' || $mq === 'sm' || $mq === 'md' ? toggleSidebar() : false
+      "
       @mouseleave.native="markerInitialize"
     >
       <span class="fe sidebar__icon" :class="route.icon" />
-      <span class="sidebar__title">{{$t(route.title)}}</span>
+      <span class="sidebar__title">{{ $t(route.title) }}</span>
     </nuxt-link>
-    <div class="sidebar__marker" />
+    <div
+      class="sidebar__marker"
+      :class="
+        $route.path === '/account-settings' ? 'sidebar__marker_hidden' : null
+      "
+    />
   </aside>
 </template>
 
@@ -50,6 +64,11 @@ export default {
           title: 'nodeManager'
         },
         {
+          path: '/fast-deploy',
+          icon: 'fe-zap',
+          title: 'fastDeploy'
+        },
+        {
           path: '/account-settings',
           icon: 'fe-settings',
           title: 'accountSettings'
@@ -61,7 +80,7 @@ export default {
     sidebarExpanded: 'sidebar/get',
     topbarExpanded: 'topbar/getTopbar'
   }),
-  mounted: function() {
+  mounted() {
     this.markerInitialize()
     this.markerMove() // comment it if wanna turn off mouseover animation
   },

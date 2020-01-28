@@ -57,7 +57,7 @@ export default {
   },
   data: () => {
     return {
-      tabs: ['myAccount', 'vpsKeys', 'notifications'],
+      tabs: ['myAccount', 'vpsKeys'],
       activeTab: 'myAccount',
       name: '',
       email: '',
