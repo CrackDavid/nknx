@@ -250,6 +250,10 @@ h3 {
   align-items: center;
   position: relative;
 
+  &_padding {
+    padding-right: 116px !important;
+  }
+
   &_border {
     padding: 0;
     padding-bottom: calc(#{$padding-normal} + 1px);

@@ -4,7 +4,10 @@
       <h1 class="page__title">{{ $t(pageTitle) }}</h1>
       <Grid class="page__account-settings" :customHeight="true">
         <NewFastDeploy />
-        <FastDeployConfigs />
+        <FastDeployConfigs
+          v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'"
+        />
+        <MobileFastDeployConfigs v-else />
       </Grid>
     </ContentWrapper>
   </div>
@@ -17,6 +20,7 @@ import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import NewFastDeploy from '~/components/FastDeploy/NewFastDeploy/NewFastDeploy.vue'
 import FastDeployConfigs from '~/components/FastDeploy/FastDeployConfigs/FastDeployConfigs.vue'
+import MobileFastDeployConfigs from '~/components/FastDeploy/MobileFastDeployConfigs/MobileFastDeployConfigs.vue'
 
 export default {
   head() {
@@ -29,7 +33,8 @@ export default {
     ContentWrapper,
     Grid,
     NewFastDeploy,
-    FastDeployConfigs
+    FastDeployConfigs,
+    MobileFastDeployConfigs
   },
   data: () => {
     return {}

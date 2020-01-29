@@ -10,7 +10,9 @@ export const state = () => ({
   fastDeployModalVisible: false,
   deleteAccountModalVisible: false,
   deleteProviderModalVisible: false,
-  editProviderModalVisible: false
+  editProviderModalVisible: false,
+  deleteFastDeployConfigModalVisible: false,
+  editFastDeployConfigModalVisible: false
 })
 
 export const mutations = {
@@ -49,6 +51,12 @@ export const mutations = {
   },
   setEditProviderModalVisible(state, obj) {
     state.editProviderModalVisible = obj
+  },
+  setDeleteFastDeployConfigModalVisible(state, obj) {
+    state.deleteFastDeployConfigModalVisible = obj
+  },
+  setEditFastDeployConfigModalVisible(state, obj) {
+    state.editFastDeployConfigModalVisible = obj
   }
 }
 
@@ -88,6 +96,12 @@ export const getters = {
   },
   getEditProviderModalVisible(state) {
     return state.editProviderModalVisible
+  },
+  getDeleteFastDeployConfigModalVisible(state) {
+    return state.deleteFastDeployConfigModalVisible
+  },
+  getEditFastDeployConfigModalVisible(state) {
+    return state.editFastDeployConfigModalVisible
   }
 }
 
@@ -127,5 +141,11 @@ export const actions = {
   },
   updateEditProviderModalVisible({ commit }, obj) {
     commit('setEditProviderModalVisible', obj)
+  },
+  updateDeleteFastDeployConfigModalVisible({ commit }, obj) {
+    commit('setDeleteFastDeployConfigModalVisible', obj)
+  },
+  updateEditFastDeployConfigModalVisible({ commit }, obj) {
+    commit('setEditFastDeployConfigModalVisible', obj)
   }
 }

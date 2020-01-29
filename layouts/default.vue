@@ -38,6 +38,8 @@
         deleteAccountModalVisible !== false ||
         deleteProviderModalVisible !== false ||
         editProviderModalVisible !== false ||
+        deleteFastDeployConfigModalVisible !== false ||
+        editFastDeployConfigModalVisible !== false ||
         newNodeModalVisible !== false
           ? 'content_overflow'
           : null
@@ -56,6 +58,8 @@
       <DeleteAccountModal v-if="deleteAccountModalVisible" />
       <DeleteProviderModal v-if="deleteProviderModalVisible" />
       <EditProviderModal v-if="editProviderModalVisible" />
+      <DeleteFastDeployConfigModal v-if="deleteFastDeployConfigModalVisible" />
+      <EditFastDeployConfigModal v-if="editFastDeployConfigModalVisible" />
     </transition>
 
     <Snackbar />
@@ -81,6 +85,9 @@ import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWa
 import FastDeployModal from '~/components/Modals/FastDeployModal/FastDeployModal'
 import DeleteProviderModal from '~/components/Modals/DeleteProviderModal/DeleteProviderModal'
 import EditProviderModal from '~/components/Modals/EditProviderModal/EditProviderModal'
+import DeleteFastDeployConfigModal from '~/components/Modals/DeleteFastDeployConfigModal/DeleteFastDeployConfigModal'
+import EditFastDeployConfigModal from '~/components/Modals/EditFastDeployConfigModal/EditFastDeployConfigModal'
+
 import Snackbar from '~/components/Snackbar/Snackbar.vue'
 
 export default {
@@ -106,6 +113,8 @@ export default {
     DeleteAccountModal,
     DeleteProviderModal,
     EditProviderModal,
+    DeleteFastDeployConfigModal,
+    EditFastDeployConfigModal,
     Snackbar
   },
   data: () => {
@@ -126,6 +135,10 @@ export default {
     deleteAccountModalVisible: 'modals/getDeleteAccountModalVisible',
     deleteProviderModalVisible: 'modals/getDeleteProviderModalVisible',
     editProviderModalVisible: 'modals/getEditProviderModalVisible',
+    deleteFastDeployConfigModalVisible:
+      'modals/getDeleteFastDeployConfigModalVisible',
+    editFastDeployConfigModalVisible:
+      'modals/getEditFastDeployConfigModalVisible',
     sidebarExpanded: 'sidebar/get',
     topbarExpanded: 'topbar/getTopbar',
     price: 'price/getCurrentPrice',

@@ -1,7 +1,7 @@
 <template>
   <Card
     :col="
-      $mq === 'xl' ? '9' : $mq === 'llg' ? '12' : $mq === 'lg' ? '12' : '12'
+      $mq === 'xl' ? '8' : $mq === 'llg' ? '12' : $mq === 'lg' ? '12' : '12'
     "
     padding="none"
   >
@@ -100,17 +100,6 @@
                 >
                   <div
                     class="node-manager__actions-item"
-                    @click="openEditConfigModal(config)"
-                  >
-                    <span
-                      class="node-manager__actions-icon fe fe-edit-2"
-                    ></span>
-                    <span class="node-manager__actions-title">{{
-                      $t('editNode')
-                    }}</span>
-                  </div>
-                  <div
-                    class="node-manager__actions-item"
                     @click="openDeleteConfigModal(config)"
                   >
                     <span
@@ -192,17 +181,6 @@ export default {
       )
       this.$store.dispatch(
         'modals/updateDeleteFastDeployConfigModalVisible',
-        true
-      )
-    },
-    openEditConfigModal(config) {
-      setTimeout(this.closeActionsModal, 1)
-      this.$store.dispatch(
-        'activeFastDeployConfig/updateActiveFastDeployConfig',
-        config
-      )
-      this.$store.dispatch(
-        'modals/updateEditFastDeployConfigModalVisible',
         true
       )
     },

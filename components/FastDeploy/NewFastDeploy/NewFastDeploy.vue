@@ -1,6 +1,6 @@
 <template>
   <Card
-    :col="$mq === 'xl' ? '3' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'"
+    :col="$mq === 'xl' ? '4' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'"
   >
     <div class="card-header card-header_border">
       <h3 class="card-header__title">
