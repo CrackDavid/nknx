@@ -4,6 +4,7 @@
       <h1 class="page__title">{{ $t(pageTitle) }}</h1>
       <Grid class="page__account-settings" :customHeight="true">
         <NewFastDeploy />
+        <FastDeployConfigs />
       </Grid>
     </ContentWrapper>
   </div>
@@ -15,6 +16,7 @@ import { mapGetters } from 'vuex'
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import NewFastDeploy from '~/components/FastDeploy/NewFastDeploy/NewFastDeploy.vue'
+import FastDeployConfigs from '~/components/FastDeploy/FastDeployConfigs/FastDeployConfigs.vue'
 
 export default {
   head() {
@@ -26,7 +28,8 @@ export default {
   components: {
     ContentWrapper,
     Grid,
-    NewFastDeploy
+    NewFastDeploy,
+    FastDeployConfigs
   },
   data: () => {
     return {}

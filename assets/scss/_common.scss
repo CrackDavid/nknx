@@ -438,6 +438,24 @@ table {
     &:not(:last-child) {
       border-bottom: $card-border;
     }
+
+    &_hoverable {
+      transition: $transition-1;
+      cursor: pointer;
+
+      &:hover {
+        background: $ghost-white;
+      }
+    }
+
+    &_active {
+      background: $primary !important;
+      color: $white !important;
+
+      .fe-more-horizontal:before {
+        color: $white !important;
+      }
+    }
   }
 
   &__title,
@@ -446,6 +464,7 @@ table {
     font-weight: $font-weight-semi-bold;
     padding: $table-header-padding;
     text-align: left;
+    vertical-align: middle;
 
     @include size-md {
       padding: $padding-micro $padding-default;
@@ -456,6 +475,7 @@ table {
   td {
     padding: $table-item-padding;
     position: relative;
+    vertical-align: middle;
 
     @include size-md {
       padding: $padding-default;

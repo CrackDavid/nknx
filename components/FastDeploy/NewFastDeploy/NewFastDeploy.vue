@@ -8,21 +8,21 @@
       </h3>
     </div>
     <div class="modal__body modal__body_wrap">
-      <div class="modal-input modal-input_full">
+      <div class="modal-input_full">
         <label class="modal-input__label">{{ $t('label') }}</label>
         <div class="modal-input__wrapper">
           <input v-model="label" class="modal-input__control" type="text" />
         </div>
       </div>
 
-      <div class="modal-input modal-input_full">
+      <div class="modal-input_full">
         <label class="modal-input__label">{{ $t('beneficiaryAddress') }}</label>
         <div class="modal-input__wrapper">
           <input v-model="address" class="modal-input__control" type="text" />
         </div>
       </div>
 
-      <div class="modal-input modal-input_full">
+      <div class="modal-input_full">
         <label class="modal-input__label">{{ $t('deploymentOptions') }}</label>
         <div class="modal-input__wrapper">
           <div class="modal-radio__group">
@@ -148,7 +148,7 @@ export default {
             color: 'success',
             timeout: true
           })
-          this.$store.dispatch('userData/updateUserData')
+          this.$store.dispatch('fastDeployConfigs/updateFastDeployConfigs', 1)
           this.clearData()
           this.loading = false
         })
