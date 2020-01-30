@@ -16,7 +16,8 @@
         userNodes &&
         networkReleases &&
         userNodesStats &&
-        userData
+        userData &&
+        userProviders
     "
   >
     <Topbar />
@@ -157,7 +158,8 @@ export default {
     userNodes: 'userNodes/getUserNodes',
     userNodesStats: 'userNodes/getUserNodesStats',
     userConfig: 'userNodes/getUserConfig',
-    userData: 'userData/getUserData'
+    userData: 'userData/getUserData',
+    userProviders: 'userProviders/getUserProviders'
   }),
   destroyed() {
     clearInterval(this.intervalPrice)
@@ -193,6 +195,7 @@ export default {
     this.updateUserNodes()
     this.updateUserNodesStats()
     this.updateUserData()
+    this.updateUserProviders()
 
     this.intervalPrice = setInterval(this.updatePrice, this.updateInterval)
     this.intervalNetworkStats = setInterval(
@@ -300,6 +303,9 @@ export default {
     },
     updateUserData() {
       this.$store.dispatch('userData/updateUserData')
+    },
+    updateUserProviders() {
+      this.$store.dispatch('userProviders/updateUserProviders', 1)
     }
   }
 }

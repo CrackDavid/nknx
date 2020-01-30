@@ -1,0 +1,53 @@
+.fd-choice {
+  margin-top: $grid-gap;
+
+  &__heading {
+    margin-bottom: $grid-gap;
+  }
+
+  &__title {
+    padding-right: $padding-normal;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-gap: $grid-gap;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: $transition-1;
+
+    &:hover {
+      background-color: $ghost-white;
+    }
+
+    &_disabled {
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(238, 238, 238, 0.7) !important;
+      }
+    }
+  }
+
+  &__img {
+    height: 90px;
+  }
+
+  &__descr {
+    padding-top: $padding-normal;
+    color: $text-grey-light;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+  }
+}

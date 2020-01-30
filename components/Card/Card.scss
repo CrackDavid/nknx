@@ -199,6 +199,14 @@
       }
     }
 
+    &_medium {
+      padding: $padding-medium;
+
+      @include size-md {
+        padding: $padding-default;
+      }
+    }
+
     &_none {
       padding: 0;
     }
