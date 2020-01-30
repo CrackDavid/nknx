@@ -1,8 +1,16 @@
 .fd-choice {
   margin-top: $grid-gap;
 
+  @include size-md {
+    margin-top: $padding-default;
+  }
+
   &__heading {
     margin-bottom: $grid-gap;
+
+    @include size-md {
+      margin-bottom: $padding-default;
+    }
   }
 
   &__title {
@@ -12,7 +20,15 @@
   &__wrapper {
     display: grid;
     grid-gap: $grid-gap;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    @include size-md {
+      grid-gap: $padding-default;
+    }
+
+    @include size-sm {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__card {
@@ -41,7 +57,15 @@
   }
 
   &__img {
-    height: 90px;
+    height: 80px;
+
+    @include size-md {
+      height: 60px;
+    }
+
+    @include size-sm {
+      height: 50px;
+    }
   }
 
   &__descr {
@@ -49,5 +73,10 @@
     color: $text-grey-light;
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
+
+    @include size-sm {
+      font-size: $font-size-xs;
+      padding-top: $padding-default;
+    }
   }
 }
