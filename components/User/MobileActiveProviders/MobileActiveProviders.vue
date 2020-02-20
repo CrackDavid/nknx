@@ -35,16 +35,15 @@
         </div>
         <div class="mobile-active-provider__title">{{ $t('key') }}</div>
         <div class="mobile-active-provider__value text_wrap_none">
-          <PrivateText :text="vps.api_token" />
+          *****
         </div>
         <div class="mobile-active-provider__title">
           {{ $t('secretOnlyAws') }}
         </div>
-        <div class="mobile-active-provider__value text_wrap_none">
-          <PrivateText
-            :text="vps.api_secret !== null ? vps.api_secret : 'n/a'"
-          />
-        </div>
+        <div
+          class="mobile-active-provider__value text_wrap_none"
+          v-text="vps.api_secret !== null ? '*****' : 'n/a'"
+        ></div>
       </div>
     </div>
   </Card>
@@ -58,13 +57,11 @@
 import { mapGetters } from 'vuex'
 
 import Card from '~/components/Card/Card.vue'
-import PrivateText from '~/components/PrivateText/PrivateText'
 import Pagination from '~/components/Pagination/Pagination'
 
 export default {
   components: {
     Card,
-    PrivateText,
     Pagination
   },
   data: () => {

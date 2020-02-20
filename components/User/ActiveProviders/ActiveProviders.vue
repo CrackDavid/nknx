@@ -33,19 +33,31 @@
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
-            <th class="table__title" style="width: 1%;">
-              {{ $t('actions') }}
-            </th>
-            <th class="table__title" style="width: 10%;">{{ $t('name') }}</th>
+            <th class="table__title">{{ $t('name') }}</th>
             <th class="table__title">{{ $t('provider') }}</th>
             <th class="table__title">{{ $t('key') }}</th>
-            <th class="table__title" style="min-width: 200px;">
+            <th class="table__title">
               {{ $t('secretOnlyAws') }}
+            </th>
+            <th class="table__title" style="width: 1%;">
+              {{ $t('actions') }}
             </th>
           </tr>
         </thead>
         <tbody v-on-clickaway="closeActionsModal" class="table__body">
           <tr v-for="vps in vpses" :key="vps.id" class="table__row">
+            <td class="table__item">
+              {{ vps.profile_name }}
+            </td>
+            <td class="table__item">
+              {{ vps.provider }}
+            </td>
+            <td class="table__item">
+              *****
+            </td>
+            <td class="table__item">
+              *****
+            </td>
             <td class="table__item text_align_center">
               <span
                 class="node-manager__actions fe fe-more-horizontal"
@@ -84,18 +96,6 @@
                 </div>
               </span>
             </td>
-            <td class="table__item">
-              {{ vps.profile_name }}
-            </td>
-            <td class="table__item">
-              {{ vps.provider }}
-            </td>
-            <td class="table__item">
-              <PrivateText :text="vps.api_token" />
-            </td>
-            <td class="table__item">
-              <PrivateText :text="vps.api_secret" />
-            </td>
           </tr>
         </tbody>
       </table>
@@ -112,14 +112,12 @@ import { mapGetters } from 'vuex'
 
 import Card from '~/components/Card/Card.vue'
 import Pagination from '~/components/Pagination/Pagination'
-import PrivateText from '~/components/PrivateText/PrivateText'
 import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   components: {
     Card,
-    Pagination,
-    PrivateText
+    Pagination
   },
   mixins: [clickaway],
   data: () => {
