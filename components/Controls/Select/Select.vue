@@ -5,29 +5,40 @@
       :class="[open ? 'select__button_active' : null, `select__button_${type}`]"
       @click="toggleSelect()"
     >
-      {{ $t(activeItem) }}
+      <span v-text="upperCase ? $t(activeItem.toUpperCase()) : $t(activeItem)">
+      </span>
       <span
         class="select__icon fe fe-chevron-down"
         :class="open ? 'select__icon_open' : null"
       />
     </div>
 
-    <ul class="select__list" :class="[open ? 'select__list_open' : null, `select__list_${type}`]">
+    <ul
+      class="select__list"
+      :class="[open ? 'select__list_open' : null, `select__list_${type}`]"
+    >
       <li
         v-for="item in items"
-        :key="item"
+        :key="itemText ? item[itemText] : item"
         class="select__item"
         :class="`select__item_${type}`"
-        @click="setSelect(item),toggleSelect()"
-      >
-        {{ $t(item) }}
-      </li>
+        @click="setSelect(item), toggleSelect()"
+        v-text="
+          upperCase
+            ? itemText
+              ? item[itemText].toUpperCase()
+              : $t(item.toUpperCase())
+            : itemText
+            ? item[itemText]
+            : $t(item)
+        "
+      ></li>
     </ul>
   </div>
 </template>
 
 <style lang="scss">
-@import "./Select.scss";
+@import './Select.scss';
 </style>
 
 <script>
@@ -44,6 +55,14 @@ export default {
     type: {
       type: String,
       default: ''
+    },
+    itemText: {
+      type: String,
+      default: ''
+    },
+    upperCase: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => {
@@ -51,13 +70,12 @@ export default {
       open: false
     }
   },
-  computed: {
-  },
+  computed: {},
   methods: {
-    toggleSelect () {
+    toggleSelect() {
       this.open = !this.open
     },
-    setSelect (item) {
+    setSelect(item) {
       this.$emit('update', item)
     }
   }

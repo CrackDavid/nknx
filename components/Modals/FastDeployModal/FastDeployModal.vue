@@ -3,192 +3,99 @@
     <div class="modal-dialog">
       <div v-on-clickaway="closeModal" class="modal-form fast-deploy__form">
         <div class="modal__header">
-          <div class="modal__heading">{{$t('fastDeploy')}}</div>
+          <div class="modal__heading">{{ $t('deployNknNodesTo') }}</div>
           <span class="modal__close fe fe-x" @click="closeModal"></span>
         </div>
-        <div class="modal__title">{{$t('welcomeToFastDeploy')}}</div>
-        <div class="modal-switch">
-          <div
-            :class="['modal-switch__button', currentView === 'snippets' ? 'modal-switch__button_active' : null]"
-            @click="switchView('snippets')"
-          >{{$t('createSnippet')}}</div>
-          <div
-            :class="['modal-switch__button', currentView === 'deployments' ? 'modal-switch__button_active' : null]"
-            @click="switchView('deployments'), getDeployments()"
-          >{{$t('myDeployments')}}</div>
-        </div>
-        <template v-if="currentView === 'snippets'">
-          <div class="modal__body modal__body_wrap">
-            <div class="modal__body-title">{{$t('createSnippetDescription')}}</div>
-            <div
-              :class="['modal-input modal-input_full', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
-            >
-              <label class="modal-input__label">{{$t('beneficiaryAddr')}}</label>
+        <div class="modal__title">{{ $t(fastDeployProvider) }}</div>
+
+        <div class="modal__body modal__body_wrap">
+          <div class="modal-input_full">
+            <label class="modal-input__label ">{{ $t('serverSize') }}</label>
+            <div class="modal-input__wrapper">
+              <Select
+                :items="sizes"
+                :active-item="activeSize.shortcut"
+                :item-text="'shortcut'"
+                @update="updateSize"
+              />
+            </div>
+          </div>
+
+          <div class="modal-input_full">
+            <label class="modal-input__label ">{{ $t('serverSize') }}</label>
+            <div class="modal-input__wrapper">
+              <Select
+                :items="activeSize.regions"
+                :active-item="activeRegion"
+                :upperCase="true"
+                @update="updateRegion"
+              />
+            </div>
+          </div>
+
+          <div class="fast-deploy__count">
+            <div class="modal-input fast-deploy__number">
+              <label class="modal-input__label">{{
+                $t('numberOfNodes')
+              }}</label>
+              <div class="modal-input__wrapper modal-input__wrapper_number">
+                <input
+                  v-model="count"
+                  type="number"
+                  class="modal-input__control modal-input__control_number"
+                  @keydown="numFilter"
+                />
+                <div class="modal-input__actions">
+                  <span
+                    class="modal-input__actions-icon fe fe-chevron-up"
+                    @click="incCount"
+                  />
+                  <span
+                    class="modal-input__actions-icon fe fe-chevron-down"
+                    @click="decCount"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-input_full">
+              <label class="modal-input__label">{{ $t('name') }}</label>
               <div class="modal-input__wrapper">
                 <input
-                  v-model="address"
-                  v-validate="{ required: true, regex: /^((^NKN([A-Za-z0-9]){33}){1})$/ }"
-                  class="modal-input__control"
+                  v-for="(label, i) in labels"
+                  :key="i"
+                  v-model="labels[i]"
+                  :placeholder="`My FastDeploy Node ${i}`"
+                  class="modal-input__control fast-deploy__name"
                   type="text"
-                  name="nknaddress"
-                  required
-                  @focus="clearData"
                 />
-                <span
-                  :class="['modal-input__icon fe', isError === true || isInvalid === true ? 'fe-x' : isSuccess ? 'fe-check' : null]"
-                ></span>
-              </div>
-              <div class="modal-input__alert">{{ errors.first('nknaddress') }} {{$t(alertMsg)}}</div>
-            </div>
-
-            <div
-              :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
-            >
-              <label class="modal-input__label">{{$t('systemArchitecture')}}</label>
-              <div class="modal-input__wrapper">
-                <div class="modal-radio__group">
-                  <Radio
-                    class="modal-radio__item"
-                    name="options"
-                    label="linux-amd64"
-                    :value="activeArchitecture"
-                    @change="changeArchitecture"
-                  >{{$t('AMD64')}}</Radio>
-                  <Radio
-                    class="modal-radio__item"
-                    name="options"
-                    label="linux-armv6l"
-                    :value="activeArchitecture"
-                    @change="changeArchitecture"
-                  >{{$t('ARM6L')}}</Radio>
-                </div>
-              </div>
-            </div>
-
-            <div
-              :class="['modal-input', isError === true || isInvalid === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
-            >
-              <label class="modal-input__label">{{$t('deploymentOptions')}}</label>
-              <div class="modal-input__wrapper">
-                <div class="modal-radio__group">
-                  <Checkbox
-                    class="modal-radio__item"
-                    name="downloadChain"
-                    :value="downloadChain"
-                    @change="changeDownloadChain"
-                  >{{$t('downloadChain')}}</Checkbox>
-                  <Checkbox
-                    class="modal-radio__item"
-                    name="enableWebUI"
-                    :value="enableWebUI"
-                    @change="changeEnableWebUI"
-                  >{{$t('enableWebUI')}}</Checkbox>
-                  <Checkbox
-                    class="modal-radio__item"
-                    name="disableUFW"
-                    :value="disableUFW"
-                    @change="changeDisableUFW"
-                  >{{$t('disableUFW')}}</Checkbox>
-                </div>
               </div>
             </div>
           </div>
-        </template>
+        </div>
 
-        <template v-else>
-          <div class="modal__body modal__body_wrap">
-            <div class="modal__body-title">{{$t('userDeploymentHistoryDescription')}}</div>
-            <div class="overflow-x">
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th style="min-width: 100px;">{{$t('architecture')}}</th>
-                    <th>{{$t('beneficiaryAddr')}}</th>
-                    <th>{{$t('downloadChainTable')}}</th>
-                    <th>{{$t('enableWebUITable')}}</th>
-                    <th>{{$t('disableUFWTable')}}</th>
-                    <th style="min-width: 1000px;">{{$t('script')}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <Fragment v-for="(deploy, index) in deployments" :key="deploy.uuid">
-                    <tr>
-                      <td
-                        class="fast-deploy__toggle"
-                        @click="deploy.deployments.length > 0 ? toggleActiveDeploy(deploy.uuid) : false"
-                      >
-                        {{index + 1}}
-                        <span
-                          v-if="deploy.deployments.length > 0"
-                          :class="['fe fast-deploy__toggle-icon', activeDeploy === deploy.uuid ? 'fe-chevron-up' : 'fe-chevron-down']"
-                        ></span>
-                      </td>
-                      <td>{{deploy.architecture}}</td>
-                      <td>{{deploy.benificiaryAddr}}</td>
-                      <td>
-                        <span
-                          :class="['fe fast-deploy__chain-icon', deploy.downloadChain === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
-                        ></span>
-                      </td>
-                      <td>
-                        <span
-                          :class="['fe fast-deploy__chain-icon', deploy.enableWebUI === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
-                        ></span>
-                      </td>
-                      <td>
-                        <span
-                          :class="['fe fast-deploy__chain-icon', deploy.disableUFW === true ? 'fe-check fast-deploy__chain-icon_positive' : 'fe-x fast-deploy__chain-icon_negative']"
-                        ></span>
-                      </td>
-                      <td>
-                        <i
-                          v-clipboard:copy="`wget -O install.sh 'https://api.nknx.org/deployment/install/${deploy.uuid}'; sudo bash install.sh`"
-                          class="fas fa-copy fast-deploy__copy"
-                        ></i>
-                        <i
-                          class="fast-deploy__script"
-                        >wget -O install.sh "https://api.nknx.org/deployment/install/{{deploy.uuid}}"; sudo bash install.sh</i>
-                      </td>
-                    </tr>
-                    <tr
-                      v-for="(node, i) in deploy.deployments"
-                      :key="node.id"
-                      :class="['fast-deploy__node', activeDeploy === deploy.uuid ? 'fast-deploy__node_visible' : null]"
-                    >
-                      <td colspan="4">
-                        <div
-                          :class="['fast-deploy__node-info', node.status === 'FINISHED' ? 'fast-deploy__node-info_success' :node.status === 'ADDED' ? 'fast-deploy__node-info_success' : null]"
-                        >
-                          <div>{{i + 1}}) {{node.ip}}</div>
-                          <div>{{$t('status')}}: {{node.status}}</div>
-                        </div>
-                      </td>
-                    </tr>
-                  </Fragment>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </template>
         <div class="modal__footer">
           <span
-            :class="['modal__footer-loader fe fe-loader',  isLoading === true ? 'modal__footer-loader_visible' : null]"
+            :class="[
+              'modal__footer-loader fe fe-loader',
+              isLoading === true ? 'modal__footer-loader_visible' : null
+            ]"
           ></span>
           <Button
             class="modal__footer-button"
             type="button"
             theme="white"
             @click.native="closeModal"
-          >{{$t('cancel')}}</Button>
+            >{{ $t('cancel') }}</Button
+          >
           <Button
-            v-if="currentView === 'snippets'"
             class="modal__footer-button"
             type="button"
-            :theme="isValidated === true ? 'primary' : 'white'"
-            :disabled="isValidated === true ? false : true"
-            @click.native="isValidated === true ? createSnippet() : false"
-          >{{$t('create')}}</Button>
+            :theme="isValid === true ? 'primary' : 'white'"
+            :disabled="isValid === true ? false : true"
+            @click.native="isValid === true ? deploy() : false"
+            >{{ $t('confirm') }}</Button
+          >
         </div>
       </div>
     </div>
@@ -201,135 +108,125 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { Fragment } from 'vue-fragment'
 import { mixin as clickaway } from 'vue-clickaway'
 import Button from '~/components/Button/Button.vue'
-import Radio from '~/components/Controls/Radio/Radio.vue'
-import Checkbox from '~/components/Controls/Checkbox/Checkbox.vue'
+import Select from '~/components/Controls/Select/Select.vue'
 
 export default {
-  components: { Button, Fragment, Radio, Checkbox },
+  components: { Button, Select },
   mixins: [clickaway],
   data: () => {
     return {
-      address: '',
-      label: '',
-      isError: false,
-      isSuccess: false,
-      alertMsg: '',
-      isLoading: false,
-      currentView: 'snippets',
-      duplicateNodes: [],
-      failedNodes: [],
-      successNodes: [],
-      deployments: [],
-      activeDeploy: false,
-      activeArchitecture: 'linux-amd64',
-      downloadChain: true,
-      enableWebUI: false,
-      disableUFW: false
+      sizes: [],
+      activeSize: '',
+      activeRegion: '',
+      labels: ['My FastDeploy Node 1'],
+      count: 1,
+      isLoading: false
     }
   },
   computed: {
     ...mapGetters({
       fastDeployModalVisible: 'modals/getFastDeployModalVisible',
-      userNodes: 'userNodes/getUserNodes'
+      fastDeployProvider: 'fastDeployProvider/getFastDeployProvider',
+      fastDeployConfig: 'fastDeployConfigs/getActiveFastDeployConfig'
     }),
-    isInvalid() {
+    isValid() {
       if (
-        this.fields.nknaddress !== undefined &&
-        this.fields.nknaddress.changed === true
+        this.activeSize !== '' &&
+        this.isLoading === false &&
+        this.activeRegion !== '' &&
+        this.labels.length > 0
       ) {
-        return this.fields.nknaddress.invalid
+        return true
       } else {
         return false
       }
-    },
-    isValidated() {
-      if (this.fields.nknaddress !== undefined) {
-        return this.fields.nknaddress.valid
+    }
+  },
+  watch: {
+    count(newVal, oldVal) {
+      if (newVal < 1) {
+        this.count = 1
+      }
+
+      const isInc = newVal - oldVal > 0
+      const labelsLength = this.labels.length
+
+      if (isInc) {
+        for (let i = labelsLength + 1; i <= newVal; i++) {
+          this.labels.push(`My FastDeploy Node ${i}`)
+        }
       } else {
-        return false
+        this.labels = this.labels.slice(0, newVal)
       }
     }
   },
   destroyed() {
     this.clearData()
   },
-  created: function() {},
-  mounted: function() {
-    this.getDeployments()
+  created() {},
+  mounted() {
+    this.getSizes()
   },
   methods: {
-    toggleActiveDeploy(deploy) {
-      this.activeDeploy = this.activeDeploy === deploy ? false : deploy
+    incCount() {
+      this.count += 1
     },
-    changeArchitecture: function(newValue) {
-      this.activeArchitecture = newValue
+    decCount() {
+      this.count -= 1
     },
-    changeDownloadChain() {
-      this.downloadChain = !this.downloadChain
+    numFilter(e) {
+      if ([69, 187, 189, 38, 40].includes(e.keyCode)) {
+        e.preventDefault()
+      }
     },
-    changeEnableWebUI() {
-      this.enableWebUI = !this.enableWebUI
+    getSizes() {
+      this.$axios
+        .$get('fast-deploy/helpers/digitalocean/sizes')
+        .then(response => {
+          this.sizes = response
+          this.sizes.forEach(item => {
+            item.shortcut = `${item.memory / 1024}GB RAM - ${
+              item.vcpus
+            } CPU Core - ${item.disk}GB SSD`
+          })
+          this.activeSize = this.sizes[0]
+          this.activeRegion = this.activeSize.regions[0]
+        })
     },
-    changeDisableUFW() {
-      this.disableUFW = !this.disableUFW
+    deploy() {
+      this.$axios
+        .$post(
+          `fast-deploy/configurations/${this.fastDeployConfig.id}/deployment`,
+          {
+            provider: this.fastDeployProvider,
+            names: this.labels,
+            size: this.activeSize.slug,
+            region: this.activeRegion,
+            vps_key_id: 33
+          }
+        )
+        .then(response => {
+          this.sizes = response
+          this.sizes.forEach(item => {
+            item.shortcut = `${item.memory / 1024}GB RAM - ${
+              item.vcpus
+            } CPU Core - ${item.disk}GB SSD`
+          })
+          this.activeSize = this.sizes[0]
+          this.activeRegion = this.activeSize.regions[0]
+        })
     },
-    getDeployments() {
-      const self = this
-      this.$axios.$get('deployment-entry', {}).then(response => {
-        self.deployments = response.data
-      })
+    updateSize(size) {
+      this.activeSize = size
     },
-    clearData() {
-      this.isError = false
-      this.isSuccess = false
-      this.alertMsg = ''
-      this.failedNodes = []
-      this.duplicateNodes = []
-      this.successNodes = []
+    updateRegion(region) {
+      this.activeRegion = region
     },
+    clearData() {},
     closeModal() {
       this.$store.dispatch('modals/updateFastDeployModalVisible', false)
-    },
-    switchView(val) {
-      this.currentView = val
-      this.ip = ''
-      this.label = ''
-      this.clearData()
-    },
-    createSnippet() {
-      const self = this
-      const {
-        activeArchitecture,
-        address,
-        downloadChain,
-        enableWebUI,
-        disableUFW
-      } = this
-
-      this.isLoading = true
-
-      this.$axios
-        .$post('deployment-entry', {
-          architecture: activeArchitecture,
-          benificiaryAddr: address,
-          downloadChain: downloadChain,
-          enableWebUI: enableWebUI,
-          disableUFW: disableUFW
-        })
-        .then(response => {
-          self.isSuccess = true
-          self.isError = false
-          self.alertMsg = 'successSnippetAlert'
-          self.isLoading = false
-        })
-        .catch(error => {
-          self.isError = true
-          self.alertMsg = 'failedSnippetAlert'
-          self.isLoading = false
-        })
     }
   }
 }

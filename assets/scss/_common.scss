@@ -854,6 +854,24 @@ table {
     flex: 1;
     position: relative;
 
+    &__actions {
+      display: flex;
+      flex-flow: column wrap;
+      position: absolute;
+      right: $padding-default;
+      top: 9px;
+      background: $white;
+
+      &-icon {
+        cursor: pointer;
+        transition: $transition-1;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+
     &_flex {
       display: flex;
       align-items: center;
@@ -929,6 +947,10 @@ table {
           margin-top: $padding-xs;
         }
       }
+
+      &_number {
+        width: 74px;
+      }
     }
 
     &__alert {
@@ -955,6 +977,16 @@ table {
 
       &_textarea {
         min-height: 180px;
+      }
+
+      &_number {
+        appearance: none;
+
+        &[type='number']::-webkit-inner-spin-button,
+        &[type='number']::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
       }
 
       &:focus {

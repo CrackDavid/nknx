@@ -13,6 +13,7 @@
         class="fd-choice__card"
         col="none"
         padding="medium"
+        @click.native="openFastDeployModal(provider)"
       >
         <img
           :src="`/vps/${provider}.svg`"
@@ -52,6 +53,13 @@ export default {
   methods: {
     toSettings() {
       this.$router.push({ path: `/account-settings` })
+    },
+    openFastDeployModal(provider) {
+      this.$store.dispatch(
+        'fastDeployProvider/updateFastDeployProvider',
+        provider
+      )
+      this.$store.dispatch('modals/updateFastDeployModalVisible', true)
     }
   }
 }
