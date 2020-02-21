@@ -41,7 +41,7 @@ export default {
   },
   data: function() {
     return {
-      providers: ['DigitalOcean', 'Linode', 'AWS', 'Vultr', 'Custom']
+      providers: ['DigitalOcean', 'Linode', 'AWS', 'Vultr', 'Hetzner', 'Custom']
     }
   },
   computed: {
