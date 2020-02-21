@@ -168,12 +168,9 @@ export default {
       this.isActions = false
     },
     setActiveConfig(config) {
-      const payload =
-        config.id === this.activeFastDeployConfig.id ? false : config
-
       this.$store.dispatch(
         'fastDeployConfigs/updateActiveFastDeployConfig',
-        payload
+        config
       )
     },
     openDeleteConfigModal(config) {

@@ -23,4 +23,14 @@
       margin-top: $padding-default;
     }
   }
+
+  &__reminder {
+    color: $orange;
+    font-size: $font-size-sm;
+  }
+
+  &__scroll {
+    max-height: 210px;
+    overflow-y: auto;
+  }
 }

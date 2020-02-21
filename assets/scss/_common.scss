@@ -378,6 +378,12 @@ h3 {
     }
   }
 
+  &_weight {
+    &_bold {
+      font-weight: bold;
+    }
+  }
+
   &_uppercase {
     text-transform: uppercase;
   }

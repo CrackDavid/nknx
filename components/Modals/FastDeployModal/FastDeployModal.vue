@@ -2,100 +2,118 @@
   <div class="modal-wrapper">
     <div class="modal-dialog">
       <div v-on-clickaway="closeModal" class="modal-form fast-deploy__form">
-        <div class="modal__header">
-          <div class="modal__heading">{{ $t('deployNknNodesTo') }}</div>
-          <span class="modal__close fe fe-x" @click="closeModal"></span>
-        </div>
-        <div class="modal__title">{{ $t(fastDeployProvider) }}</div>
-
-        <div class="modal__body modal__body_wrap">
-          <div class="modal-input_full">
-            <label class="modal-input__label ">{{ $t('serverSize') }}</label>
-            <div class="modal-input__wrapper">
-              <Select
-                :items="sizes"
-                :active-item="activeSize.shortcut"
-                :item-text="'shortcut'"
-                @update="updateSize"
-              />
-            </div>
+        <div :class="preloader === true ? 'modal-form_blured' : null">
+          <div class="modal__header">
+            <div class="modal__heading">{{ $t('deployNknNodesTo') }}</div>
+            <span class="modal__close fe fe-x" @click="closeModal"></span>
           </div>
+          <div class="modal__title">{{ $t(fastDeployProvider) }}</div>
 
-          <div class="modal-input_full">
-            <label class="modal-input__label ">{{ $t('serverSize') }}</label>
-            <div class="modal-input__wrapper">
-              <Select
-                :items="activeSize.regions"
-                :active-item="activeRegion"
-                :upperCase="true"
-                @update="updateRegion"
-              />
-            </div>
-          </div>
-
-          <div class="fast-deploy__count">
-            <div class="modal-input fast-deploy__number">
-              <label class="modal-input__label">{{
-                $t('numberOfNodes')
-              }}</label>
-              <div class="modal-input__wrapper modal-input__wrapper_number">
-                <input
-                  v-model="count"
-                  type="number"
-                  class="modal-input__control modal-input__control_number"
-                  @keydown="numFilter"
+          <div class="modal__body modal__body_wrap">
+            <div class="modal-input_full">
+              <label class="modal-input__label ">{{ $t('serverSize') }}</label>
+              <div class="modal-input__wrapper">
+                <Select
+                  :items="sizes"
+                  :active-item="activeSize.shortcut"
+                  :item-text="'shortcut'"
+                  @update="updateSize"
                 />
-                <div class="modal-input__actions">
-                  <span
-                    class="modal-input__actions-icon fe fe-chevron-up"
-                    @click="incCount"
-                  />
-                  <span
-                    class="modal-input__actions-icon fe fe-chevron-down"
-                    @click="decCount"
-                  />
-                </div>
               </div>
             </div>
 
             <div class="modal-input_full">
-              <label class="modal-input__label">{{ $t('name') }}</label>
+              <label class="modal-input__label ">{{ $t('region') }}</label>
               <div class="modal-input__wrapper">
-                <input
-                  v-for="(label, i) in labels"
-                  :key="i"
-                  v-model="labels[i]"
-                  :placeholder="`My FastDeploy Node ${i}`"
-                  class="modal-input__control fast-deploy__name"
-                  type="text"
+                <Select
+                  :items="activeSize.regions"
+                  :active-item="activeRegion"
+                  :upperCase="true"
+                  @update="updateRegion"
                 />
               </div>
             </div>
+
+            <div class="fast-deploy__count">
+              <div class="modal-input fast-deploy__number">
+                <label class="modal-input__label">{{
+                  $t('numberOfNodes')
+                }}</label>
+                <div class="modal-input__wrapper modal-input__wrapper_number">
+                  <input
+                    v-model="count"
+                    type="number"
+                    class="modal-input__control modal-input__control_number"
+                    @keydown="numFilter"
+                  />
+                  <div class="modal-input__actions">
+                    <span
+                      class="modal-input__actions-icon fe fe-chevron-up"
+                      @click="incCount"
+                    />
+                    <span
+                      class="modal-input__actions-icon fe fe-chevron-down"
+                      @click="decCount"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-input_full fast-deploy__scroll">
+                <label class="modal-input__label">{{ $t('name') }}</label>
+                <div class="modal-input__wrapper">
+                  <input
+                    v-for="(label, i) in labels"
+                    :key="i"
+                    v-model="labels[i]"
+                    :placeholder="`My FastDeploy Node ${i}`"
+                    class="modal-input__control fast-deploy__name"
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fast-deploy__reminder">
+            <b class="text_weight_bold">{{ $t('reminder') }}: </b>
+            {{ $t('fastDeployReminder') }}
+          </div>
+
+          <div class="modal__footer">
+            <span
+              :class="[
+                'modal__footer-loader fe fe-loader',
+                isLoading === true ? 'modal__footer-loader_visible' : null
+              ]"
+            ></span>
+            <Button
+              class="modal__footer-button"
+              type="button"
+              theme="white"
+              @click.native="closeModal"
+              >{{ $t('cancel') }}</Button
+            >
+            <Button
+              class="modal__footer-button"
+              type="button"
+              :theme="isValid === true ? 'primary' : 'white'"
+              :disabled="isValid === true ? false : true"
+              @click.native="isValid === true ? deploy() : false"
+              >{{ $t('confirm') }}</Button
+            >
           </div>
         </div>
-
-        <div class="modal__footer">
-          <span
-            :class="[
-              'modal__footer-loader fe fe-loader',
-              isLoading === true ? 'modal__footer-loader_visible' : null
-            ]"
-          ></span>
-          <Button
-            class="modal__footer-button"
-            type="button"
-            theme="white"
-            @click.native="closeModal"
-            >{{ $t('cancel') }}</Button
-          >
-          <Button
-            class="modal__footer-button"
-            type="button"
-            :theme="isValid === true ? 'primary' : 'white'"
-            :disabled="isValid === true ? false : true"
-            @click.native="isValid === true ? deploy() : false"
-            >{{ $t('confirm') }}</Button
-          >
+      </div>
+      <div v-if="preloader" class="modal__loading-overlay">
+        <span
+          :class="[
+            'modal__footer-loader modal__footer-loader_static fe fe-loader',
+            preloader === true ? 'modal__footer-loader_visible' : null
+          ]"
+        ></span>
+        <div class="modal__loading-overlay-text">
+          {{ $t('fastDeployLoading') }}
         </div>
       </div>
     </div>
@@ -122,7 +140,8 @@ export default {
       activeRegion: '',
       labels: ['My FastDeploy Node 1'],
       count: 1,
-      isLoading: false
+      isLoading: false,
+      preloader: false
     }
   },
   computed: {
@@ -182,8 +201,11 @@ export default {
       }
     },
     getSizes() {
+      const provider = this.fastDeployProvider.toLowerCase()
+      this.preloader = true
+
       this.$axios
-        .$get('fast-deploy/helpers/digitalocean/sizes')
+        .$get(`fast-deploy/helpers/${provider}/sizes`)
         .then(response => {
           this.sizes = response
           this.sizes.forEach(item => {
@@ -193,6 +215,7 @@ export default {
           })
           this.activeSize = this.sizes[0]
           this.activeRegion = this.activeSize.regions[0]
+          this.preloader = false
         })
     },
     deploy() {
@@ -201,21 +224,26 @@ export default {
           `fast-deploy/configurations/${this.fastDeployConfig.id}/deployment`,
           {
             provider: this.fastDeployProvider,
-            names: this.labels,
+            names: this.labels.join(),
             size: this.activeSize.slug,
             region: this.activeRegion,
             vps_key_id: 33
           }
         )
         .then(response => {
-          this.sizes = response
-          this.sizes.forEach(item => {
-            item.shortcut = `${item.memory / 1024}GB RAM - ${
-              item.vcpus
-            } CPU Core - ${item.disk}GB SSD`
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: 'fastDeploySuccess',
+            color: 'success',
+            timeout: true
           })
-          this.activeSize = this.sizes[0]
-          this.activeRegion = this.activeSize.regions[0]
+        })
+        .catch(error => {
+          this.loading = false
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: error.response.data.msg,
+            color: 'error',
+            timeout: true
+          })
         })
     },
     updateSize(size) {
