@@ -46,7 +46,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userProviders: 'userProviders/getUserProviders'
+      userProviders: 'userProviders/getUserProviders',
+      userProvidersFilter: 'userProviders/getUserProvidersFilter',
+      fastDeployConfig: 'fastDeployConfigs/getActiveFastDeployConfig'
     })
   },
   mounted() {},
@@ -54,12 +56,27 @@ export default {
     toSettings() {
       this.$router.push({ path: `/account-settings` })
     },
-    openFastDeployModal(provider) {
-      this.$store.dispatch(
-        'fastDeployProvider/updateFastDeployProvider',
-        provider
-      )
-      this.$store.dispatch('modals/updateFastDeployModalVisible', true)
+    async openFastDeployModal(provider) {
+      const { data } = await this.$axios.$get(`vps-keys/?filter=${provider}`)
+      if (data.length < 1) {
+        this.$store.dispatch('snackbar/updateSnack', {
+          snack: 'noApiKeyError',
+          color: 'error',
+          timeout: true
+        })
+      } else if (this.fastDeployConfig.id === 0) {
+        this.$store.dispatch('snackbar/updateSnack', {
+          snack: 'noFdConfigError',
+          color: 'error',
+          timeout: true
+        })
+      } else {
+        this.$store.dispatch(
+          'fastDeployProvider/updateFastDeployProvider',
+          provider
+        )
+        this.$store.dispatch('modals/updateFastDeployModalVisible', true)
+      }
     }
   }
 }

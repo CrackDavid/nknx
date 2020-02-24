@@ -3,23 +3,23 @@
     <div class="page__node-manager">
       <div class="page__node-manager-heading">
         <div class="page__node-manager-left">
-          <h1>{{$t(pageTitle)}}</h1>
+          <h1>{{ $t(pageTitle) }}</h1>
           <NodeOnline v-if="totalNodes > 0" :filters="filters" />
         </div>
 
         <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
           <div class="page__node-manager-right">
-            <Button theme="success" @click.native="openFastDeployModal">
-              <span class="button__icon fe fe-upload-cloud"></span>
-              {{$t('fastDeploy')}}
-            </Button>
             <Button @click.native="openNewNodeModal">
               <span class="button__icon fe fe-plus"></span>
-              {{$t('addNodes')}}
+              {{ $t('addNodes') }}
             </Button>
-            <Button v-if="totalNodes > 0" theme="danger" @click.native="openDeleteAllNodesModal">
+            <Button
+              v-if="totalNodes > 0"
+              theme="danger"
+              @click.native="openDeleteAllNodesModal"
+            >
               <span class="button__icon fe fe-trash-2"></span>
-              {{$t('deleteAllNodes')}}
+              {{ $t('deleteAllNodes') }}
             </Button>
           </div>
         </template>
@@ -32,38 +32,73 @@
               theme="default"
               @click.native="isActions = true"
             >
-              <span style="margin-right: 0;" class="button__icon fe fe-more-horizontal"></span>
+              <span
+                style="margin-right: 0;"
+                class="button__icon fe fe-more-horizontal"
+              ></span>
               <div
-                :class="['node-manager__actions-modal node-manager__actions-modal_more', isActions === true ? 'node-manager__actions-modal_visible' : null]"
+                :class="[
+                  'node-manager__actions-modal node-manager__actions-modal_more',
+                  isActions === true
+                    ? 'node-manager__actions-modal_visible'
+                    : null
+                ]"
               >
-                <div class="node-manager__actions-item" @click="openFastDeployModal">
-                  <span class="node-manager__actions-icon fe fe-upload-cloud"></span>
-                  <span class="node-manager__actions-title">{{$t('fastDeploy')}}</span>
+                <div
+                  class="node-manager__actions-item"
+                  @click="openFastDeployModal"
+                >
+                  <span
+                    class="node-manager__actions-icon fe fe-upload-cloud"
+                  ></span>
+                  <span class="node-manager__actions-title">{{
+                    $t('fastDeploy')
+                  }}</span>
                 </div>
-                <div class="node-manager__actions-item" @click="openDeleteAllNodesModal">
+                <div
+                  class="node-manager__actions-item"
+                  @click="openDeleteAllNodesModal"
+                >
                   <span class="node-manager__actions-icon fe fe-trash-2"></span>
-                  <span class="node-manager__actions-title">{{$t('deleteAllNodes')}}</span>
+                  <span class="node-manager__actions-title">{{
+                    $t('deleteAllNodes')
+                  }}</span>
                 </div>
               </div>
             </Button>
-            <Button class="page__node-manager-btn" @click.native="openNewNodeModal">
+            <Button
+              class="page__node-manager-btn"
+              @click.native="openNewNodeModal"
+            >
               <span class="button__icon fe fe-plus"></span>
-              {{$t('addNodes')}}
+              {{ $t('addNodes') }}
             </Button>
           </div>
         </template>
       </div>
-      <NodeStats :nodes="totalNodes" :total="total" :daily="daily" :reward24="reward24" />
+      <NodeStats
+        :nodes="totalNodes"
+        :total="total"
+        :daily="daily"
+        :reward24="reward24"
+      />
       <NodeFilter v-if="totalNodes > 0" :nodes="nodes" :filters="filters" />
     </div>
 
     <ContentWrapper v-if="totalNodes > 0">
       <Grid>
         <NodeSearchBar />
-        <NodeManager v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" :nodes="nodes" />
+        <NodeManager
+          v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'"
+          :nodes="nodes"
+        />
         <template v-else>
           <template v-if="!userConfig.loading">
-            <NodeCardMobile v-for="node in nodes" :key="node.addr" :node="node" />
+            <NodeCardMobile
+              v-for="node in nodes"
+              :key="node.addr"
+              :node="node"
+            />
           </template>
           <template v-else>
             <WalletCardLoader v-for="(loader, index) in loaders" :key="index" />
@@ -163,10 +198,6 @@ export default {
     },
     openDeleteAllNodesModal() {
       this.$store.dispatch('modals/updateDeleteAllNodesModalVisible', true)
-      this.closeActions()
-    },
-    openFastDeployModal() {
-      this.$store.dispatch('modals/updateFastDeployModalVisible', true)
       this.closeActions()
     },
     fetchNodesData() {
