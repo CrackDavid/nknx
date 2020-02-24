@@ -78,7 +78,7 @@
                     v-for="(label, i) in labels"
                     :key="i"
                     v-model="labels[i]"
-                    :placeholder="`My FastDeploy Node ${i}`"
+                    :placeholder="`My-FastDeploy-Node-${i}`"
                     class="modal-input__control fast-deploy__name"
                     type="text"
                   />
@@ -152,7 +152,7 @@ export default {
       activeSize: '',
       activeRegion: '',
       activeKey: '',
-      labels: ['My FastDeploy Node 1'],
+      labels: ['My-FastDeploy-Node-1'],
       count: 1,
       isLoading: false,
       preloader: false
@@ -189,7 +189,7 @@ export default {
 
       if (isInc) {
         for (let i = labelsLength + 1; i <= newVal; i++) {
-          this.labels.push(`My FastDeploy Node ${i}`)
+          this.labels.push(`My-FastDeploy-Node-${i}`)
         }
       } else {
         this.labels = this.labels.slice(0, newVal)
@@ -243,33 +243,48 @@ export default {
       this.keys = data
       this.activeKey = this.keys[0]
     },
+    validateLabels(str) {
+      const regExp = /^[a-zA-Z0-9.-]*$/
+      return regExp.test(str)
+    },
     deploy() {
-      this.$axios
-        .$post(
-          `fast-deploy/configurations/${this.fastDeployConfig.id}/deployment`,
-          {
-            provider: this.fastDeployProvider,
-            names: this.labels.join(),
-            size: this.activeSize.slug,
-            region: this.activeRegion,
-            vps_key_id: this.activeKey.id
-          }
-        )
-        .then(response => {
-          this.$store.dispatch('snackbar/updateSnack', {
-            snack: 'fastDeploySuccess',
-            color: 'success',
-            timeout: true
+      const labels = this.labels.join('-')
+      const isValidLabels = this.validateLabels(labels)
+
+      if (isValidLabels) {
+        this.$axios
+          .$post(
+            `fast-deploy/configurations/${this.fastDeployConfig.id}/deployment`,
+            {
+              provider: this.fastDeployProvider,
+              names: this.labels.join(),
+              size: this.activeSize.slug,
+              region: this.activeRegion,
+              vps_key_id: this.activeKey.id
+            }
+          )
+          .then(response => {
+            this.$store.dispatch('snackbar/updateSnack', {
+              snack: 'fastDeploySuccess',
+              color: 'success',
+              timeout: true
+            })
           })
-        })
-        .catch(error => {
-          this.loading = false
-          this.$store.dispatch('snackbar/updateSnack', {
-            snack: error.response.data.msg,
-            color: 'error',
-            timeout: true
+          .catch(error => {
+            this.loading = false
+            this.$store.dispatch('snackbar/updateSnack', {
+              snack: error.response.data.msg,
+              color: 'error',
+              timeout: true
+            })
           })
+      } else {
+        this.$store.dispatch('snackbar/updateSnack', {
+          snack: 'invalidVpsName',
+          color: 'error',
+          timeout: true
         })
+      }
     },
     updateSize(size) {
       this.activeSize = size
