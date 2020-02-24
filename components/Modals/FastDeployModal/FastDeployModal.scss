@@ -12,10 +12,19 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+
+    @include size-sm {
+      flex-flow: row wrap;
+    }
   }
 
   &__number {
     margin-right: $padding-medium !important;
+
+    @include size-sm {
+      width: 100%;
+      margin-right: 0 !important;
+    }
   }
 
   &__name {
@@ -32,5 +41,10 @@
   &__scroll {
     max-height: 210px;
     overflow-y: auto;
+
+    @include size-sm {
+      width: 100%;
+      margin-top: $padding-default;
+    }
   }
 }

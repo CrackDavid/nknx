@@ -10,6 +10,18 @@
           <div class="modal__title">{{ $t(fastDeployProvider) }}</div>
 
           <div class="modal__body modal__body_wrap">
+            <div v-if="keys.length > 1" class="modal-input_full">
+              <label class="modal-input__label ">{{ $t('profile') }}</label>
+              <div class="modal-input__wrapper">
+                <Select
+                  :items="keys"
+                  :active-item="activeKey.profile_name"
+                  :item-text="'profile_name'"
+                  @update="updateKey"
+                />
+              </div>
+            </div>
+
             <div class="modal-input_full">
               <label class="modal-input__label ">{{ $t('serverSize') }}</label>
               <div class="modal-input__wrapper">
@@ -136,8 +148,10 @@ export default {
   data: () => {
     return {
       sizes: [],
+      keys: [],
       activeSize: '',
       activeRegion: '',
+      activeKey: '',
       labels: ['My FastDeploy Node 1'],
       count: 1,
       isLoading: false,
@@ -155,6 +169,7 @@ export default {
         this.activeSize !== '' &&
         this.isLoading === false &&
         this.activeRegion !== '' &&
+        this.activeKey !== '' &&
         this.labels.length > 0
       ) {
         return true
@@ -186,7 +201,7 @@ export default {
   },
   created() {},
   mounted() {
-    this.getSizes()
+    this.preloadData()
   },
   methods: {
     incCount() {
@@ -200,23 +215,33 @@ export default {
         e.preventDefault()
       }
     },
-    getSizes() {
-      const provider = this.fastDeployProvider.toLowerCase()
+    async preloadData() {
       this.preloader = true
+      await this.getSizes()
+      await this.getKeys()
+      this.preloader = false
+    },
+    async getSizes() {
+      const provider = this.fastDeployProvider.toLowerCase()
 
-      this.$axios
-        .$get(`fast-deploy/helpers/${provider}/sizes`)
-        .then(response => {
-          this.sizes = response
-          this.sizes.forEach(item => {
-            item.shortcut = `${item.memory / 1024}GB RAM - ${
-              item.vcpus
-            } CPU Core - ${item.disk}GB SSD`
-          })
-          this.activeSize = this.sizes[0]
-          this.activeRegion = this.activeSize.regions[0]
-          this.preloader = false
-        })
+      this.sizes = await this.$axios.$get(
+        `fast-deploy/helpers/${provider}/sizes`
+      )
+
+      this.sizes.forEach(item => {
+        item.shortcut = `${item.memory / 1024}GB RAM - ${
+          item.vcpus
+        } CPU Core - ${item.disk}GB SSD`
+      })
+      this.activeSize = this.sizes[0]
+      this.activeRegion = this.activeSize.regions[0]
+    },
+    async getKeys() {
+      const { data } = await this.$axios.$get(
+        `vps-keys/?filter=${this.fastDeployProvider}`
+      )
+      this.keys = data
+      this.activeKey = this.keys[0]
     },
     deploy() {
       this.$axios
@@ -227,7 +252,7 @@ export default {
             names: this.labels.join(),
             size: this.activeSize.slug,
             region: this.activeRegion,
-            vps_key_id: 33
+            vps_key_id: this.activeKey.id
           }
         )
         .then(response => {
@@ -251,6 +276,9 @@ export default {
     },
     updateRegion(region) {
       this.activeRegion = region
+    },
+    updateKey(key) {
+      this.activeKey = key
     },
     clearData() {},
     closeModal() {

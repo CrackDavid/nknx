@@ -956,6 +956,10 @@ table {
 
       &_number {
         width: 150px;
+
+        @include size-sm {
+          width: 100%;
+        }
       }
     }
 
