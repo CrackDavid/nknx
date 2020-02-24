@@ -269,6 +269,7 @@ export default {
               color: 'success',
               timeout: true
             })
+            this.closeModal()
           })
           .catch(error => {
             this.loading = false
