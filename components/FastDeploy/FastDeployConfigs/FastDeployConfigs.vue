@@ -88,7 +88,8 @@
             <td class="table__item text_align_center">
               <span
                 class="node-manager__actions fe fe-more-horizontal"
-                @click="isActions = config.id"
+                @mouseover="isActions = config.id"
+                @mouseout="isActions = false"
               >
                 <div
                   :class="[

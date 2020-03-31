@@ -61,7 +61,8 @@
             <td class="table__item text_align_center">
               <span
                 class="node-manager__actions fe fe-more-horizontal"
-                @click="isActions = vps.id"
+                @mouseover="isActions = vps.id"
+                @mouseout="closeActionsModal"
               >
                 <div
                   :class="[

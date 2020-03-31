@@ -3,34 +3,48 @@
     <div class="modal-dialog">
       <div v-on-clickaway="closeModal" class="modal-form">
         <div class="modal__header">
-          <div class="modal__heading">{{$t('walletTracker')}}</div>
+          <div class="modal__heading">{{ $t('walletTracker') }}</div>
           <span class="modal__close fe fe-x" @click="closeModal"></span>
         </div>
-        <div class="modal__title">{{$t('deleteWallet')}}</div>
+        <div class="modal__title">{{ $t('deleteWallet') }}</div>
         <div class="modal__body modal__body_wrap">
-          <div class="modal__message">{{$t('deleteWalletConfirm')}} {{activeWallet.address}}?</div>
+          <div class="modal__message">
+            {{ $t('deleteWalletConfirm') }} {{ activeWallet.address }}?
+          </div>
           <div
-            :class="['modal-input', isError === true ? 'modal-input_error' : isSuccess === true ? 'modal-input_success' : null]"
+            :class="[
+              'modal-input',
+              isError === true
+                ? 'modal-input_error'
+                : isSuccess === true
+                ? 'modal-input_success'
+                : null
+            ]"
           >
-            <div class="modal-input__alert">{{$t(alertMsg)}}</div>
+            <div class="modal-input__alert">{{ $t(alertMsg) }}</div>
           </div>
         </div>
         <div class="modal__footer">
           <span
-            :class="['modal__footer-loader fe fe-loader',  isLoading === true ? 'modal__footer-loader_visible' : null]"
+            :class="[
+              'modal__footer-loader fe fe-loader',
+              isLoading === true ? 'modal__footer-loader_visible' : null
+            ]"
           ></span>
           <Button
             class="modal__footer-button"
             type="button"
             theme="white"
             @click.native="closeModal"
-          >{{$t('cancel')}}</Button>
+            >{{ $t('cancel') }}</Button
+          >
           <Button
             class="modal__footer-button"
             type="button"
             theme="primary"
             @click.native="deleteWallet(activeWallet.id)"
-          >{{$t('confirm')}}</Button>
+            >{{ $t('confirm') }}</Button
+          >
         </div>
       </div>
     </div>
@@ -82,12 +96,23 @@ export default {
           self.isSuccess = true
           self.$store.dispatch('userWallets/updateUserWallets')
           self.isLoading = false
-          setTimeout(self.closeModal, 1000)
+          self.closeModal()
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: 'successWalletDeleteAlert',
+            color: 'success',
+            timeout: true
+          })
         })
         .catch(error => {
           self.isError = true
           self.alertMsg = 'failedWalletDeleteAlert'
           self.isLoading = false
+          self.closeModal()
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: 'failedWalletDeleteAlert',
+            color: 'error',
+            timeout: true
+          })
         })
     }
   }

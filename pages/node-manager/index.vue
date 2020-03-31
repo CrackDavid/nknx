@@ -46,17 +46,6 @@
               >
                 <div
                   class="node-manager__actions-item"
-                  @click="openFastDeployModal"
-                >
-                  <span
-                    class="node-manager__actions-icon fe fe-upload-cloud"
-                  ></span>
-                  <span class="node-manager__actions-title">{{
-                    $t('fastDeploy')
-                  }}</span>
-                </div>
-                <div
-                  class="node-manager__actions-item"
                   @click="openDeleteAllNodesModal"
                 >
                   <span class="node-manager__actions-icon fe fe-trash-2"></span>
