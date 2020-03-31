@@ -1070,11 +1070,20 @@ table {
 
 /*========== Transitions ==========*/
 
-.fade-enter-active,
-.fade-leave-active {
+.modal-enter-active,
+.modal-leave-active {
   transition: $transition-1;
+
+  .modal-form {
+    transition: $transition-1;
+  }
 }
-.fade-enter,
-.fade-leave-to {
+.modal-enter,
+.modal-leave-to {
   opacity: 0;
+
+  .modal-form {
+    transform: translate(0, -25%);
+    opacity: 0;
+  }
 }

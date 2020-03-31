@@ -46,7 +46,7 @@
           : null
       ]"
     />
-    <transition name="fade">
+    <transition name="modal">
       <NewWalletModal v-if="newWalletModalVisible" />
       <DeleteWalletModal v-if="deleteWalletModalVisible" />
       <NewNodeModal v-if="newNodeModalVisible" />
