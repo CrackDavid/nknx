@@ -16,6 +16,7 @@
     background-color: $secondary;
     border-radius: 100px;
     margin-right: 14px;
+    max-width: 80%;
 
     @include size-md {
       display: block;

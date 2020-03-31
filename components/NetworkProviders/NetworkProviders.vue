@@ -2,24 +2,33 @@
   <Card :col="$mq === 'xl' ? '3' : '12'">
     <div class="network-providers">
       <div class="network-providers__header">
-        <h3 class="network-providers__heading">{{$t('nodeProvider')}}</h3>
+        <h3 class="network-providers__heading">{{ $t('nodeProvider') }}</h3>
       </div>
     </div>
     <NetworkProvidersChart />
     <div class="network-providers__top">
       <div class="network-providers__top-title">
-        <div>{{$t('top3Providers')}}</div>
+        <div>{{ $t('top3Providers') }}</div>
       </div>
-      <div v-for="item in providersTop" :key="item.isp" class="network-providers__top-item">
+      <div
+        v-for="item in providersTop"
+        :key="item.isp"
+        class="network-providers__top-item"
+      >
         <div class="network-providers__top-icon">
-          <img :src="'/isp/'+item.isp + '.png' || '' " />
+          <img :src="'/isp/' + item.isp + '.png' || ''" />
         </div>
         <div class="network-providers__top-stats">
           <div class="network-providers__top-heading">
-            <div class="network-providers__top-name">{{item.isp}}</div>
-            <div class="network-providers__top-counter">{{item.count}}</div>
+            <div class="network-providers__top-name text_wrap_none">
+              {{ item.isp }}
+            </div>
+            <div class="network-providers__top-counter">{{ item.count }}</div>
           </div>
-          <div class="network-providers__top-bar" :style="{width: item.percent+'%'}"></div>
+          <div
+            class="network-providers__top-bar"
+            :style="{ width: item.percent + '%' }"
+          ></div>
         </div>
       </div>
     </div>
