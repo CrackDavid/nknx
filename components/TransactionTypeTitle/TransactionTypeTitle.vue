@@ -1,5 +1,5 @@
 <template>
-  <div>{{$t(title)}}</div>
+  <div>{{ $t(title) }}</div>
 </template>
 
 <style lang="scss">
@@ -67,6 +67,10 @@ export default {
         case 'GENERATE_ID_TYPE':
           this.title = 'generateId'
           this.className = 'generate-id'
+          break
+        case 'PRUNING_DB':
+          this.title = 'pruningDb'
+          this.className = 'pruning'
           break
         default:
           return false

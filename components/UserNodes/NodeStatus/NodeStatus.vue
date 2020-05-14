@@ -1,8 +1,8 @@
 <template>
   <span class="node-status">
-    <span :class="'node-status_state_'+ className">
+    <span :class="'node-status_state_' + className">
       <span :class="'node-status__icon fe fe-' + icon"></span>
-      <span class="node-status__text">{{$t(name)}}</span>
+      <span class="node-status__text">{{ $t(name) }}</span>
     </span>
   </span>
 </template>
@@ -76,6 +76,11 @@ export default {
           this.name = 'mining'
           this.className = 'mining'
           this.icon = 'activity'
+          break
+        case 'PRUNING_DB':
+          this.name = 'pruning'
+          this.className = 'pruning'
+          this.icon = 'download-cloud'
           break
         default:
           return false

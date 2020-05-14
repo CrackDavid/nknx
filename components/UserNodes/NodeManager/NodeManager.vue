@@ -5,13 +5,20 @@
         <th
           v-for="heading in headings"
           :key="heading.title"
-          :class="active === heading.value && heading.value.length > 0 ? 'node-manager__sort_active' : null"
+          :class="
+            active === heading.value && heading.value.length > 0
+              ? 'node-manager__sort_active'
+              : null
+          "
           @click="heading.value.length > 0 ? sortNodes(heading.value) : null"
         >
           <span class="node-manager__sort-title">
-            {{$t(heading.title)}}
+            {{ $t(heading.title) }}
             <span
-              :class="['node-manager__sort-icon fe', order !== true ? 'fe-chevron-down' : 'fe-chevron-up']"
+              :class="[
+                'node-manager__sort-icon fe',
+                order !== true ? 'fe-chevron-down' : 'fe-chevron-up'
+              ]"
             ></span>
           </span>
         </th>
@@ -29,26 +36,55 @@
           <tr
             v-for="node in nodes"
             :key="node.pivot.node_id"
-            :class="node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null"
+            :class="
+              node.syncState === 'OFFLINE' ? 'node-manager_state_offline' : null
+            "
           >
-            <td>{{node.addr}}</td>
-            <td>{{node.pivot.label}}</td>
+            <td>{{ node.addr }}</td>
+            <td>{{ node.pivot.label }}</td>
             <td>
               <NodeStatus :status="node.syncState" />
             </td>
-            <td><span v-if="node.version !== null">{{node.height}}</span><span v-else>{{$t('n/a')}}</span></td>
-            <td><span v-if="node.version !== null">{{node.version | nodeVersion}}</span> <span v-else>{{$t('n/a')}}</span></td>
-            <td><span v-if="node.version !== null">{{node.blocksMined}}</span>  <span v-else>{{$t('n/a')}}</span></td>
-            <td><span v-if="node.version !== null">{{node.relayMessageCount}}</span>  <span v-else>{{$t('n/a')}}</span></td>
+            <td>
+              <span v-if="node.version !== null">{{ node.height }}</span
+              ><span v-else>{{ $t('n/a') }}</span>
+            </td>
+            <td>
+              <span v-if="node.version !== null">{{
+                node.version | nodeVersion
+              }}</span>
+              <span v-else>{{ $t('n/a') }}</span>
+            </td>
+            <td>
+              <span v-if="node.version !== null">{{ node.blocksMined }}</span>
+              <span v-else>{{ $t('n/a') }}</span>
+            </td>
+            <td>
+              <span v-if="node.version !== null">{{
+                node.relayMessageCount
+              }}</span>
+              <span v-else>{{ $t('n/a') }}</span>
+            </td>
             <td>
               <NodeMiningHistoryChart
-                v-if="node.node_snapshots.length > 0 && node.syncState !== 'OFFLINE' && node.syncState !== 'GENERATE_ID'"
+                v-if="
+                  node.node_snapshots.length > 0 &&
+                    node.syncState !== 'OFFLINE' &&
+                    node.syncState !== 'GENERATE_ID' &&
+                    node.syncState !== 'PRUNING_DB'
+                "
                 :data="node.node_snapshots"
                 :state="node.syncState"
               />
               <span
-                v-if="node.syncState === 'OFFLINE' || node.syncState === 'GENERATE_ID' || node.node_snapshots.length === 0"
-              >{{$t('n/a')}}</span>
+                v-if="
+                  node.syncState === 'OFFLINE' ||
+                    node.syncState === 'GENERATE_ID' ||
+                    node.syncState === 'PRUNING_DB' ||
+                    node.node_snapshots.length === 0
+                "
+                >{{ $t('n/a') }}</span
+              >
             </td>
             <td>
               <span
@@ -56,15 +92,34 @@
                 @click="isActions = node.id"
               >
                 <div
-                  :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
+                  :class="[
+                    'node-manager__actions-modal',
+                    isActions === node.id
+                      ? 'node-manager__actions-modal_visible'
+                      : null
+                  ]"
                 >
-                  <div class="node-manager__actions-item" @click="openEditNodeModal(node)">
-                    <span class="node-manager__actions-icon fe fe-edit-2"></span>
-                    <span class="node-manager__actions-title">{{$t('editNode')}}</span>
+                  <div
+                    class="node-manager__actions-item"
+                    @click="openEditNodeModal(node)"
+                  >
+                    <span
+                      class="node-manager__actions-icon fe fe-edit-2"
+                    ></span>
+                    <span class="node-manager__actions-title">{{
+                      $t('editNode')
+                    }}</span>
                   </div>
-                  <div class="node-manager__actions-item" @click="openDeleteNodeModal(node)">
-                    <span class="node-manager__actions-icon fe fe-trash-2"></span>
-                    <span class="node-manager__actions-title">{{$t('delete')}}</span>
+                  <div
+                    class="node-manager__actions-item"
+                    @click="openDeleteNodeModal(node)"
+                  >
+                    <span
+                      class="node-manager__actions-icon fe fe-trash-2"
+                    ></span>
+                    <span class="node-manager__actions-title">{{
+                      $t('delete')
+                    }}</span>
                   </div>
                 </div>
               </span>
