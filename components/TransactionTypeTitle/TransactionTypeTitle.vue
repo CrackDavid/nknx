@@ -68,10 +68,6 @@ export default {
           this.title = 'generateId'
           this.className = 'generate-id'
           break
-        case 'PRUNING_DB_TYPE':
-          this.title = 'pruningDb'
-          this.className = 'pruning'
-          break
         default:
           return false
       }
