@@ -27,12 +27,16 @@ export default {
       const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
       let nodesAverage = this.userWallets.sumWalletSnapshots.slice(0, 7)
       const data = []
-      nodesAverage.forEach(node => {
-        data.push({
-          date: this.$moment(node.day).toDate(),
-          count: node.balance
+
+      if (nodesAverage.length) {
+        nodesAverage.forEach(node => {
+          data.push({
+            date: this.$moment(node.day).toDate(),
+            count: node.balance
+          })
         })
-      })
+      }
+
       chart.data = data
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
       dateAxis.renderer.grid.template.disabled = true

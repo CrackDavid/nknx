@@ -1,5 +1,10 @@
 <template>
-  <SparklineStats title="totalMined" :change="change" :dailyValue="valueArr" symbol="NKN">
+  <SparklineStats
+    title="totalMined"
+    :change="change"
+    :dailyValue="valueArr"
+    symbol="NKN"
+  >
     <DailyMinedChart />
   </SparklineStats>
 </template>
@@ -26,13 +31,17 @@ export default {
     },
     change: function() {
       const data = this.userNodesStats.sumNodeSnapshots
-      const day1 = data[0].mined
-      const day2 = data[1].mined
+      if (data.length) {
+        const day1 = data[0].mined
+        const day2 = data[1].mined
 
-      if (day1 > 0 && day2 > 0) {
-        return (((day1 - day2) / day1) * 100).toFixed(2)
+        if (day1 > 0 && day2 > 0) {
+          return (((day1 - day2) / day1) * 100).toFixed(2)
+        } else {
+          return (day1 * 100).toFixed(2)
+        }
       } else {
-        return (day1 * 100).toFixed(2)
+        return '0'
       }
     }
   },

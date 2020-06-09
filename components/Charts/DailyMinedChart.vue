@@ -18,11 +18,13 @@ export default {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     let nodesAverage = this.userNodesStats.sumNodeSnapshots
     const data = []
-    for (let i = 0; i < 7; i++) {
-      data.push({
-        date: this.$moment(nodesAverage[i].day).toDate(),
-        count: nodesAverage[i].mined
-      })
+    if (nodesAverage.length) {
+      for (let i = 0; i < 7; i++) {
+        data.push({
+          date: this.$moment(nodesAverage[i].day).toDate(),
+          count: nodesAverage[i].mined
+        })
+      }
     }
 
     chart.data = data
