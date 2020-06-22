@@ -194,6 +194,13 @@ export default {
       } else {
         this.labels = this.labels.slice(0, newVal)
       }
+    },
+    activeSize(){
+      const activeSize = this.activeSize
+      const activeRegion = this.activeRegion
+      const ifRegion = this.activeSize.regions.filter(region => region === activeRegion)
+
+      this.activeRegion = ifRegion.length ? ifRegion[0] : activeSize.regions[0]
     }
   },
   destroyed() {
