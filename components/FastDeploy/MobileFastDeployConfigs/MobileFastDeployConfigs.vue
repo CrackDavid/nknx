@@ -43,16 +43,6 @@
         <div class="mobile-fd-config__value text_wrap_none">
           {{ config.beneficiary_addr }}
         </div>
-        <div class="mobile-fd-config__title">{{ $t('chain') }}?</div>
-        <div class="mobile-fd-config__value text_wrap_none">
-          <span v-if="config.download_chain">{{ $t('yes') }}</span>
-          <span v-else>{{ $t('no') }}</span>
-        </div>
-        <div class="mobile-fd-config__title">{{ $t('webUi') }}?</div>
-        <div class="mobile-fd-config__value text_wrap_none">
-          <span v-if="config.enable_web_ui">{{ $t('yes') }}</span>
-          <span v-else>{{ $t('no') }}</span>
-        </div>
         <div class="mobile-fd-config__title">{{ $t('disableUfw') }}?</div>
         <div class="mobile-fd-config__value text_wrap_none">
           <span v-if="config.disable_ufw">{{ $t('yes') }}</span>
@@ -60,7 +50,7 @@
         </div>
         <div class="mobile-fd-config__title">#{{ $t('deployments') }}</div>
         <div class="mobile-fd-config__value text_wrap_none">
-          0
+          {{ config.fd_deployments_count }}
         </div>
       </div>
     </div>
@@ -74,9 +64,9 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import { mixin as clickaway } from 'vue-clickaway'
 import Card from '~/components/Card/Card.vue'
 import Pagination from '~/components/Pagination/Pagination'
-import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   components: {

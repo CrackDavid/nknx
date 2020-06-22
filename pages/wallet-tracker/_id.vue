@@ -24,6 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import Arrow from '@/assets/icons/arrow.svg'
 import ContentWrapper from '~/components/ContentWrapper/ContentWrapper.vue'
 import Grid from '~/components/Grid/Grid.vue'
 import WalletPanel from '~/components/UserWallets/WalletPanel/WalletPanel.vue'
@@ -31,7 +32,6 @@ import WalletSide from '~/components/UserWallets/WalletSide/WalletSide.vue'
 import WalletBalanceHistory from '~/components/UserWallets/WalletBalanceHistory/WalletBalanceHistory.vue'
 import WalletTransactions from '~/components/UserWallets/WalletTransactions/WalletTransactions.vue'
 import MobileWalletTransactions from '~/components/UserWallets/MobileWalletTransactions/MobileWalletTransactions.vue'
-import Arrow from '@/assets/icons/arrow.svg'
 
 export default {
   head() {

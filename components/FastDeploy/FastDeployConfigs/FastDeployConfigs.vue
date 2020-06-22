@@ -39,8 +39,6 @@
             <th class="table__title" style="width: 10%;">
               {{ $t('beneficiaryAddress') }}
             </th>
-            <th class="table__title" style="width: 1%;">{{ $t('chain') }}?</th>
-            <th class="table__title" style="width: 1%;">{{ $t('webUi') }}?</th>
             <th class="table__title" style="width: 1%;">
               {{ $t('disableUfw') }}?
             </th>
@@ -71,19 +69,11 @@
               {{ config.beneficiary_addr }}
             </td>
             <td class="table__item">
-              <span v-if="config.download_chain">{{ $t('yes') }}</span>
-              <span v-else>{{ $t('no') }}</span>
-            </td>
-            <td class="table__item">
-              <span v-if="config.enable_web_ui">{{ $t('yes') }}</span>
-              <span v-else>{{ $t('no') }}</span>
-            </td>
-            <td class="table__item">
               <span v-if="config.disable_ufw">{{ $t('yes') }}</span>
               <span v-else>{{ $t('no') }}</span>
             </td>
             <td class="table__item">
-              0
+              {{ config.fd_deployments_count }}
             </td>
             <td class="table__item text_align_center">
               <span
@@ -127,9 +117,9 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import { mixin as clickaway } from 'vue-clickaway'
 import Card from '~/components/Card/Card.vue'
 import Pagination from '~/components/Pagination/Pagination'
-import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   components: {

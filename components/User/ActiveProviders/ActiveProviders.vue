@@ -111,9 +111,9 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import { mixin as clickaway } from 'vue-clickaway'
 import Card from '~/components/Card/Card.vue'
 import Pagination from '~/components/Pagination/Pagination'
-import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   components: {

@@ -28,20 +28,6 @@
           <div class="modal-radio__group">
             <Checkbox
               class="modal-radio__item"
-              name="downloadChain"
-              :value="downloadChain"
-              @change="changeDownloadChain"
-              >{{ $t('downloadChain') }}</Checkbox
-            >
-            <Checkbox
-              class="modal-radio__item"
-              name="enableWebUI"
-              :value="enableWebUI"
-              @change="changeEnableWebUI"
-              >{{ $t('enableWebUI') }}</Checkbox
-            >
-            <Checkbox
-              class="modal-radio__item"
               name="disableUFW"
               :value="disableUFW"
               @change="changeDisableUFW"

@@ -33,12 +33,12 @@
 </style>
 
 <script>
-import Welcome from '~/assets/icons/welcome.svg'
-import Logo from '~/assets/icons/logo.svg'
 import Twitter from '@/assets/icons/Twitter.svg'
 import Telegram from '@/assets/icons/Telegram.svg'
 import Medium from '@/assets/icons/MediumSymbol.svg'
 import Discord from '@/assets/icons/Discord.svg'
+import Logo from '~/assets/icons/logo.svg'
+import Welcome from '~/assets/icons/welcome.svg'
 
 export default {
   components: { Welcome, Logo, Twitter, Telegram, Medium, Discord },
