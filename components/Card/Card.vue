@@ -7,7 +7,8 @@
       colEnd ? `card_col-end_${colEnd}` : null,
       row ? `card_row_${row}` : null,
       padding ? `card_padding_${padding}` : null,
-      hover ? 'card_hover' : null
+      hover ? 'card_hover' : null,
+      overflow ? 'card_overflow' : null
     ]"
   >
     <slot />
@@ -45,6 +46,10 @@ export default {
     hover: {
       type: Boolean,
       default: false
+    },
+    overflow: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => {

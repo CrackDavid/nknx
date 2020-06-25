@@ -3,8 +3,11 @@
   border-radius: $card-border-radius;
   box-sizing: border-box;
   box-shadow: $card-shadow;
-  overflow: hidden;
   position: relative;
+
+  &_overflow{
+    overflow: hidden;
+  }
 
   &_col {
     &_1 {

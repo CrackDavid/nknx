@@ -4,6 +4,7 @@
       $mq === 'xl' ? '8' : $mq === 'llg' ? '12' : $mq === 'lg' ? '12' : '12'
     "
     padding="none"
+    :overflow="false"
   >
     <div class="card-header">
       <h3 class="card-header__title">
@@ -29,16 +30,13 @@
         </div>
       </div>
     </div>
-    <div class="overflow-x">
+    <div>
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
             <th class="table__title">{{ $t('name') }}</th>
             <th class="table__title">{{ $t('provider') }}</th>
             <th class="table__title">{{ $t('key') }}</th>
-            <th class="table__title">
-              {{ $t('secretOnlyAws') }}
-            </th>
             <th class="table__title" style="width: 1%;">
               {{ $t('actions') }}
             </th>
@@ -55,14 +53,11 @@
             <td class="table__item">
               *****
             </td>
-            <td class="table__item">
-              *****
-            </td>
             <td class="table__item text_align_center">
               <span
                 class="node-manager__actions fe fe-more-horizontal"
-                @mouseover="isActions = vps.id"
-                @mouseout="closeActionsModal"
+                @click="isActions = vps.id"
+                @clickaway="closeActionsModal"
               >
                 <div
                   :class="[

@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x node-manager__wrapper">
+  <div class="node-manager__wrapper">
     <table class="node-manager">
       <thead>
         <th
@@ -89,8 +89,8 @@
             <td>
               <span
                 class="node-manager__actions fe fe-more-horizontal"
-                @mouseover="isActions = node.id"
-                @mouseout="closeActionsModal"
+                @click="isActions = node.id"
+                @clickaway="closeActionsModal"
               >
                 <div
                   :class="[

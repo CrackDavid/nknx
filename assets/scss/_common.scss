@@ -219,6 +219,7 @@ h3 {
       position: relative;
       overflow: auto;
       grid-column: span 12;
+      padding-bottom: $padding-default;
     }
 
     &-heading {
@@ -894,6 +895,7 @@ table {
       position: absolute;
       right: $padding-default;
       top: 17px;
+      padding-left: $padding-micro;
       cursor: pointer;
       transition: $transition-1;
       background: $white;

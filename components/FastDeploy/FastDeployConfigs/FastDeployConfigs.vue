@@ -4,6 +4,7 @@
       $mq === 'xl' ? '8' : $mq === 'llg' ? '12' : $mq === 'lg' ? '12' : '12'
     "
     padding="none"
+    :overflow="false"
   >
     <div class="card-header">
       <h3 class="card-header__title">
@@ -29,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="overflow-x">
+    <div>
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
@@ -78,8 +79,7 @@
             <td class="table__item text_align_center">
               <span
                 class="node-manager__actions fe fe-more-horizontal"
-                @mouseover="isActions = config.id"
-                @mouseout="isActions = false"
+                @click="isActions = config.id"
               >
                 <div
                   :class="[

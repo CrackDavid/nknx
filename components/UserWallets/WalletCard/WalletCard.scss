@@ -84,19 +84,46 @@
 
     &-modal {
       transition: $transition-1;
-      opacity: 0;
       position: absolute;
-      right: 0;
-      top: 0px;
+      right: -12px;
+      top: 22px;
       border-radius: 4px;
       background-color: $white;
-      box-shadow: $shadow-2;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      border: 1px solid #dfdfdf;
       padding: $padding-small;
-      visibility: hidden;
+      transition: transform .2s ease-in-out,opacity .2s ease-in-out,width .2s ease-in-out,height .2s ease-in-out;
+      pointer-events: none;
+      transform: translate3d(0,-8px,0);
+      opacity: 0;
+      min-width: 110px;
 
       &_visible {
+        transform: translate3d(0,8px,0);
+        pointer-events: auto;
         opacity: 1;
-        visibility: visible;
+      }
+
+      &:before{
+        content: '';
+        position: absolute;
+        right: 15px;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #fff;
+        top: -7px;
+        z-index: 2;
+      }
+
+      &:after{
+        content: '';
+        position: absolute;
+        right: 13px;
+        margin-left: -2px;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 9px solid #dfdfdf;
+        top: -9px;
       }
     }
 
@@ -106,6 +133,10 @@
 
       &:hover {
         color: $secondary;
+
+        .fe{
+          color: $secondary;
+        }
       }
 
       &:active {
@@ -126,6 +157,7 @@
     &-icon {
       margin-right: 10px;
       color: $text-grey-light;
+      transition: $transition-1;
     }
 
     &:hover {

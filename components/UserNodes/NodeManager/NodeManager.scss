@@ -6,6 +6,7 @@
   &__wrapper {
     box-shadow: $shadow-1;
     border-radius: $card-border-radius;
+    grid-column: span 12;
   }
 
   &__label {
@@ -19,18 +20,54 @@
     transition: $transition-1;
     position: relative;
 
+    &:before{
+      transition: $transition-1;
+    }
+
+    &:hover{
+      &:before{
+        color: $primary;
+      }
+    }
+
     &-modal {
       transition: $transition-1;
-      opacity: 0;
       position: absolute;
-      right: -16px;
-      top: -22px;
+      right: -12px;
+      top: 22px;
       border-radius: 4px;
       background-color: $white;
-      box-shadow: $shadow-2;
-      padding: $padding-micro;
-      visibility: hidden;
-      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      border: 1px solid #dfdfdf;
+      padding: $padding-small;
+      transition: transform .2s ease-in-out,opacity .2s ease-in-out,width .2s ease-in-out,height .2s ease-in-out;
+      pointer-events: none;
+      transform: translate3d(0,-8px,0);
+      opacity: 0;
+      min-width: 110px;
+      z-index: 1;
+
+      &:before{
+        content: '';
+        position: absolute;
+        right: 15px;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #fff;
+        top: -7px;
+        z-index: 2;
+      }
+
+      &:after{
+        content: '';
+        position: absolute;
+        right: 13px;
+        margin-left: -2px;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 9px solid #dfdfdf;
+        top: -9px;
+      }
 
       &_more {
         right: 8px;
@@ -40,7 +77,8 @@
 
       &_visible {
         opacity: 1;
-        visibility: visible;
+        transform: translate3d(0,8px,0);
+        pointer-events: auto;
       }
     }
 
@@ -50,6 +88,10 @@
 
       &:hover {
         color: $primary;
+
+        .fe{
+          color: $secondary;
+        }
       }
 
       &:active {
@@ -71,6 +113,7 @@
       font-size: $font-size-sm;
       margin-right: 10px;
       color: $text-grey-light;
+      transition: $transition-1;
     }
   }
 
