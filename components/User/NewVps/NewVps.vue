@@ -109,7 +109,7 @@ export default {
   },
   data: () => {
     return {
-      providers: ['DigitalOcean', 'Linode', 'AWS', 'Vultr'],
+      providers: ['DigitalOcean', 'Vultr'],
       apiToken: '',
       name: 'Personal',
       apiSecret: '',

@@ -38,7 +38,7 @@
               <label class="modal-input__label ">{{ $t('region') }}</label>
               <div class="modal-input__wrapper">
                 <Select
-                  :items="activeSize.regions"
+                  :items="regionNames"
                   :active-item="activeRegion"
                   :upperCase="true"
                   @update="updateRegion"
@@ -164,6 +164,7 @@ export default {
       fastDeployProvider: 'fastDeployProvider/getFastDeployProvider',
       fastDeployConfig: 'fastDeployConfigs/getActiveFastDeployConfig'
     }),
+
     isValid() {
       if (
         this.activeSize !== '' &&
@@ -176,6 +177,9 @@ export default {
       } else {
         return false
       }
+    },
+    regionNames(){
+      return this.activeSize ? this.activeSize.regions.map(region => region.name) : []
     }
   },
   watch: {
@@ -198,9 +202,9 @@ export default {
     activeSize(){
       const activeSize = this.activeSize
       const activeRegion = this.activeRegion
-      const ifRegion = this.activeSize.regions.filter(region => region === activeRegion)
+      const ifRegion = this.activeSize.regions.filter(region => region.name === activeRegion)
 
-      this.activeRegion = ifRegion.length ? ifRegion[0] : activeSize.regions[0]
+      this.activeRegion = ifRegion.length ? ifRegion[0].name : activeSize.regions[0].name
     }
   },
   destroyed() {
@@ -241,7 +245,7 @@ export default {
         } CPU Core - ${item.disk}GB SSD`
       })
       this.activeSize = this.sizes[0]
-      this.activeRegion = this.activeSize.regions[0]
+      this.activeRegion = this.activeSize.regions[0].name
     },
     async getKeys() {
       const { data } = await this.$axios.$get(
@@ -258,17 +262,38 @@ export default {
       const labels = this.labels.join('-')
       const isValidLabels = this.validateLabels(labels)
 
+      const provider = this.fastDeployProvider
+      const activeSize = this.activeSize
+      const activeRegion = activeSize.regions.filter(region => region.name === this.activeRegion)[0]
+
+      const payload = {
+        provider: this.fastDeployProvider,
+        names: this.labels.join(),
+        vps_key_id: this.activeKey.id
+      }
+
+      switch (provider) {
+        case "DigitalOcean":
+          payload.size = activeSize.slug
+          payload.region = activeRegion.slug
+          break;
+        case "Vultr":
+          payload.size = activeSize.vpsId
+          payload.region = activeRegion.DCID
+          break;
+        case "Hetzner":
+          payload.size = activeSize.vpsId
+          payload.region = activeRegion.slug
+          break;
+        default:
+          return false
+      }
+
       if (isValidLabels) {
         this.$axios
           .$post(
             `fast-deploy/configurations/${this.fastDeployConfig.id}/deployment`,
-            {
-              provider: this.fastDeployProvider,
-              names: this.labels.join(),
-              size: this.activeSize.slug,
-              region: this.activeRegion,
-              vps_key_id: this.activeKey.id
-            }
+            payload
           )
           .then(response => {
             this.$store.dispatch('snackbar/updateSnack', {
