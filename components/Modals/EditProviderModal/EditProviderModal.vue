@@ -100,7 +100,7 @@ export default {
   mixins: [clickaway],
   data: () => {
     return {
-      providers: ['DigitalOcean', 'Vultr'],
+      providers: ['DigitalOcean', 'Vultr', 'Hetzner'],
       apiToken: '',
       name: 'Personal',
       apiSecret: '',
