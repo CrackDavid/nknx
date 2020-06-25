@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentWrapper>
-      <h1 class="page__title">{{$t(pageTitle)}}</h1>
+      <h1 class="page__title">{{ $t(pageTitle) }}</h1>
       <Grid>
         <GeneralMiningStats />
         <GeneralNetworkStats />

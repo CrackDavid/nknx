@@ -1,5 +1,5 @@
 <template>
-  <div>{{$t(title)}}</div>
+  <div>{{ $t(title) }}</div>
 </template>
 
 <style lang="scss">

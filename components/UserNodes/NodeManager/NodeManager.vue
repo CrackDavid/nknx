@@ -70,7 +70,8 @@
                 v-if="
                   node.node_snapshots.length > 0 &&
                     node.syncState !== 'OFFLINE' &&
-                    node.syncState !== 'GENERATE_ID'
+                    node.syncState !== 'GENERATE_ID' &&
+                    node.syncState !== 'PRUNING_DB'
                 "
                 :data="node.node_snapshots"
                 :state="node.syncState"
@@ -79,6 +80,7 @@
                 v-if="
                   node.syncState === 'OFFLINE' ||
                     node.syncState === 'GENERATE_ID' ||
+                    node.syncState === 'PRUNING_DB' ||
                     node.node_snapshots.length === 0
                 "
                 >{{ $t('n/a') }}</span
