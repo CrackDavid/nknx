@@ -146,6 +146,11 @@ h3 {
       &-controls {
         @include size-md {
           display: flex;
+
+          .node-manager__actions-modal{
+            right: 122px;
+            top: 45px;
+          }
         }
       }
     }
