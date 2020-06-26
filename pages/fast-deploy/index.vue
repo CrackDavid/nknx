@@ -10,6 +10,7 @@
         <MobileFastDeployConfigs v-else />
       </Grid>
       <DeployProviderChoice />
+      <FastDeployEvents />
     </ContentWrapper>
   </div>
 </template>
@@ -23,6 +24,7 @@ import NewFastDeploy from '~/components/FastDeploy/NewFastDeploy/NewFastDeploy.v
 import FastDeployConfigs from '~/components/FastDeploy/FastDeployConfigs/FastDeployConfigs.vue'
 import MobileFastDeployConfigs from '~/components/FastDeploy/MobileFastDeployConfigs/MobileFastDeployConfigs.vue'
 import DeployProviderChoice from '~/components/FastDeploy/DeployProviderChoice/DeployProviderChoice.vue'
+import FastDeployEvents from '~/components/FastDeploy/FastDeployEvents/FastDeployEvents.vue'
 
 export default {
   head() {
@@ -37,7 +39,8 @@ export default {
     NewFastDeploy,
     FastDeployConfigs,
     MobileFastDeployConfigs,
-    DeployProviderChoice
+    DeployProviderChoice,
+    FastDeployEvents
   },
   data: () => {
     return {}

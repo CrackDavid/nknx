@@ -1,8 +1,8 @@
 .fd-choice {
-  margin-top: $grid-gap;
+  margin: $grid-gap 0;
 
   @include size-md {
-    margin-top: $padding-default;
+    margin: $padding-default 0;
   }
 
   &__heading {
