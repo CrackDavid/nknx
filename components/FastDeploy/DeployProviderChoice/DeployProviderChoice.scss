@@ -44,6 +44,8 @@
     }
 
     &_disabled {
+      cursor: not-allowed;
+
       &::after {
         content: '';
         position: absolute;

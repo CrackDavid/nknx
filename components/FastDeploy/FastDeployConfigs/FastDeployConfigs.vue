@@ -61,7 +61,11 @@
                 ? 'table__row_active'
                 : null
             "
-            @click="setActiveConfig(config)"
+            @click="
+              activeFastDeployConfig.id !== config.id
+                ? setActiveConfig(config)
+                : setActiveConfig(false)
+            "
           >
             <td class="table__item">
               {{ config.label }}
@@ -159,10 +163,12 @@ export default {
       this.isActions = false
     },
     setActiveConfig(config) {
-      this.$store.dispatch(
-        'fastDeployConfigs/updateActiveFastDeployConfig',
-        config
-      )
+      if (!this.isActions) {
+        this.$store.dispatch(
+          'fastDeployConfigs/updateActiveFastDeployConfig',
+          config
+        )
+      }
     },
     openDeleteConfigModal(config) {
       setTimeout(this.closeActionsModal, 1)

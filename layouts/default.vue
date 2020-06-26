@@ -17,7 +17,8 @@
         networkReleases &&
         userNodesStats &&
         userData &&
-        userProviders
+        userProviders &&
+        fastDeployConfigs
     "
   >
     <Topbar />
@@ -159,6 +160,7 @@ export default {
     userNodesStats: 'userNodes/getUserNodesStats',
     userConfig: 'userNodes/getUserConfig',
     userData: 'userData/getUserData',
+    fastDeployConfigs: 'fastDeployConfigs/getFastDeployConfigs',
     userProviders: 'userProviders/getUserProviders'
   }),
   destroyed() {
@@ -196,6 +198,7 @@ export default {
     this.updateUserNodesStats()
     this.updateUserData()
     this.updateUserProviders()
+    this.updateFastDeployConfigs()
 
     this.intervalPrice = setInterval(this.updatePrice, this.updateInterval)
     this.intervalNetworkStats = setInterval(
@@ -306,6 +309,9 @@ export default {
     },
     updateUserProviders() {
       this.$store.dispatch('userProviders/updateUserProviders', 1)
+    },
+    updateFastDeployConfigs() {
+      this.$store.dispatch('fastDeployConfigs/updateFastDeployConfigs', 1)
     }
   }
 }

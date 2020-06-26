@@ -11,9 +11,18 @@
         v-for="provider in providers"
         :key="provider"
         class="fd-choice__card"
+        :class="
+          !fastDeployConfig || isProviderDisabled(provider)
+            ? 'fd-choice__card_disabled'
+            : null
+        "
         col="none"
         padding="medium"
-        @click.native="openFastDeployModal(provider)"
+        @click.native="
+          !fastDeployConfig || isProviderDisabled(provider)
+            ? false
+            : openFastDeployModal(provider)
+        "
       >
         <img
           :src="`/vps/${provider}.svg`"
@@ -41,7 +50,8 @@ export default {
   },
   data: function() {
     return {
-      providers: ['DigitalOcean', 'Vultr', 'Hetzner', 'Custom']
+      providers: ['DigitalOcean', 'Vultr', 'Hetzner', 'Custom'],
+      keys: []
     }
   },
   computed: {
@@ -51,10 +61,19 @@ export default {
       fastDeployConfig: 'fastDeployConfigs/getActiveFastDeployConfig'
     })
   },
-  mounted() {},
+  mounted() {
+    this.getKeys()
+  },
   methods: {
     toSettings() {
       this.$router.push({ path: `/account-settings` })
+    },
+    isProviderDisabled(provider) {
+      const currentProvider = this.keys.filter(x => x.provider === provider)
+      return provider === 'Custom' ? false : !currentProvider.length > 0
+    },
+    async getKeys() {
+      this.keys = await this.$axios.$get(`vps-keys/sum`)
     },
     async openFastDeployModal(provider) {
       const { data } = await this.$axios.$get(`vps-keys/?filter=${provider}`)
