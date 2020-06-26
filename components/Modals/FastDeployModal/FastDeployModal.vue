@@ -189,6 +189,9 @@ export default {
       if (newVal < 1) {
         this.count = 1
       }
+      if (newVal > 20) {
+        this.count = 20
+      }
 
       const isInc = newVal - oldVal > 0
       const labelsLength = this.labels.length
@@ -246,7 +249,8 @@ export default {
       )
 
       this.sizes.forEach(item => {
-        item.shortcut = `${item.memory / 1024}GB RAM - ${
+        const slug = provider === 'aws' ? `${item.slug} - ` : ''
+        item.shortcut = `${slug}${item.memory / 1024}GB RAM - ${
           item.vcpus
         } CPU Core - ${item.disk}GB SSD`
       })

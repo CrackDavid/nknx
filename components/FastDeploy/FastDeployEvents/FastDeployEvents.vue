@@ -32,7 +32,7 @@
         <thead class="table__header">
           <tr class="table__row">
             <th class="table__title">
-              {{ $t('fdConfig') }}
+              {{ $t('deploymentName') }}
             </th>
             <th class="table__title">
               {{ $t('server') }}
@@ -51,7 +51,7 @@
         <tbody class="table__body">
           <tr v-for="event in events" :key="event.id" class="table__row">
             <td class="table__item">
-              {{ event.fd_deployment.fd_configuration.label }}
+              {{ event.fd_deployment.label }}
             </td>
             <td class="table__item">
               {{ event.fd_deployment.ip }}
@@ -132,7 +132,7 @@ export default {
       // Disabling pagination untill data fetched
       this.nextPage = null
       this.prevPage = null
-      const data = await this.$axios.$get(`fast-deploy/events`)
+      const data = await this.$axios.$get(`fast-deploy/events?page=${page}`)
 
       this.parseEventsData(data)
     }
