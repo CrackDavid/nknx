@@ -12,14 +12,14 @@
         :key="provider"
         class="fd-choice__card"
         :class="
-          !fastDeployConfig || isProviderDisabled(provider)
+          fastDeployConfig.id === 0 || isProviderDisabled(provider)
             ? 'fd-choice__card_disabled'
             : null
         "
         col="none"
         padding="medium"
         @click.native="
-          !fastDeployConfig || isProviderDisabled(provider)
+          fastDeployConfig.id === 0 || isProviderDisabled(provider)
             ? false
             : openFastDeployModal(provider)
         "

@@ -64,7 +64,9 @@
             @click="
               activeFastDeployConfig.id !== config.id
                 ? setActiveConfig(config)
-                : setActiveConfig(false)
+                : setActiveConfig({
+                    id: 0
+                  })
             "
           >
             <td class="table__item">
