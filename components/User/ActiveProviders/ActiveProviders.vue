@@ -34,9 +34,12 @@
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
-            <th class="table__title">{{ $t('name') }}</th>
+            <th class="table__title" style="width: 1%;">{{ $t('name') }}</th>
             <th class="table__title">{{ $t('provider') }}</th>
             <th class="table__title">{{ $t('key') }}</th>
+            <th class="table__title">
+              {{ $t('secretOnlyAws') }}
+            </th>
             <th class="table__title" style="width: 1%;">
               {{ $t('actions') }}
             </th>
@@ -51,7 +54,13 @@
               {{ vps.provider }}
             </td>
             <td class="table__item">
-              *****
+              {{ vps.api_token.substring(0, 3) }}*****
+            </td>
+            <td class="table__item">
+              <span v-if="vps.provider === 'AWS'"
+                >{{ vps.api_secret.substring(0, 3) }}*****</span
+              >
+              <span v-else>{{ $t('n/a') }}</span>
             </td>
             <td class="table__item text_align_center">
               <span

@@ -178,8 +178,10 @@ export default {
         return false
       }
     },
-    regionNames(){
-      return this.activeSize ? this.activeSize.regions.map(region => region.name) : []
+    regionNames() {
+      return this.activeSize
+        ? this.activeSize.regions.map(region => region.name)
+        : []
     }
   },
   watch: {
@@ -199,12 +201,16 @@ export default {
         this.labels = this.labels.slice(0, newVal)
       }
     },
-    activeSize(){
+    activeSize() {
       const activeSize = this.activeSize
       const activeRegion = this.activeRegion
-      const ifRegion = this.activeSize.regions.filter(region => region.name === activeRegion)
+      const ifRegion = this.activeSize.regions.filter(
+        region => region.name === activeRegion
+      )
 
-      this.activeRegion = ifRegion.length ? ifRegion[0].name : activeSize.regions[0].name
+      this.activeRegion = ifRegion.length
+        ? ifRegion[0].name
+        : activeSize.regions[0].name
     }
   },
   destroyed() {
@@ -264,7 +270,9 @@ export default {
 
       const provider = this.fastDeployProvider
       const activeSize = this.activeSize
-      const activeRegion = activeSize.regions.filter(region => region.name === this.activeRegion)[0]
+      const activeRegion = activeSize.regions.filter(
+        region => region.name === this.activeRegion
+      )[0]
 
       const payload = {
         provider: this.fastDeployProvider,
@@ -273,18 +281,22 @@ export default {
       }
 
       switch (provider) {
-        case "DigitalOcean":
+        case 'DigitalOcean':
           payload.size = activeSize.slug
           payload.region = activeRegion.slug
-          break;
-        case "Vultr":
+          break
+        case 'Vultr':
           payload.size = activeSize.vpsId
           payload.region = activeRegion.DCID
-          break;
-        case "Hetzner":
+          break
+        case 'Hetzner':
           payload.size = activeSize.vpsId
           payload.region = activeRegion.slug
-          break;
+          break
+        case 'AWS':
+          payload.size = activeSize.slug
+          payload.region = activeRegion.slug
+          break
         default:
           return false
       }
