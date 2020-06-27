@@ -97,10 +97,8 @@ export default {
     }
   },
   mounted() {
-    this.intervalNetworkStats = setInterval(
-      this.getEvents(this.current_page),
-      10000
-    )
+    this.getEvents(1)
+    this.intervalEvents = setInterval(this.getEvents, 10000)
   },
   destroyed() {
     clearInterval(this.intervalEvents)
@@ -124,15 +122,15 @@ export default {
       this.loading = false
     },
     async getEvents(page) {
-      // Checking if page exists
-      if (page === null) {
-        return false
-      }
+      const currentPage = page === undefined || page === null ? 1 : page
+
       this.loading = true
       // Disabling pagination untill data fetched
       this.nextPage = null
       this.prevPage = null
-      const data = await this.$axios.$get(`fast-deploy/events?page=${page}`)
+      const data = await this.$axios.$get(
+        `fast-deploy/events?page=${currentPage}`
+      )
 
       this.parseEventsData(data)
     }

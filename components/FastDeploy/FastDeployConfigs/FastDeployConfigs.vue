@@ -158,7 +158,7 @@ export default {
     }
   },
   mounted() {
-    this.getConfigs(this.current_page)
+    this.parseConfigsData(this.fastDeployConfigs)
   },
   methods: {
     closeActionsModal() {

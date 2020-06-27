@@ -147,7 +147,7 @@ h3 {
         @include size-md {
           display: flex;
 
-          .node-manager__actions-modal{
+          .node-manager__actions-modal {
             right: 122px;
             top: 45px;
           }
@@ -600,6 +600,46 @@ table {
 /*========== Modals ==========*/
 
 .modal {
+  &__notice {
+    text-align: center;
+    padding: $padding-medium $padding-default;
+    background-color: $ghost-white;
+    font-style: italic;
+    margin-bottom: $padding-normal;
+    border-radius: $card-border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition-1;
+
+    &:hover {
+      path {
+        fill: $secondary;
+      }
+    }
+
+    &:active {
+      path {
+        fill: $primary;
+      }
+    }
+
+    &-copy {
+      position: relative;
+
+      svg {
+        position: relative;
+        top: 6px;
+        left: 2px;
+
+        path {
+          transition: $transition-1;
+        }
+      }
+    }
+  }
+
   &-wrapper {
     overflow: hidden;
     overflow-y: scroll;

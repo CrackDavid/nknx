@@ -75,26 +75,33 @@ export default {
     async getKeys() {
       this.keys = await this.$axios.$get(`vps-keys/sum`)
     },
+    openFastDeployCustomModal() {
+      this.$store.dispatch('modals/updateFastDeployCustomModalVisible', true)
+    },
     async openFastDeployModal(provider) {
-      const { data } = await this.$axios.$get(`vps-keys/?filter=${provider}`)
-      if (data.length < 1) {
-        this.$store.dispatch('snackbar/updateSnack', {
-          snack: 'noApiKeyError',
-          color: 'error',
-          timeout: true
-        })
-      } else if (this.fastDeployConfig.id === 0) {
-        this.$store.dispatch('snackbar/updateSnack', {
-          snack: 'noFdConfigError',
-          color: 'error',
-          timeout: true
-        })
+      if (provider == 'Custom') {
+        this.openFastDeployCustomModal()
       } else {
-        this.$store.dispatch(
-          'fastDeployProvider/updateFastDeployProvider',
-          provider
-        )
-        this.$store.dispatch('modals/updateFastDeployModalVisible', true)
+        const { data } = await this.$axios.$get(`vps-keys/?filter=${provider}`)
+        if (data.length < 1) {
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: 'noApiKeyError',
+            color: 'error',
+            timeout: true
+          })
+        } else if (this.fastDeployConfig.id === 0) {
+          this.$store.dispatch('snackbar/updateSnack', {
+            snack: 'noFdConfigError',
+            color: 'error',
+            timeout: true
+          })
+        } else {
+          this.$store.dispatch(
+            'fastDeployProvider/updateFastDeployProvider',
+            provider
+          )
+          this.$store.dispatch('modals/updateFastDeployModalVisible', true)
+        }
       }
     }
   }

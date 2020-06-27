@@ -42,6 +42,7 @@
         editProviderModalVisible !== false ||
         deleteFastDeployConfigModalVisible !== false ||
         editFastDeployConfigModalVisible !== false ||
+        fastDeployCustomModalVisible !== false ||
         newNodeModalVisible !== false
           ? 'content_overflow'
           : null
@@ -56,6 +57,7 @@
       <DeleteAllWalletsModal v-if="deleteAllWalletsModalVisible" />
       <ReceiveWalletModal v-if="receiveWalletModalVisible" />
       <FastDeployModal v-if="fastDeployModalVisible" />
+      <FastDeployCustomModal v-if="fastDeployCustomModalVisible" />
       <EditNodeModal v-if="editNodeModalVisible" />
       <DeleteAccountModal v-if="deleteAccountModalVisible" />
       <DeleteProviderModal v-if="deleteProviderModalVisible" />
@@ -85,6 +87,7 @@ import DeleteAllWalletsModal from '~/components/Modals/DeleteAllWalletsModal/Del
 import DeleteAccountModal from '~/components/Modals/DeleteAccountModal/DeleteAccountModal'
 import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWalletModal'
 import FastDeployModal from '~/components/Modals/FastDeployModal/FastDeployModal'
+import FastDeployCustomModal from '~/components/Modals/FastDeployCustomModal/FastDeployCustomModal'
 import DeleteProviderModal from '~/components/Modals/DeleteProviderModal/DeleteProviderModal'
 import EditProviderModal from '~/components/Modals/EditProviderModal/EditProviderModal'
 import DeleteFastDeployConfigModal from '~/components/Modals/DeleteFastDeployConfigModal/DeleteFastDeployConfigModal'
@@ -111,6 +114,7 @@ export default {
     DeleteAllWalletsModal,
     ReceiveWalletModal,
     FastDeployModal,
+    FastDeployCustomModal,
     EditNodeModal,
     DeleteAccountModal,
     DeleteProviderModal,
@@ -129,6 +133,7 @@ export default {
     deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
     newNodeModalVisible: 'modals/getNewNodeModalVisible',
     fastDeployModalVisible: 'modals/getFastDeployModalVisible',
+    fastDeployCustomModalVisible: 'modals/getFastDeployCustomModalVisible',
     deleteNodeModalVisible: 'modals/getDeleteNodeModalVisible',
     editNodeModalVisible: 'modals/getEditNodeModalVisible',
     deleteAllNodesModalVisible: 'modals/getDeleteAllNodesModalVisible',

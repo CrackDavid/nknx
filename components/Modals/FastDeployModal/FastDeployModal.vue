@@ -249,7 +249,8 @@ export default {
       )
 
       this.sizes.forEach(item => {
-        const slug = provider === 'aws' ? `${item.slug} - ` : ''
+        const slug =
+          provider === 'aws' || provider === 'hetzner' ? `${item.slug} - ` : ''
         item.shortcut = `${slug}${item.memory / 1024}GB RAM - ${
           item.vcpus
         } CPU Core - ${item.disk}GB SSD`
