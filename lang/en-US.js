@@ -359,5 +359,20 @@ export default {
   "newFastDeployConfigSuccess": "Configuration created successfully!",
   "about": "About",
   "otherHelpfulTools": "Other helpful tools",
-  "nstatus": "nStatus - The in-depth node analyzer"
+  "nstatus": "nStatus - The in-depth node analyzer",
+  "noApiKeyError": "No API key present",
+  "noFdConfigError": "ou didn't chose a configuration to deploy.",
+  "editFastDeployConfigSuccess": "Configuration edited successfully!",
+  "failedNodeEditAlert": "Failed editing your node.",
+  "vpsKeyEditSuccess": "VPS API-key edited successfully!",
+  "fdCopyAlert": "Copied script to your clipboard.",
+  "invalidVpsName": "Invalid VPS name.",
+  "profileDataChangeSuccess": "Profile data changed successfully!",
+  "avatarDeleteSuccess": "Avatar deleted successfully!",
+  "notAllowedAvatarFormat": "Avatar format not allowed.",
+  "notAllowedAvatarSize": "Avatar size not allowed.",
+  "avatarChangeSuccess": "Avatar changed successfully!",
+  "passwordChangeSuccess": "Password changed successfully!",
+  "nodeIpCopyAlert": "Copied node IP to your clipboard.",
+  "walletAddressCopyAlert": "Copied wallet address to your clipboard."
 };
