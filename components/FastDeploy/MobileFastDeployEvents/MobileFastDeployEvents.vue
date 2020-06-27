@@ -1,12 +1,6 @@
 <template>
-  <Card
-    :col="
-      $mq === 'xl' ? '8' : $mq === 'llg' ? '12' : $mq === 'lg' ? '12' : '12'
-    "
-    padding="none"
-    :overflow="false"
-  >
-    <div class="card-header">
+  <Card col="12" padding="none">
+    <div class="card-header card-header_padding">
       <h3 class="card-header__title">
         {{ $t('recentEvents') }}
       </h3>
@@ -27,53 +21,41 @@
         </div>
       </div>
     </div>
-    <div>
-      <table class="table">
-        <thead class="table__header">
-          <tr class="table__row">
-            <th class="table__title">
-              {{ $t('deploymentName') }}
-            </th>
-            <th class="table__title">
-              {{ $t('server') }}
-            </th>
-            <th class="table__title">
-              {{ $t('provider') }}
-            </th>
-            <th class="table__title">
-              {{ $t('event') }}
-            </th>
-            <th class="table__title">
-              {{ $t('when') }}
-            </th>
-          </tr>
-        </thead>
-        <tbody class="table__body">
-          <tr v-for="event in events" :key="event.id" class="table__row">
-            <td class="table__item">
-              {{ event.fd_deployment.label }}
-            </td>
-            <td class="table__item">
-              {{ event.fd_deployment.ip }}
-            </td>
-            <td class="table__item">
-              {{ event.fd_deployment.provider }}
-            </td>
-            <td class="table__item">
-              {{ $t(event.event_code) }}
-            </td>
-            <td class="table__item">
-              {{ $moment(event.created_at).format('MMM Do, hh:MM:SS A') }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="mobile-fd-event">
+      <div
+        v-for="event in events"
+        :key="event.id"
+        class="mobile-fd-event__item"
+      >
+        <div class="mobile-fd-event__title">{{ $t('deploymentName') }}</div>
+        <div class="mobile-fd-event__value text_wrap_none">
+          {{ event.fd_deployment.label }}
+        </div>
+        <div class="mobile-fd-event__title">
+          {{ $t('server') }}
+        </div>
+        <div class="mobile-fd-event__value text_wrap_none">
+          {{ event.fd_deployment.ip }}
+        </div>
+        <div class="mobile-fd-event__title">{{ $t('provider') }}</div>
+        <div class="mobile-fd-event__value text_wrap_none">
+          {{ event.fd_deployment.provider }}
+        </div>
+        <div class="mobile-fd-event__title">{{ $t('event') }}</div>
+        <div class="mobile-fd-event__value text_wrap_none">
+          {{ $t(event.event_code) }}
+        </div>
+        <div class="mobile-fd-event__title">{{ $t('when') }}</div>
+        <div class="mobile-fd-event__value text_wrap_none">
+          {{ $moment(event.created_at).format('MMM Do, hh:MM:SS A') }}
+        </div>
+      </div>
     </div>
   </Card>
 </template>
 
 <style lang="scss">
-@import './FastDeployEvents.scss';
+@import './MobileFastDeployEvents.scss';
 </style>
 
 <script>

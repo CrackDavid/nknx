@@ -10,7 +10,8 @@
         <MobileFastDeployConfigs v-else />
       </Grid>
       <DeployProviderChoice />
-      <FastDeployEvents />
+      <FastDeployEvents v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'" />
+      <MobileFastDeployEvents v-else />
     </ContentWrapper>
   </div>
 </template>
@@ -25,6 +26,7 @@ import FastDeployConfigs from '~/components/FastDeploy/FastDeployConfigs/FastDep
 import MobileFastDeployConfigs from '~/components/FastDeploy/MobileFastDeployConfigs/MobileFastDeployConfigs.vue'
 import DeployProviderChoice from '~/components/FastDeploy/DeployProviderChoice/DeployProviderChoice.vue'
 import FastDeployEvents from '~/components/FastDeploy/FastDeployEvents/FastDeployEvents.vue'
+import MobileFastDeployEvents from '~/components/FastDeploy/MobileFastDeployEvents/MobileFastDeployEvents.vue'
 
 export default {
   head() {
@@ -40,7 +42,8 @@ export default {
     FastDeployConfigs,
     MobileFastDeployConfigs,
     DeployProviderChoice,
-    FastDeployEvents
+    FastDeployEvents,
+    MobileFastDeployEvents
   },
   data: () => {
     return {}
