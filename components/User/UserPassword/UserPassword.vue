@@ -1,5 +1,7 @@
 <template>
-  <Card :col="$mq === 'xl' ? '5' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'">
+  <Card
+    :col="$mq === 'xl' ? '5' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'"
+  >
     <div class="card-header card-header_border">
       <h3 class="card-header__title">
         {{ $t('changePassword') }}

@@ -307,21 +307,26 @@ export default {
       }
 
       if (isValidLabels) {
+        this.isLoading = true
         this.$axios
           .$post(
             `fast-deploy/configurations/${this.fastDeployConfig.id}/deployment`,
             payload
           )
           .then(response => {
+            const nodesCount = response.data.length
+            const labelsCount = this.labels.length
+
+            this.isLoading = false
             this.$store.dispatch('snackbar/updateSnack', {
-              snack: 'fastDeploySuccess',
+              snack: `${nodesCount} of ${labelsCount} nodes deployed successfully`,
               color: 'success',
               timeout: true
             })
             this.closeModal()
           })
           .catch(error => {
-            this.loading = false
+            this.isLoading = false
             this.$store.dispatch('snackbar/updateSnack', {
               snack: error.response.data.msg,
               color: 'error',

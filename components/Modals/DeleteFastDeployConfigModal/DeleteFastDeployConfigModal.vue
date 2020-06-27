@@ -30,13 +30,15 @@
             type="button"
             theme="white"
             @click.native="closeModal"
-          >{{ $t('cancel') }}</Button>
+            >{{ $t('cancel') }}</Button
+          >
           <Button
             class="modal__footer-button"
             type="button"
             theme="primary"
             @click.native="deleteConfig(activeFastDeployConfig.id)"
-          >{{ $t('confirm') }}</Button>
+            >{{ $t('confirm') }}</Button
+          >
         </div>
       </div>
     </div>
