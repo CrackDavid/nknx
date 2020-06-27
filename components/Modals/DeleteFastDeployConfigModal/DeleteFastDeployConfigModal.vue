@@ -9,8 +9,11 @@
         <div class="modal__title">{{ $t('deleteFastDeployConfig') }}</div>
         <div class="modal__body modal__body_wrap">
           <div class="modal__message">
-            {{ $t('deleteFastDeployConfigConfirm') }}? <br />{{ $t('label') }}:
-            {{ activeFastDeployConfig.label }} <br />
+            {{ $t('deleteFastDeployConfigConfirm') }}?
+            <br />
+            {{ $t('label') }}:
+            {{ activeFastDeployConfig.label }}
+            <br />
             {{ $t('beneficiaryAddress') }}:
             {{ activeFastDeployConfig.beneficiary_addr }}
           </div>
@@ -27,15 +30,13 @@
             type="button"
             theme="white"
             @click.native="closeModal"
-            >{{ $t('cancel') }}</Button
-          >
+          >{{ $t('cancel') }}</Button>
           <Button
             class="modal__footer-button"
             type="button"
             theme="primary"
             @click.native="deleteConfig(activeFastDeployConfig.id)"
-            >{{ $t('confirm') }}</Button
-          >
+          >{{ $t('confirm') }}</Button>
         </div>
       </div>
     </div>
@@ -87,7 +88,7 @@ export default {
           this.$store.dispatch('fastDeployConfigs/updateFastDeployConfigs', 1)
 
           this.$store.dispatch('snackbar/updateSnack', {
-            snack: 'providerDeleteSuccess',
+            snack: 'configDeleteSuccess',
             color: 'success',
             timeout: true
           })

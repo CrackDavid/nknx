@@ -123,6 +123,7 @@
               <img
                 class="landing__features-img landing__features-img_left img_responsive"
                 src="../../static/feature-2.png"
+                style="margin-top:43px;"
                 alt
               />
             </div>
@@ -131,15 +132,18 @@
               <h2 class="landing__features-title">Explore Fast Deploy!</h2>
               <p
                 class="landing__features-text"
-              >With our new NKNx Fast Deploy creating a node is easier than before! We automatically create an installation script for your linux machine and installs a fully functional node for you.</p>
+              >With our NKNx Fast Deploy creating a NKN node is just a click away! You're an VPS user? Just put in your API-key and instantly deploy as much nodes as you want! Want to run your NKN node on your own Linux or Raspberry pi? Generate an installation script and just paste it into your terminal. NKNx will do the rest for you.</p>
               <h3 class="landing__features-heading">What you can expect</h3>
               <ul class="landing__features-list">
                 <li
                   class="landing__features-li"
-                >"Grab a coffee" installation of a full NKN Node based on your configuration (BenificiaryAddr, pre-chain download, etc)</li>
+                >"Grab a coffee" installation of a full NKN Node based on your configuration.</li>
                 <li
                   class="landing__features-li"
-                >One script for all your nodes - passwords get regenerated on every script call and nodes will get automatically added to NKNx after installation.</li>
+                >Directly deploy to your VPS of choice or create an installation snippet - it is up to you!</li>
+                <li
+                  class="landing__features-li"
+                >Integrates with your account - passwords get regenerated on every script call and nodes will get automatically added to NKNx after installation.</li>
                 <li
                   class="landing__features-li"
                 >Works on all Unix-based systems with AMD or ARM-architecture - raspberry pi included</li>
@@ -178,7 +182,7 @@
                   <h3 class="landing__features-heading">Actively developed</h3>
                   <p
                     class="landing__promo-text text_color_grey"
-                  >With a team of currently 3 voluntary working members NKNx is regularly updated. As every NKN project NKNx is also open source, so you can actively contribute in development.</p>
+                  >With a team of currently 2 voluntary working members NKNx is regularly updated.</p>
                 </div>
               </div>
             </div>
@@ -189,7 +193,7 @@
                   <h3 class="landing__features-heading">Down-to-earth</h3>
                   <p
                     class="landing__promo-text text_color_grey"
-                  >We believe that a strong community needs strong community projects - That's why NKNx will always be free to use. Our regular costs are compensated through donations and NKN itself.</p>
+                  >We believe that a strong community needs strong community projects - That's why NKNx will always be free to use. To compensate our regular costs every FastDeploy node will donate the first mining reward to NKNx.</p>
                 </div>
               </div>
             </div>
