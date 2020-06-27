@@ -2,7 +2,10 @@
   <Card col="12" :overflow="false">
     <div class="node-card-mobile">
       <div class="node-card-mobile__header">
-        <div class="node-card-mobile__label"><span v-if="node.pivot.label"></span> <span v-else>{{$t('node')}}</span></div>
+        <div class="node-card-mobile__label">
+          <span v-if="node.pivot.label"> {{ node.pivot.label }} </span>
+          <span v-else>{{ $t('node') }}</span>
+        </div>
         <span
           v-on-clickaway="closeActionsModal"
           class="node-manager__actions fe fe-more-horizontal"
