@@ -56,7 +56,9 @@
               <span v-else>{{ $t('n/a') }}</span>
             </td>
             <td>
-              <span v-if="node.version !== null">{{ node.blocksMined }}</span>
+              <span v-if="node.node_snapshots !== null">{{
+                node.node_snapshots.map(x => x.mined).reduce((a, b) => a + b, 0)
+              }}</span>
               <span v-else>{{ $t('n/a') }}</span>
             </td>
             <td>
