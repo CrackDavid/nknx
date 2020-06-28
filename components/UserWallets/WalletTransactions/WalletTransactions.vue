@@ -115,10 +115,7 @@ export default {
       this.getWallet()
     }
   },
-  mounted: function() {
-    this.getWallet()
-    this.getTransactions(this.current_page)
-  },
+  mounted() {},
   methods: {
     getWallet() {
       this.$axios
