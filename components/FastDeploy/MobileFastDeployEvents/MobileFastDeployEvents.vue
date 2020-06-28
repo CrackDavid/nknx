@@ -43,7 +43,7 @@
         </div>
         <div class="mobile-fd-event__title">{{ $t('event') }}</div>
         <div class="mobile-fd-event__value text_wrap_none">
-          {{ $t(event.event_code) }}
+          {{ $t(`fdEvent${event.event_code}`) }}
         </div>
         <div class="mobile-fd-event__title">{{ $t('when') }}</div>
         <div class="mobile-fd-event__value text_wrap_none">

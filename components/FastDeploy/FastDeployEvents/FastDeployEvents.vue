@@ -60,7 +60,7 @@
               {{ event.fd_deployment.provider }}
             </td>
             <td class="table__item">
-              {{ $t(event.event_code) }}
+              {{ $t(`fdEvent${event.event_code}`) }}
             </td>
             <td class="table__item">
               {{ $moment(event.created_at).format('MMM Do, hh:MM:SS A') }}
