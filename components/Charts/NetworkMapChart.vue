@@ -50,7 +50,6 @@ export default {
 
     // Set map definition
     chart.geodata = am4geodataWorldLow
-    chart.zoomControl = new am4maps.ZoomControl()
 
     // Set projection
     chart.projection = new am4maps.projections.Miller()
