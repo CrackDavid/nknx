@@ -52,9 +52,9 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
 import Card from '~/components/Card/Card.vue'
 
-import { mapGetters } from 'vuex'
 export default {
   components: {
     Card

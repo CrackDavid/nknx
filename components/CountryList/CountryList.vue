@@ -81,10 +81,10 @@
 </style>
 
 <script>
-import Card from '~/components/Card/Card.vue'
 import { mapGetters } from 'vuex'
 import CountryFlag from 'vue-country-flag'
 import * as CountryNames from 'i18n-iso-countries'
+import Card from '~/components/Card/Card.vue'
 
 export default {
   components: {
