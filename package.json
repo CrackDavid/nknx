@@ -35,7 +35,8 @@
     "vue-content-loader": "^0.2.3",
     "vue-count-to": "^1.0.13",
     "vue-country-flag": "^1.1.1",
-    "vue-fragment": "^1.5.1"
+    "vue-fragment": "^1.5.1",
+    "vue-pusher": "^1.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

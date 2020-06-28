@@ -17,7 +17,7 @@ export const getters = {
 export const actions = {
   async updateDailyBlocks({ commit }) {
     const data = await this.$axios.$get(
-      'statistics/daily/blocks'
+      'https://openapi.nkn.org/api/v1/statistics/daily/blocks'
     )
     commit('setDailyBlocks', data)
   }

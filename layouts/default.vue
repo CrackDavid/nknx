@@ -180,7 +180,6 @@ export default {
     clearInterval(this.intervalDailyTransactions)
     clearInterval(this.intervalDailyBlocks)
     clearInterval(this.intervalDailyNodes)
-    clearInterval(this.intervalLatestSigchain)
     clearInterval(this.intervalUserWallets)
     clearInterval(this.intervalUserNodes)
     clearInterval(this.intervalUserNodesStats)
@@ -244,10 +243,6 @@ export default {
     )
     this.intervalDailyNodes = setInterval(
       this.updateDailyNodes,
-      this.updateInterval
-    )
-    this.intervalLatestSigchain = setInterval(
-      this.updateLatestSigchain,
       this.updateInterval
     )
     this.intervalUserWallets = setInterval(
