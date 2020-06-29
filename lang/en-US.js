@@ -374,5 +374,9 @@ export default {
   "avatarChangeSuccess": "Avatar changed successfully!",
   "passwordChangeSuccess": "Password changed successfully!",
   "nodeIpCopyAlert": "Copied node IP to your clipboard.",
-  "walletAddressCopyAlert": "Copied wallet address to your clipboard."
+  "walletAddressCopyAlert": "Copied wallet address to your clipboard.",
+  "fdEvent11": "Installation started",
+  "fdEvent12": "Installation finished",
+  "fdEvent13": "Sent donation to NKNx",
+  "fdEvent20": "Node added to NKNx"
 };
