@@ -12,11 +12,8 @@
         alt="avatar"
       />
       <i
-        :class="{
-          'fe-chevron-up': showDropDown,
-          'fe-chevron-down': !showDropDown
-        }"
-        class="fe"
+        class="fe fe-chevron-down avatar-dropdown__icon"
+        :class="showDropDown ? `avatar-dropdown__icon_active` : ``"
         aria-hidden="true"
       ></i>
     </a>
