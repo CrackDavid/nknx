@@ -378,5 +378,6 @@ export default {
   "fdEvent11": "Installation started",
   "fdEvent12": "Installation finished",
   "fdEvent13": "Sent donation to NKNx",
-  "fdEvent20": "Node added to NKNx"
+  "fdEvent20": "Node added to NKNx",
+  "blocksMinedToday": "# Mined today"
 };

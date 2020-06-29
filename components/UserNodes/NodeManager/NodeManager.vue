@@ -56,7 +56,9 @@
               <span v-else>{{ $t('n/a') }}</span>
             </td>
             <td>
-              <span v-if="node.version !== null">{{ node.blocksMined }}</span>
+              <span v-if="node.node_snapshots.length">{{
+                node.node_snapshots[0].mined
+              }}</span>
               <span v-else>{{ $t('n/a') }}</span>
             </td>
             <td>
@@ -161,7 +163,7 @@ export default {
         { value: '', title: 'status' },
         { value: '', title: 'latestBlock' },
         { value: '', title: 'currentVersion' },
-        { value: 'blocksMined', title: 'blocksMined' },
+        { value: '', title: 'blocksMinedToday' },
         { value: 'relayMessageCount', title: 'relayedMessages' },
         { value: '', title: 'miningHistory' },
         { value: '', title: 'actions' }

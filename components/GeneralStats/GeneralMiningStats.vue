@@ -7,26 +7,35 @@
     <div class="general-stats general-stats_gradient">
       <div class="general-stats__item">
         <div class="general-stats__title">
-          {{ Number(
-          (userNodes.statCounts.ALL / networkStats.totalNodes) * 100
-          ).toFixed(2) }}%
+          {{
+            Number(
+              (userNodes.statCounts.ALL / networkStats.totalNodes) * 100
+            ).toFixed(2)
+          }}%
         </div>
-        <div class="general-stats__subtitle">{{$t('networkControl')}}</div>
+        <div class="general-stats__subtitle">{{ $t('networkControl') }}</div>
       </div>
       <div class="general-stats__divider" />
       <div class="general-stats__item">
         <div class="general-stats__data">
-          <div v-for="item in items" :key="item.title" class="general-stats__data-item">
+          <div
+            v-for="item in items"
+            :key="item.title"
+            class="general-stats__data-item"
+          >
             <span class="fe general-stats__data-icon" :class="item.icon" />
             <div class="general-stats__data-description">
               <div class="general-stats__data-title">
                 {{ item.data }}
                 <span
-                  v-if="item.title !=='activeNodes'"
+                  v-if="item.title !== 'activeNodes'"
                   class="general-stats__data-symbol"
-                >NKN</span>
+                  >NKN</span
+                >
               </div>
-              <div class="general-stats__data-subtitle">{{$t(item.title)}}</div>
+              <div class="general-stats__data-subtitle">
+                {{ $t(item.title) }}
+              </div>
             </div>
           </div>
         </div>
@@ -37,7 +46,8 @@
         theme="success"
         :full="true"
         url="node-manager"
-      >{{$t('viewMyNodes')}}</Button>
+        >{{ $t('viewMyNodes') }}</Button
+      >
     </div>
   </Card>
 </template>
@@ -95,12 +105,14 @@ export default {
     updateMiningStats() {
       this.items.activeNodes.data = this.userNodes.statCounts.PERSIST_FINISHED
       this.items.reward24.data =
-        '~' + Number(this.userNodesStats.reward24).toFixed(0)
+        '~' + Number(this.userNodesStats.rewardToday).toFixed(0)
       this.items.minedTotal.data =
         '~' + Number(this.userNodesStats.rewardAll).toFixed(0)
-      this.items.minedAverage.data = Number(
-        this.userNodesStats.reward24 / this.userNodes.statCounts.ALL
-      ).toFixed(3)
+      this.items.minedAverage.data = this.userNodesStats.rewardToda
+        ? Number(
+            this.userNodesStats.rewardToday / this.userNodes.statCounts.ALL
+          ).toFixed(3)
+        : 0
     }
   }
 }
