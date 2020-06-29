@@ -185,7 +185,7 @@ export default {
   "searchAllNodes": "Search all Nodes",
   "monitoredNodes": "Monitored Nodes",
   "inNetwork": "in Network",
-  "reward24": "Mined last 24h",
+  "reward24": "Mined today",
   "totalMined": "Total Mined last 3 months",
   "totalProfit": "Total Profit",
   "profitToday": "Profit Today",
