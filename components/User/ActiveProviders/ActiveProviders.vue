@@ -149,7 +149,7 @@ export default {
     }
   },
   mounted() {
-    this.getVps(this.current_page)
+    this.parseVpsData(this.userProviders)
   },
   methods: {
     closeActionsModal() {
