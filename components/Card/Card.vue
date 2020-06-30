@@ -1,7 +1,15 @@
 <template>
   <div
     class="card"
-    :class="[col ? `card_col_${col}` : null, row ? `card_row_${row}` : null, padding ? `card_padding_${padding}` : null, hover ? 'card_hover' : null]"
+    :class="[
+      col ? `card_col_${col}` : null,
+      colStart ? `card_col-start_${colStart}` : null,
+      colEnd ? `card_col-end_${colEnd}` : null,
+      row ? `card_row_${row}` : null,
+      padding ? `card_padding_${padding}` : null,
+      hover ? 'card_hover' : null,
+      overflow ? 'card_overflow' : null
+    ]"
   >
     <slot />
   </div>
@@ -19,6 +27,14 @@ export default {
       type: String,
       default: '12'
     },
+    colStart: {
+      type: String,
+      default: 'auto'
+    },
+    colEnd: {
+      type: String,
+      default: 'auto'
+    },
     row: {
       type: String,
       default: '1'
@@ -30,6 +46,10 @@ export default {
     hover: {
       type: Boolean,
       default: false
+    },
+    overflow: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => {

@@ -1,40 +1,68 @@
 <template>
-  <Card col="12">
+  <Card col="12" :overflow="false">
     <div class="node-card-mobile">
       <div class="node-card-mobile__header">
-        <div class="node-card-mobile__label">{{node.pivot.label}}</div>
+        <div class="node-card-mobile__label">
+          <span v-if="node.pivot.label"> {{ node.pivot.label }} </span>
+          <span v-else>{{ $t('node') }}</span>
+        </div>
         <span
           v-on-clickaway="closeActionsModal"
           class="node-manager__actions fe fe-more-horizontal"
           @click="isActions = node.id"
         >
           <div
-            :class="['node-manager__actions-modal', isActions === node.id ? 'node-manager__actions-modal_visible' : null]"
+            :class="[
+              'node-manager__actions-modal node-manager__actions-modal_mobile',
+              isActions === node.id
+                ? 'node-manager__actions-modal_visible'
+                : null
+            ]"
           >
-            <div class="node-manager__actions-item" @click="openEditNodeModal(node)">
+            <div
+              class="node-manager__actions-item"
+              @click="openEditNodeModal(node)"
+            >
               <span class="node-manager__actions-icon fe fe-edit-2"></span>
-              <span class="node-manager__actions-title">{{$t('editNode')}}</span>
+              <span class="node-manager__actions-title">{{
+                $t('editNode')
+              }}</span>
             </div>
-            <div class="node-manager__actions-item" @click="openDeleteNodeModal(node)">
+            <div
+              class="node-manager__actions-item"
+              @click="openDeleteNodeModal(node)"
+            >
               <span class="node-manager__actions-icon fe fe-trash-2"></span>
-              <span class="node-manager__actions-title">{{$t('delete')}}</span>
+              <span class="node-manager__actions-title">{{
+                $t('delete')
+              }}</span>
             </div>
           </div>
         </span>
       </div>
       <div class="node-card-mobile__body">
-        <div class="node-card-mobile__addr">{{node.addr}}</div>
-        <div v-clipboard:copy="node.addr" class="node-card-mobile__copy">{{$t('copy')}}</div>
+        <div class="node-card-mobile__addr">{{ node.addr }}</div>
+        <div
+          v-clipboard:copy="node.addr"
+          class="node-card-mobile__copy"
+          @click="copyAlert"
+        >
+          {{ $t('copy') }}
+        </div>
       </div>
       <div class="node-card-mobile__footer">
         <NodeStatus :status="node.syncState" />
         <div class="node-card-mobile__stats">
           <span class="node-card-mobile__icon fe fe-git-branch"></span>
-          <span v-if="node.version !== null">{{node.version | nodeVersion}}</span> <span v-else>{{$t('n/a')}}</span>
+          <span v-if="node.version !== null">{{
+            node.version | nodeVersion
+          }}</span>
+          <span v-else>{{ $t('n/a') }}</span>
         </div>
         <div class="node-card-mobile__stats">
           <span class="node-card-mobile__icon fe fe-box"></span>
-          <span v-if="node.version !== null">{{node.height}}</span><span v-else>{{$t('n/a')}}</span>
+          <span v-if="node.version !== null">{{ node.height }}</span
+          ><span v-else>{{ $t('n/a') }}</span>
         </div>
       </div>
     </div>
@@ -101,6 +129,13 @@ export default {
       this.$store.dispatch('activeNode/updateActiveNode', node)
       this.$store.dispatch('modals/updateEditNodeModalVisible', true)
       setTimeout(this.closeActionsModal, 1)
+    },
+    copyAlert() {
+      this.$store.dispatch('snackbar/updateSnack', {
+        snack: 'nodeIpCopyAlert',
+        color: 'alert',
+        timeout: true
+      })
     }
   }
 }

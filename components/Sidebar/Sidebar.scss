@@ -48,6 +48,11 @@
     right: 0px;
     transition: $transition-1;
     border-radius: $nav-marker-border-radius;
+
+    &_hidden {
+      height: 0;
+      opacity: 0;
+    }
   }
 
   &__item {
@@ -60,6 +65,11 @@
     overflow: hidden;
     font-weight: 400;
     transition: $transition-1 color;
+
+    &_hidden {
+      height: 0;
+      visibility: hidden;
+    }
 
     &.nuxt-link-exact-active {
       color: $nav-color-active;

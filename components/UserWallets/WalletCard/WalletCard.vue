@@ -3,6 +3,7 @@
     class="wallet-card__wrapper"
     :col="$mq === 'xl' ? '3' : $mq === 'llg' ? '6' : '12'"
     :hover="true"
+    :overflow="false"
     @click.native="setActiveWallet(wallet)"
   >
     <div class="wallet-card">
@@ -15,11 +16,10 @@
           <span
             v-on-clickaway="closeActionsModal"
             class="wallet-card__actions fe fe-more-horizontal"
-            @mouseenter="isActions = true"
+            @click="isActions = true"
           ></span>
           <div
             :class="['wallet-card__actions-modal', isActions === true ? 'wallet-card__actions-modal_visible' : null]"
-            @mouseleave="isActions = false"
             @click="openDeleteWalletModal(wallet)"
           >
             <div class="wallet-card__actions-item">
@@ -83,7 +83,6 @@ export default {
     openDeleteWalletModal(wallet) {
       this.$store.dispatch('activeWallet/updateActiveWallet', wallet)
       this.$store.dispatch('modals/updateDeleteWalletModalVisible', true)
-      this.closeActionsModal()
     },
     setActiveWallet(wallet) {
       if (this.isActions === false) {

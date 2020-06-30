@@ -1,5 +1,9 @@
 <template>
-  <SparklineStats title="avgNodesPerDay" :change="change" :dailyValue="valueArr | avg">
+  <SparklineStats
+    title="avgNodesPerDay"
+    :change="change"
+    :dailyValue="valueArr | avg"
+  >
     <DailyNodesChart />
   </SparklineStats>
 </template>
@@ -32,7 +36,7 @@ export default {
     if (day1 > 0 && day2 > 0) {
       this.change = (((day1 - day2) / day1) * 100).toFixed(2)
     } else {
-      this.change = 0
+      this.change = '0'
     }
     this.valueArr = data
       .slice(data.length - 8, data.length - 1)

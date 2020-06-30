@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentWrapper>
-      <h1 class="page__title">{{$t(pageTitle)}}</h1>
+      <h1 class="page__title">{{ $t(pageTitle) }}</h1>
       <Grid>
         <WalletOverview
           v-if="sumWalletSnapshots.length > 0"
@@ -10,11 +10,24 @@
         />
         <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
           <div class="page__wallet-tracker-heading">
-            <h3 class="page__wallet-tracker-title">{{$t('myWallets')}} ({{totalWallets}})</h3>
-            <div v-if="wallets.length > 0" class="page-navigation page__wallet-tracker-navigation">
+            <h3 class="page__wallet-tracker-title">
+              {{ $t('myWallets') }} ({{ totalWallets }})
+            </h3>
+            <div
+              v-if="wallets.length > 0"
+              class="page-navigation page__wallet-tracker-navigation"
+            >
               <div class="page-navigation__pagination">
-                <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
-                <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
+                <Pagination
+                  :page="prevPage"
+                  type="prev"
+                  @click.native="changePage(prevPage)"
+                />
+                <Pagination
+                  :page="nextPage"
+                  type="next"
+                  @click.native="changePage(nextPage)"
+                />
               </div>
             </div>
             <div class="divider"></div>
@@ -24,20 +37,22 @@
               @click.native="openDeleteAllWalletsModal"
             >
               <span class="button__icon fe fe-trash-2"></span>
-              {{$t('deleteAllWallets')}}
+              {{ $t('deleteAllWallets') }}
             </Button>
           </div>
         </template>
         <template v-else>
           <div class="page__wallet-tracker-heading">
-            <h3 class="page__wallet-tracker-title">{{$t('myWallets')}} ({{totalWallets}})</h3>
+            <h3 class="page__wallet-tracker-title">
+              {{ $t('myWallets') }} ({{ totalWallets }})
+            </h3>
             <Button
               v-if="wallets.length > 0"
               theme="danger"
               @click.native="openDeleteAllWalletsModal"
             >
               <span class="button__icon fe fe-trash-2"></span>
-              {{$t('deleteAll')}}
+              {{ $t('deleteAll') }}
             </Button>
           </div>
         </template>
@@ -45,10 +60,21 @@
         <template v-if="$mq === 'md' || $mq === 'sm' || $mq === 'xs'">
           <div class="page__wallet-tracker-heading">
             <div class="divider"></div>
-            <div v-if="wallets.length > 0" class="page-navigation page__wallet-tracker-navigation">
+            <div
+              v-if="wallets.length > 0"
+              class="page-navigation page__wallet-tracker-navigation"
+            >
               <div class="page-navigation__pagination">
-                <Pagination :page="prevPage" type="prev" @click.native="changePage(prevPage)" />
-                <Pagination :page="nextPage" type="next" @click.native="changePage(nextPage)" />
+                <Pagination
+                  :page="prevPage"
+                  type="prev"
+                  @click.native="changePage(prevPage)"
+                />
+                <Pagination
+                  :page="nextPage"
+                  type="next"
+                  @click.native="changePage(nextPage)"
+                />
               </div>
             </div>
             <div class="divider"></div>
@@ -57,17 +83,28 @@
 
         <template v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'">
           <template v-if="!loading">
-            <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
+            <WalletCard
+              v-for="wallet in wallets"
+              :key="wallet.pivot.wallet_id"
+              :wallet="wallet"
+            />
           </template>
           <template v-else>
-            <WalletCardLoader v-for="(walletLoader, index) in walletLoaders" :key="index" />
+            <WalletCardLoader
+              v-for="(walletLoader, index) in walletLoaders"
+              :key="index"
+            />
           </template>
         </template>
 
         <template v-else>
           <div class="page__wallet-tracker-scroll">
             <template v-if="!loading">
-              <WalletCard v-for="wallet in wallets" :key="wallet.pivot.wallet_id" :wallet="wallet" />
+              <WalletCard
+                v-for="wallet in wallets"
+                :key="wallet.pivot.wallet_id"
+                :wallet="wallet"
+              />
             </template>
             <template v-else>
               <WalletCardLoader />
@@ -140,7 +177,6 @@ export default {
       aggregate: 'day'
     }
     this.$store.dispatch('userWallets/updateUserWalletsConfig', config)
-    this.$store.dispatch('userWallets/updateUserWallets')
     this.$store.dispatch('pageTitle/updatePageTitle', 'walletTracker')
   },
   mounted() {

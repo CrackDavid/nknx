@@ -1,0 +1,84 @@
+.fd-choice {
+  margin: $grid-gap 0;
+
+  @include size-md {
+    margin: $padding-default 0;
+  }
+
+  &__heading {
+    margin-bottom: $grid-gap;
+
+    @include size-md {
+      margin-bottom: $padding-default;
+    }
+  }
+
+  &__title {
+    padding-right: $padding-normal;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-gap: $grid-gap;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    @include size-md {
+      grid-gap: $padding-default;
+    }
+
+    @include size-sm {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: $transition-1;
+
+    &:hover {
+      background-color: $ghost-white;
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(238, 238, 238, 0.7) !important;
+      }
+    }
+  }
+
+  &__img {
+    height: 80px;
+
+    @include size-md {
+      height: 60px;
+    }
+
+    @include size-sm {
+      height: 50px;
+    }
+  }
+
+  &__descr {
+    padding-top: $padding-normal;
+    color: $text-grey-light;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+
+    @include size-sm {
+      font-size: $font-size-xs;
+      padding-top: $padding-default;
+    }
+  }
+}

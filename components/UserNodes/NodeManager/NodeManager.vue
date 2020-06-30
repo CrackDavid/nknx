@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x node-manager__wrapper">
+  <div class="node-manager__wrapper">
     <table class="node-manager">
       <thead>
         <th
@@ -56,7 +56,9 @@
               <span v-else>{{ $t('n/a') }}</span>
             </td>
             <td>
-              <span v-if="node.version !== null">{{ node.blocksMined }}</span>
+              <span v-if="node.node_snapshots.length">{{
+                node.node_snapshots[0].mined
+              }}</span>
               <span v-else>{{ $t('n/a') }}</span>
             </td>
             <td>
@@ -90,6 +92,7 @@
               <span
                 class="node-manager__actions fe fe-more-horizontal"
                 @click="isActions = node.id"
+                @clickaway="closeActionsModal"
               >
                 <div
                   :class="[
@@ -160,7 +163,7 @@ export default {
         { value: '', title: 'status' },
         { value: '', title: 'latestBlock' },
         { value: '', title: 'currentVersion' },
-        { value: 'blocksMined', title: 'blocksMined' },
+        { value: '', title: 'blocksMinedToday' },
         { value: 'relayMessageCount', title: 'relayedMessages' },
         { value: '', title: 'miningHistory' },
         { value: '', title: 'actions' }

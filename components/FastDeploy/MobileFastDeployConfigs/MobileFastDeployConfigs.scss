@@ -1,0 +1,32 @@
+.mobile-fd-config {
+  &__item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    padding: $padding-default;
+    grid-column-gap: $padding-normal;
+    grid-row-gap: 8px;
+    border-top: $card-border;
+    transition: $transition-1;
+    cursor: pointer;
+
+    &_active {
+      background-color: $primary;
+      color: $white;
+
+      .mobile-fd-config__title {
+        color: $white;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 13px;
+    color: $text-grey-light;
+    font-weight: $font-weight-semi-bold;
+  }
+
+  &__value {
+    font-size: 13px;
+  }
+}

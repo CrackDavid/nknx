@@ -6,4 +6,9 @@
   @include size-md {
     grid-gap: $padding-default;
   }
+
+  &_custom-height {
+    height: auto;
+    align-items: flex-start;
+  }
 }

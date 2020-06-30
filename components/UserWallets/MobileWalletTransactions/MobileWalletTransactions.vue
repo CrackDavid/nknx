@@ -2,45 +2,54 @@
   <Card col="12" padding="none">
     <div class="card-header">
       <div>
-        <h3 class="card-header__title">{{$t('transactions')}}</h3>
+        <h3 class="card-header__title">{{ $t('transactions') }}</h3>
       </div>
     </div>
     <div class="card__stats">
-      <div class="card__stats-title">{{$t('totalTransactions')}}</div>
-      <div class="card__stats-value">{{totalTransactions}}</div>
+      <div class="card__stats-title">{{ $t('totalTransactions') }}</div>
+      <div class="card__stats-value">{{ totalTransactions }}</div>
     </div>
     <div class="mobile-wallet-tx">
-      <div v-for="tx in transactions" :key="tx.height" class="mobile-wallet-tx__item">
-        <div class="mobile-wallet-tx__title">{{$t('block')}}</div>
+      <div
+        v-for="tx in transactions"
+        :key="tx.height"
+        class="mobile-wallet-tx__item"
+      >
+        <div class="mobile-wallet-tx__title">{{ $t('block') }}</div>
         <div class="mobile-wallet-tx__value text_wrap_none">
           <a
-            :href="`https://explorer.nknx.org/blocks/${tx.block_height}`"
+            :href="`https://nscan.io/blocks/${tx.block_height}`"
             target="_blank"
             class="text_link"
-          >{{tx.block_height}}</a>
+            >{{ tx.block_height }}</a
+          >
         </div>
-        <div class="mobile-wallet-tx__title">{{$t('hash')}}</div>
+        <div class="mobile-wallet-tx__title">{{ $t('hash') }}</div>
         <div class="mobile-wallet-tx__value text_wrap_none">
           <a
-            :href="`https://explorer.nknx.org/transactions/${tx.hash}`"
+            :href="`https://nscan.io/transactions/${tx.hash}`"
             target="_blank"
             class="text_link"
-          >{{tx.hash}}</a>
+            >{{ tx.hash }}</a
+          >
         </div>
-        <div class="mobile-wallet-tx__title">{{$t('type')}}</div>
+        <div class="mobile-wallet-tx__title">{{ $t('type') }}</div>
         <div class="mobile-wallet-tx__value text_wrap_none">
           <TransactionTypeTitle :type="tx.txType" />
         </div>
-        <div class="mobile-wallet-tx__title">{{$t('created')}}</div>
-        <div class="mobile-wallet-tx__value">{{$moment(tx.created_at+"Z").fromNow()}}</div>
+        <div class="mobile-wallet-tx__title">{{ $t('created') }}</div>
+        <div class="mobile-wallet-tx__value">
+          {{ $moment(tx.created_at + 'Z').fromNow() }}
+        </div>
       </div>
     </div>
     <div class="card-footer" style="padding-bottom: 16px;">
       <a
-        :href="`https://explorer.nknx.org/addresses/${activeWallet.address}`"
+        :href="`https://nscan.io/addresses/${activeWallet.address}`"
         target="_blank"
         class="text_link"
-      >{{$t('viewInExplorer')}}</a>
+        >{{ $t('viewInExplorer') }}</a
+      >
     </div>
   </Card>
 </template>
@@ -92,7 +101,9 @@ export default {
       const self = this
 
       this.$axios
-        .$get(`addresses/${this.activeWallet.address}`)
+        .$get(
+          `https://openapi.nkn.org/api/v1/addresses/${this.activeWallet.address}`
+        )
         .then(function(response) {
           self.totalTransactions = response.count_transactions
         })
@@ -110,7 +121,7 @@ export default {
       // Fetcing data
       this.$axios
         .$get(
-          `addresses/${this.activeWallet.address}/transactions/?page=${page}`
+          `https://openapi.nkn.org/api/v1/addresses/${this.activeWallet.address}/transactions/?page=${page}`
         )
         .then(function(response) {
           const {

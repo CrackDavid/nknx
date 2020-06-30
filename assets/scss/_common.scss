@@ -28,6 +28,7 @@ a {
 .overflow-x {
   overflow-x: auto;
   grid-column: span 12;
+  overflow-y: hidden;
 }
 
 .scroll {
@@ -92,9 +93,38 @@ h3 {
 /*========== Page ==========*/
 
 .page {
+  &__alert {
+    color: $text-grey-light;
+    font-size: $font-size-widget;
+    line-height: 23px;
+    position: relative;
+    top: -$padding-default;
+    margin-bottom: $padding-default;
+    display: block;
+
+    @include size-md {
+      display: none;
+    }
+
+    &-link {
+      color: $secondary;
+      transition: $transition-1;
+      text-decoration: underline;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
   &-navigation {
     &__pagination {
       display: flex;
+
+      &_card {
+        position: absolute;
+        right: 24px;
+      }
     }
   }
 
@@ -103,6 +133,14 @@ h3 {
 
     @include size-md {
       display: none;
+    }
+  }
+
+  &__account-settings {
+    margin-top: 50px;
+
+    @include size-sm {
+      margin-top: 16px;
     }
   }
 
@@ -132,6 +170,11 @@ h3 {
       &-controls {
         @include size-md {
           display: flex;
+
+          .node-manager__actions-modal {
+            right: 122px;
+            top: 45px;
+          }
         }
       }
     }
@@ -205,6 +248,7 @@ h3 {
       position: relative;
       overflow: auto;
       grid-column: span 12;
+      padding-bottom: $padding-default;
     }
 
     &-heading {
@@ -234,6 +278,32 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
+  &_padding {
+    padding-right: 116px !important;
+  }
+
+  &_border {
+    padding: 0;
+    padding-bottom: calc(#{$padding-normal} + 1px);
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      height: 1px;
+      width: calc(100% + 24px * 2);
+      background: $platinum;
+      bottom: 0;
+      left: -24px;
+    }
+
+    @include size-llg {
+      padding: 0 !important;
+      padding-bottom: 16px !important;
+    }
+  }
 
   @include size-md {
     padding: $padding-default;
@@ -332,6 +402,20 @@ h3 {
     &_grey {
       color: #888;
     }
+
+    &_danger {
+      color: $error;
+    }
+  }
+
+  &_weight {
+    &_bold {
+      font-weight: bold;
+    }
+  }
+
+  &_uppercase {
+    text-transform: uppercase;
   }
 
   &_align {
@@ -394,6 +478,24 @@ table {
     &:not(:last-child) {
       border-bottom: $card-border;
     }
+
+    &_hoverable {
+      transition: $transition-1;
+      cursor: pointer;
+
+      &:hover {
+        background: $ghost-white;
+      }
+    }
+
+    &_active {
+      background: $primary !important;
+      color: $white !important;
+
+      .fe-more-horizontal:before {
+        color: $white !important;
+      }
+    }
   }
 
   &__title,
@@ -402,6 +504,7 @@ table {
     font-weight: $font-weight-semi-bold;
     padding: $table-header-padding;
     text-align: left;
+    vertical-align: middle;
 
     @include size-md {
       padding: $padding-micro $padding-default;
@@ -412,6 +515,7 @@ table {
   td {
     padding: $table-item-padding;
     position: relative;
+    vertical-align: middle;
 
     @include size-md {
       padding: $padding-default;
@@ -520,6 +624,46 @@ table {
 /*========== Modals ==========*/
 
 .modal {
+  &__notice {
+    text-align: center;
+    padding: $padding-medium $padding-default;
+    background-color: $ghost-white;
+    font-style: italic;
+    margin-bottom: $padding-normal;
+    border-radius: $card-border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition-1;
+
+    &:hover {
+      path {
+        fill: $secondary;
+      }
+    }
+
+    &:active {
+      path {
+        fill: $primary;
+      }
+    }
+
+    &-copy {
+      position: relative;
+
+      svg {
+        position: relative;
+        top: 6px;
+        left: 2px;
+
+        path {
+          transition: $transition-1;
+        }
+      }
+    }
+  }
+
   &-wrapper {
     overflow: hidden;
     overflow-y: scroll;
@@ -731,8 +875,16 @@ table {
     align-items: center;
     position: relative;
 
+    &_no-margin {
+      margin: 0;
+    }
+
     @include size-md {
       margin-top: $padding-normal;
+    }
+
+    @include size-sm {
+      margin-top: $padding-default;
     }
 
     &-button {
@@ -776,6 +928,55 @@ table {
 
   &-input {
     flex: 1;
+    position: relative;
+
+    &__actions {
+      display: flex;
+      flex-flow: column wrap;
+      position: absolute;
+      right: $padding-default;
+      top: 9px;
+      background: $white;
+
+      &-icon {
+        cursor: pointer;
+        transition: $transition-1;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+
+    &_flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-right: 0 !important;
+
+      @include size-llg {
+        flex-flow: row wrap;
+      }
+    }
+
+    &__action {
+      position: absolute;
+      right: $padding-default;
+      top: 17px;
+      padding-left: $padding-micro;
+      cursor: pointer;
+      transition: $transition-1;
+      background: $white;
+
+      &:hover {
+        color: $primary;
+      }
+
+      &:active {
+        color: $secondary;
+      }
+    }
 
     &_full {
       flex: auto;
@@ -796,12 +997,41 @@ table {
       color: $text-grey-light;
       font-weight: 500;
       font-size: $font-size-sm;
+
+      &_flex {
+        min-width: 132px;
+
+        @include size-llg {
+          min-width: auto;
+        }
+      }
     }
 
     &__wrapper {
       margin-top: 8px;
       box-sizing: border-box;
       position: relative;
+
+      &_flex {
+        flex: 1;
+        margin-left: $padding-default;
+        position: relative;
+
+        @include size-llg {
+          flex: none;
+          width: 100%;
+          margin-left: 0;
+          margin-top: $padding-xs;
+        }
+      }
+
+      &_number {
+        width: 150px;
+
+        @include size-sm {
+          width: 100%;
+        }
+      }
     }
 
     &__alert {
@@ -830,8 +1060,24 @@ table {
         min-height: 180px;
       }
 
+      &_number {
+        appearance: none;
+
+        &[type='number']::-webkit-inner-spin-button,
+        &[type='number']::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
       &:focus {
         border-color: $primary;
+      }
+
+      &_readonly {
+        background: rgba(238, 238, 238, 0.7) !important;
+        border-color: $platinum !important;
+        color: $quick-silver;
       }
     }
 
@@ -895,11 +1141,20 @@ table {
 
 /*========== Transitions ==========*/
 
-.fade-enter-active,
-.fade-leave-active {
+.modal-enter-active,
+.modal-leave-active {
   transition: $transition-1;
+
+  .modal-form {
+    transition: $transition-1;
+  }
 }
-.fade-enter,
-.fade-leave-to {
+.modal-enter,
+.modal-leave-to {
   opacity: 0;
+
+  .modal-form {
+    transform: translate(0, -25%);
+    opacity: 0;
+  }
 }

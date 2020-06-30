@@ -1,7 +1,7 @@
 .country-list {
   &__flag {
     position: absolute;
-    top: -9px;
+    top: 8px;
     border-radius: 26px;
   }
 
@@ -16,6 +16,7 @@
     background-color: $secondary;
     border-radius: 100px;
     margin-right: 14px;
+    max-width: 80%;
 
     @include size-md {
       display: block;

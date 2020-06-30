@@ -31,7 +31,8 @@
   }
 
   &_overflow {
-    height: calc(100vh - #{$topbar-height} - #{$headerbar-height});
+    // height: calc(100vh - #{$topbar-height} - #{$headerbar-height});
+    height: 100vh;
     overflow: hidden;
 
     @include size-md {

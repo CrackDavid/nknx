@@ -1,15 +1,54 @@
 <template>
   <div
-    v-if="price && networkStats && networkStatus && dailyHistoryPrice && dailyTransactions && dailyBlocks && latestSigchain && networkCities && networkCountries && networkProviders && dailyNodes && userWallets && userNodes && networkReleases && userNodesStats"
+    v-if="
+      price &&
+        networkStats &&
+        networkStatus &&
+        dailyHistoryPrice &&
+        dailyTransactions &&
+        dailyBlocks &&
+        latestSigchain &&
+        networkCities &&
+        networkCountries &&
+        networkProviders &&
+        dailyNodes &&
+        userWallets &&
+        userNodes &&
+        networkReleases &&
+        userNodesStats &&
+        userData &&
+        userProviders &&
+        fastDeployConfigs
+    "
   >
     <Topbar />
     <Headerbar />
     <Sidebar />
     <nuxt
       class="content"
-      :class="[topbarExpanded ? 'content_topbar' : null, sidebarExpanded ? 'content_collapsed content_overflow_mobile' : null, deleteNodeModalVisible !== false || deleteAllNodesModalVisible !== false || deleteAllWalletsModalVisible !== false || receiveWalletModalVisible !== false || fastDeployModalVisible !== false || newWalletModalVisible !== false || deleteWalletModalVisible !== false || editNodeModalVisible !== false || newNodeModalVisible !== false ? 'content_overflow' : null]"
+      :class="[
+        topbarExpanded ? 'content_topbar' : null,
+        sidebarExpanded ? 'content_collapsed content_overflow_mobile' : null,
+        deleteNodeModalVisible !== false ||
+        deleteAllNodesModalVisible !== false ||
+        deleteAllWalletsModalVisible !== false ||
+        receiveWalletModalVisible !== false ||
+        fastDeployModalVisible !== false ||
+        newWalletModalVisible !== false ||
+        deleteWalletModalVisible !== false ||
+        editNodeModalVisible !== false ||
+        deleteAccountModalVisible !== false ||
+        deleteProviderModalVisible !== false ||
+        editProviderModalVisible !== false ||
+        deleteFastDeployConfigModalVisible !== false ||
+        editFastDeployConfigModalVisible !== false ||
+        fastDeployCustomModalVisible !== false ||
+        newNodeModalVisible !== false
+          ? 'content_overflow'
+          : null
+      ]"
     />
-    <transition name="fade">
+    <transition name="modal">
       <NewWalletModal v-if="newWalletModalVisible" />
       <DeleteWalletModal v-if="deleteWalletModalVisible" />
       <NewNodeModal v-if="newNodeModalVisible" />
@@ -18,8 +57,16 @@
       <DeleteAllWalletsModal v-if="deleteAllWalletsModalVisible" />
       <ReceiveWalletModal v-if="receiveWalletModalVisible" />
       <FastDeployModal v-if="fastDeployModalVisible" />
+      <FastDeployCustomModal v-if="fastDeployCustomModalVisible" />
       <EditNodeModal v-if="editNodeModalVisible" />
+      <DeleteAccountModal v-if="deleteAccountModalVisible" />
+      <DeleteProviderModal v-if="deleteProviderModalVisible" />
+      <EditProviderModal v-if="editProviderModalVisible" />
+      <DeleteFastDeployConfigModal v-if="deleteFastDeployConfigModalVisible" />
+      <EditFastDeployConfigModal v-if="editFastDeployConfigModalVisible" />
     </transition>
+
+    <Snackbar />
   </div>
   <Preloader v-else />
 </template>
@@ -37,8 +84,16 @@ import DeleteNodeModal from '~/components/Modals/DeleteNodeModal/DeleteNodeModal
 import EditNodeModal from '~/components/Modals/EditNodeModal/EditNodeModal'
 import DeleteAllNodesModal from '~/components/Modals/DeleteAllNodesModal/DeleteAllNodesModal'
 import DeleteAllWalletsModal from '~/components/Modals/DeleteAllWalletsModal/DeleteAllWalletsModal'
+import DeleteAccountModal from '~/components/Modals/DeleteAccountModal/DeleteAccountModal'
 import ReceiveWalletModal from '~/components/Modals/ReceiveWalletModal/ReceiveWalletModal'
 import FastDeployModal from '~/components/Modals/FastDeployModal/FastDeployModal'
+import FastDeployCustomModal from '~/components/Modals/FastDeployCustomModal/FastDeployCustomModal'
+import DeleteProviderModal from '~/components/Modals/DeleteProviderModal/DeleteProviderModal'
+import EditProviderModal from '~/components/Modals/EditProviderModal/EditProviderModal'
+import DeleteFastDeployConfigModal from '~/components/Modals/DeleteFastDeployConfigModal/DeleteFastDeployConfigModal'
+import EditFastDeployConfigModal from '~/components/Modals/EditFastDeployConfigModal/EditFastDeployConfigModal'
+
+import Snackbar from '~/components/Snackbar/Snackbar.vue'
 
 export default {
   head() {
@@ -59,7 +114,14 @@ export default {
     DeleteAllWalletsModal,
     ReceiveWalletModal,
     FastDeployModal,
-    EditNodeModal
+    FastDeployCustomModal,
+    EditNodeModal,
+    DeleteAccountModal,
+    DeleteProviderModal,
+    EditProviderModal,
+    DeleteFastDeployConfigModal,
+    EditFastDeployConfigModal,
+    Snackbar
   },
   data: () => {
     return {
@@ -71,11 +133,19 @@ export default {
     deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
     newNodeModalVisible: 'modals/getNewNodeModalVisible',
     fastDeployModalVisible: 'modals/getFastDeployModalVisible',
+    fastDeployCustomModalVisible: 'modals/getFastDeployCustomModalVisible',
     deleteNodeModalVisible: 'modals/getDeleteNodeModalVisible',
     editNodeModalVisible: 'modals/getEditNodeModalVisible',
     deleteAllNodesModalVisible: 'modals/getDeleteAllNodesModalVisible',
     deleteAllWalletsModalVisible: 'modals/getDeleteAllWalletsModalVisible',
     receiveWalletModalVisible: 'modals/getReceiveWalletModalVisible',
+    deleteAccountModalVisible: 'modals/getDeleteAccountModalVisible',
+    deleteProviderModalVisible: 'modals/getDeleteProviderModalVisible',
+    editProviderModalVisible: 'modals/getEditProviderModalVisible',
+    deleteFastDeployConfigModalVisible:
+      'modals/getDeleteFastDeployConfigModalVisible',
+    editFastDeployConfigModalVisible:
+      'modals/getEditFastDeployConfigModalVisible',
     sidebarExpanded: 'sidebar/get',
     topbarExpanded: 'topbar/getTopbar',
     price: 'price/getCurrentPrice',
@@ -93,7 +163,10 @@ export default {
     userWallets: 'userWallets/getUserWallets',
     userNodes: 'userNodes/getUserNodes',
     userNodesStats: 'userNodes/getUserNodesStats',
-    userConfig: 'userNodes/getUserConfig'
+    userConfig: 'userNodes/getUserConfig',
+    userData: 'userData/getUserData',
+    fastDeployConfigs: 'fastDeployConfigs/getFastDeployConfigs',
+    userProviders: 'userProviders/getUserProviders'
   }),
   destroyed() {
     clearInterval(this.intervalPrice)
@@ -107,7 +180,6 @@ export default {
     clearInterval(this.intervalDailyTransactions)
     clearInterval(this.intervalDailyBlocks)
     clearInterval(this.intervalDailyNodes)
-    clearInterval(this.intervalLatestSigchain)
     clearInterval(this.intervalUserWallets)
     clearInterval(this.intervalUserNodes)
     clearInterval(this.intervalUserNodesStats)
@@ -128,6 +200,9 @@ export default {
     this.updateUserWallets()
     this.updateUserNodes()
     this.updateUserNodesStats()
+    this.updateUserData()
+    this.updateUserProviders()
+    this.updateFastDeployConfigs()
 
     this.intervalPrice = setInterval(this.updatePrice, this.updateInterval)
     this.intervalNetworkStats = setInterval(
@@ -168,10 +243,6 @@ export default {
     )
     this.intervalDailyNodes = setInterval(
       this.updateDailyNodes,
-      this.updateInterval
-    )
-    this.intervalLatestSigchain = setInterval(
-      this.updateLatestSigchain,
       this.updateInterval
     )
     this.intervalUserWallets = setInterval(
@@ -232,6 +303,15 @@ export default {
     },
     updateUserNodesStats() {
       this.$store.dispatch('userNodes/updateUserNodesStats')
+    },
+    updateUserData() {
+      this.$store.dispatch('userData/updateUserData')
+    },
+    updateUserProviders() {
+      this.$store.dispatch('userProviders/updateUserProviders', 1)
+    },
+    updateFastDeployConfigs() {
+      this.$store.dispatch('fastDeployConfigs/updateFastDeployConfigs', 1)
     }
   }
 }

@@ -1,93 +1,50 @@
 .fast-deploy {
   &__form {
-    width: 820px;
+    width: 572px;
 
     @include size-md {
       width: 100%;
     }
   }
 
-  &__toggle {
+  &__count {
+    margin-top: $padding-normal;
     display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: $transition-1;
+    justify-content: space-between;
+    width: 100%;
 
-    &-icon {
-      padding-left: $padding-micro;
-    }
-
-    &:hover {
-      color: $primary;
+    @include size-sm {
+      flex-flow: row wrap;
     }
   }
 
-  &__chain-icon {
-    justify-content: center;
-    display: flex;
+  &__number {
+    margin-right: $padding-medium !important;
 
-    &_positive {
-      color: $success;
-    }
-
-    &_negative {
-      color: $error;
+    @include size-sm {
+      width: 100%;
+      margin-right: 0 !important;
     }
   }
 
-  &__copy {
-    margin-right: $padding-micro;
-    transition: $transition-1;
-    color: $primary;
-    position: relative;
-    cursor: pointer;
-
-    &:hover {
-      color: $secondary;
-    }
-
-    &:active {
-      color: darken($primary, 10%);
+  &__name {
+    &:not(:first-child) {
+      margin-top: $padding-default;
     }
   }
 
-  &__script {
-    background: $base;
-    font-style: italic;
+  &__reminder {
+    color: $orange;
+    font-size: $font-size-sm;
   }
 
-  &__node {
-    &_visible {
-      display: table-row;
-    }
+  &__scroll {
+    max-height: 210px;
+    overflow-y: auto;
 
-    display: none;
-    border: none !important;
-
-    &-info {
-      display: flex;
-
-      div {
-        &:not(:last-child) {
-          margin-right: $padding-micro;
-          min-width: 130px;
-          border-right: 2px solid;
-          border-color: $error;
-          padding-right: $padding-micro;
-        }
-      }
-
-      &_success {
-        div {
-          &:not(:last-child) {
-            border-color: $success;
-          }
-        }
-      }
-    }
-
-    td {
-      padding-left: $padding-big;
+    @include size-sm {
+      width: 100%;
+      margin-top: $padding-default;
     }
   }
 }

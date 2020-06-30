@@ -7,7 +7,13 @@ export const state = () => ({
   deleteAllNodesModalVisible: false,
   deleteAllWalletsModalVisible: false,
   receiveWalletModalVisible: false,
-  fastDeployModalVisible: false
+  fastDeployModalVisible: false,
+  deleteAccountModalVisible: false,
+  deleteProviderModalVisible: false,
+  editProviderModalVisible: false,
+  deleteFastDeployConfigModalVisible: false,
+  editFastDeployConfigModalVisible: false,
+  fastDeployCustomModalVisible: false
 })
 
 export const mutations = {
@@ -37,6 +43,24 @@ export const mutations = {
   },
   setFastDeployModalVisible(state, obj) {
     state.fastDeployModalVisible = obj
+  },
+  setDeleteAccountModalVisible(state, obj) {
+    state.deleteAccountModalVisible = obj
+  },
+  setDeleteProviderModalVisible(state, obj) {
+    state.deleteProviderModalVisible = obj
+  },
+  setEditProviderModalVisible(state, obj) {
+    state.editProviderModalVisible = obj
+  },
+  setDeleteFastDeployConfigModalVisible(state, obj) {
+    state.deleteFastDeployConfigModalVisible = obj
+  },
+  setEditFastDeployConfigModalVisible(state, obj) {
+    state.editFastDeployConfigModalVisible = obj
+  },
+  setFastDeployCustomModalVisible(state, obj) {
+    state.fastDeployCustomModalVisible = obj
   }
 }
 
@@ -67,6 +91,24 @@ export const getters = {
   },
   getFastDeployModalVisible(state) {
     return state.fastDeployModalVisible
+  },
+  getDeleteAccountModalVisible(state) {
+    return state.deleteAccountModalVisible
+  },
+  getDeleteProviderModalVisible(state) {
+    return state.deleteProviderModalVisible
+  },
+  getEditProviderModalVisible(state) {
+    return state.editProviderModalVisible
+  },
+  getDeleteFastDeployConfigModalVisible(state) {
+    return state.deleteFastDeployConfigModalVisible
+  },
+  getEditFastDeployConfigModalVisible(state) {
+    return state.editFastDeployConfigModalVisible
+  },
+  getFastDeployCustomModalVisible(state) {
+    return state.fastDeployCustomModalVisible
   }
 }
 
@@ -97,5 +139,23 @@ export const actions = {
   },
   updateFastDeployModalVisible({ commit }, obj) {
     commit('setFastDeployModalVisible', obj)
+  },
+  updateDeleteAccountModalVisible({ commit }, obj) {
+    commit('setDeleteAccountModalVisible', obj)
+  },
+  updateDeleteProviderModalVisible({ commit }, obj) {
+    commit('setDeleteProviderModalVisible', obj)
+  },
+  updateEditProviderModalVisible({ commit }, obj) {
+    commit('setEditProviderModalVisible', obj)
+  },
+  updateDeleteFastDeployConfigModalVisible({ commit }, obj) {
+    commit('setDeleteFastDeployConfigModalVisible', obj)
+  },
+  updateEditFastDeployConfigModalVisible({ commit }, obj) {
+    commit('setEditFastDeployConfigModalVisible', obj)
+  },
+  updateFastDeployCustomModalVisible({ commit }, obj) {
+    commit('setFastDeployCustomModalVisible', obj)
   }
 }

@@ -1,0 +1,11 @@
+.delete-account {
+  &__descr {
+    color: $error;
+    margin-top: $padding-normal;
+    margin-bottom: $padding-medium;
+  }
+
+  &__button {
+    margin: 0 auto;
+  }
+}

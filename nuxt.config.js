@@ -11,25 +11,37 @@ export default {
       { charset: 'utf-8' },
       {
         name: 'content-type',
-        content:
-          'text/html'
+        content: 'text/html'
       },
       {
         name: 'viewport',
         content:
           'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
       },
-      { hid: 'description', name: 'description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
-      { name: 'og:title', content: "NKNx" },
-      { name: 'og:description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.'
+      },
+      { name: 'og:title', content: 'NKNx' },
+      {
+        name: 'og:description',
+        content:
+          'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.'
+      },
       { name: 'og:type', content: 'website' },
       { name: 'og:url', content: 'https://nknx.org' },
       { name: 'og:image', content: 'https://nknx.org/thumbnail.jpg' },
       // Twitter Card
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@nknX_org' },
-      { name: 'twitter:title', content: "NKNx" },
-      { name: 'twitter:description', content: 'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.' },
+      { name: 'twitter:title', content: 'NKNx' },
+      {
+        name: 'twitter:description',
+        content:
+          'NKNx is a node and wallet tracker for NKN blockchain network. We make managing your nodes and wallets easy and convenient.'
+      },
       { name: 'twitter:image', content: 'https://nknx.org/thumbnail.jpg' },
       { name: 'twitter:image:alt', content: 'NKNx Logo' }
     ],
@@ -75,7 +87,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~plugins/filters.js', '~plugins/i18n.js'],
+  plugins: ['~plugins/filters.js', '~plugins/i18n.js', '~plugins/pusher.js'],
   /*
    ** Nuxt.js modules
    */
@@ -165,8 +177,7 @@ export default {
       'laravel.passport': {
         url: 'https://auth.nknx.org',
         client_id: process.env.CLIENT_ID,
-        client_secret:
-          process.env.CLIENT_SECRET,
+        client_secret: process.env.CLIENT_SECRET,
         userinfo_endpoint: 'https://auth.nknx.org/oauth/me'
       }
     },
