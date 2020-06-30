@@ -156,7 +156,8 @@ export default {
       count: 1,
       isLoading: false,
       preloader: false,
-      incrementStart: 0
+      incrementStart: 0,
+      masterText: 'My-FastDeploy-Node'
     }
   },
   computed: {
@@ -185,9 +186,30 @@ export default {
       return this.activeSize
         ? this.activeSize.regions.map(region => region.name)
         : []
+    },
+    labelsCopy() {
+      return this.labels.slice()
     }
   },
   watch: {
+    labelsCopy: function(newVal, oldVal) {
+      if (this.labelsCopy.length > 0) {
+        if (newVal[0] !== oldVal[0]) {
+          const string = newVal[0]
+          const num = string ? string.match(/\d+$/) : false
+          const numLength = num ? num[0].length : 0
+          const masterNum = num ? parseInt(num[0], 10) : 0
+          const masterText = string.slice(0, string.length - numLength)
+
+          this.masterText = masterText
+          this.incrementStart = masterNum - 1
+
+          this.labels.forEach((label, i) => {
+            this.$set(this.labels, i, `${masterText}${masterNum + i}`)
+          })
+        }
+      }
+    },
     count(newVal, oldVal) {
       if (newVal < 1) {
         this.count = 1
@@ -202,7 +224,7 @@ export default {
 
       if (isInc) {
         for (let i = labelsLength + 1; i <= newVal; i++) {
-          this.labels.push(`My-FastDeploy-Node-${incrementStart + i}`)
+          this.labels.push(`${this.masterText}${incrementStart + i}`)
         }
       } else {
         this.labels = this.labels.slice(0, newVal)
