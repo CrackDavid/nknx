@@ -3,6 +3,18 @@
     <header class="landing__header">
       <nav class="landing__nav">
         <Logo class="landing__nav-logo" />
+        <div class="landing__nav-menu">
+          <a
+            v-if="$auth.$state.loggedIn !== true"
+            class="landing__nav-link"
+            href="https://auth.nknx.org/register"
+            target="_blank"
+          >Sign up</a>
+          <nuxt-link class="landing__nav-btn" to="/dashboard">
+            <template v-if="$auth.$state.loggedIn === true">Go to dashboard</template>
+            <template v-else>Log In</template>
+          </nuxt-link>
+        </div>
       </nav>
     </header>
     <main class="landing__content">
@@ -232,9 +244,10 @@
 import countTo from 'vue-count-to'
 import Logo from '~/assets/icons/logo.svg'
 import Footer from '~/components/Footer/Footer.vue'
+import Button from '~/components/Button/Button.vue'
 
 export default {
-  components: { Logo, Footer, countTo },
+  components: { Logo, Footer, countTo, Button },
   data: () => {
     return {
       users: 0,
