@@ -1,4 +1,5 @@
 export const state = () => ({
+  nodeCounter: 0,
   fastDeployConfigs: false,
   activeFastDeployConfig: {
     id: 0
@@ -11,6 +12,9 @@ export const mutations = {
   },
   setActiveFastDeployConfig(state, fastDeployConfigsObj) {
     state.activeFastDeployConfig = fastDeployConfigsObj
+  },
+  setNodeCounter(state, num) {
+    state.nodeCounter = num
   }
 }
 
@@ -20,6 +24,9 @@ export const getters = {
   },
   getActiveFastDeployConfig(state) {
     return state.activeFastDeployConfig
+  },
+  getNodeCounter(state) {
+    return state.nodeCounter
   }
 }
 
@@ -32,5 +39,8 @@ export const actions = {
   },
   updateActiveFastDeployConfig({ commit }, config) {
     commit('setActiveFastDeployConfig', config)
+  },
+  updateNodeCounter({ commit }, num) {
+    commit('setNodeCounter', num)
   }
 }

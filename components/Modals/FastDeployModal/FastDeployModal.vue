@@ -78,7 +78,7 @@
                     v-for="(label, i) in labels"
                     :key="i"
                     v-model="labels[i]"
-                    :placeholder="`My-FastDeploy-Node-${i}`"
+                    :placeholder="`My-FastDeploy-Node-${incrementStart + i}`"
                     class="modal-input__control fast-deploy__name"
                     type="text"
                   />
@@ -152,17 +152,20 @@ export default {
       activeSize: '',
       activeRegion: '',
       activeKey: '',
-      labels: ['My-FastDeploy-Node-1'],
+      labels: [],
       count: 1,
       isLoading: false,
-      preloader: false
+      preloader: false,
+      incrementStart: 0
     }
   },
   computed: {
     ...mapGetters({
       fastDeployModalVisible: 'modals/getFastDeployModalVisible',
       fastDeployProvider: 'fastDeployProvider/getFastDeployProvider',
-      fastDeployConfig: 'fastDeployConfigs/getActiveFastDeployConfig'
+      fastDeployConfig: 'fastDeployConfigs/getActiveFastDeployConfig',
+      nodeCounter: 'fastDeployConfigs/getNodeCounter',
+      userNodes: 'userNodes/getUserNodes'
     }),
 
     isValid() {
@@ -195,10 +198,11 @@ export default {
 
       const isInc = newVal - oldVal > 0
       const labelsLength = this.labels.length
+      const incrementStart = this.incrementStart
 
       if (isInc) {
         for (let i = labelsLength + 1; i <= newVal; i++) {
-          this.labels.push(`My-FastDeploy-Node-${i}`)
+          this.labels.push(`My-FastDeploy-Node-${incrementStart + i}`)
         }
       } else {
         this.labels = this.labels.slice(0, newVal)
@@ -239,6 +243,10 @@ export default {
       this.preloader = true
       await this.getSizes()
       await this.getKeys()
+
+      this.incrementStart = this.nodeCounter
+      this.labels = [`My-FastDeploy-Node-${this.incrementStart + 1}`]
+
       this.preloader = false
     },
     async getSizes() {
@@ -318,6 +326,11 @@ export default {
             const labelsCount = this.labels.length
 
             this.isLoading = false
+            this.$store.dispatch('userNodes/updateUserNodes')
+            this.$store.dispatch(
+              'fastDeployConfigs/updateNodeCounter',
+              this.nodeCounter + this.count
+            )
             this.$store.dispatch('snackbar/updateSnack', {
               snack: `${nodesCount} of ${labelsCount} nodes deployed successfully`,
               color: 'success',
