@@ -7,23 +7,11 @@
     :overflow="false"
   >
     <div class="card-header">
-      <h3 class="card-header__title">
-        {{ $t('recentEvents') }}
-      </h3>
+      <h3 class="card-header__title">{{ $t('recentEvents') }}</h3>
       <div class="card-header__right">
-        <div
-          class="page-navigation__pagination page-navigation__pagination_card"
-        >
-          <Pagination
-            :page="prevPage"
-            type="prev"
-            @click.native="getEvents(prevPage)"
-          />
-          <Pagination
-            :page="nextPage"
-            type="next"
-            @click.native="getEvents(nextPage)"
-          />
+        <div class="page-navigation__pagination page-navigation__pagination_card">
+          <Pagination :page="prevPage" type="prev" @click.native="getEvents(prevPage)" />
+          <Pagination :page="nextPage" type="next" @click.native="getEvents(nextPage)" />
         </div>
       </div>
     </div>
@@ -31,40 +19,20 @@
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
-            <th class="table__title">
-              {{ $t('deploymentName') }}
-            </th>
-            <th class="table__title">
-              {{ $t('server') }}
-            </th>
-            <th class="table__title">
-              {{ $t('provider') }}
-            </th>
-            <th class="table__title">
-              {{ $t('event') }}
-            </th>
-            <th class="table__title">
-              {{ $t('when') }}
-            </th>
+            <th class="table__title">{{ $t('deploymentName') }}</th>
+            <th class="table__title">{{ $t('server') }}</th>
+            <th class="table__title">{{ $t('provider') }}</th>
+            <th class="table__title">{{ $t('event') }}</th>
+            <th class="table__title">{{ $t('when') }}</th>
           </tr>
         </thead>
         <tbody class="table__body">
           <tr v-for="event in events" :key="event.id" class="table__row">
-            <td class="table__item">
-              {{ event.fd_deployment.label }}
-            </td>
-            <td class="table__item">
-              {{ event.fd_deployment.ip }}
-            </td>
-            <td class="table__item">
-              {{ event.fd_deployment.provider }}
-            </td>
-            <td class="table__item">
-              {{ $t(`fdEvent${event.event_code}`) }}
-            </td>
-            <td class="table__item">
-              {{ $moment(event.created_at).format('MMM Do, hh:MM:SS A') }}
-            </td>
+            <td class="table__item">{{ event.fd_deployment.label }}</td>
+            <td class="table__item">{{ event.fd_deployment.ip }}</td>
+            <td class="table__item">{{ event.fd_deployment.provider }}</td>
+            <td class="table__item">{{ $t(`fdEvent${event.event_code}`) }}</td>
+            <td class="table__item">{{ $moment(event.created_at).format('MMM Do, hh:mm:ss a') }}</td>
           </tr>
         </tbody>
       </table>
