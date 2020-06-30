@@ -2,7 +2,7 @@
   <div class="modal-wrapper">
     <div class="modal-dialog">
       <div v-on-clickaway="closeModal" class="modal-form fast-deploy__form">
-        <div :class="preloader === true ? 'modal-form_blured' : null">
+        <div>
           <div class="modal__header">
             <div class="modal__heading">{{ $t('deployNknNodesTo') }}</div>
             <span class="modal__close fe fe-x" @click="closeModal"></span>
@@ -59,7 +59,8 @@
               sudo wget -O install.sh
               'https://api.nknx.org/fast-deploy/install/{{
                 fastDeployConfig.uuid
-              }}/{{ activeArchitecture }}/{{ label }}'; bash install.sh <Copy />
+              }}/{{ activeArchitecture }}/{{ label }}'; bash install.sh
+              <Copy />
             </span>
           </div>
 
@@ -76,17 +77,6 @@
               @click.native="closeModal"
               >{{ $t('close') }}</Button
             >
-          </div>
-        </div>
-        <div v-if="preloader" class="modal__loading-overlay">
-          <span
-            :class="[
-              'modal__footer-loader modal__footer-loader_static fe fe-loader',
-              preloader === true ? 'modal__footer-loader_visible' : null
-            ]"
-          ></span>
-          <div class="modal__loading-overlay-text">
-            {{ $t('fastDeployLoading') }}
           </div>
         </div>
       </div>
@@ -120,7 +110,11 @@ export default {
       fastDeployConfig: 'fastDeployConfigs/getActiveFastDeployConfig'
     })
   },
-  watch: {},
+  watch: {
+    label() {
+      this.label = this.label.replace(/[^a-zA-Z0-9]/g, '-').trim()
+    }
+  },
   destroyed() {},
   created() {},
   mounted() {},
