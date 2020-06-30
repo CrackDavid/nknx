@@ -244,10 +244,9 @@
 import countTo from 'vue-count-to'
 import Logo from '~/assets/icons/logo.svg'
 import Footer from '~/components/Footer/Footer.vue'
-import Button from '~/components/Button/Button.vue'
 
 export default {
-  components: { Logo, Footer, countTo, Button },
+  components: { Logo, Footer, countTo },
   data: () => {
     return {
       users: 0,
