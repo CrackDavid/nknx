@@ -93,6 +93,30 @@ h3 {
 /*========== Page ==========*/
 
 .page {
+  &__alert {
+    color: $text-grey-light;
+    font-size: $font-size-widget;
+    line-height: 23px;
+    position: relative;
+    top: -$padding-default;
+    margin-bottom: $padding-default;
+    display: block;
+
+    @include size-md {
+      display: none;
+    }
+
+    &-link {
+      color: $secondary;
+      transition: $transition-1;
+      text-decoration: underline;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
   &-navigation {
     &__pagination {
       display: flex;

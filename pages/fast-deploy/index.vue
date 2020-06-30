@@ -2,7 +2,16 @@
   <div>
     <ContentWrapper>
       <h1 class="page__title">{{ $t(pageTitle) }}</h1>
-      <Grid class="page__account-settings" :customHeight="true">
+      <span class="page__alert"
+        >Feel free to read the guide on
+        <a
+          class="page__alert-link"
+          target="_blank"
+          href="https://medium.com/nknx/how-to-deploy-a-nkn-node-to-your-favorite-vps-with-nknx-fastdeploy-within-seconds-e38405443828"
+          >Medium</a
+        ></span
+      >
+      <Grid :customHeight="true">
         <NewFastDeploy />
         <FastDeployConfigs
           v-if="$mq !== 'md' && $mq !== 'sm' && $mq !== 'xs'"
