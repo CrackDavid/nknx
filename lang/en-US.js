@@ -142,7 +142,9 @@ export default {
   "beneficiaryAddr": "Address to receive rewards (beneficiaryAddr) - First reward will be sent to NKNx-Team",
   "systemArchitecture": "System Architecture",
   "AMD64": "AMD-based machines (nearly all VPS)",
-  "ARM6L": "ARM-based machines (f.e. Raspberry pi)",
+  "ARMV6": "ARMv6-based machines (f.e. Raspberry Pi v1 and Zero)",
+  "ARMV7": "ARMv7-based machines (f.e. Raspberry Pi v2 Model B)",
+  "ARMV8": "ARMv8-based machines (f.e. Raspberry Pi v2 Model B+ to v4)",
   "userDeploymentHistoryDescription": "Here you can see all your Fast Deploy snippets with the history of all nodes that have been deployed through them.",
   "architecture": "Architecture",
   "script": "Script",
@@ -379,5 +381,6 @@ export default {
   "fdEvent12": "Installation finished",
   "fdEvent13": "Sent donation to NKNx",
   "fdEvent20": "Node added to NKNx",
-  "blocksMinedToday": "# Mined today"
+  "blocksMinedToday": "# Mined today",
+  "fastDeployInstruction": "Here is your FastDeploy script. Please make sure to run it as root-user to make sure everything will run without errors."
 };
