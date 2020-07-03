@@ -16,22 +16,22 @@
           </div>
 
           <div class="modal-input_full">
-            <label class="modal-input__label">{{
+            <label class="modal-input__label">
+              {{
               $t('beneficiaryAddress')
-            }}</label>
+              }}
+            </label>
             <div class="modal-input__wrapper">
-              <input
-                v-model="address"
-                class="modal-input__control"
-                type="text"
-              />
+              <input v-model="address" class="modal-input__control" type="text" />
             </div>
           </div>
 
           <div class="modal-input_full">
-            <label class="modal-input__label">{{
+            <label class="modal-input__label">
+              {{
               $t('deploymentOptions')
-            }}</label>
+              }}
+            </label>
             <div class="modal-input__wrapper">
               <div class="modal-radio__group">
                 <Checkbox
@@ -39,22 +39,19 @@
                   name="downloadChain"
                   :value="downloadChain"
                   @change="changeDownloadChain"
-                  >{{ $t('downloadChain') }}</Checkbox
-                >
+                >{{ $t('downloadChain') }}</Checkbox>
                 <Checkbox
                   class="modal-radio__item"
                   name="enableWebUI"
                   :value="enableWebUI"
                   @change="changeEnableWebUI"
-                  >{{ $t('enableWebUI') }}</Checkbox
-                >
+                >{{ $t('enableWebUI') }}</Checkbox>
                 <Checkbox
                   class="modal-radio__item"
                   name="disableUFW"
                   :value="disableUFW"
                   @change="changeDisableUFW"
-                  >{{ $t('disableUFW') }}</Checkbox
-                >
+                >{{ $t('disableUFW') }}</Checkbox>
               </div>
             </div>
           </div>
@@ -71,16 +68,14 @@
             type="button"
             theme="white"
             @click.native="closeModal"
-            >{{ $t('cancel') }}</Button
-          >
+          >{{ $t('cancel') }}</Button>
           <Button
             class="modal__footer-button"
             type="button"
             :theme="isValid ? 'primary' : 'white'"
             :disabled="!isValid"
             @click.native="isValid ? saveData() : false"
-            >{{ $t('edit') }}</Button
-          >
+          >{{ $t('edit') }}</Button>
         </div>
       </div>
     </div>
@@ -107,7 +102,7 @@ export default {
       loading: false,
       downloadChain: true,
       enableWebUI: false,
-      disableUFW: false
+      disable_ufw: false
     }
   },
   computed: {
@@ -166,7 +161,7 @@ export default {
           beneficiary_addr: address,
           download_chain: downloadChain,
           enable_web_ui: enableWebUI,
-          disableUFW: disableUFW
+          disable_ufw: disableUFW
         })
         .then(response => {
           this.$store.dispatch('snackbar/updateSnack', {

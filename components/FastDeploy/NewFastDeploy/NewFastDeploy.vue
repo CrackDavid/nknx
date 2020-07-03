@@ -1,11 +1,7 @@
 <template>
-  <Card
-    :col="$mq === 'xl' ? '4' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'"
-  >
+  <Card :col="$mq === 'xl' ? '4' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'">
     <div class="card-header card-header_border">
-      <h3 class="card-header__title">
-        {{ $t('newConfiguration') }}
-      </h3>
+      <h3 class="card-header__title">{{ $t('newConfiguration') }}</h3>
     </div>
     <div class="modal__body modal__body_wrap">
       <div class="modal-input_full">
@@ -31,8 +27,7 @@
               name="disableUFW"
               :value="disableUFW"
               @change="changeDisableUFW"
-              >{{ $t('disableUFW') }}</Checkbox
-            >
+            >{{ $t('disableUFW') }}</Checkbox>
           </div>
         </div>
       </div>
@@ -51,8 +46,7 @@
         :theme="isValid ? 'primary' : 'white'"
         :disabled="!isValid"
         @click.native="isValid ? saveData() : false"
-        >{{ $t('add') }}</Button
-      >
+      >{{ $t('add') }}</Button>
     </div>
   </Card>
 </template>
@@ -79,7 +73,7 @@ export default {
       loading: false,
       downloadChain: true,
       enableWebUI: false,
-      disableUFW: false
+      disable_ufw: false
     }
   },
   computed: {
@@ -126,7 +120,7 @@ export default {
           beneficiary_addr: address,
           download_chain: downloadChain,
           enable_web_ui: enableWebUI,
-          disableUFW: disableUFW
+          disable_ufw: disableUFW
         })
         .then(response => {
           this.$store.dispatch('snackbar/updateSnack', {
