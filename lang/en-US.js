@@ -381,6 +381,7 @@ export default {
   "fdEvent12": "Installation finished",
   "fdEvent13": "Sent donation to NKNx",
   "fdEvent20": "Node added to NKNx",
+  "fdEvent30": "Chain snapshot downloaded",
   "blocksMinedToday": "# Mined today",
   "fastDeployInstruction": "Here is your FastDeploy script. Please make sure to run it as root-user to make sure everything will run without errors."
 };
