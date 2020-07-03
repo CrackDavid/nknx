@@ -49,7 +49,7 @@
                   <Radio
                     class="modal-radio__item"
                     name="options"
-                    label="linux-arm64"
+                    label="linux-armv7"
                     :value="activeArchitecture"
                     @change="changeArchitecture"
                   >{{ $t('ARMV8') }}</Radio>
