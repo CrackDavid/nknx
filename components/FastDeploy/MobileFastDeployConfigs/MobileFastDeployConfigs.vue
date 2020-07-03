@@ -1,23 +1,11 @@
 <template>
   <Card col="12" padding="none">
     <div class="card-header card-header_padding">
-      <h3 class="card-header__title">
-        {{ $t('myConfigurations') }} ({{ $t('clickToSelect') }})
-      </h3>
+      <h3 class="card-header__title">{{ $t('myConfigurations') }} ({{ $t('clickToSelect') }})</h3>
       <div class="card-header__right">
-        <div
-          class="page-navigation__pagination page-navigation__pagination_card"
-        >
-          <Pagination
-            :page="prevPage"
-            type="prev"
-            @click.native="getConfigs(prevPage)"
-          />
-          <Pagination
-            :page="nextPage"
-            type="next"
-            @click.native="getConfigs(nextPage)"
-          />
+        <div class="page-navigation__pagination page-navigation__pagination_card">
+          <Pagination :page="prevPage" type="prev" @click.native="getConfigs(prevPage)" />
+          <Pagination :page="nextPage" type="next" @click.native="getConfigs(nextPage)" />
         </div>
       </div>
     </div>
@@ -34,24 +22,16 @@
         @click="setActiveConfig(config)"
       >
         <div class="mobile-fd-config__title">{{ $t('label') }}</div>
-        <div class="mobile-fd-config__value text_wrap_none">
-          {{ config.label }}
-        </div>
-        <div class="mobile-fd-config__title">
-          {{ $t('beneficiaryAddress') }}
-        </div>
-        <div class="mobile-fd-config__value text_wrap_none">
-          {{ config.beneficiary_addr }}
-        </div>
+        <div class="mobile-fd-config__value text_wrap_none">{{ config.label }}</div>
+        <div class="mobile-fd-config__title">{{ $t('beneficiaryAddress') }}</div>
+        <div class="mobile-fd-config__value text_wrap_none">{{ config.beneficiary_addr }}</div>
         <div class="mobile-fd-config__title">{{ $t('disableUfw') }}?</div>
         <div class="mobile-fd-config__value text_wrap_none">
-          <span v-if="config.disable_ufw">{{ $t('yes') }}</span>
-          <span v-else>{{ $t('no') }}</span>
+          <span v-if="config.disable_ufw">{{ $t('no') }}</span>
+          <span v-else>{{ $t('yes') }}</span>
         </div>
         <div class="mobile-fd-config__title">#{{ $t('deployments') }}</div>
-        <div class="mobile-fd-config__value text_wrap_none">
-          {{ config.fd_deployments_count }}
-        </div>
+        <div class="mobile-fd-config__value text_wrap_none">{{ config.fd_deployments_count }}</div>
       </div>
     </div>
   </Card>

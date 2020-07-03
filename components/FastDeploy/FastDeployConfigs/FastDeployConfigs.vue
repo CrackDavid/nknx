@@ -9,24 +9,14 @@
     <div class="card-header">
       <h3 class="card-header__title">
         {{ $t('myConfigurations') }} ({{ $t('clickToSelect') }})
-        <span class="card-header__counter"
-          >{{ total }} {{ $t('inTotal') }}</span
-        >
+        <span
+          class="card-header__counter"
+        >{{ total }} {{ $t('inTotal') }}</span>
       </h3>
       <div class="card-header__right">
-        <div
-          class="page-navigation__pagination page-navigation__pagination_card"
-        >
-          <Pagination
-            :page="prevPage"
-            type="prev"
-            @click.native="getConfigs(prevPage)"
-          />
-          <Pagination
-            :page="nextPage"
-            type="next"
-            @click.native="getConfigs(nextPage)"
-          />
+        <div class="page-navigation__pagination page-navigation__pagination_card">
+          <Pagination :page="prevPage" type="prev" @click.native="getConfigs(prevPage)" />
+          <Pagination :page="nextPage" type="next" @click.native="getConfigs(nextPage)" />
         </div>
       </div>
     </div>
@@ -34,21 +24,11 @@
       <table class="table">
         <thead class="table__header">
           <tr class="table__row">
-            <th class="table__title" style="width: 10%;">
-              {{ $t('label') }}
-            </th>
-            <th class="table__title" style="width: 10%;">
-              {{ $t('beneficiaryAddress') }}
-            </th>
-            <th class="table__title" style="width: 1%;">
-              {{ $t('disableUfw') }}?
-            </th>
-            <th class="table__title" style="width: 10%;">
-              #{{ $t('deployments') }}
-            </th>
-            <th class="table__title" style="width: 1%;">
-              {{ $t('actions') }}
-            </th>
+            <th class="table__title" style="width: 10%;">{{ $t('label') }}</th>
+            <th class="table__title" style="width: 10%;">{{ $t('beneficiaryAddress') }}</th>
+            <th class="table__title" style="width: 1%;">{{ $t('disableUfw') }}?</th>
+            <th class="table__title" style="width: 10%;">#{{ $t('deployments') }}</th>
+            <th class="table__title" style="width: 1%;">{{ $t('actions') }}</th>
           </tr>
         </thead>
         <tbody v-on-clickaway="closeActionsModal" class="table__body">
@@ -69,19 +49,13 @@
                   })
             "
           >
+            <td class="table__item">{{ config.label }}</td>
+            <td class="table__item">{{ config.beneficiary_addr }}</td>
             <td class="table__item">
-              {{ config.label }}
+              <span v-if="config.disable_ufw">{{ $t('no') }}</span>
+              <span v-else>{{ $t('yes') }}</span>
             </td>
-            <td class="table__item">
-              {{ config.beneficiary_addr }}
-            </td>
-            <td class="table__item">
-              <span v-if="config.disable_ufw">{{ $t('yes') }}</span>
-              <span v-else>{{ $t('no') }}</span>
-            </td>
-            <td class="table__item">
-              {{ config.fd_deployments_count }}
-            </td>
+            <td class="table__item">{{ config.fd_deployments_count }}</td>
             <td class="table__item text_align_center">
               <span
                 class="node-manager__actions fe fe-more-horizontal"
@@ -95,16 +69,13 @@
                       : null
                   ]"
                 >
-                  <div
-                    class="node-manager__actions-item"
-                    @click="openDeleteConfigModal(config)"
-                  >
-                    <span
-                      class="node-manager__actions-icon fe fe-trash-2"
-                    ></span>
-                    <span class="node-manager__actions-title">{{
+                  <div class="node-manager__actions-item" @click="openDeleteConfigModal(config)">
+                    <span class="node-manager__actions-icon fe fe-trash-2"></span>
+                    <span class="node-manager__actions-title">
+                      {{
                       $t('delete')
-                    }}</span>
+                      }}
+                    </span>
                   </div>
                 </div>
               </span>
