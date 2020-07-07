@@ -78,7 +78,7 @@
                     v-for="(label, i) in labels"
                     :key="i"
                     v-model="labels[i]"
-                    :placeholder="`My-FastDeploy-Node-${incrementStart + i}`"
+                    :placeholder="`My-FastDeploy-Node${incrementStart + i}`"
                     class="modal-input__control fast-deploy__name"
                     type="text"
                   />
@@ -205,7 +205,9 @@ export default {
           this.incrementStart = masterNum - 1
 
           this.labels.forEach((label, i) => {
-            this.$set(this.labels, i, `${masterText}${masterNum + i}`)
+            if (i !== 0) {
+              this.$set(this.labels, i, `${masterText}${masterNum + i}`)
+            }
           })
         }
       }
