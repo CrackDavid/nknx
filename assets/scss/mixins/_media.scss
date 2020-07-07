@@ -67,3 +67,13 @@
 %size-xs {
   @include size-xs;
 }
+
+@mixin size-xss {
+  @media (max-width: $desktop-size-xss) {
+    @content;
+  }
+}
+
+%size-xss {
+  @include size-xss;
+}

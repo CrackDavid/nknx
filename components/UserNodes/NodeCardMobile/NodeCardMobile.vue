@@ -64,6 +64,13 @@
           <span v-if="node.version !== null">{{ node.height }}</span
           ><span v-else>{{ $t('n/a') }}</span>
         </div>
+        <div class="node-card-mobile__stats">
+          <span class="node-card-mobile__icon fe fe-gift"></span>
+          <span v-if="node.node_snapshots.length">{{
+            node.node_snapshots[0].mined
+          }}</span>
+          <span v-else>{{ $t('n/a') }}</span>
+        </div>
       </div>
     </div>
   </Card>

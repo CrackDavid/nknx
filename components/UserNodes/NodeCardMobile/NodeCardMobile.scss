@@ -1,5 +1,4 @@
 .node-card-mobile {
-
   &__header {
     display: flex;
     align-items: center;
@@ -45,9 +44,13 @@
     margin-left: $padding-normal;
     display: flex;
     align-items: center;
+
+    @include size-xss {
+      font-size: 10px;
+    }
   }
 
   &__icon {
-    padding-right: 8px;
+    padding-right: 4px;
   }
 }

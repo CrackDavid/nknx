@@ -6,6 +6,10 @@
     font-size: $font-size-xs;
   }
 
+  @include size-xss {
+    font-size: 10px;
+  }
+
   &_state {
     &_syncing {
       color: $orange;
