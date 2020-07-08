@@ -361,7 +361,7 @@ export default {
   "newFastDeployConfigSuccess": "Configuration created successfully!",
   "about": "About",
   "otherHelpfulTools": "Other helpful tools",
-  "nstatus": "nStatus - The in-depth node analyzer",
+  "nStatus": "nStatus - The in-depth node analyzer",
   "noApiKeyError": "No API key present",
   "noFdConfigError": "ou didn't chose a configuration to deploy.",
   "editFastDeployConfigSuccess": "Configuration edited successfully!",
