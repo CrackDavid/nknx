@@ -332,7 +332,7 @@ export default {
   "region": "Region",
   "numberOfNodes": "Number of nodes",
   "reminder": "Reminder",
-  "fastDeployReminder": "Please be aware that the first node reward of a node deployed through FastDeploy (11.41552511 NKN) will be donated to the NKNx team.",
+  "fastDeployReminder": "Please be aware that the first node reward of a node deployed through FastDeploy (11.09852 NKN) will be donated to the NKNx team.",
   "disableUfw": "UFW",
   "deployments": "Deployments",
   "yes": "yes",
