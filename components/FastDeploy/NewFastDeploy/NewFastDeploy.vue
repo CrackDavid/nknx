@@ -1,5 +1,7 @@
 <template>
-  <Card :col="$mq === 'xl' ? '4' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'">
+  <Card
+    :col="$mq === 'xl' ? '4' : $mq === 'llg' ? '6' : $mq === 'lg' ? '6' : '12'"
+  >
     <div class="card-header card-header_border">
       <h3 class="card-header__title">{{ $t('newConfiguration') }}</h3>
     </div>
@@ -27,7 +29,19 @@
               name="disableUFW"
               :value="disableUFW"
               @change="changeDisableUFW"
-            >{{ $t('disableUFW') }}</Checkbox>
+              >{{ $t('disableUFW') }}</Checkbox
+            >
+          </div>
+        </div>
+        <div class="modal-input__wrapper">
+          <div class="modal-radio__group">
+            <Checkbox
+              class="modal-radio__item"
+              name="downloadChain"
+              :value="downloadChain"
+              @change="changeDownloadChain"
+              >{{ $t('downloadChain') }}</Checkbox
+            >
           </div>
         </div>
       </div>
@@ -46,7 +60,8 @@
         :theme="isValid ? 'primary' : 'white'"
         :disabled="!isValid"
         @click.native="isValid ? saveData() : false"
-      >{{ $t('add') }}</Button>
+        >{{ $t('add') }}</Button
+      >
     </div>
   </Card>
 </template>
@@ -73,7 +88,7 @@ export default {
       loading: false,
       downloadChain: true,
       enableWebUI: false,
-      disable_ufw: false
+      disableUFW: false
     }
   },
   computed: {
