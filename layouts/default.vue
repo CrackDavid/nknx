@@ -64,6 +64,7 @@
       <EditProviderModal v-if="editProviderModalVisible" />
       <DeleteFastDeployConfigModal v-if="deleteFastDeployConfigModalVisible" />
       <EditFastDeployConfigModal v-if="editFastDeployConfigModalVisible" />
+      <DevelopmentUpdateModal v-if="developmentUpdateModalVisible" />
     </transition>
 
     <Snackbar />
@@ -92,6 +93,7 @@ import DeleteProviderModal from '~/components/Modals/DeleteProviderModal/DeleteP
 import EditProviderModal from '~/components/Modals/EditProviderModal/EditProviderModal'
 import DeleteFastDeployConfigModal from '~/components/Modals/DeleteFastDeployConfigModal/DeleteFastDeployConfigModal'
 import EditFastDeployConfigModal from '~/components/Modals/EditFastDeployConfigModal/EditFastDeployConfigModal'
+import DevelopmentUpdateModal from '~/components/Modals/DevelopmentUpdateModal/DevelopmentUpdateModal'
 
 import Snackbar from '~/components/Snackbar/Snackbar.vue'
 
@@ -121,6 +123,7 @@ export default {
     EditProviderModal,
     DeleteFastDeployConfigModal,
     EditFastDeployConfigModal,
+    DevelopmentUpdateModal,
     Snackbar
   },
   data: () => {
@@ -129,6 +132,7 @@ export default {
     }
   },
   computed: mapGetters({
+    developmentUpdateModalVisible: 'modals/getDevelopmentUpdateModalVisible',
     newWalletModalVisible: 'modals/getNewWalletModalVisible',
     deleteWalletModalVisible: 'modals/getDeleteWalletModalVisible',
     newNodeModalVisible: 'modals/getNewNodeModalVisible',
@@ -185,6 +189,8 @@ export default {
     clearInterval(this.intervalUserNodesStats)
   },
   mounted: function() {
+    this.$store.dispatch('modals/updateDevelopmentUpdateModalVisible', true)
+
     this.updatePrice()
     this.updateNetworkStats()
     this.updateNetworkStatus()

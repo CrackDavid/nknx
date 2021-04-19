@@ -13,10 +13,14 @@ export const state = () => ({
   editProviderModalVisible: false,
   deleteFastDeployConfigModalVisible: false,
   editFastDeployConfigModalVisible: false,
-  fastDeployCustomModalVisible: false
+  fastDeployCustomModalVisible: false,
+  developmentUpdateModalVisible: false
 })
 
 export const mutations = {
+  setDevelopmentUpdateModalVisible(state, obj) {
+    state.developmentUpdateModalVisible = obj
+  },
   setNewWalletModalVisible(state, obj) {
     state.newWalletModalVisible = obj
   },
@@ -65,6 +69,9 @@ export const mutations = {
 }
 
 export const getters = {
+  getDevelopmentUpdateModalVisible(state) {
+    return state.developmentUpdateModalVisible
+  },
   getNewWalletModalVisible(state) {
     return state.newWalletModalVisible
   },
@@ -113,6 +120,9 @@ export const getters = {
 }
 
 export const actions = {
+  updateDevelopmentUpdateModalVisible({ commit }, obj) {
+    commit('setDevelopmentUpdateModalVisible', obj)
+  },
   updateNewWalletModalVisible({ commit }, obj) {
     commit('setNewWalletModalVisible', obj)
   },
