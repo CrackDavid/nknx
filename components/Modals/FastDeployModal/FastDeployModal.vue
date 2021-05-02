@@ -87,11 +87,6 @@
             </div>
           </div>
 
-          <div class="fast-deploy__reminder">
-            <b class="text_weight_bold">{{ $t('reminder') }}: </b>
-            {{ $t('fastDeployReminder') }}
-          </div>
-
           <div class="modal__footer">
             <span
               :class="[
