@@ -3,6 +3,15 @@
     <span :class="'node-status_state_' + className">
       <span :class="'node-status__icon fe fe-' + icon"></span>
       <span class="node-status__text">{{ $t(name) }}</span>
+      <span
+        v-if="status === 'GENERATE_ID'"
+        v-tooltip="{
+          content: `For the successeful ID generation, you need to send 10 NKN to the node's wallet address: <br><br><b style='font-weight: bold; font-size: 14px;'>${walletAddress}</b> `,
+          placement: `bottom-center`,
+          offset: 0
+        }"
+        class="tooltip-icon fe fe-help-circle"
+      ></span>
     </span>
   </span>
 </template>
@@ -20,6 +29,10 @@ export default {
     status: {
       type: String,
       default: 'Offline'
+    },
+    walletAddress: {
+      type: String,
+      default: ''
     }
   },
   data: () => {

@@ -43,7 +43,10 @@
             <td>{{ node.addr }}</td>
             <td>{{ node.pivot.label }}</td>
             <td>
-              <NodeStatus :status="node.syncState" />
+              <NodeStatus
+                :status="node.syncState"
+                :walletAddress="node.walletAddress"
+              />
             </td>
             <td>
               <span v-if="node.version !== null">{{ node.height }}</span

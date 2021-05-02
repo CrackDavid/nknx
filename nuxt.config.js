@@ -87,7 +87,12 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~plugins/filters.js', '~plugins/i18n.js', '~plugins/pusher.js'],
+  plugins: [
+    '~plugins/filters.js',
+    '~plugins/i18n.js',
+    '~plugins/pusher.js',
+    '~plugins/v-tooltip.js'
+  ],
   /*
    ** Nuxt.js modules
    */
