@@ -189,8 +189,6 @@ export default {
     clearInterval(this.intervalUserNodesStats)
   },
   mounted: function() {
-    this.$store.dispatch('modals/updateDevelopmentUpdateModalVisible', true)
-
     this.updatePrice()
     this.updateNetworkStats()
     this.updateNetworkStatus()
