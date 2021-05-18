@@ -14,7 +14,7 @@
       <span
         v-if="status === 'GENERATE_ID'"
         v-tooltip="{
-          content: `For the successeful ID generation, you need to send 10 NKN to the node's wallet address: <br><br><b style='font-weight: bold; font-size: 14px;'>${walletAddress}. Click on the status to copy the address to your clipboard.</b> `,
+          content: `For the successeful ID generation, you need to send 10 NKN to the node's wallet address: <br><br><b style='font-weight: bold; font-size: 14px;'>${walletAddress}.</b><br><br>Click on the status to copy the address to your clipboard.`,
           placement: `bottom-center`,
           offset: 0,
         }"
