@@ -2,13 +2,21 @@
   <span class="node-status">
     <span :class="'node-status_state_' + className">
       <span :class="'node-status__icon fe fe-' + icon"></span>
-      <span class="node-status__text">{{ $t(name) }}</span>
+      <span
+        v-if="status === 'GENERATE_ID'"
+        v-clipboard:copy="walletAddress"
+        class="node-status__text"
+        @click="copyAlert"
+        style="cursor: pointer"
+        >{{ $t(name) }}</span
+      >
+      <span v-else class="node-status__text">{{ $t(name) }}</span>
       <span
         v-if="status === 'GENERATE_ID'"
         v-tooltip="{
-          content: `For the successeful ID generation, you need to send 10 NKN to the node's wallet address: <br><br><b style='font-weight: bold; font-size: 14px;'>${walletAddress}</b> `,
+          content: `For the successeful ID generation, you need to send 10 NKN to the node's wallet address: <br><br><b style='font-weight: bold; font-size: 14px;'>${walletAddress}. Click on the status to copy the address to your clipboard.</b> `,
           placement: `bottom-center`,
-          offset: 0
+          offset: 0,
         }"
         class="tooltip-icon fe fe-help-circle"
       ></span>
@@ -28,34 +36,41 @@ export default {
   props: {
     status: {
       type: String,
-      default: 'Offline'
+      default: 'Offline',
     },
     walletAddress: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data: () => {
     return {
       name: '',
       className: '',
-      icon: ''
+      icon: '',
     }
   },
   computed: {
     ...mapGetters({
-      userNodes: 'userNodes/getUserNodes'
-    })
+      userNodes: 'userNodes/getUserNodes',
+    }),
   },
   watch: {
-    userNodes: function(newVal, oldVal) {
+    userNodes: function (newVal, oldVal) {
       this.getNodeStatus()
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.getNodeStatus()
   },
   methods: {
+    copyAlert() {
+      this.$store.dispatch('snackbar/updateSnack', {
+        snack: 'fdCopyAlert',
+        color: 'alert',
+        timeout: true,
+      })
+    },
     getNodeStatus() {
       const status = this.status
 
@@ -98,7 +113,7 @@ export default {
         default:
           return false
       }
-    }
-  }
+    },
+  },
 }
 </script>
