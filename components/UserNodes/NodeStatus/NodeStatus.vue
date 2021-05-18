@@ -66,7 +66,7 @@ export default {
   methods: {
     copyAlert() {
       this.$store.dispatch('snackbar/updateSnack', {
-        snack: 'fdCopyAlert',
+        snack: 'walletAddressCopyAlert',
         color: 'alert',
         timeout: true,
       })
