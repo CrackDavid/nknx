@@ -1,24 +1,22 @@
 <template>
   <div
     v-if="
-      price &&
-        networkStats &&
-        networkStatus &&
-        dailyHistoryPrice &&
-        dailyTransactions &&
-        dailyBlocks &&
-        latestSigchain &&
-        networkCities &&
-        networkCountries &&
-        networkProviders &&
-        dailyNodes &&
-        userWallets &&
-        userNodes &&
-        networkReleases &&
-        userNodesStats &&
-        userData &&
-        userProviders &&
-        fastDeployConfigs
+      networkStats &&
+      networkStatus &&
+      dailyTransactions &&
+      dailyBlocks &&
+      latestSigchain &&
+      networkCities &&
+      networkCountries &&
+      networkProviders &&
+      dailyNodes &&
+      userWallets &&
+      userNodes &&
+      networkReleases &&
+      userNodesStats &&
+      userData &&
+      userProviders &&
+      fastDeployConfigs
     "
   >
     <Topbar />
@@ -45,7 +43,7 @@
         fastDeployCustomModalVisible !== false ||
         newNodeModalVisible !== false
           ? 'content_overflow'
-          : null
+          : null,
       ]"
     />
     <transition name="modal">
@@ -100,7 +98,7 @@ import Snackbar from '~/components/Snackbar/Snackbar.vue'
 export default {
   head() {
     return {
-      title: this.$t('loading')
+      title: this.$t('loading'),
     }
   },
   components: {
@@ -124,11 +122,11 @@ export default {
     DeleteFastDeployConfigModal,
     EditFastDeployConfigModal,
     DevelopmentUpdateModal,
-    Snackbar
+    Snackbar,
   },
   data: () => {
     return {
-      updateInterval: 300000
+      updateInterval: 300000,
     }
   },
   computed: mapGetters({
@@ -170,7 +168,7 @@ export default {
     userConfig: 'userNodes/getUserConfig',
     userData: 'userData/getUserData',
     fastDeployConfigs: 'fastDeployConfigs/getFastDeployConfigs',
-    userProviders: 'userProviders/getUserProviders'
+    userProviders: 'userProviders/getUserProviders',
   }),
   destroyed() {
     clearInterval(this.intervalPrice)
@@ -188,7 +186,7 @@ export default {
     clearInterval(this.intervalUserNodes)
     clearInterval(this.intervalUserNodesStats)
   },
-  mounted: function() {
+  mounted: function () {
     this.updatePrice()
     this.updateNetworkStats()
     this.updateNetworkStatus()
@@ -316,7 +314,7 @@ export default {
     },
     updateFastDeployConfigs() {
       this.$store.dispatch('fastDeployConfigs/updateFastDeployConfigs', 1)
-    }
-  }
+    },
+  },
 }
 </script>
