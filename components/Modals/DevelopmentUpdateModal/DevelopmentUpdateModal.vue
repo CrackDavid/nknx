@@ -7,50 +7,48 @@
           <span class="modal__close fe fe-x" @click="closeModal"></span>
         </div>
         <div class="modal__title">
-          Warning: NKNx temporarily with limited features
+          NKNx v3 beta is here!
         </div>
         <div class="modal__body modal__body_wrap">
           <div>
             <p class="text_weight_bold" style="margin-bottom: 24px;">
-              Dear valued member,
+              Hello there,
             </p>
             <p style="margin-bottom: 16px;">
-              Our servers are under heavy load since more and more members are
-              joining NKNx, Because of that we decided to temporarily disable
-              all node updating features. That means for you that the following
-              features are
-              <b class="text_weight_bold">currently not working</b>:
+              We worked hard on creating a new and updated version of NKNx the
+              last months and now it has finally opened for open beta! V3 comes
+              with a completely revamped messaging system as well as important
+              changes in the Node Manager, FastDeploy and many more!
             </p>
 
-            <ul style="margin-bottom: 16px;">
-              <li>
-                - Wallet history data (wallet balances will still be updated)
-              </li>
-              <li>- Updating of your nodes in the dashboard</li>
-              <li>
-                - ALL mining statistics (mined today, total mined last 3 months,
-                etc.)
-              </li>
-            </ul>
+            <p style="margin-bottom: 24px;">
+              Since NKNx v3 is a complete rewrite we also decided to start from
+              a blank user base. That means you have to recreate your account
+              and readd your nodes by hand. Users who had more than 15 nodes and
+              need an export from old NKNx please reach out through our support
+              system - we will be happy to help.
+            </p>
 
             <p style="margin-bottom: 24px;">
-              FastDeploy is still working without any issues. We are already
-              working on a new and remastered version of NKNx that will give you
-              all features back and many more. So stay tuned and follow us on
-              <a
-                class="text_link"
-                href="https://twitter.com/nknx_org"
-                target="_blank"
-                >Twitter</a
+              The beta version of NKNx v3 is available under
+              <a class="text_link" href="https://beta.nknx.org/" target="_blank"
+                >https://beta.nknx.org/</a
               >
-              or join our
-              <a
-                class="text_link"
-                href="https://discord.gg/MP5eDs55"
-                target="_blank"
-                >Discord</a
+              and will replace NKNx v2 (this website) in 1-2 weeks. So make sure
+              you move your nodes to the new system.
+            </p>
+
+            <p style="margin-bottom: 24px;">
+              <b class="text_weight_bold">Important:</b> If you consider
+              supporting us and get a paid subscription use code
+              <span class="text_weight_bold" style="font-style: italic;"
+                >standard50</span
               >
-              for the latest news!
+              for NKNx Standard or
+              <span class="text_weight_bold" style="font-style: italic;"
+                >pro50</span
+              >
+              for NKNx Pro to get 50% off your first month!
             </p>
 
             <p class="fast-deploy__reminder text_weight_bold">
