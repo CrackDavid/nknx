@@ -3,57 +3,49 @@
     <div class="modal-dialog">
       <div v-on-clickaway="closeModal" class="modal-form">
         <div class="modal__header">
-          <div class="modal__heading">Development Update</div>
+          <div class="modal__heading">Important notice</div>
           <span class="modal__close fe fe-x" @click="closeModal"></span>
         </div>
         <div class="modal__title">
-          NKNx v3 beta is here!
+          Hurry up and migrate your account to NKNx beta!
         </div>
         <div class="modal__body modal__body_wrap">
           <div>
-            <p class="text_weight_bold" style="margin-bottom: 24px;">
+            <p class="text_weight_bold" style="margin-bottom: 24px">
               Hello there,
             </p>
-            <p style="margin-bottom: 16px;">
-              We worked hard on creating a new and updated version of NKNx the
-              last months and now it has finally opened for open beta! V3 comes
-              with a completely revamped messaging system as well as important
-              changes in the Node Manager, FastDeploy and many more!
+            <p style="margin-bottom: 16px">
+              As we already announced through social media, discord and telegram
+              NKNx will progress to a new authentication system with v3 coming
+              on <b>14th of July</b>!
             </p>
 
-            <p style="margin-bottom: 24px;">
-              Since NKNx v3 is a complete rewrite we also decided to start from
-              a blank user base. That means you have to recreate your account
-              and readd your nodes by hand. Users who had more than 15 nodes and
-              need an export from old NKNx please reach out through our support
-              system - we will be happy to help.
+            <p style="margin-bottom: 24px">
+              This also means that you
+              <b
+                >need to create a new account on
+                <a
+                  class="text_link"
+                  href="https://beta.nknx.org/"
+                  target="_blank"
+                  >https://beta.nknx.org/</a
+                >
+                and readd your nodes by hand to not lose your account data!</b
+              >. There is no automated process for this. If you got more than 15
+              nodes in your account and need a list of all your IPs please
+              contact our support.
             </p>
 
-            <p style="margin-bottom: 24px;">
+            <p style="margin-bottom: 24px">
               The beta version of NKNx v3 is available under
               <a class="text_link" href="https://beta.nknx.org/" target="_blank"
                 >https://beta.nknx.org/</a
               >
-              and will replace NKNx v2 (this website) in 1-2 weeks. So make sure
-              you move your nodes to the new system.
+              and will replace NKNx v2 (this website) <b>on 14th of July</b>. So
+              make sure you move your nodes to the new system.
             </p>
 
-            <p style="margin-bottom: 24px;">
-              <b class="text_weight_bold">Important:</b> If you consider
-              supporting us and get a paid subscription use code
-              <span class="text_weight_bold" style="font-style: italic;"
-                >standard50</span
-              >
-              for NKNx Standard or
-              <span class="text_weight_bold" style="font-style: italic;"
-                >pro50</span
-              >
-              for NKNx Pro to get 50% off your first month!
-            </p>
-
-            <p class="fast-deploy__reminder text_weight_bold">
-              Your NKNx Team
-            </p>
+            <p class="fast-deploy__reminder text_weight_bold">Your NKNx Team</p>
           </div>
         </div>
         <div class="modal__footer">
@@ -83,16 +75,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      developmentUpdateModalVisible: 'modals/getDevelopmentUpdateModalVisible'
-    })
+      developmentUpdateModalVisible: 'modals/getDevelopmentUpdateModalVisible',
+    }),
   },
   destroyed() {},
-  created: function() {},
-  mounted: function() {},
+  created: function () {},
+  mounted: function () {},
   methods: {
     closeModal() {
       this.$store.dispatch('modals/updateDevelopmentUpdateModalVisible', false)
-    }
-  }
+    },
+  },
 }
 </script>
